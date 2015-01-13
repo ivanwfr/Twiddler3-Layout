@@ -1,0 +1,97 @@
+/* html {{{ */
+ body  { color: #ffffcc; background-color: #000000; }
+ body  { font-size:12px; font-family: monospace; }
+ h3    { text-align:center; line-height:1.5em; }
+ span  { line-height:1.5em; }
+ td    { background-color:#100; }
+ td    { border:3px #300 groove; }
+ td    { padding:1ex; }
+ td    { vertical-align:top; }
+ td    { white-space:nowrap; }
+ hr   { border-color:#300; }
+.hr   { height:0.5em; width:1px; margin:.1em 0 0 .1em; background-color:#000; }
+
+/* }}} */
+/* section info {{{ */
+
+.section      { background-color:#200; border:2px #300 groove; }
+.section      { float:right; clear:right; }
+.section      { text-align:right; font-size:100%; margin-bottom:.5em; }
+.section span { letter-spacing:.1em; }
+
+.info { color: #aa0; background-color:#333;  }
+.info { border:inset 1px; }
+.info { font-family:monospace; }
+.info { font-size:100%; }
+.info { margin:1ex 0 1ex 2ex; }
+.info { opacity:0.6; filter:alpha(opacity =  60); }
+.info { padding:1ex; }
+.info { line-height:1em; }
+
+/* }}} */
+/* ...FONT {{{ */
+
+.o  { font-size:80%; font-weight:normal; letter-spacing:3px; }
+.r  { font-size:80%; font-weight:bold;   letter-spacing:3px; }
+.m  { font-size:80%; font-weight:bold;   letter-spacing:3px; }
+.l  { font-size:80%; font-weight:bold;   letter-spacing:3px; }
+
+/* }}} */
+/* ...GEOM {{{ */
+/* O RIGHT MIDDLE LEFT */
+.em { margin:0 1px 2px 2px; padding:0 2px 0 2px; }
+.oo { margin:0 1px 2px 2px; padding:0 2px 0 2px; }
+.rr { margin:0 3px 2px 2px; padding:0 2px 0 2px; }
+.mm { margin:0 3px 2px 2px; padding:0 2px 0 2px; }
+.ll { margin:0 3px 2px 2px; padding:0 2px 0 2px; }
+
+/* NUM SHIFT CNTRL ALT */
+.nn { margin:0 3px 2px 2px; padding:0 2px 0 2px; }
+.ss { margin:0 1px 2px 2px; padding:0 2px 0 2px; }
+.cc { margin:0 1px 2px 2px; padding:0 2px 0 2px; }
+.aa { margin:0 1px 2px 2px; padding:0 2px 0 2px; }
+
+/* }}} */
+/* border-radius {{{ */
+
+ td { border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px; }
+
+.em { border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; }
+.oo { border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; }
+.rr { border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; }
+.mm { border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; }
+.ll { border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; }
+
+.nn { border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; }
+.ss { border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; }
+.cc { border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; }
+.aa { border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; }
+
+/* }}} */
+/* ...COLORS {{{ */
+.o  {  color:#444; }
+.em {  color:#888; background-color:#111; border:1px solid #666; }
+.oo {  color:#444; background-color:#000; border:1px solid  #000; }
+.to { border:#222 8px solid; }
+
+
+.r  {  color:#080; }
+.rr {  color:#080; background-color:#020; border:1px solid #080; }
+.tr { border:#020 8px solid; }
+
+.m  {  color:#06f; }
+.mm {  color:#06f; background-color:#024; border:1px solid #06f; }
+.tm { border:#005 8px solid; }
+
+.l  {  color:#a00; }
+.ll {  color:#a00; background-color:#300; border:1px solid #a00; }
+.tl { border:#200 8px solid; }
+
+.nn {  color:#a6f; background-color:#204; border:1px solid #538; }
+.tn { border:#204 8px solid; }
+
+.ss {  color:#000; background-color:#550; border:1px solid #aa0; }
+.cc {  color:#000; background-color:#055; border:1px solid #0aa; }
+.aa {  color:#000; background-color:#505; border:1px solid #a0a; }
+
+/* }}} */
