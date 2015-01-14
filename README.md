@@ -8,4 +8,4 @@ This is why I opened this repository so I can gather my findings and draw the at
 One more thing, to make it even more challenging - and more rewarding if it works: A good addition I can think of to the best available solutions so far would be to come up with a common layout (or close enough) for the [Twiddler 3](http://twiddler.tekgear.com/) and a kind of 
 _chord-minded_ on-screen Android keyboard like [MessagEase](http://www.exideas.com/ME/me_faq.html).
 
-...all of it is in the wiki](https://github.com/ivanwfr/Twiddler3-Layout/wiki)
+...all of it is in the [wiki](https://github.com/ivanwfr/Twiddler3-Layout/wiki)
