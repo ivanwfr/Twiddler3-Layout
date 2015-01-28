@@ -356,3 +356,37 @@ footer p + p {
     content: 'at http://github.com/';
   }
 }
+
+.collapsed { display:none;  }
+.expanded {
+    margin-left:0;
+  width: 95%;
+  display:block;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  padding:1ex;
+  border:2px solid #AAAAAA;
+}
+.fold_title {
+  border:2px solid #CDCDCD;
+    margin-top:1ex;
+    margin-left:0;
+  width: 95%;
+  background: #CDCDCD;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  cursor:pointer;
+  padding:0 1ex 0 1ex;
+  -ms-user-select     : none;
+  -webkit-user-select : none;
+  -moz-user-select    : -moz-none;
+}
+.fold_title:hover {
+  background: #AAAAAA;
+}
