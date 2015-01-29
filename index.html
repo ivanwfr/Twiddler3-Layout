@@ -52,15 +52,13 @@
   on unclear points requiring further explanation.
   And this is not the case even in 
   <a href="https://github.com/ivanwfr/Twiddler3-Layout/wiki/3.1-TabSpace-Guide" target="_blank">The TabSpace Twiddler Key Assignments</a>
-  by Brandon Craig Rhodes, the original author of the currently accepted standard layout for this device.
-  </p>
-  <!-- }}} -->
+  by Brandon Craig Rhodes, the original author of what stands for a standard layout of this device.
+  </p> <!-- }}} -->
   <p><!-- {{{ -->
   A systematic study of all the possible combinations should help at deciding new assignment rules.
   Some grouping methods should be defined to replace "simply good-looking patterns".
   To be more easily accepted as an effective improvement, these rules should make sense when looking at the big picture.
-  </p>
-  <!-- }}} -->
+  </p> <!-- }}} -->
   <ul><!-- github wiki project {{{ -->
    <li> <a href="https://github.com/ivanwfr/Twiddler3-Layout/wiki" target="_blank">wiki pages</a></li>
    <li> <a href="https://github.com/ivanwfr/Twiddler3-Layout"      target="_blank">project repository</a></li>
@@ -76,44 +74,27 @@
   <hr>
   <!-- }}} -->
 
-  <div class="fold_title" onclick='toggle_div("1_cheat_sheets")'><!-- {{{ -->
-   1 Cheat Sheets
+  <div class="fold_title" onclick='toggle_div("1")'><!-- Cheat Sheets {{{ -->
+   Cheat Sheets
   </div>
-  <div id="div_1_cheat_sheets" class="collapsed">
-   <p><!-- intro + Cheat sheet {{{ -->
+  <div id="div_1" class="collapsed">
+   <p><!-- {{{ -->
    To start with a glance at the ultimate goal of this quest, here is a sample of 
    <a href="https://github.com/ivanwfr/Twiddler3-Layout/wiki/2.1-Cheat-Sheet" target="_blank">
     Cheat Sheets
    </a> to be used as a reference while defining the vocabulary.
    <p>
    (...)
-   </p>
-   <!-- }}} -->
+   </p> <!-- }}} -->
   </div>
   <!-- }}} -->
-  <div class="fold_title" onclick='toggle_div("tabspace")'><!-- {{{ -->
-   2 TabSpace chord scheme
+  <div class="fold_title" onclick='toggle_div("3")'><!-- supported chords {{{ -->
+   Supported chords
   </div>
-  <div id="div_tabspace" class="collapsed">
+  <div id="div_3" class="collapsed">
    <p><!-- {{{ -->
-   Starting from Brandon Craig Rhodes's
-   <a href="https://github.com/ivanwfr/Twiddler3-Layout/wiki/3.1-TabSpace-Guide" target="_blank">
-   TabSpace
-   </a> layout (...)
-   <p>
-   (...)
-   </p>
-   <!-- }}} -->
-  </div>
-  <!-- }}} -->
-  <div class="fold_title" onclick='toggle_div("rml_chords")'><!-- {{{ -->
-   3 Twiddler 3 supported chords
-  </div>
-  <div id="div_rml_chords" class="collapsed">
-   <p><!-- twiddler_chords {{{ -->
    Let's start with the description of a <em>3x3 chords set</em> from the 3 columns of the 3 lower rows.
-Three additionnal sets of 3x3 chords can be used
-  by pressing one of the three buttons of the first row.
+   Three additionnal sets of 3x3 chords can be used by pressing one of the three buttons of the first row.
    The Twiddler 3 configurator supports only a subset of all the possible combinations:
    <pre style='margin:0;'><!-- {{{ -->
 max: <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span>
@@ -149,10 +130,10 @@ Combinations not allowed by the configurator:
 <span class='rr'>R</span><span class='ll'>L</span><span class='oo'>O</span> -
 <span class='rr'>R</span><span class='oo'>O</span><span class='rr'>R</span> -
 <span class='rr'>R</span><span class='oo'>O</span><span class='mm'>M</span> -
-<span class='rr'>R</span><span class='oo'>O</span><span class='ll'>L</span> -s
+<span class='rr'>R</span><span class='oo'>O</span><span class='ll'>L</span> -
 <span class='rr'>R</span><span class='oo'>O</span><span class='oo'>O</span> -
 
-<span class='mm'>M</span><span class='rr'>R</span><span class='rr'>R</span> -s
+<span class='mm'>M</span><span class='rr'>R</span><span class='rr'>R</span> -
 <span class='mm'>M</span><span class='rr'>R</span><span class='mm'>M</span> -
 <span class='mm'>M</span><span class='rr'>R</span><span class='ll'>L</span> -
 <span class='mm'>M</span><span class='rr'>R</span><span class='oo'>O</span> -
@@ -210,8 +191,318 @@ Combinations not allowed by the configurator:
    TabSpace</a> layout (...)
    <p>
    (...)
-   </p>
-   <!-- }}} -->
+   </p> <!-- }}} -->
+  </div>
+  <!-- }}} -->
+
+  <div class="fold_title" onclick='toggle_div("4")'><!-- tabspace.ini {{{ -->
+   TabSpace
+  </div>
+  <div id="div_4" class="collapsed">
+    <a href="https://github.com/ivanwfr/Twiddler3-Layout/wiki/3.1-TabSpace-Guide" target="_blank">
+     The TabSpace Twiddler Key Assignments
+    </a>
+
+   <div class="fold_title" onclick='toggle_div("4.1")'>Credit</div><!-- {{{ -->
+   <div id="div_4.1" class="collapsed">
+    <pre>
+    Brandon Craig Rhodes http://www.rhodesmill.org/brandon
+    Version 0.3, Monday 15 November 1999
+    May be shared and modified if credited
+    </pre>
+   </div> <!-- }}} -->
+   <div class="fold_title" onclick='toggle_div("4.2")'>The three top buttons</div>  <!-- {{{ -->
+   <div id="div_4.2" class="collapsed">
+    <pre>
+# The three top buttons map to the most frequently used keys.  Note
+# that in sane command line environments (those that support
+# completions), tab is used nearly as much as backspace and both are
+# often used many times per line (so we make them more convenient than
+# a carriage return).
+
+0     r000 = BACKSPACE
+0     m000 = " "
+0     l000 = TAB
+    </pre>
+   </div><!-- }}} -->
+   <div class="fold_title" onclick='toggle_div("4.3")'>...the nine most common letters</div> <!-- {{{ -->
+   <div id="div_4.3" class="collapsed">
+    <pre>
+
+# Next are the nine most common letters, which can each be produced
+# with a single keypress.  They are carefully arranged so that the
+# most common combinations of them can be pressed simultaneously to
+# produce double letters.  In each case the double letter combinations
+# output their two constituent letters in the most common order
+# (though with some such as er-re it was a close call).  The doubles
+# can be expected to account for roughly one-third of the adjacent
+# letter pairs in normal English text!
+
+0     0m00 = "e"
+0     00m0 = "t"
+0     000m = "h"
+0     0l00 = "o"
+0     00l0 = "r"
+0     000l = "s"
+0     0r00 = "i"
+0     00r0 = "n"
+0     000r = "a"
+
+0     0r0r = "ai"
+0     0r0m = "hi"
+0     0r0l = "is"
+0     0rr0 = "in"
+0     0rm0 = "it"
+0     0rl0 = "ri"
+0     0m0r = "ea"
+0     0m0m = "he"
+0     0m0l = "es"
+0     0mr0 = "en"
+0     0mm0 = "te"
+0     0ml0 = "er"
+0     0l0r = "oa"
+0     0l0m = "ho"
+0     0l0l = "so"
+0     0lr0 = "on"
+0     0lm0 = "to"
+0     0ll0 = "or"
+0     00rr = "an"
+0     00rm = "hn"
+0     00rl = "ns"
+0     00mr = "at"
+0     00mm = "th"
+0     00ml = "st"
+0     00lr = "ar"
+0     00lm = "hr"
+0     00ll = "rs"
+    </pre>
+   </div><!-- }}} -->
+   <div class="fold_title" onclick='toggle_div("4.4")'>...other letters, index finger on the spacebar</div> <!-- {{{ -->
+   <div id="div_4.4" class="collapsed">
+    <pre>
+# Every other letter is produced by pressing the top middle button
+# (the spacebar) and some combination of the lower keys.  It is
+# expected that during normal typing the index finger will stay on the
+# spacebar.  A few combinations that involve these second-tier letters
+# are also supported.
+
+0     mm00 = "d"
+0     m0m0 = "l"
+0     m00m = "m"
+0     mr00 = "c"
+0     m0r0 = "f"
+0     m00r = "g"
+0     ml00 = "u"
+0     m0l0 = "w"
+0     m00l = "y"
+0     mmm0 = "p"
+0     m0mm = "k"
+0     mrr0 = "b"
+0     m0rr = "j"
+0     mll0 = "v"
+0     m0ll = "x"
+0     mm0m = "q"
+0     ml0l = "z"
+
+0     mlr0 = "of"
+0     mmr0 = "nd"
+0     mr0m = "ch"
+0     ml0m = "qu"
+0     m0lm = "wh"
+
+    </pre>
+   </div><!-- }}} -->
+   <div class="fold_title" onclick='toggle_div("4.5")'>Some three-letter combinations</div> <!-- {{{ -->
+   <div id="div_4.5" class="collapsed">
+    <pre>
+# Finally, we support some three-letter combinations.  As above, note
+# that they are produced simply by pressing all of their letters
+# simulateously.
+
+0     0mmm = "the"
+0     0rrr = "ain"
+0     0mlr = "are"
+0     mrrr = "ing"
+0     mmrr = "and"
+0     mlrr = "ong"
+    </pre>
+   </div><!-- }}} -->
+   <div class="fold_title" onclick='toggle_div("4.6")'>Number keypad</div> <!-- {{{ -->
+   <div id="div_4.6" class="collapsed">
+    <pre>
+# As everyone knows, keypads are supposed to be three by three.
+
+0     rr00 = "1"
+0     rm00 = "2"
+0     rl00 = "3"
+0     r0r0 = "4"
+0     r0m0 = "5"
+0     r0l0 = "6"
+0     r00r = "7"
+0     r00m = "8"
+0     r00l = "9"
+0     rrr0 = "0"
+0     rmm0 = "."
+0     rll0 = "-"
+    </pre>
+   </div><!-- }}} -->
+   <div class="fold_title" onclick='toggle_div("4.7")'>Math operators</div> <!-- {{{ -->
+   <div id="div_4.7" class="collapsed">
+    <pre>
+# Below the number keypad we place three tiers of mathematical
+# operators and symbols.  First come the arithmetic operators, which
+# we cascade off of the minus sign.
+
+0     rlm0 = "+"
+0     rlr0 = "^"
+0     rl0l = "/"
+0     rl0m = "*"
+0     rl0r = "%"
+    </pre>
+   </div><!-- }}} -->
+   <div class="fold_title" onclick='toggle_div("4.8")'>Logic operators</div> <!-- {{{ -->
+   <div id="div_4.8" class="collapsed">
+    <pre>
+# The middle tier of operators include those usually used for logic
+# operations.
+
+0     rmr0 = "&amp;"
+0     rml0 = "|"
+0     rm0m = "~"
+0     rm0r = "^"
+    </pre>
+   </div><!-- }}} -->
+   <div class="fold_title" onclick='toggle_div("4.9")'>Comparators</div> <!-- {{{ -->
+   <div id="div_4.9" class="collapsed">
+    <pre>
+# The double key combinations along the bottom two rows
+# produce the comparitive operators.  Note that the greater than and
+# less than symbols, which we also use as angle brackets, are in
+# positions similar to all other brackets (see below).
+
+0     r0rr = "<"
+0     r0mm = ">"
+0     r0ll = "="
+    </pre>
+   </div><!-- }}} -->
+   <div class="fold_title" onclick='toggle_div("4.10")'>Punctuation, quotes and brackets</div> <!-- {{{ -->
+   <div id="div_4.10" class="collapsed">
+    <pre>
+# The last major section involves punctuation.  The period, comma, and
+# enter key are both intended to be very easy to press.  The semicolon
+# is of course produced by pressing period and comma simultaneously.
+# Quotes and brackets are also available here.
+
+0     ll00 = "."
+0     lll0 = ";"
+0     l0l0 = ","
+0     l0ll = ":"
+0     l00l = 34	    # quotation mark
+0     l00m = "'"
+0     l00r = "`"
+0     lm00 = ENTER
+0     lr00 = "-"
+0     lrr0 = "["
+0     lmm0 = "]"
+0     l0r0 = "("
+0     l0m0 = ")"
+0     l0rr = "{"
+0     l0mm = "}"
+    </pre>
+   </div><!-- }}} -->
+   <div class="fold_title" onclick='toggle_div("4.11")'>...more punctuation and computer specifics</div> <!-- {{{ -->
+   <div id="div_4.11" class="collapsed">
+    <pre>
+# Now that we have exhausted the same-row combinations of the lower
+# three keys, we place two more echelons of symbols: one of textual
+# punctuation, and the other of more obscure symbols more often
+# encountered in programming (and computer typesetting).  People who
+# use such keys exceedingly often may have cause to be upset with me.
+
+0     llm0 = "?"
+0     llr0 = "!"
+0     ll0l = "$"
+0     ll0m = "#"
+0     ll0r = "~"
+0     llll = "@"
+0     llmm = "&amp;"
+
+0     lmr0 = "/"
+0     lml0 = "\\"
+0     lm0m = "_"
+0     lm0r = "%"
+    </pre>
+   </div><!-- }}} -->
+   <div class="fold_title" onclick='toggle_div("4.12")'>U R D L ... PgUp PgDn Home End ... Insert Del ... BS Tab Enter</div> <!-- {{{ -->
+   <div id="div_4.12" class="collapsed">
+    <pre>
+# The FN modifier has no useful native function under X-windows
+# (unlike the Shift, CTRL, and ALT modifiers), so we use it for useful
+# keystrokes that need to be easy to get to.  Hitting single keys with
+# FUNC give an arrow key rose and other screen navigation sequences.
+# This is also where we put important codes like Escape, Delete, Null,
+# and Linefeed.
+
+func  r000 = 127            # func + BACKSPACE = delete (ascii rubout)
+func  m000 = NULL           # func + SPACE = null
+func  l000 = ESCAPE         # func + TAB = ESCAPE
+func  lm00 = 10             # func + ENTER = linefeed
+func  0m00 = 20,"FF52",20   # XK_Up
+func  00m0 = 20,"FF54",20   # XK_Down
+func  0r00 = 20,"FF51",20   # XK_Left
+func  0l00 = 20,"FF53",20   # XK_Right
+func  00r0 = 20,"FF55",20   # XK_Page_Up
+func  000r = 20,"FF56",20   # XK_Page_Down
+func  00l0 = 20,"FF95",20   # XK_Home
+func  000l = 20,"FF9C",20   # XK_End
+func  000m = 20,"FF9E",20   # XK_Insert
+    </pre>
+   </div><!-- }}} -->
+   <div class="fold_title" onclick='toggle_div("4.13")'>Emacs</div> <!-- {{{ -->
+   <div id="div_4.13" class="collapsed">
+    <pre>
+# Every Emacs user will appreciate these easily accessible sequences,
+# if only they can bring themselves to remember them.
+
+func  ll00 = 4              # C-d
+func  mm00 = 7              # C-g
+func  0rr0 = 3              # C-c
+func  0mm0 = 24             # C-x
+func  0ll0 = 24,"u"         # C-x u
+func  00rr = 24,"("         # C-x (
+func  00mm = 24,")"         # C-x )
+func  00ll = 24,"e"         # C-x e
+    </pre>
+   </div><!-- }}} -->
+   <div class="fold_title" onclick='toggle_div("4.14")'>FKEYS</div> <!-- {{{ -->
+   <div id="div_4.14" class="collapsed">
+    <pre>
+# FUNC + keypad produces function keys.
+
+func  rr00 = 20,"FFBE",20   # XK_F1
+func  rm00 = 20,"FFBF",20   # XK_F2
+func  rl00 = 20,"FFC0",20   # XK_F3
+func  r0r0 = 20,"FFC1",20   # XK_F4
+func  r0m0 = 20,"FFC2",20   # XK_F5
+func  r0l0 = 20,"FFC3",20   # XK_F6
+func  r00r = 20,"FFC4",20   # XK_F7
+func  r00m = 20,"FFC5",20   # XK_F8
+func  r00l = 20,"FFC6",20   # XK_F9
+func  rrr0 = 20,"FFC7",20   # XK_F10
+func  rmm0 = 20,"FFC8",20   # XK_F11
+func  rll0 = 20,"FFC9",20   # XK_F12
+    </pre>
+   </div><!-- }}} -->
+   <div class="fold_title" onclick='toggle_div("4.15")'>Locks (Caps, Num, Scroll)</div> <!-- {{{ -->
+   <div id="div_4.15" class="collapsed">
+    <pre>
+# I feel like I should throw these in somewhere so here they are:
+
+num   00mm = CAPS_LOCK
+num   00rr = NUM_LOCK
+num   00ll = SCROLL_LOCK
+    </pre>
+   </div><!-- }}} -->
   </div>
   <!-- }}} -->
  </section>
