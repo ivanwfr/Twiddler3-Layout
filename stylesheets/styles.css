@@ -248,12 +248,14 @@ pre {
   margin: 0 -20px 20px;
 }
 
-.expanded pre {
-  margin: 0 0 1ex 0;
-}
 pre code {
   color: #f8f8f2;
 }
+
+.expanded pre {
+  margin: 0 0 1ex 0;
+}
+
 li pre {
   margin-left: -60px;
   padding-left: 60px;
