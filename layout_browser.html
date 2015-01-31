@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head><!-- {{{ -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>Twiddler Layout Browser</title>
+
+  <link rel="stylesheet" href="stylesheets/styles.css">
+  <script src="javascripts/fold.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+  <style>
+
+   body { padding:0; }
+
+   #navi { position:absolute; top:1ex; left:0; text-align:center; width:100%; }
+
+   #swpL { position:absolute; top:0; left :0; width:50%; height:100%; float: left; text-align: left; }
+   #swpR { position:absolute; top:0; right:0; width:50%; height:100%; float:right; text-align:right; }
+
+   #swpL { background-color:red;   }
+   #swpR { background-color:green; }
+
+   #swpL { opacity:0.01; filter:alpha(opacity = 1); }
+   #swpR { opacity:0.01; filter:alpha(opacity = 1); }
+
+   #swpL { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
+   #swpR { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
+
+   .swpL { cursor: url(images/cursor/left.png) , auto; }
+   .swpR { cursor: url(images/cursor/right.png), auto; }
+
+   .endL { cursor: url(images/cursor/end.png), auto; }
+   .endR { cursor: url(images/cursor/end.png), auto; }
+
+  </style>
+
+  </head>
+  <!-- }}} -->
+  <body onkeypress="keypress(event);"><!-- {{{ -->
+
+  <div id="navi">
+    &larr; a | w &rarr;
+    <br>XXX
+   </div>
+   <div id="swpL" class="swpL" onclick='swipe_img(-1);' >&nbsp;</div>
+   <div id="swpR" class="swpR" onclick='swipe_img( 1);' >&nbsp;</div>
+
+   <img id="img1" style="display:block;" title="ORML Notation" style="width:80%; margin:1em;" src="images/Cheat_Blank.png">
+   <img id="img2" style="display: none;" title="TabSpace"      style="width:80%; margin:1em;" src="images/Cheat_TabSpace.png">
+   <img id="img3" style="display: none;" title="TabSpace Num"  style="width:80%; margin:1em;" src="images/Cheat_TabSpace_Num.png">
+   <img id="img4" style="display: none;" title="TabSpace++"    style="width:80%; margin:1em;" src="images/Cheat_TabSpace_ivanwfr.png">
+   <img id="img5" style="display: none;" title="MessagEase"    style="width:80%; margin:1em;" src="images/Cheat_MessagEase.png">
+
+  </body>
+
+  <script> swipe_img(1); </script>
+
+  <!-- }}} -->
+</html>
