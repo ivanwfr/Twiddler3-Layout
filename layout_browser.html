@@ -12,7 +12,10 @@
 
    body { padding:0; }
 
-   #navi { position:absolute; top:1ex; left:0; text-align:center; width:100%; }
+   #navi       { position:absolute; top:1ex; left:0; text-align:center; width:100%; }
+   #navi       { opacity:0.50; filter:alpha(opacity = 0.5); }
+   #navi:hover { opacity:1.00; filter:alpha(opacity = 1.0); }
+   #navi:hover { color:red; font-weight:bold; font-size:150%; }
 
    #swpL { position:absolute; top:0; left :0; width:50%; height:100%; float: left; text-align: left; }
    #swpR { position:absolute; top:0; right:0; width:50%; height:100%; float:right; text-align:right; }
@@ -38,13 +41,13 @@
   <!-- }}} -->
   <body onkeypress="keypress(event);"><!-- {{{ -->
 
-  <div id="navi">
-    &larr; a | w &rarr;
+   <div id="swpL" class="swpL" onclick='browse_img(-1);' >&nbsp;</div>
+   <div id="swpR" class="swpR" onclick='browse_img( 1);' >&nbsp;</div>
+   <div id="navi">
+    &larr; &rarr;
     <br>
-    or click inside left or right half
+    a w &nbsp; - = &nbsp; 1-9
    </div>
-   <div id="swpL" class="swpL" onclick='swipe_img(-1);' >&nbsp;</div>
-   <div id="swpR" class="swpR" onclick='swipe_img( 1);' >&nbsp;</div>
 
    <img id="img1" style="display:block;" title="ORML Notation" style="width:80%; margin:1em;" src="images/Cheat_Blank.png">
    <img id="img2" style="display: none;" title="TabSpace"      style="width:80%; margin:1em;" src="images/Cheat_TabSpace.png">
@@ -54,7 +57,7 @@
 
   </body>
 
-  <script> swipe_img(1); </script>
+  <script> browse_img(1); </script>
 
   <!-- }}} -->
 </html>
