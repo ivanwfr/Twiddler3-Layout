@@ -47,7 +47,7 @@ function show_img(num) // {{{
         img_next.style.display = "block";
     }
     // cursor, title
-    update_title_and_cursor(crnt+dir);
+    update_title_and_cursor(num);
 
 } // }}}
 function get_current_img() // {{{
