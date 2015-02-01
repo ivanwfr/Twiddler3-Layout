@@ -12,10 +12,15 @@
 
    body { padding:0; }
 
+   #navi       { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
    #navi       { position:absolute; top:1ex; left:0; text-align:center; width:100%; }
    #navi       { opacity:0.50; filter:alpha(opacity = 0.5); }
    #navi:hover { opacity:1.00; filter:alpha(opacity = 1.0); }
    #navi:hover { color:red; font-weight:bold; font-size:150%; }
+   #navi       { cursor:help; }
+
+   #swpL { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
+   #swpR { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
 
    #swpL { position:absolute; top:0; left :0; width:50%; height:100%; float: left; text-align: left; }
    #swpR { position:absolute; top:0; right:0; width:50%; height:100%; float:right; text-align:right; }
@@ -26,25 +31,15 @@
    #swpL { opacity:0.01; filter:alpha(opacity = 1); }
    #swpR { opacity:0.01; filter:alpha(opacity = 1); }
 
-   #swpL { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
-   #swpR { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
-
    .swpL { cursor:url("images/cursor/left.png" ), auto; }
    .swpR { cursor:url("images/cursor/right.png"), auto; }
+   .endC { cursor:url("images/cursor/end.png"  ), auto; }
 
    #curL { position:absolute; top:0; left :0; width:32px; height:32px; float: left; text-align: left; }
    #curR { position:absolute; top:0; right:0; width:32px; height:32px; float:right; text-align:right; }
    #curL { background-position:left  top; background-attachment:fixed; background-repeat:no-repeat; }
    #curR { background-position:right top; background-attachment:fixed; background-repeat:no-repeat; }
-/*
-   #curL { background-color:red;   }
-   #curR { background-color:green; }
-   #curL { opacity:0.3; filter:alpha(opacity = 3); }
-   #curR { opacity:0.3; filter:alpha(opacity = 3); }
-   #endR { opacity:0.3; filter:alpha(opacity = 3); }
-   #curL { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
-   #curR { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
-*/
+
    .curL { background-image:url("images/cursor/left.png" ); }
    .curR { background-image:url("images/cursor/right.png"); }
    .endC { background-image:url("images/cursor/end.png"  ); }
@@ -68,14 +63,14 @@
    </div>
 
    <img id="img1" style="display:block;" title="ORML Notation" src="images/Cheat_Blank.png">
-   <img id="img2" style="display: none;" title="TabSpace"      src="images/Cheat_TabSpace.png">
-   <img id="img3" style="display: none;" title="TabSpace Num"  src="images/Cheat_TabSpace_Num.png">
+   <img id="img2" style="display: none;" title="TabSpace Num"  src="images/Cheat_TabSpace_Num.png">
+   <img id="img3" style="display: none;" title="TabSpace"      src="images/Cheat_TabSpace.png">
    <img id="img4" style="display: none;" title="TabSpace++"    src="images/Cheat_TabSpace_ivanwfr.png">
    <img id="img5" style="display: none;" title="MessagEase"    src="images/Cheat_MessagEase.png">
 
   </body>
 
-  <script> browse_img(1); </script>
+  <script> show_img(3); </script>
 
   <!-- }}} -->
 </html>
