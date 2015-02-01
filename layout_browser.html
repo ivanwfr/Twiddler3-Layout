@@ -29,11 +29,25 @@
    #swpL { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
    #swpR { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
 
-   .swpL { cursor: url(images/cursor/left.png) , auto; }
-   .swpR { cursor: url(images/cursor/right.png), auto; }
+   .swpL { cursor:url("images/cursor/left.png" ), auto; }
+   .swpR { cursor:url("images/cursor/right.png"), auto; }
 
-   .endL { cursor: url(images/cursor/end.png), auto; }
-   .endR { cursor: url(images/cursor/end.png), auto; }
+   #curL { position:absolute; top:0; left :0; width:32px; height:32px; float: left; text-align: left; }
+   #curR { position:absolute; top:0; right:0; width:32px; height:32px; float:right; text-align:right; }
+   #curL { background-position:left  top; background-attachment:fixed; background-repeat:no-repeat; }
+   #curR { background-position:right top; background-attachment:fixed; background-repeat:no-repeat; }
+/*
+   #curL { background-color:red;   }
+   #curR { background-color:green; }
+   #curL { opacity:0.3; filter:alpha(opacity = 3); }
+   #curR { opacity:0.3; filter:alpha(opacity = 3); }
+   #endR { opacity:0.3; filter:alpha(opacity = 3); }
+   #curL { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
+   #curR { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
+*/
+   .curL { background-image:url("images/cursor/left.png" ); }
+   .curR { background-image:url("images/cursor/right.png"); }
+   .endC { background-image:url("images/cursor/end.png"  ); }
 
   </style>
 
@@ -43,6 +57,10 @@
 
    <div id="swpL" class="swpL" onclick='browse_img(-1);' >&nbsp;</div>
    <div id="swpR" class="swpR" onclick='browse_img( 1);' >&nbsp;</div>
+
+   <div id="curL" class="endC">&nbsp;</div>
+   <div id="curR" class="endC">&nbsp;</div>
+
    <div id="navi">
     &larr; &rarr;
     <br>
