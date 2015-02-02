@@ -62,3 +62,6 @@
 .aa {  color:#000; background-color:#505; border:1px solid #a0a; }
 
 /* }}} */
+/* TEXT {{{ */
+section p { text-indent:1em; }
+/* }}} */
