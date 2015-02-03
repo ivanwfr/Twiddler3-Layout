@@ -1,8 +1,10 @@
-function toggle_div(id) // {{{
+function toggle_div(ttl,id) // {{{
 {
     var  div = document.getElementById("div_"+id);
     if( !div ) return;
     div.className = (div.className == "expanded") ? "collapsed" : "expanded";
+
+    ttl.style.opacity = (div.className == "expanded") ? "1.0" : "0.5"; // mark read
 
 } // }}}
 var IMG_MAX = 8;

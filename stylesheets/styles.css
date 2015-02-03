@@ -176,7 +176,7 @@ header ul a strong {
 
 section {
   padding: 15px 20px;
-  font-size: 15px;
+  font-size: 18px;
   border-top: 1px solid #fff;
   background: -webkit-gradient(linear, 50% 0%, 50% 700, color-stop(0%, #fafafa), color-stop(100%, #dedede));
   background: -webkit-linear-gradient(#fafafa, #dedede 700px);
@@ -368,25 +368,36 @@ footer p + p {
     margin-left:0;
   width: 95%;
   display:block;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
-  border-radius: 8px;
+  -moz-border-bottom-left-radius: 8px;
+  -moz-border-bottom-right-radius: 8px;
+  -ms-border-bottom-left-radius: 8px;
+  -ms-border-bottom-right-radius: 8px;
+  -o-border-bottom-left-radius: 8px;
+  -o-border-bottom-right-radius: 8px;
+  -webkit-border-bottom-left-radius : 8px;
+  -webkit-border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   padding:1ex;
   border:2px solid #AAAAAA;
 }
 .fold_title {
   border:2px solid #CDCDCD;
-    margin-top:1ex;
-    margin-left:0;
+  margin-top:1ex;
+  margin-left:0;
+  margin-bottom:0;
   width: 95%;
   background: #CDCDCD;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-top-left-radius: 5px;
+  -moz-border-top-right-radius: 5px;
+  -ms-border-top-left-radius: 5px;
+  -ms-border-top-right-radius: 5px;
+  -o-border-top-left-radius: 5px;
+  -o-border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   cursor:pointer;
   padding:0 1ex 0 1ex;
   -ms-user-select     : none;
@@ -394,5 +405,12 @@ footer p + p {
   -moz-user-select    : -moz-none;
 }
 .fold_title:hover {
-  background: #AAAAAA;
+  background:      #AAAAAA;
+  border:2px solid #AAAAAA;
+  opacity:1.0; filter:alpha(opacity = 1.0);
+}
+.fold_title em {
+    font-size:80%;
+    background:white;
+  opacity:1.0; filter:alpha(opacity = 1.0) !important;
 }

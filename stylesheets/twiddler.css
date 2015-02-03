@@ -8,7 +8,7 @@
 /* }}} */
 /* ...GEOM {{{ */
 /* O RIGHT MIDDLE LEFT */
- em { margin:0 1px 2px 2px; padding:0 2px 0 2px; }
+ em { margin:0 1px 2px 2px; padding:0 1ex 0 1ex; }
 .oo { margin:0 1px 2px 2px; padding:0 2px 0 2px; }
 .rr { margin:0 3px 2px 2px; padding:0 2px 0 2px; }
 .mm { margin:0 3px 2px 2px; padding:0 2px 0 2px; }

@@ -59,7 +59,7 @@
   </p> <!-- }}} -->
    <!-- }}} -->
    <!-- CHEAT SHEETS {{{ -->
-  <div class="fold_title" onclick='toggle_div("1")'>
+  <div class="fold_title" onclick='toggle_div(this, "1")'>
    Cheat Sheets
   </div>
   <div id="div_1" class="collapsed">
@@ -74,6 +74,7 @@
     <img id="img1" style="width:80%; margin:1em;" src="images/Cheat_Blank.png">
    </a>
    </p>
+
    <hr>
 
    <p>
@@ -82,14 +83,14 @@
     <img id="img3" style="width:80%; margin:1em;" src="images/Cheat_TabSpace_Num.png">
    </a>
    </p>
-   <hr>
-
    <p>
+   <hr style="margin-left:20%;">
    <em>TabSpace</em><br>
    <a href="images/Cheat_TabSpace.png" target="_blank">
     <img id="img2" style="width:80%; margin:1em;" src="images/Cheat_TabSpace.png">
    </a>
    </p>
+
    <hr>
 
    <p>
@@ -98,7 +99,7 @@
     <img id="img4" style="width:80%; margin:1em;" src="images/Cheat_TabSpace_3.png">
    </a>
    </p>
-
+   <hr style="margin-left:20%;">
    <p>
    <em>TabSpace++</em> (WIP)<br>
    <a href="images/Cheat_TabSpace_3_Num.png" target="_blank">
@@ -106,19 +107,20 @@
    </a>
    </p>
 
+   <hr>
+
    <p>
    <em>MessagEase</em><br>
    <a href="images/Cheat_MessagEase.png" target="_blank">
     <img id="img5" style="width:80%; margin:1em;" src="images/Cheat_MessagEase.png">
    </a>
    </p>
-   <hr>
 
    <!-- }}} -->
   </div>
   <!-- }}} -->
    <!-- SUPPORTED CHORDS {{{ -->
-  <div class="fold_title" onclick='toggle_div("3")'>
+  <div class="fold_title" onclick='toggle_div(this,"3")'>
    Supported chords
   </div>
   <div id="div_3" class="collapsed">
@@ -126,7 +128,7 @@
    Let's start with the description of a <em>3x3 chords set</em> from the 3 columns of the 3 lower rows.
    Three additionnal sets of 3x3 chords can be used by pressing one of the three buttons of the first row.
    The Twiddler 3 configurator supports only a subset of all the possible combinations:
-   <pre style='margin:0;'><!-- MIN-MAX {{{ -->
+   <pre><!-- MIN-MAX {{{ -->
 max: <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span>
      <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span><span class='mm'>M</span>
      <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span><span class='ll'>L</span>
@@ -139,15 +141,16 @@ max: <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span>
      <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span><span class='ll'>L</span>
 min: <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span>
 </pre> <!-- }}} -->
-
-Combinations not allowed by the configurator:
-<ul>
- <li>Combinations that would require pressing more than one button on the same row</li>
- <li> ... </li>
-</ul>
-
-<em>TODO...</em>
-<pre style='margin:0;'><!-- {{{ -->
+   </p> <!-- }}} -->
+   <p><!-- {{{ -->
+   Some are not allowed by the configurator:
+   <ul>
+    <li>Combinations that would require pressing more than one button on the same row</li>
+   </ul>
+   </p> <!-- }}} -->
+   <p><!-- {{{ -->
+   <em>TODO...</em>
+<pre><!-- {{{ -->
 <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span> -
 <span class='rr'>R</span><span class='rr'>R</span><span class='mm'>M</span> -
 <span class='rr'>R</span><span class='rr'>R</span><span class='ll'>L</span> -
@@ -217,17 +220,16 @@ Combinations not allowed by the configurator:
 <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span> -
 
 </pre> <!-- }}} -->
-
-   <!-- }}} -->
+   </p> <!-- }}} -->
   </div>
   <!-- }}} -->
    <!-- TABSPACE.INI {{{ -->
-  <div class="fold_title" onclick='toggle_div("4")'>
+  <div class="fold_title" onclick='toggle_div(this,"4")'>
    TabSpace
   </div>
   <div id="div_4" class="collapsed">
 
-   <div class="fold_title" onclick='toggle_div("4.1")'>Credit</div><!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"4.1")'>Credit</div><!-- {{{ -->
    <div id="div_4.1" class="expanded">
     <pre>
     Brandon Craig Rhodes http://www.rhodesmill.org/brandon
@@ -242,7 +244,7 @@ Combinations not allowed by the configurator:
      <small><i>original PDF document</i></small>
     </a>
    </div> <!-- }}} -->
-   <div class="fold_title" onclick='toggle_div("4.2")'>The three top buttons</div>  <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"4.2")'>The three top buttons</div>  <!-- {{{ -->
    <div id="div_4.2" class="collapsed">
     <pre>
 # The three top buttons map to the most frequently used keys.  Note
@@ -256,7 +258,7 @@ Combinations not allowed by the configurator:
 0     l000 = TAB
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div("4.3")'>Nine most common letters -- <span style="color:#00f; font-size:80%;">2 letters combinations</span></div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"4.3")'>Nine most common letters -- <em>2 letter combinations</em></div> <!-- {{{ -->
    <div id="div_4.3" class="collapsed">
     <pre>
 
@@ -308,7 +310,7 @@ Combinations not allowed by the configurator:
 0     00ll = "rs"
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div("4.4")'>Other letters (index finger on the spacebar) -- <span style="color:#00f; font-size:80%;">2 letters combinations</span></div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"4.4")'>Other letters (index finger on the spacebar) -- <em>2 letter combinations</em></div> <!-- {{{ -->
    <div id="div_4.4" class="collapsed">
     <pre>
 # Every other letter is produced by pressing the top middle button
@@ -342,7 +344,7 @@ Combinations not allowed by the configurator:
 0     m0lm = "wh"
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div("4.5")'>Some three-letter combinations -- <span style="color:#00f; font-size:80%;">3 letters combinations</span></div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"4.5")'>Some three-letter combinations -- <em>3 letter combinations</em></div> <!-- {{{ -->
    <div id="div_4.5" class="collapsed">
     <pre>
 # Finally, we support some three-letter combinations.  As above, note
@@ -357,7 +359,7 @@ Combinations not allowed by the configurator:
 0     mlrr = "ong"
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div("4.6")'>Number keypad</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"4.6")'>Number keypad</div> <!-- {{{ -->
    <div id="div_4.6" class="collapsed">
     <pre>
 # As everyone knows, keypads are supposed to be three by three.
@@ -376,7 +378,7 @@ Combinations not allowed by the configurator:
 0     rll0 = "-"
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div("4.7")'>Math operators</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"4.7")'>Math operators</div> <!-- {{{ -->
    <div id="div_4.7" class="collapsed">
     <pre>
 # Below the number keypad we place three tiers of mathematical
@@ -390,7 +392,7 @@ Combinations not allowed by the configurator:
 0     rl0r = "%"
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div("4.8")'>Logic operators</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"4.8")'>Logic operators</div> <!-- {{{ -->
    <div id="div_4.8" class="collapsed">
     <pre>
 # The middle tier of operators include those usually used for logic
@@ -402,7 +404,7 @@ Combinations not allowed by the configurator:
 0     rm0r = "^"
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div("4.9")'>Comparators</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"4.9")'>Comparators</div> <!-- {{{ -->
    <div id="div_4.9" class="collapsed">
     <pre>
 # The double key combinations along the bottom two rows
@@ -415,7 +417,7 @@ Combinations not allowed by the configurator:
 0     r0ll = "="
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div("4.10")'>Punctuation, quotes and brackets</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"4.10")'>Punctuation, quotes and brackets</div> <!-- {{{ -->
    <div id="div_4.10" class="collapsed">
     <pre>
 # The last major section involves punctuation.  The period, comma, and
@@ -440,7 +442,7 @@ Combinations not allowed by the configurator:
 0     l0mm = "}"
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div("4.11")'>...more punctuation and computer specifics</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"4.11")'>...more punctuation and computer specifics</div> <!-- {{{ -->
    <div id="div_4.11" class="collapsed">
     <pre>
 # Now that we have exhausted the same-row combinations of the lower
@@ -463,7 +465,7 @@ Combinations not allowed by the configurator:
 0     lm0r = "%"
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div("4.12")'>U R D L ... PgUp PgDn Home End ... Insert Del ... BS Tab Enter</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"4.12")'>U R D L ... PgUp PgDn Home End ... Insert Del ... BS Tab Enter</div> <!-- {{{ -->
    <div id="div_4.12" class="collapsed">
     <pre>
 # The FN modifier has no useful native function under X-windows
@@ -488,7 +490,7 @@ func  000l = 20,"FF9C",20   # XK_End
 func  000m = 20,"FF9E",20   # XK_Insert
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div("4.13")'>Emacs</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"4.13")'>Emacs</div> <!-- {{{ -->
    <div id="div_4.13" class="collapsed">
     <pre>
 # Every Emacs user will appreciate these easily accessible sequences,
@@ -504,7 +506,7 @@ func  00mm = 24,")"         # C-x )
 func  00ll = 24,"e"         # C-x e
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div("4.14")'>F-Keys</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"4.14")'>F-Keys</div> <!-- {{{ -->
    <div id="div_4.14" class="collapsed">
     <pre>
 # FUNC + keypad produces function keys.
@@ -523,7 +525,7 @@ func  rmm0 = 20,"FFC8",20   # XK_F11
 func  rll0 = 20,"FFC9",20   # XK_F12
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div("4.15")'>Locks (Caps, Num, Scroll)</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"4.15")'>Locks (Caps, Num, Scroll)</div> <!-- {{{ -->
    <div id="div_4.15" class="collapsed">
     <pre>
 # I feel like I should throw these in somewhere so here they are:
