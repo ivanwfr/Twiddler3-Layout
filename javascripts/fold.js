@@ -103,3 +103,22 @@ function update_title_and_cursor( crnt ) // {{{
 
 } // }}}
 
+var compare_target_num = 0;
+function compare_target() // {{{
+{
+    // get current image
+    var crnt = get_current_img();
+
+    if(compare_target_num == 0)
+	compare_target_num = crnt;
+
+    var el = document.getElementById("span_compare_target_num");
+    if(el) el.innerHTML = compare_target_num;
+
+    if(crnt != compare_target_num) {
+	show_img( compare_target_num );
+	compare_target_num = crnt;
+    }
+
+} // }}}
+

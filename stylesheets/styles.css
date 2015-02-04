@@ -289,7 +289,6 @@ hr {
   border: 0;
   background: #aaa;
   height: 1px;
-  margin: 0 0 20px;
 }
 
 footer {
@@ -365,6 +364,9 @@ footer p + p {
 
 .collapsed { display:none;  }
 .expanded {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 3px 10px;
+  -moz-box-shadow   : rgba(0, 0, 0, 0.1) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 3px 10px;
+  box-shadow        : rgba(0, 0, 0, 0.1) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 3px 10px;
     margin-left:0;
   width: 95%;
   display:block;
@@ -382,6 +384,9 @@ footer p + p {
   border:2px solid #AAAAAA;
 }
 .fold_title {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 3px 10px;
+  -moz-box-shadow   : rgba(0, 0, 0, 0.1) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 3px 10px;
+  box-shadow        : rgba(0, 0, 0, 0.1) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 3px 10px;
   border:2px solid #CDCDCD;
   margin-top:1ex;
   margin-left:0;
