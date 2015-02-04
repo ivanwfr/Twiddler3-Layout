@@ -1,5 +1,6 @@
 /* ...FONT {{{ */
 
+ em { font-style:normal; }
 .o  { font-size:80%; font-weight:normal; letter-spacing:3px; }
 .r  { font-size:80%; font-weight:bold;   letter-spacing:3px; }
 .m  { font-size:80%; font-weight:bold;   letter-spacing:3px; }

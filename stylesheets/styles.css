@@ -364,9 +364,9 @@ footer p + p {
 
 .collapsed { display:none;  }
 .expanded {
-  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 3px 10px;
-  -moz-box-shadow   : rgba(0, 0, 0, 0.1) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 3px 10px;
-  box-shadow        : rgba(0, 0, 0, 0.1) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 3px 10px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 3px 10px inset;
+  -moz-box-shadow   : rgba(0, 0, 0, 0.1) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 3px 10px inset;
+  box-shadow        : rgba(0, 0, 0, 0.1) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 3px 10px inset;
     margin-left:0;
   width: 95%;
   display:block;
@@ -381,7 +381,7 @@ footer p + p {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   padding:1ex;
-  border:2px solid #AAAAAA;
+  border:2px solid #CDCDCD;
 }
 .fold_title {
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 3px 10px;
