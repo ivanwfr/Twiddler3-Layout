@@ -436,7 +436,7 @@ num   00ll = SCROLL_LOCK
   <!-- }}} -->
    <!-- suppport {{{ -->
   <div class="fold_title" onclick='toggle_div(this,"support")'>
-   Supported chords
+   Tuner supported chords
   </div>
   <div id="div_support" class="collapsed">
    <p><!-- {{{ -->
@@ -537,6 +537,114 @@ min: <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span>
 </pre> <!-- }}} -->
    </p> <!-- }}} -->
    <img title="collapse" onclick='toggle_div(this, "support");' style="width:20px;  opacity:0.20; filter:alpha(opacity = 0.2); cursor:pointer;" src="images/cursor/up.png">
+  </div>
+  <!-- }}} -->
+   <!-- rationale {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "rationale")'>
+   Rationale
+  </div>
+  <div id="div_rationale" class="expanded">
+
+   <h3>Twiddler 3 specifics</h3>
+    <div class="fold_title" onclick='toggle_div(this, "rationale_rows")'><!-- {{{ -->
+     Layout Rows
+  </div>
+  <div id="div_rationale_rows" class="collapsed">
+    <p>
+    The four layout rows correspond to the 4 possible ways the index finger can bes used on the first buttons row <em>BS</em> <em>Space</em> <em>Tab</em> as if it were a modifier like it is the case on a standard keyboard for <em>Shift</em>, <em>Control</em> and <em>Alt</em>.
+    </p>
+    <p>
+    All the 3 by 3 button pads can be refered to by the Twiddler <em>ORML</em> notation:
+<pre>
+<em>O</em> The <em>No modifier</em> layer.
+Key strokes of this layer are generetad when none of the 3 first row buttons pressed with the index finger.
+
+<em>R</em> The <em>Right modifier layer</em>.
+The <em>BS</em> Right first row button is pressed by the index finger.
+
+<em>M</em> The <em>Middle modifier layer</em>.
+The <em>Space</em> Middle first row button is pressed by the index finger.
+
+<em>L</em> The <em>Left modifier layer</em>.
+The <em>Tab</em> Left first row button is pressed by the index finger.
+
+</pre>
+    </div>
+    <!-- }}} -->
+    <div class="fold_title" onclick='toggle_div(this, "rationale_columns")'><!-- {{{ -->
+   Layout Columns
+  </div>
+  <div id="div_rationale_columns" class="collapsed">
+    <p>
+     What the index finger does with the first row of the 4x3 buttons
+     , the other fingers can also do on their respective row to introduce more layers.
+     <br>
+     The remaining buttons can then be mapped individually or by pairs.
+    </p>
+    <p>
+    Each pad is composed of a limited number of mappable single buttons or pairs.
+<pre>
+C1 9.single
+
+C2 6.pair
+
+C3 R 5.single
+C3 M 5.single
+C3 L 5.single
+
+C4 R 2.pair
+C4 M 2.pair
+C4 L 2.pair
+
+C4 OR 2.single
+C4 OM 2.single
+C4 OL 2.single
+</pre>
+
+    </p>
+  </div>
+    <!-- }}} -->
+
+    <li><h4>Why Num-Caps-Scroll Locks should be in lower Rxx:</h4>
+      <ol>
+       <li>
+        So that the easy no-mod O-2 (row O, col 2) pad can be used for the following frequently used punctuation symbols 
+	<em>,</em>
+	<em>:</em>
+       <em>;</em>
+	and 
+	<em>'</em>
+	<em>&quot;</em>
+	<em>`</em>
+	accents and quote.
+
+       </li>
+      </ol>
+    </li>
+
+    <li>Why 2L 3L have been moved to Num-combo</li>
+
+    <li>TabSpace letters arrangement takes care of english letter usage frequency.</li>
+
+    <li>Most 2 and 3 combined letters are placed over their constitutive letters location
+    but they belong to different modifier-combos:</li>
+
+    <li>If combinations such "an", "in", "qu" or "the" are obtained by pressing on the letters they contain
+    , it is not the case for "ch", "nd", "of" or "ing" which refer to letters from 2 different modifier combinations.
+    <ul>
+     <li>The good part in this loose rule is that each button of these chords involve finger placement that produce those letters.</li>
+     <li>The not so good is that it relies on some unspecified rule that would have to "explain" how the selected modifier combo works to produce the result.</li>
+    </ul>
+    </li>
+
+    <li>For instance, how "ing" is obtained by combining "i", "n" and "g"?
+    - "i" and "n" are on the first column of "0 single" layer
+    - "g" comes from "M single" layer.
+    </li>
+
+   </ul>
+
+   <img title="collapse" onclick='toggle_div(this, "rationale");' style="width:20px;  opacity:0.20; filter:alpha(opacity = 0.2); cursor:pointer;" src="images/cursor/up.png">
   </div>
   <!-- }}} -->
  </section>

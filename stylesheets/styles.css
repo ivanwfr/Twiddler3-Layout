@@ -419,3 +419,9 @@ footer p + p {
     background:white;
   opacity:1.0; filter:alpha(opacity = 1.0) !important;
 }
+.expanded em {
+    font-size:80%;
+    background:white;
+  opacity:1.0; filter:alpha(opacity = 1.0) !important;
+}
+
