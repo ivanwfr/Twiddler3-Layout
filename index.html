@@ -541,7 +541,7 @@ C10 OL 2x single
    </div>
    <div id="div_twidder3_note" class="collapsed">
     <i style="font-size:80%;">
-     The 4x11 layout can be further extended to include the less pactical, but still usable,
+     The 4x11 layout can be further extended to include the less practical, but still usable,
      combinations of 2 modifiers on the first and second row of the 3x3 sub-sub-pads to obtain 24 more mappings.
     </i>
    </div>
@@ -552,104 +552,130 @@ C10 OL 2x single
   <div class="fold_title" onclick='toggle_div(this,"supported")'>
    Supported chords
   </div>
-  <div id="div_supported" class="collapsed">
-   <p><!-- {{{ -->
-   Let's start with the description of a <em>3x3 chords set</em> from the 3 columns of the 3 lower rows.
-   Three additionnal sets of 3x3 chords can be used by pressing one of the three buttons of the first row.
-   The Twiddler 3 configurator supports only a subset of all the possible combinations:
-   <pre><!-- MIN-MAX {{{ -->
-   max: <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span>
-   <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span><span class='mm'>M</span>
-   <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span><span class='ll'>L</span>
-   <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span><span class='oo'>O</span>
-   <span class='rr'>R</span><span class='rr'>R</span><span class='mm'>M</span><span class='rr'>R</span>
-   ....
-   <span class='oo'>O</span><span class='oo'>O</span><span class='ll'>L</span><span class='oo'>O</span>
-   <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span><span class='rr'>R</span>
-   <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span><span class='mm'>M</span>
-   <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span><span class='ll'>L</span>
-   min: <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span>
-   </pre> <!-- }}} -->
+  <div id="div_supported" class="expanded">
+   <p><!-- same row {{{ -->
+   The Twiddler <em>ORML notation</em> does not support chords that would
+   require pressing more than one button on the same row.
    </p> <!-- }}} -->
-   <p><!-- {{{ -->
-   Some are not allowed by the configurator:
-   <ul>
-    <li>Combinations that would require pressing more than one button on the same row</li>
-   </ul>
-   </p> <!-- }}} -->
-   <p><!-- {{{ -->
-   <em>TODO...</em>
-   <pre><!-- {{{ -->
-   <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span> -
-   <span class='rr'>R</span><span class='rr'>R</span><span class='mm'>M</span> -
-   <span class='rr'>R</span><span class='rr'>R</span><span class='ll'>L</span> -
-   <span class='rr'>R</span><span class='rr'>R</span><span class='oo'>O</span> -
-   <span class='rr'>R</span><span class='mm'>M</span><span class='rr'>R</span> -
-   <span class='rr'>R</span><span class='mm'>M</span><span class='mm'>M</span> -
-   <span class='rr'>R</span><span class='mm'>M</span><span class='ll'>L</span> -
-   <span class='rr'>R</span><span class='mm'>M</span><span class='oo'>O</span> -
-   <span class='rr'>R</span><span class='ll'>L</span><span class='rr'>R</span> -
-   <span class='rr'>R</span><span class='ll'>L</span><span class='mm'>M</span> -
-   <span class='rr'>R</span><span class='ll'>L</span><span class='ll'>L</span> -
-   <span class='rr'>R</span><span class='ll'>L</span><span class='oo'>O</span> -
-   <span class='rr'>R</span><span class='oo'>O</span><span class='rr'>R</span> -
-   <span class='rr'>R</span><span class='oo'>O</span><span class='mm'>M</span> -
-   <span class='rr'>R</span><span class='oo'>O</span><span class='ll'>L</span> -
-   <span class='rr'>R</span><span class='oo'>O</span><span class='oo'>O</span> -
+   <p><!-- 4x3x3 {{{ -->
+   The whole set of possible chords can be seen as a group of 4 sub-sets.
+   Each sub-set of <em>3x3 chords</em> from the 3 columns of the 3 lower rows
+   would have to be combined with one of the 4 <em>ORML layers of the first row</em>
+   to cover all the combinations.
+   </p>
+   <!-- }}} -->
+   <p><!-- 24 more {{{ -->
+   <i>Not covered here, less practical <i>(yet usable)</i> combinations of 2 modifiers
+     on the first and second row
+     of the 3x3 sub-pads
+     allows for 24 more mappings.</i>
+   </p>
+   <!-- }}} -->
+   <!-- supported_4x4 {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"supported_4x4")'><em>4x4 chord set</em></div>
+  <div id="div_supported_4x4" class="expanded">
+   If the configurator supports all these combinations,
+   some are easier to use than others.
+<pre>
+<em>255 chords (4^4 - 1)</em>
 
-   <span class='mm'>M</span><span class='rr'>R</span><span class='rr'>R</span> -
-   <span class='mm'>M</span><span class='rr'>R</span><span class='mm'>M</span> -
-   <span class='mm'>M</span><span class='rr'>R</span><span class='ll'>L</span> -
-   <span class='mm'>M</span><span class='rr'>R</span><span class='oo'>O</span> -
-   <span class='mm'>M</span><span class='mm'>M</span><span class='rr'>R</span> -
-   <span class='mm'>M</span><span class='mm'>M</span><span class='mm'>M</span> -
-   <span class='mm'>M</span><span class='mm'>M</span><span class='ll'>L</span> -
-   <span class='mm'>M</span><span class='mm'>M</span><span class='oo'>O</span> -
-   <span class='mm'>M</span><span class='ll'>L</span><span class='rr'>R</span> -
-   <span class='mm'>M</span><span class='ll'>L</span><span class='mm'>M</span> -
-   <span class='mm'>M</span><span class='ll'>L</span><span class='ll'>L</span> -
-   <span class='mm'>M</span><span class='ll'>L</span><span class='oo'>O</span> -
-   <span class='mm'>M</span><span class='oo'>O</span><span class='rr'>R</span> -
-   <span class='mm'>M</span><span class='oo'>O</span><span class='mm'>M</span> -
-   <span class='mm'>M</span><span class='oo'>O</span><span class='ll'>L</span> -
-   <span class='mm'>M</span><span class='oo'>O</span><span class='oo'>O</span> -
+max: <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span>
+     <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span><span class='mm'>M</span>
+     <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span><span class='ll'>L</span>
+     <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span><span class='oo'>O</span>
+     <span class='rr'>R</span><span class='rr'>R</span><span class='mm'>M</span><span class='rr'>R</span>
+     ...
+     <span class='oo'>O</span><span class='oo'>O</span><span class='ll'>L</span><span class='oo'>O</span>
+     <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span><span class='rr'>R</span>
+     <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span><span class='mm'>M</span>
+     <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span><span class='ll'>L</span>
+min: <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span>
+</pre>
+  </div> <!-- }}} -->
+  <!-- supported_3x3 {{{ -->
+  <div class="fold_title" onclick='toggle_div(this,"supported_3x3")'><em>3x3 chord set</em></div>
+  <div id="div_supported_3x3" class="expanded">
+   Here are some remarquable chords that stand out enough
+   to justify associating them to some prominent keystroke.
 
-   <span class='ll'>L</span><span class='rr'>R</span><span class='rr'>R</span> -
-   <span class='ll'>L</span><span class='rr'>R</span><span class='mm'>M</span> -
-   <span class='ll'>L</span><span class='rr'>R</span><span class='ll'>L</span> -
-   <span class='ll'>L</span><span class='rr'>R</span><span class='oo'>O</span> -
-   <span class='ll'>L</span><span class='mm'>M</span><span class='rr'>R</span> -
-   <span class='ll'>L</span><span class='mm'>M</span><span class='mm'>M</span> -
-   <span class='ll'>L</span><span class='mm'>M</span><span class='ll'>L</span> -
-   <span class='ll'>L</span><span class='mm'>M</span><span class='oo'>O</span> -
-   <span class='ll'>L</span><span class='ll'>L</span><span class='rr'>R</span> -
-   <span class='ll'>L</span><span class='ll'>L</span><span class='mm'>M</span> -
-   <span class='ll'>L</span><span class='ll'>L</span><span class='ll'>L</span> -
-   <span class='ll'>L</span><span class='ll'>L</span><span class='oo'>O</span> -
-   <span class='ll'>L</span><span class='oo'>O</span><span class='rr'>R</span> -
-   <span class='ll'>L</span><span class='oo'>O</span><span class='mm'>M</span> -
-   <span class='ll'>L</span><span class='oo'>O</span><span class='ll'>L</span> -
-   <span class='ll'>L</span><span class='oo'>O</span><span class='oo'>O</span> -
+<pre><!-- {{{ -->
+<i>(0 excluded)</i> ... <em>64 (4^3 - 1)</em>
 
-   <span class='oo'>O</span><span class='rr'>R</span><span class='rr'>R</span> -
-   <span class='oo'>O</span><span class='rr'>R</span><span class='mm'>M</span> -
-   <span class='oo'>O</span><span class='rr'>R</span><span class='ll'>L</span> -
-   <span class='oo'>O</span><span class='rr'>R</span><span class='oo'>O</span> -
-   <span class='oo'>O</span><span class='mm'>M</span><span class='rr'>R</span> -
-   <span class='oo'>O</span><span class='mm'>M</span><span class='mm'>M</span> -
-   <span class='oo'>O</span><span class='mm'>M</span><span class='ll'>L</span> -
-   <span class='oo'>O</span><span class='mm'>M</span><span class='oo'>O</span> -
-   <span class='oo'>O</span><span class='ll'>L</span><span class='rr'>R</span> -
-   <span class='oo'>O</span><span class='ll'>L</span><span class='mm'>M</span> -
-   <span class='oo'>O</span><span class='ll'>L</span><span class='ll'>L</span> -
-   <span class='oo'>O</span><span class='ll'>L</span><span class='oo'>O</span> -
-   <span class='oo'>O</span><span class='oo'>O</span><span class='rr'>R</span> -
-   <span class='oo'>O</span><span class='oo'>O</span><span class='mm'>M</span> -
-   <span class='oo'>O</span><span class='oo'>O</span><span class='ll'>L</span> -
-   <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span> -
+</i>Trying to grant merits to each chord (WIP!):</i>
+<span class="aa">     Good enough</span> +1
+<span class="ss">     Good       </span> +2
+<span class="cc">Very Good       </span> +4
 
-   </pre> <!-- }}} -->
-   </p> <!-- }}} -->
+max: <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span> - <span class="cc">3B</span>
+     <span class='rr'>R</span><span class='rr'>R</span><span class='mm'>M</span> - <span class="cc">Top 2B</span>
+     <span class='rr'>R</span><span class='rr'>R</span><span class='ll'>L</span> - <span class="cc">Top 2B</span>
+     <span class='rr'>R</span><span class='rr'>R</span><span class='oo'>O</span> - <span class="cc">Top 2B</span> <span class="ss">2B only</span>
+     <span class='rr'>R</span><span class='mm'>M</span><span class='rr'>R</span> -
+     <span class='rr'>R</span><span class='mm'>M</span><span class='mm'>M</span> - <span class="aa">Bottom 2B</span>
+     <span class='rr'>R</span><span class='mm'>M</span><span class='ll'>L</span> - <span class="cc">Diagonal 3B</span>
+     <span class='rr'>R</span><span class='mm'>M</span><span class='oo'>O</span> -
+     <span class='rr'>R</span><span class='ll'>L</span><span class='rr'>R</span> -
+     <span class='rr'>R</span><span class='ll'>L</span><span class='mm'>M</span> -
+     <span class='rr'>R</span><span class='ll'>L</span><span class='ll'>L</span> - <span class="aa">Bottom 2B</span>
+     <span class='rr'>R</span><span class='ll'>L</span><span class='oo'>O</span> - <span class="ss">2B only</span>
+     <span class='rr'>R</span><span class='oo'>O</span><span class='rr'>R</span> - <span class="cc">Top-Bot 2B</span>
+     <span class='rr'>R</span><span class='oo'>O</span><span class='mm'>M</span> -
+     <span class='rr'>R</span><span class='oo'>O</span><span class='ll'>L</span> - <span class="cc">Diagonal 2B</span>
+     <span class='rr'>R</span><span class='oo'>O</span><span class='oo'>O</span> - <span class="cc">Top 1B</span> <span class="cc">1B only</span>
+
+     <span class='mm'>M</span><span class='rr'>R</span><span class='rr'>R</span> - <span class="aa">Bottom 2B</span>
+     <span class='mm'>M</span><span class='rr'>R</span><span class='mm'>M</span> -
+     <span class='mm'>M</span><span class='rr'>R</span><span class='ll'>L</span> -
+     <span class='mm'>M</span><span class='rr'>R</span><span class='oo'>O</span> - <span class="ss">2B only</span>
+     <span class='mm'>M</span><span class='mm'>M</span><span class='rr'>R</span> -
+     <span class='mm'>M</span><span class='mm'>M</span><span class='mm'>M</span> - <span class="cc">3B</span>
+     <span class='mm'>M</span><span class='mm'>M</span><span class='ll'>L</span> -
+     <span class='mm'>M</span><span class='mm'>M</span><span class='oo'>O</span> - <span class="cc">Top 2B</span> <span class="ss">2B only</span>
+     <span class='mm'>M</span><span class='ll'>L</span><span class='rr'>R</span> -
+     <span class='mm'>M</span><span class='ll'>L</span><span class='mm'>M</span> -
+     <span class='mm'>M</span><span class='ll'>L</span><span class='ll'>L</span> - <span class="aa">Bottom 2B</span>
+     <span class='mm'>M</span><span class='ll'>L</span><span class='oo'>O</span> - <span class="ss">2B only</span>
+     <span class='mm'>M</span><span class='oo'>O</span><span class='rr'>R</span> -
+     <span class='mm'>M</span><span class='oo'>O</span><span class='mm'>M</span> - <span class="cc">Top-Bot 2B</span>
+     <span class='mm'>M</span><span class='oo'>O</span><span class='ll'>L</span> -
+     <span class='mm'>M</span><span class='oo'>O</span><span class='oo'>O</span> - <span class="cc">Top 1B</span> <span class="cc">1B only</span>
+
+     <span class='ll'>L</span><span class='rr'>R</span><span class='rr'>R</span> - <span class="aa">Bottom 2B</span>
+     <span class='ll'>L</span><span class='rr'>R</span><span class='mm'>M</span> -
+     <span class='ll'>L</span><span class='rr'>R</span><span class='ll'>L</span> -
+     <span class='ll'>L</span><span class='rr'>R</span><span class='oo'>O</span> - <span class="ss">2B only</span>
+     <span class='ll'>L</span><span class='mm'>M</span><span class='rr'>R</span> - <span class="cc">Diagonal 3B</span>
+     <span class='ll'>L</span><span class='mm'>M</span><span class='mm'>M</span> - <span class="aa">Bottom 2B</span>
+     <span class='ll'>L</span><span class='mm'>M</span><span class='ll'>L</span> -
+     <span class='ll'>L</span><span class='mm'>M</span><span class='oo'>O</span> - <span class="ss">2B only</span>
+     <span class='ll'>L</span><span class='ll'>L</span><span class='rr'>R</span> - <span class="cc">Top 2B</span>
+     <span class='ll'>L</span><span class='ll'>L</span><span class='mm'>M</span> - <span class="cc">Top 2B</span>
+     <span class='ll'>L</span><span class='ll'>L</span><span class='ll'>L</span> - <span class="cc">3B</span>
+     <span class='ll'>L</span><span class='ll'>L</span><span class='oo'>O</span> - <span class="cc">Top 2B</span> <span class="ss">2B only</span>
+     <span class='ll'>L</span><span class='oo'>O</span><span class='rr'>R</span> -
+     <span class='ll'>L</span><span class='oo'>O</span><span class='mm'>M</span> -
+     <span class='ll'>L</span><span class='oo'>O</span><span class='ll'>L</span> - <span class="cc">Top-Bot 2B</span>
+     <span class='ll'>L</span><span class='oo'>O</span><span class='oo'>O</span> - <span class="cc">Top 1B</span> <span class="cc">1B only</span>
+
+     <span class='oo'>O</span><span class='rr'>R</span><span class='rr'>R</span> - <span class="cc">Bot 2B</span> <span class="cc">Vertical</span>
+     <span class='oo'>O</span><span class='rr'>R</span><span class='mm'>M</span> - <span class="ss">2B only</span>
+     <span class='oo'>O</span><span class='rr'>R</span><span class='ll'>L</span> - <span class="ss">2B only</span>
+     <span class='oo'>O</span><span class='rr'>R</span><span class='oo'>O</span> - <span class="cc">1B only</span>
+     <span class='oo'>O</span><span class='mm'>M</span><span class='rr'>R</span> - <span class="ss">2B only</span>
+     <span class='oo'>O</span><span class='mm'>M</span><span class='mm'>M</span> - <span class="cc">Bottom 2B</span> <span class="cc">Vertical</span>
+     <span class='oo'>O</span><span class='mm'>M</span><span class='ll'>L</span> - <span class="ss">2B only</span>
+     <span class='oo'>O</span><span class='mm'>M</span><span class='oo'>O</span> - <span class="cc">1B only</span>
+     <span class='oo'>O</span><span class='ll'>L</span><span class='rr'>R</span> - <span class="ss">2B only</span>
+     <span class='oo'>O</span><span class='ll'>L</span><span class='mm'>M</span> - <span class="ss">2B only</span>
+     <span class='oo'>O</span><span class='ll'>L</span><span class='ll'>L</span> - <span class="cc">Bottom 2B</span> <span class="cc">Vertical</span>
+     <span class='oo'>O</span><span class='ll'>L</span><span class='oo'>O</span> - <span class="cc">1B only</span>
+     <span class='oo'>O</span><span class='oo'>O</span><span class='rr'>R</span> - <span class="cc">1B only</span>
+     <span class='oo'>O</span><span class='oo'>O</span><span class='mm'>M</span> - <span class="cc">1B only</span>
+     <span class='oo'>O</span><span class='oo'>O</span><span class='ll'>L</span> - <span class="cc">1B only</span>
+min: <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span>
+
+</pre> <!-- }}} -->
+   </div> <!-- }}} -->
    <img title="collapse" onclick='toggle_div(this, "supported");' style="width:20px;  opacity:0.20; filter:alpha(opacity = 0.2); cursor:pointer;" src="images/cursor/up.png">
   </div>
   <!-- }}} -->
@@ -665,14 +691,12 @@ C10 OL 2x single
  </div>
  <!-- }}} -->
 </div>
-
-
 <footer><!-- {{{ -->
  <p>Project maintained by                   <a href="https://github.com/ivanwfr"     target="_blank">ivanwfr</a></p>
  <p>Hosted on GitHub Pages &ndash; Theme by <a href="https://github.com/orderedlist" target="_blank">orderedlist</a></p>
 </footer>
+<div id="bottom_div">&nbsp;</div>
 <!--[if !IE]><script>fixScale(document);</script><![endif]-->
 <!-- }}} -->
-<div style="height:100em; background:#333;  opacity:0.10; filter:alpha(opacity = 0.1);">&nbsp;</div>
 </body>
 </html>

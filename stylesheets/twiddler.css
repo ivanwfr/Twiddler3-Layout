@@ -1,5 +1,6 @@
 /* ...FONT {{{ */
 
+ em { white-space:nowrap; }
  em { font-style:normal; }
 .o  { font-size:80%; font-weight:normal; letter-spacing:3px; }
 .r  { font-size:80%; font-weight:bold;   letter-spacing:3px; }
@@ -9,17 +10,17 @@
 /* }}} */
 /* ...GEOM {{{ */
 /* O RIGHT MIDDLE LEFT */
- em { margin:0 1px 2px 2px; padding:0 1ex 0 1ex; }
-.oo { margin:0 1px 2px 2px; padding:0 2px 0 2px; }
+ em { margin:0 3px 2px 2px; padding:0 1ex 0 1ex; }
+.oo { margin:0 3px 2px 2px; padding:0 2px 0 2px; }
 .rr { margin:0 3px 2px 2px; padding:0 2px 0 2px; }
 .mm { margin:0 3px 2px 2px; padding:0 2px 0 2px; }
 .ll { margin:0 3px 2px 2px; padding:0 2px 0 2px; }
 
 /* NUM SHIFT CNTRL ALT */
 .nn { margin:0 3px 2px 2px; padding:0 2px 0 2px; }
-.ss { margin:0 1px 2px 2px; padding:0 2px 0 2px; }
-.cc { margin:0 1px 2px 2px; padding:0 2px 0 2px; }
-.aa { margin:0 1px 2px 2px; padding:0 2px 0 2px; }
+.ss { margin:0 3px 2px 2px; padding:0 2px 0 2px; }
+.cc { margin:0 3px 2px 2px; padding:0 2px 0 2px; }
+.aa { margin:0 3px 2px 2px; padding:0 2px 0 2px; }
 
 /* }}} */
 /* border-radius {{{ */

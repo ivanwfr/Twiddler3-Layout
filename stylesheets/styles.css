@@ -424,4 +424,8 @@ footer p + p {
     background:white;
   opacity:1.0; filter:alpha(opacity = 1.0) !important;
 }
+#bottom_div {
+    height    : 100em;
+    opacity   : 0.10; filter:alpha(opacity = 0.1);
+}
 
