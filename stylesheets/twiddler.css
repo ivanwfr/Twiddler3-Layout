@@ -56,12 +56,12 @@
 .ll {  color:#a00; background-color:#300; border:1px solid #a00; }
 .tl { border:#200 8px solid; }
 
-.nn {  color:#a6f; background-color:#204; border:1px solid #538; }
+.nn {  color:#a6f; background-color:#204; border:1px solid #e3f; }
 .tn { border:#204 8px solid; }
 
 .ss {  color:#000; background-color:#550; border:1px solid #aa0; }
 .cc {  color:#000; background-color:#055; border:1px solid #0aa; }
-.aa {  color:#000; background-color:#505; border:1px solid #a0a; }
+.aa {  color:#a00; background-color:#505; border:1px solid #808; }
 
 /* }}} */
 /* TEXT {{{ */
