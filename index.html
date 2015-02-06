@@ -59,27 +59,27 @@
   </p> <!-- }}} -->
   <!-- }}} -->
   <!-- chords {{{ -->
-  <div class="fold_title" onclick='toggle_div(this, "chords")'>
+  <div class="fold_title" onclick='toggle_div(this, "chords");'>
    Cheat Sheets
   </div>
-  <div id="div_chords" class="collapsed" style="text-align:center;">
+  <div id="div_chords" class="collapsed" style="text-align:left;">
    <p>
    <a href="layout_browser.html" target="layout_browser">The Layout browser</a>
    has an image switching process that can help while comparing these different layouts.
    </p>
    <!-- images {{{ -->
-   <a href="images/Cheat_Blank.png" target="_blank">
-    <img id="img1" style="width:80%; margin:1em;" src="images/Cheat_Blank.png">
-   </a>
-   <br>
    <em>ORML Notation</em>
+   <br>
+   <a href="images/Cheat_Blank.png" target="_blank">
+    <img id="img1" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_Blank.png">
+   </a>
    <hr>
 
    <a href="images/Cheat_TabSpace_Num.png" target="_blank">
-    <img id="img3" style="width:80%; margin:1em;" src="images/Cheat_TabSpace_Num.png">
+    <img id="img3" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_TabSpace_Num.png">
    </a>
    <a href="images/Cheat_TabSpace.png" target="_blank">
-    <img id="img2" style="width:80%; margin:1em;" src="images/Cheat_TabSpace.png">
+    <img id="img2" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_TabSpace.png">
    </a>
    <br>
    <em>TabSpace</em>
@@ -87,28 +87,29 @@
    <em>TabSpace 3</em>
    <br>
    <a href="images/Cheat_TabSpace_3.png" target="_blank">
-    <img id="img4" style="width:80%; margin:1em;" src="images/Cheat_TabSpace_3.png">
+    <img id="img4" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_TabSpace_3.png">
    </a>
    <a href="images/Cheat_TabSpace_3_Num.png" target="_blank">
-    <img id="img4" style="width:80%; margin:1em;" src="images/Cheat_TabSpace_3_Num.png">
+    <img id="img4" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_TabSpace_3_Num.png">
    </a>
 
    <hr>
    <em>MessagEase</em>
    <br>
    <a href="images/Cheat_MessagEase.png" target="_blank">
-    <img id="img5" style="width:80%; margin:1em;" src="images/Cheat_MessagEase.png">
+    <img id="img5" style="width:80%; margin:1ex 0 2px 1ex;" src="images/Cheat_MessagEase.png">
    </a>
    <!-- }}} -->
-   <img title="collapse" onclick='toggle_div(this, "chords");' style="width:20px;  opacity:0.20; filter:alpha(opacity = 0.2); cursor:pointer;" src="images/cursor/up.png">
+   <br>
+   <img class="wrap_img" title="collapse" src="images/cursor/up.png" onclick='toggle_div(this, "chords");'>
   </div>
   <!-- }}} -->
   <!-- tabspace {{{ -->
-  <div class="fold_title" onclick='toggle_div(this,"tabspace")'>
+  <div class="fold_title" onclick='toggle_div(this,"tabspace");'>
    TabSpace
   </div>
   <div id="div_tabspace" class="collapsed">
-   <div class="fold_title" onclick='toggle_div(this,"tabspace.1")'>Credit</div><!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.1");'>Credit</div><!-- {{{ -->
    <div id="div_tabspace.1" class="collapsed">
     <pre>
     Brandon Craig Rhodes http://www.rhodesmill.org/brandon
@@ -123,7 +124,7 @@
      <small><i>original PDF document</i></small>
     </a>
    </div> <!-- }}} -->
-   <div class="fold_title" onclick='toggle_div(this,"tabspace.2")'>The three top buttons</div>  <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.2");'>The three top buttons</div>  <!-- {{{ -->
    <div id="div_tabspace.2" class="collapsed">
     <pre>
 # The three top buttons map to the most frequently used keys.  Note
@@ -137,7 +138,7 @@
 0     l000 = TAB
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div(this,"tabspace.3")'>Nine most common letters &ndash; <em>2L</em></div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.3");'>Nine most common letters &ndash; <em>2L</em></div> <!-- {{{ -->
    <div id="div_tabspace.3" class="collapsed">
     <pre>
 
@@ -189,7 +190,7 @@
 0     00ll = "rs"
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div(this,"tabspace.4")'>Other letters with index finger on spacebar &ndash; <em>2L</em></div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.4");'>Other letters with index finger on spacebar &ndash; <em>2L</em></div> <!-- {{{ -->
    <div id="div_tabspace.4" class="collapsed">
     <pre>
 # Every other letter is produced by pressing the top middle button
@@ -223,7 +224,7 @@
 0     m0lm = "wh"
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div(this,"tabspace.5")'>Three-letter combinations &ndash; <em>3L</em></div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.5");'>Three-letter combinations &ndash; <em>3L</em></div> <!-- {{{ -->
    <div id="div_tabspace.5" class="collapsed">
     <pre>
 # Finally, we support some three-letter combinations.  As above, note
@@ -238,7 +239,7 @@
 0     mlrr = "ong"
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div(this,"tabspace.6")'>Numberpad</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.6");'>Numberpad</div> <!-- {{{ -->
    <div id="div_tabspace.6" class="collapsed">
     <pre>
 # As everyone knows, keypads are supposed to be three by three.
@@ -257,7 +258,7 @@
 0     rll0 = "-"
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div(this,"tabspace.7")'>Math operators</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.7");'>Math operators</div> <!-- {{{ -->
    <div id="div_tabspace.7" class="collapsed">
     <pre>
 # Below the number keypad we place three tiers of mathematical
@@ -271,7 +272,7 @@
 0     rl0r = "%"
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div(this,"tabspace.8")'>Logic operators</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.8");'>Logic operators</div> <!-- {{{ -->
    <div id="div_tabspace.8" class="collapsed">
     <pre>
 # The middle tier of operators include those usually used for logic
@@ -283,7 +284,7 @@
 0     rm0r = "^"
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div(this,"tabspace.9")'>Comparators</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.9");'>Comparators</div> <!-- {{{ -->
    <div id="div_tabspace.9" class="collapsed">
     <pre>
 # The double key combinations along the bottom two rows
@@ -296,7 +297,7 @@
 0     r0ll = "="
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div(this,"tabspace.10")'>Punctuation, quotes and brackets</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.10");'>Punctuation, quotes and brackets</div> <!-- {{{ -->
    <div id="div_tabspace.10" class="collapsed">
     <pre>
 # The last major section involves punctuation.  The period, comma, and
@@ -321,7 +322,7 @@
 0     l0mm = "}"
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div(this,"tabspace.11")'>...more punctuation and computer specifics</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.11");'>...more punctuation and computer specifics</div> <!-- {{{ -->
    <div id="div_tabspace.11" class="collapsed">
     <pre>
 # Now that we have exhausted the same-row combinations of the lower
@@ -344,7 +345,7 @@
 0     lm0r = "%"
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div(this,"tabspace.12")'>U R D L ... PgUp PgDn Home End ... Insert Del ... BS Tab Enter</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.12");'>U R D L ... PgUp PgDn Home End ... Insert Del ... BS Tab Enter</div> <!-- {{{ -->
    <div id="div_tabspace.12" class="collapsed">
     <pre>
 # The FN modifier has no useful native function under X-windows
@@ -369,7 +370,7 @@ func  000l = 20,"FF9C",20   # XK_End
 func  000m = 20,"FF9E",20   # XK_Insert
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div(this,"tabspace.13")'>Emacs</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.13");'>Emacs</div> <!-- {{{ -->
    <div id="div_tabspace.13" class="collapsed">
     <pre>
 # Every Emacs user will appreciate these easily accessible sequences,
@@ -385,7 +386,7 @@ func  00mm = 24,")"         # C-x )
 func  00ll = 24,"e"         # C-x e
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div(this,"tabspace.14")'>F-Keys</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.14");'>F-Keys</div> <!-- {{{ -->
    <div id="div_tabspace.14" class="collapsed">
     <pre>
 # FUNC + keypad produces function keys.
@@ -404,7 +405,7 @@ func  rmm0 = 20,"FFC8",20   # XK_F11
 func  rll0 = 20,"FFC9",20   # XK_F12
     </pre>
    </div><!-- }}} -->
-   <div class="fold_title" onclick='toggle_div(this,"tabspace.15")'>Locks (Caps, Num, Scroll)</div> <!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.15");'>Locks (Caps, Num, Scroll)</div> <!-- {{{ -->
    <div id="div_tabspace.15" class="collapsed">
     <pre>
 # I feel like I should throw these in somewhere so here they are:
@@ -414,12 +415,11 @@ num   00rr = NUM_LOCK
 num   00ll = SCROLL_LOCK
     </pre>
    </div><!-- }}} -->
-   <br>
-   <img title="collapse" onclick='toggle_div(this, "tabspace");' style="width:20px;  opacity:0.20; filter:alpha(opacity = 0.2); cursor:pointer;" src="images/cursor/up.png">
+   <img class="wrap_img" title="collapse" src="images/cursor/up.png" onclick='toggle_div(this, "tabspace");'>
   </div>
   <!-- }}} -->
   <!-- twidder3 {{{ -->
-  <div class="fold_title" onclick='toggle_div(this, "twidder3")'>
+  <div class="fold_title" onclick='toggle_div(this, "twidder3");'>
    Twiddler 3 Layout
   </div>
   <div id="div_twidder3" class="collapsed">
@@ -433,13 +433,13 @@ num   00ll = SCROLL_LOCK
    Best mnemonic metaphores come more easily when categories of symbols are grouped
    in a way their disposition builds some kind of recognizable contour.
    We can see this at work in first and second column of the last
-   <a href="layout_browser.html" target="layout_browser"><em>Twiddler 3 Layout</em></a>
+   <a href="layout_browser.html" target="layout_browser">Twiddler 3 Layout</a>
    row:
    <br>- <em>Col1</em><em>L</em><em>9x</em> with <em>{^}</em> <em>(|)</em> <em>[_]</em>
    <br>- <em>Col2</em><em>L</em><em>6x</em> with <em>&lt;?&gt;</em> <em>/!\</em>
 
    </p>
-   <div class="fold_title" onclick='toggle_div(this, "twidder3_rows")'><!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "twidder3_rows");'><!-- {{{ -->
     Layout Rows
    </div>
    <div id="div_twidder3_rows" class="collapsed">
@@ -468,7 +468,7 @@ The <em>Tab</em> Left first row button is pressed by the index finger.
     </pre>
    </div>
    <!-- }}} -->
-   <div class="fold_title" onclick='toggle_div(this, "twidder3_columns")'><!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "twidder3_columns");'><!-- {{{ -->
     Layout Columns
    </div>
    <div id="div_twidder3_columns" class="collapsed">
@@ -499,7 +499,7 @@ C10 OL 2x single
     </p>
    </div>
    <!-- }}} -->
-   <div class="fold_title" onclick='toggle_div(this, "twidder3_todo")'><!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "twidder3_todo");'><!-- {{{ -->
     ...todo...
    </div>
    <div id="div_twidder3_todo" class="collapsed">
@@ -536,7 +536,7 @@ C10 OL 2x single
     </ul>
    </div>
    <!-- }}} -->
-   <div class="fold_title" onclick='toggle_div(this, "twidder3_note")'><!-- {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "twidder3_note");'><!-- {{{ -->
     <i>Note</i>
    </div>
    <div id="div_twidder3_note" class="collapsed">
@@ -544,12 +544,12 @@ C10 OL 2x single
      The 4x11 layout can be further extended to include the less practical, but still usable,
      combinations of 2 modifiers on the first and second row of the 3x3 sub-sub-pads to obtain 24 more mappings.
     </i>
-   </div>
-   <!-- }}} -->
+   </div> <!-- }}} -->
+   <img class="wrap_img" title="collapse" src="images/cursor/up.png" onclick='toggle_div(this, "twidder3");'>
   </div>
   <!-- }}} -->
   <!-- supported {{{ -->
-  <div class="fold_title" onclick='toggle_div(this,"supported")'>
+  <div class="fold_title" onclick='toggle_div(this,"supported");'>
    Supported chords
   </div>
   <div id="div_supported" class="expanded">
@@ -572,115 +572,125 @@ C10 OL 2x single
    </p>
    <!-- }}} -->
    <!-- supported_4x4 {{{ -->
-   <div class="fold_title" onclick='toggle_div(this,"supported_4x4")'><em>4x4 chord set</em></div>
-  <div id="div_supported_4x4" class="expanded">
+   <div class="fold_title" onclick='toggle_div(this,"supported_4x4");'><em>4x4 chord set</em></div>
+  <div id="div_supported_4x4" class="collapsed">
    If the configurator supports all these combinations,
    some are easier to use than others.
 <pre>
 <em>255 chords (4^4 - 1)</em>
 
-max: <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span>
-     <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span><span class='mm'>M</span>
-     <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span><span class='ll'>L</span>
-     <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span><span class='oo'>O</span>
-     <span class='rr'>R</span><span class='rr'>R</span><span class='mm'>M</span><span class='rr'>R</span>
+max: <span class="rr">R</span><span class="rr">R</span><span class="rr">R</span><span class="rr">R</span>
+     <span class="rr">R</span><span class="rr">R</span><span class="rr">R</span><span class="mm">M</span>
+     <span class="rr">R</span><span class="rr">R</span><span class="rr">R</span><span class="ll">L</span>
+     <span class="rr">R</span><span class="rr">R</span><span class="rr">R</span><span class="oo">O</span>
+     <span class="rr">R</span><span class="rr">R</span><span class="mm">M</span><span class="rr">R</span>
      ...
-     <span class='oo'>O</span><span class='oo'>O</span><span class='ll'>L</span><span class='oo'>O</span>
-     <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span><span class='rr'>R</span>
-     <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span><span class='mm'>M</span>
-     <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span><span class='ll'>L</span>
-min: <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span>
+     <span class="oo">O</span><span class="oo">O</span><span class="ll">L</span><span class="oo">O</span>
+     <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span><span class="rr">R</span>
+     <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span><span class="mm">M</span>
+     <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span><span class="ll">L</span>
+min: <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span><span class="oo">O</span>
 </pre>
   </div> <!-- }}} -->
   <!-- supported_3x3 {{{ -->
-  <div class="fold_title" onclick='toggle_div(this,"supported_3x3")'><em>3x3 chord set</em></div>
-  <div id="div_supported_3x3" class="expanded">
+  <div class="fold_title" onclick='toggle_div(this,"supported_3x3");'><em>3x3 chord set</em></div>
+  <div id="div_supported_3x3" class="expanded" style="text-align:left; vertical-align:top !important; overflow:hidden;">
    Here are some remarkable chords that stand out enough
-   to justify associating them to some prominent keystroke.
+   to justify associating them to some prominent keystrokes:
+   <p>
+<!-- {{{ --><pre class="pre_card" style="float:left;"
+><em>63 (4^3 - 1)</em>
 
-<pre><!-- {{{ -->
-<em>63 (4^3 - 1)</em>
+<b>Merit points:</b>
 
-<b>Grant merit points:</b> <i>(WIP)</i>
- 0 <span class="oo">    </span>
-+1 <span class="aa">not bad</span>
-+2 <span class="ss">better</span>
-+4 <span class="cc">very good</span>
-+5 <span class="nn">great</span>
-
-     <!-- {{{ -->
-    ooooo <span class='rr'>R</span><span class='rr'>R</span><span class='rr'>R</span> - <span class="nn">  3B</span>
-        o <span class='rr'>R</span><span class='rr'>R</span><span class='mm'>M</span> - <span class="aa">1+2B</span>
-        o <span class='rr'>R</span><span class='rr'>R</span><span class='ll'>L</span> - <span class="aa">1+2B</span>
-    ooooo <span class='rr'>R</span><span class='rr'>R</span><span class='oo'>O</span> - <span class="nn">  2B</span>
-          <span class='rr'>R</span><span class='mm'>M</span><span class='rr'>R</span> - <span class="oo">    </span>
-        o <span class='rr'>R</span><span class='mm'>M</span><span class='mm'>M</span> - <span class="aa">1+2B</span>
-     oooo <span class='rr'>R</span><span class='mm'>M</span><span class='ll'>L</span> - <span class="cc">  3B</span> Diagonal
-          <span class='rr'>R</span><span class='mm'>M</span><span class='oo'>O</span> - <span class="oo">    </span>
-          <span class='rr'>R</span><span class='ll'>L</span><span class='rr'>R</span> - <span class="oo">    </span>
-          <span class='rr'>R</span><span class='ll'>L</span><span class='mm'>M</span> - <span class="oo">    </span>
-        o <span class='rr'>R</span><span class='ll'>L</span><span class='ll'>L</span> - <span class="aa">1+2B</span>
-       oo <span class='rr'>R</span><span class='ll'>L</span><span class='oo'>O</span> - <span class="ss">  2B</span>
-     oooo <span class='rr'>R</span><span class='oo'>O</span><span class='rr'>R</span> - <span class="cc">  2B</span>
-          <span class='rr'>R</span><span class='oo'>O</span><span class='mm'>M</span> - <span class="oo">    </span>
-     oooo <span class='rr'>R</span><span class='oo'>O</span><span class='ll'>L</span> - <span class="cc">  2B</span> Diagonal
-    ooooo <span class='rr'>R</span><span class='oo'>O</span><span class='oo'>O</span> - <span class="nn">  1B</span>
-
-          <span class='mm'>M</span><span class='rr'>R</span><span class='rr'>R</span> - <span class="aa">1+2B</span>
-          <span class='mm'>M</span><span class='rr'>R</span><span class='mm'>M</span> -
-          <span class='mm'>M</span><span class='rr'>R</span><span class='ll'>L</span> -
-          <span class='mm'>M</span><span class='rr'>R</span><span class='oo'>O</span> - <span class="ss">2B</span>
-          <span class='mm'>M</span><span class='mm'>M</span><span class='rr'>R</span> -
-          <span class='mm'>M</span><span class='mm'>M</span><span class='mm'>M</span> - <span class="cc">3B</span>
-          <span class='mm'>M</span><span class='mm'>M</span><span class='ll'>L</span> -
-          <span class='mm'>M</span><span class='mm'>M</span><span class='oo'>O</span> - <span class="cc">2B</span>
-          <span class='mm'>M</span><span class='ll'>L</span><span class='rr'>R</span> -
-          <span class='mm'>M</span><span class='ll'>L</span><span class='mm'>M</span> -
-          <span class='mm'>M</span><span class='ll'>L</span><span class='ll'>L</span> - <span class="aa">1+2B</span>
-          <span class='mm'>M</span><span class='ll'>L</span><span class='oo'>O</span> - <span class="ss">2B</span>
-          <span class='mm'>M</span><span class='oo'>O</span><span class='rr'>R</span> -
-          <span class='mm'>M</span><span class='oo'>O</span><span class='mm'>M</span> - <span class="cc">2B</span>
-          <span class='mm'>M</span><span class='oo'>O</span><span class='ll'>L</span> -
-          <span class='mm'>M</span><span class='oo'>O</span><span class='oo'>O</span> - <span class="cc">1B</span>
-
-          <span class='ll'>L</span><span class='rr'>R</span><span class='rr'>R</span> - <span class="aa">1+2B</span>
-          <span class='ll'>L</span><span class='rr'>R</span><span class='mm'>M</span> -
-          <span class='ll'>L</span><span class='rr'>R</span><span class='ll'>L</span> -
-          <span class='ll'>L</span><span class='rr'>R</span><span class='oo'>O</span> - <span class="ss">2B</span>
-          <span class='ll'>L</span><span class='mm'>M</span><span class='rr'>R</span> - <span class="cc">3B Diagonal</span>
-          <span class='ll'>L</span><span class='mm'>M</span><span class='mm'>M</span> - <span class="aa">1+2B</span>
-          <span class='ll'>L</span><span class='mm'>M</span><span class='ll'>L</span> -
-          <span class='ll'>L</span><span class='mm'>M</span><span class='oo'>O</span> - <span class="ss">2B</span>
-          <span class='ll'>L</span><span class='ll'>L</span><span class='rr'>R</span> - <span class="cc">2B</span>
-          <span class='ll'>L</span><span class='ll'>L</span><span class='mm'>M</span> - <span class="cc">2B</span>
-          <span class='ll'>L</span><span class='ll'>L</span><span class='ll'>L</span> - <span class="cc">3B</span>
-          <span class='ll'>L</span><span class='ll'>L</span><span class='oo'>O</span> - <span class="cc">2B</span>
-          <span class='ll'>L</span><span class='oo'>O</span><span class='rr'>R</span> -
-          <span class='ll'>L</span><span class='oo'>O</span><span class='mm'>M</span> -
-          <span class='ll'>L</span><span class='oo'>O</span><span class='ll'>L</span> - <span class="cc">2B</span>
-          <span class='ll'>L</span><span class='oo'>O</span><span class='oo'>O</span> - <span class="cc">1B</span>
-
-          <span class='oo'>O</span><span class='rr'>R</span><span class='rr'>R</span> - <span class="cc">2B</span> <span class="cc">Vertical</span>
-          <span class='oo'>O</span><span class='rr'>R</span><span class='mm'>M</span> - <span class="ss">2B</span>
-          <span class='oo'>O</span><span class='rr'>R</span><span class='ll'>L</span> - <span class="ss">2B</span>
-          <span class='oo'>O</span><span class='rr'>R</span><span class='oo'>O</span> - <span class="cc">1B</span>
-          <span class='oo'>O</span><span class='mm'>M</span><span class='rr'>R</span> - <span class="ss">2B</span>
-          <span class='oo'>O</span><span class='mm'>M</span><span class='mm'>M</span> - <span class="cc">2B</span> <span class="cc">Vertical</span>
-          <span class='oo'>O</span><span class='mm'>M</span><span class='ll'>L</span> - <span class="ss">2B</span>
-          <span class='oo'>O</span><span class='mm'>M</span><span class='oo'>O</span> - <span class="cc">1B</span>
-          <span class='oo'>O</span><span class='ll'>L</span><span class='rr'>R</span> - <span class="ss">2B</span>
-          <span class='oo'>O</span><span class='ll'>L</span><span class='mm'>M</span> - <span class="ss">2B</span>
-          <span class='oo'>O</span><span class='ll'>L</span><span class='ll'>L</span> - <span class="cc">2B</span> <span class="cc">Vertical</span>
-          <span class='oo'>O</span><span class='ll'>L</span><span class='oo'>O</span> - <span class="cc">1B</span>
-          <span class='oo'>O</span><span class='oo'>O</span><span class='rr'>R</span> - <span class="cc">1B</span>
-          <span class='oo'>O</span><span class='oo'>O</span><span class='mm'>M</span> - <span class="cc">1B</span>
-          <span class='oo'>O</span><span class='oo'>O</span><span class='ll'>L</span> - <span class="cc">1B</span>
-          <span class='oo'>O</span><span class='oo'>O</span><span class='oo'>O</span>
-     <!-- }}} -->
+<span class="ng"> not so good </span>
+<span class="nb"> not bad     </span>
+<span class="bt"> better      </span>
+<span class="vg"> very good   </span>
+<span class="gr"> great       </span>
+</pre> <!-- }}} -->
+<!-- {{{ --><pre class="pre_card" style="float:left;"
+><em style="font-size:200%;">O</em><br
+><div class="gr"><span class="oo">O</span><span class="rr">R</span><span class="rr">R</span> 2B</div>
+<div class="bt"><span class="oo">O</span><span class="rr">R</span><span class="mm">M</span> 2b</div>
+<div class="bt"><span class="oo">O</span><span class="rr">R</span><span class="ll">L</span> 2b</div>
+<div class="gr"><span class="oo">O</span><span class="rr">R</span><span class="oo">O</span> 1B</div>
+<div class="bt"><span class="oo">O</span><span class="mm">M</span><span class="rr">R</span> 2b</div>
+<div class="gr"><span class="oo">O</span><span class="mm">M</span><span class="mm">M</span> 2B</div>
+<div class="bt"><span class="oo">O</span><span class="mm">M</span><span class="ll">L</span> 2b</div>
+<div class="gr"><span class="oo">O</span><span class="mm">M</span><span class="oo">O</span> 1B</div>
+<div class="bt"><span class="oo">O</span><span class="ll">L</span><span class="rr">R</span> 2b</div>
+<div class="bt"><span class="oo">O</span><span class="ll">L</span><span class="mm">M</span> 2b</div>
+<div class="gr"><span class="oo">O</span><span class="ll">L</span><span class="ll">L</span> 2B</div>
+<div class="gr"><span class="oo">O</span><span class="ll">L</span><span class="oo">O</span> 1B</div>
+<div class="gr"><span class="oo">O</span><span class="oo">O</span><span class="rr">R</span> 1B</div>
+<div class="gr"><span class="oo">O</span><span class="oo">O</span><span class="mm">M</span> 1B</div>
+<div class="gr"><span class="oo">O</span><span class="oo">O</span><span class="ll">L</span> 1B</div>
 
 </pre> <!-- }}} -->
+<!-- {{{ --><pre class="pre_card" style="float:left; clear:both;"
+><em style="font-size:200%;">R</em><br
+><div class="gr"><span class="rr">R</span><span class="rr">R</span><span class="rr">R</span>   3B</div>
+<div class="nb"><span class="rr">R</span><span class="rr">R</span><span class="mm">M</span> 1+2B</div>
+<div class="nb"><span class="rr">R</span><span class="rr">R</span><span class="ll">L</span> 1+2B</div>
+<div class="gr"><span class="rr">R</span><span class="rr">R</span><span class="oo">O</span>   2B</div>
+<div class="ng"><span class="rr">R</span><span class="mm">M</span><span class="rr">R</span>     </div>
+<div class="nb"><span class="rr">R</span><span class="mm">M</span><span class="mm">M</span> 1+2B</div>
+<div class="gr"><span class="rr">R</span><span class="mm">M</span><span class="ll">L</span>   3X</div>
+<div class="bt"><span class="rr">R</span><span class="mm">M</span><span class="oo">O</span>   2b</div>
+<div class="ng"><span class="rr">R</span><span class="ll">L</span><span class="rr">R</span>     </div>
+<div class="ng"><span class="rr">R</span><span class="ll">L</span><span class="mm">M</span>     </div>
+<div class="nb"><span class="rr">R</span><span class="ll">L</span><span class="ll">L</span> 1+2B</div>
+<div class="bt"><span class="rr">R</span><span class="ll">L</span><span class="oo">O</span>   2b</div>
+<div class="gr"><span class="rr">R</span><span class="oo">O</span><span class="rr">R</span>   2B</div>
+<div class="bt"><span class="rr">R</span><span class="oo">O</span><span class="mm">M</span>   2b</div>
+<div class="gr"><span class="rr">R</span><span class="oo">O</span><span class="ll">L</span>   2X</div>
+<div class="gr"><span class="rr">R</span><span class="oo">O</span><span class="oo">O</span>   1B</div>
+
+</pre> <!-- }}} -->
+<!-- {{{ --><pre class="pre_card" style="float:left;"
+><em style="font-size:200%;">M</em><br
+><div class="nb"><span class="mm">M</span><span class="rr">R</span><span class="rr">R</span> 1+2B</div>
+<div class="ng"><span class="mm">M</span><span class="rr">R</span><span class="mm">M</span>     </div>
+<div class="ng"><span class="mm">M</span><span class="rr">R</span><span class="ll">L</span>     </div>
+<div class="bt"><span class="mm">M</span><span class="rr">R</span><span class="oo">O</span>   2b</div>
+<div class="nb"><span class="mm">M</span><span class="mm">M</span><span class="rr">R</span> 1+2B</div>
+<div class="gr"><span class="mm">M</span><span class="mm">M</span><span class="mm">M</span>   3B</div>
+<div class="nb"><span class="mm">M</span><span class="mm">M</span><span class="ll">L</span> 1+2B</div>
+<div class="gr"><span class="mm">M</span><span class="mm">M</span><span class="oo">O</span>   2B</div>
+<div class="ng"><span class="mm">M</span><span class="ll">L</span><span class="rr">R</span>     </div>
+<div class="ng"><span class="mm">M</span><span class="ll">L</span><span class="mm">M</span>     </div>
+<div class="nb"><span class="mm">M</span><span class="ll">L</span><span class="ll">L</span> 1+2B</div>
+<div class="bt"><span class="mm">M</span><span class="ll">L</span><span class="oo">O</span>   2b</div>
+<div class="bt"><span class="mm">M</span><span class="oo">O</span><span class="rr">R</span>   2b</div>
+<div class="vg"><span class="mm">M</span><span class="oo">O</span><span class="mm">M</span>   2B </div>
+<div class="bt"><span class="mm">M</span><span class="oo">O</span><span class="ll">L</span>   2b </div>
+<div class="gr"><span class="mm">M</span><span class="oo">O</span><span class="oo">O</span>   1B </div>
+
+</pre> <!-- }}} -->
+<!-- {{{ --><pre class="pre_card" style="float:left;"
+><em style="font-size:200%;">L</em><br
+><div class="nb"><span class="ll">L</span><span class="rr">R</span><span class="rr">R</span> 1+2B</div>
+<div class="ng"><span class="ll">L</span><span class="rr">R</span><span class="mm">M</span>     </div>
+<div class="ng"><span class="ll">L</span><span class="rr">R</span><span class="ll">L</span>     </div>
+<div class="bt"><span class="ll">L</span><span class="rr">R</span><span class="oo">O</span>   2B</div>
+<div class="gr"><span class="ll">L</span><span class="mm">M</span><span class="rr">R</span>   3X</div>
+<div class="nb"><span class="ll">L</span><span class="mm">M</span><span class="mm">M</span> 1+2B</div>
+<div class="ng"><span class="ll">L</span><span class="mm">M</span><span class="ll">L</span>     </div>
+<div class="bt"><span class="ll">L</span><span class="mm">M</span><span class="oo">O</span>   2B</div>
+<div class="nb"><span class="ll">L</span><span class="ll">L</span><span class="rr">R</span> 1+2B</div>
+<div class="nb"><span class="ll">L</span><span class="ll">L</span><span class="mm">M</span> 1+2B</div>
+<div class="gr"><span class="ll">L</span><span class="ll">L</span><span class="ll">L</span>   3B</div>
+<div class="vg"><span class="ll">L</span><span class="ll">L</span><span class="oo">O</span>   2B</div>
+<div class="gr"><span class="ll">L</span><span class="oo">O</span><span class="rr">R</span>   2X</div>
+<div class="vg"><span class="ll">L</span><span class="oo">O</span><span class="mm">M</span>   2b</div>
+<div class="gr"><span class="ll">L</span><span class="oo">O</span><span class="ll">L</span>   2B</div>
+<div class="gr"><span class="ll">L</span><span class="oo">O</span><span class="oo">O</span>   1B</div>
+
+</pre> <!-- }}} -->
+    </p>
    </div> <!-- }}} -->
-   <img title="collapse" onclick='toggle_div(this, "supported");' style="width:20px;  opacity:0.20; filter:alpha(opacity = 0.2); cursor:pointer;" src="images/cursor/up.png">
+   <img class="wrap_img" title="collapse" src="images/cursor/up.png" onclick='toggle_div(this, "supported");'>
   </div>
   <!-- }}} -->
  </section>
