@@ -31,12 +31,6 @@
 .cc { margin:0 3px 2px 2px; padding:0 2px 0 2px; }
 .aa { margin:0 3px 2px 2px; padding:0 2px 0 2px; }
 
-.ng { float:left; clear:left; }
-.nb { float:left; clear:left; }
-.bt { float:left; clear:left; }
-.vg { float:left; clear:left; }
-.gr { float:left; clear:left; }
-
 /* }}} */
 /* RADIUS {{{ */
 
@@ -109,12 +103,6 @@
 /* }}} */
 /* GEOM {{{ */
 
-.ng { float:left; clear:left; }
-.nb { float:left; clear:left; }
-.bt { float:left; clear:left; }
-.vg { float:left; clear:left; }
-.gr { float:left; clear:left; }
-
 /* }}} */
 /* RADIUS {{{ */
 
@@ -157,5 +145,6 @@
   -moz-box-shadow   : rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 6px 6px;
   box-shadow        : rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 6px 6px;
 }
-.pre_card div { text-align:left; margin:1px; }
+.pre_card div      { float:left; clear:left; }
+.pre_card div      { text-align:left; margin:1px; }
 .pre_card div span { vertical-align:middle; }
