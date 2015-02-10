@@ -424,7 +424,7 @@ num   00ll = SCROLL_LOCK
    <!-- supported_4x4 {{{ -->
    <div class="fold_title" onclick='toggle_div(this,"supported_4x4");'><em>4x4 chord set</em></div>
   <div id="div_supported_4x4" class="collapsed">
-   <em>255 chords (4^4 - 1)</em>
+   <em>255 = (4^4 - 1)</em>
    If the configurator supports them all, some are easier to use than others.
 <pre>
 max: <span class="rr">R</span><span class="rr">R</span><span class="rr">R</span><span class="rr">R</span>
@@ -443,7 +443,7 @@ min: <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span>
   <!-- supported_3x3 {{{ -->
   <div class="fold_title" onclick='toggle_div(this,"supported_3x3");'><em>3x3 chord set</em></div>
   <div id="div_supported_3x3" class="collapsed" style="text-align:left; vertical-align:top !important; overflow:hidden;">
-   <em>63 (4^3 - 1)</em>
+   <em>63 = (4^3 - 1)</em>
    Some chords stand out enough to justify a mapping to prominent keystrokes:
    <p>
 <!-- {{{ --><pre class="pre_card" style="float:right;"
@@ -612,7 +612,8 @@ min: <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span>
     The remaining buttons can then be mapped individually or by pairs.
     </p>
     <p>
-    Each 3x2 sub-pad is composed of a limited number of mappable single buttons or pairs.
+    Each 3x2 sub-pad is composed of a number of mappable single or pairs of buttons.
+    <em>180 = 4x45 &mdash; (9 + 6 + 3x5 + 3x3 + 3x2)</em>
 <pre style="padding:4px !important;">
   Col 1  Col 2        Col 3-5            Col 6-8             Col 9-11
  9single 6pair       +5single             3pair              +2single
@@ -655,8 +656,17 @@ min: <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span>
 </div
 ></pre>
     </p>
+
+    <p style="font-size:80%;">
+    <i>
+     Note: The 4x11 layout can be further extended to include the less practical, but still usable,
+     combinations of 2 modifiers on the first and second row of the 3x3 sub-sub-pads to obtain 24 more mappings.
+    </i>
+    </p>
+
    </div>
    <!-- }}} -->
+
    <div class="fold_title" onclick='toggle_div(this, "twidder3_todo");'><!-- {{{ -->
     ...todo...
    </div>
@@ -694,15 +704,6 @@ min: <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span>
     </ul>
    </div>
    <!-- }}} -->
-   <div class="fold_title" onclick='toggle_div(this, "twidder3_note");'><!-- {{{ -->
-    <i>Note</i>
-   </div>
-   <div id="div_twidder3_note" class="collapsed">
-    <i style="font-size:80%;">
-     The 4x11 layout can be further extended to include the less practical, but still usable,
-     combinations of 2 modifiers on the first and second row of the 3x3 sub-sub-pads to obtain 24 more mappings.
-    </i>
-   </div> <!-- }}} -->
    <img class="wrap_img" title="collapse" src="images/cursor/up.png" onclick='toggle_div(this, "twidder3");'>
   </div>
   <!-- }}} -->
