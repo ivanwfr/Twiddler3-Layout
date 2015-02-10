@@ -31,7 +31,7 @@
  </header>
  <!-- }}} -->
  <section>
-  <!-- intro {{{ -->
+  <!-- INTRO {{{ -->
   <h3>
    <a
     id="welcome-to-github-pages"
@@ -41,68 +41,48 @@
     <span class="octicon octicon-link"></span></a>
    Looking for a chorded-keyboard layout standard
   </h3>
-  <p><!-- {{{ -->
+  <div style="position:absolute; top:1ex; right:1ex;">
+   <a class="expander" href="#collapse_all" onclick='expand_div("collapse_all");'><img class="wrap_img" title="collapse" src="images/cursor/left.png"></a>
+ </div>
+  <p><!-- sense story process {{{ -->
   Why should we learn some chording layout that makes sense only to the author?
   A better idea would be to take a part in the build process.
   And if it's too late, having a chance to read the story is the next best way to get the idea.
   </p>
   <!-- }}} -->
-  <p><!-- {{{ -->
+  <p><!-- tabspace standard explanation {{{ -->
   Every single decision should be clearly justified to avoid having to keep tabs
   on unclear points requiring further explanation.
-  And this is not the case even in the TabSpace Guide by Brandon Craig Rhodes, the original author of what stands for a standard layout of this device.
+  This is not quite the case in the
+  <a class="expander" href="#tabspace" onclick='expand_div("tabspace.1");'>TabSpace Guide</a>
+  by Brandon Craig Rhodes, the original author of what stands for a standard layout of this device.
   </p> <!-- }}} -->
-  <p><!-- {{{ -->
-  A systematic study of all the possible combinations should help at deciding new assignment rules.
-  Some grouping methods should be defined to replace "simply good-looking patterns".
-  To be more easily accepted as an effective improvement, these rules should make sense when looking at the big picture.
+  <p><!-- layout rows columns study assignment rules {{{ -->
+  A systematic study of all the 
+  <a class="expander" href="#supported" onclick='expand_div("supported");'>Supported Layout</a>
+  combinations should help to define some grouping rules 
+  that would replace simply good-looking patterns.
+  The empirical evaluation of the
+  <a class="expander" href="#supported_3x3" onclick='expand_div("supported_3x3");'>most efficient key assigment</a>
+  is a key point of this theoretical approach.
+
   </p> <!-- }}} -->
-  <!-- }}} -->
-  <!-- chords {{{ -->
-  <div class="fold_title" onclick='toggle_div(this, "chords");'>
-   Cheat Sheets
-  </div>
-  <div id="div_chords" class="collapsed" style="text-align:left;">
-   <p>
-   <a href="layout_browser.html" target="layout_browser">The Layout browser</a>
-   has an image switching process that can help while comparing these different layouts.
-   </p>
-   <!-- images {{{ -->
-   <em>ORML Notation</em>
-   <br>
-   <a href="images/Cheat_Blank.png" target="_blank">
-    <img id="img1" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_Blank.png">
-   </a>
-   <hr>
+  <p><!-- twidder3 {{{ -->
+  As a result, some
+  <a class="expander" href="#twidder3" onclick='expand_div("twidder3");'>Twiddler 3 Layout</a>
+  illustration of some practical
+  <a class="expander" href="#twidder3_rows" onclick='expand_div("twidder3_rows");'>rows</a>
+  and
+  <a class="expander" href="#twidder3_columns" onclick='expand_div("twidder3_columns");'>columns</a>
+  mapping could be used as a base for further analysis or experimentation.
 
-   <a href="images/Cheat_TabSpace_Num.png" target="_blank">
-    <img id="img3" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_TabSpace_Num.png">
-   </a>
-   <a href="images/Cheat_TabSpace.png" target="_blank">
-    <img id="img2" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_TabSpace.png">
-   </a>
-   <br>
-   <em>TabSpace</em>
-   <hr>
-   <em>TabSpace 3</em>
-   <br>
-   <a href="images/Cheat_TabSpace_3.png" target="_blank">
-    <img id="img4" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_TabSpace_3.png">
-   </a>
-   <a href="images/Cheat_TabSpace_3_Num.png" target="_blank">
-    <img id="img4" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_TabSpace_3_Num.png">
-   </a>
+  </p> <!-- }}} -->
+  <p><!-- cheat_sheet {{{ -->
 
-   <hr>
-   <em>MessagEase</em>
-   <br>
-   <a href="images/Cheat_MessagEase.png" target="_blank">
-    <img id="img5" style="width:80%; margin:1ex 0 2px 1ex;" src="images/Cheat_MessagEase.png">
-   </a>
-   <!-- }}} -->
-   <br>
-   <img class="wrap_img" title="collapse" src="images/cursor/up.png" onclick='toggle_div(this, "chords");'>
-  </div>
+  In the end, these rules should make sense when dissecting a variety of
+  <a class="expander" href="#cheat_sheet" onclick='expand_div("cheat_sheet");'>Cheat Sheets</a>
+  .
+  </p> <!-- }}} -->
   <!-- }}} -->
   <!-- tabspace {{{ -->
   <div class="fold_title" onclick='toggle_div(this,"tabspace");'>
@@ -604,20 +584,31 @@ min: <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span>
     </p>
     <p>
     All the 3 by 3 pads can be refered to by the Twiddler <em>ORML</em> notation:
-    <pre>
+<pre style="padding:4px !important;">
 <em>O</em> The <em>No modifier</em> layer
 Key strokes of this layer are generetad without the index finger.
-
-<em>R</em> The <em>Right modifier layer</em>
-The <em>BS</em> Right first row button is pressed by the index finger.
+<div class="clip_h_stripe">
+ <img class="clip_img_h1" src="images/Cheat_TabSpace_3.png">
+</div>
 
 <em>M</em> The <em>Middle modifier layer</em>
 The <em>Space</em> Middle first row button is pressed by the index finger.
+<div class="clip_h_stripe">
+ <img class="clip_img_h2" src="images/Cheat_TabSpace_3.png">
+</div>
+
+<em>R</em> The <em>Right modifier layer</em>
+The <em>BS</em> Right first row button is pressed by the index finger.
+<div class="clip_h_stripe">
+ <img class="clip_img_h3" src="images/Cheat_TabSpace_3.png">
+</div>
 
 <em>L</em> The <em>Left modifier layer</em>
 The <em>Tab</em> Left first row button is pressed by the index finger.
-
-    </pre>
+<div class="clip_h_stripe">
+ <img class="clip_img_h4" src="images/Cheat_TabSpace_3.png">
+</div>
+</pre>
    </div>
    <!-- }}} -->
    <div class="fold_title" onclick='toggle_div(this, "twidder3_columns");'><!-- {{{ -->
@@ -631,23 +622,47 @@ The <em>Tab</em> Left first row button is pressed by the index finger.
     </p>
     <p>
     Each 3x2 sub-pad is composed of a limited number of mappable single buttons or pairs.
-    <pre>
-C_1 9.single
-
-C_2 6.pair
-
-C_3 R  5x single
-C_4 M  5x single
-C_5 L  5x single
-
-C_6 R  2x pair
-C_7 M  2x pair
-C_8 L  2x pair
-
-C_8 OR 2x single
-C_9 OM 2x single
-C10 OL 2x single
-    </pre>
+<pre style="padding:4px !important;">
+  Col 1  Col 2       Col 3-5            Col 6-8              Col 8-11
+ 9single 6pair       +5single            +2pair              +2single
+ <div class="clip_v_stripe">
+ <img class="clip_img_v1" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_sep"></div
+><div class="clip_v_stripe">
+ <img class="clip_img_v2" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_sep"></div
+><div class="clip_v_stripe">
+ <img class="clip_img_v3" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_stripe">
+ <img class="clip_img_v4" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_stripe">
+ <img class="clip_img_v5" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_sep"></div
+><div class="clip_v_stripe">
+ <img class="clip_img_v6" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_stripe">
+ <img class="clip_img_v7" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_stripe">
+ <img class="clip_img_v8" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_sep"></div
+><div class="clip_v_stripe">
+ <img class="clip_img_v9" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_stripe">
+ <img class="clip_img_v10" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_stripe">
+ <img class="clip_img_v11" src="images/Cheat_TabSpace_3.png">
+</div
+></pre>
     </p>
    </div>
    <!-- }}} -->
@@ -658,11 +673,11 @@ C10 OL 2x single
     <p>
     Why Num-Caps-Scroll Locks should be in lower Rxx
     <br>
-    So that the easy no-mod O-2 (row O, col 2) pad can be used for the following frequently used punctuation symbols 
+    So that the easy no-mod O-2 (row O, col 2) pad can be used for the following frequently used punctuation symbols
     <em>,</em>
     <em>:</em>
     <em>;</em>
-    and 
+    and
     <em>'</em>
     <em>&quot;</em>
     <em>`</em>
@@ -698,6 +713,52 @@ C10 OL 2x single
     </i>
    </div> <!-- }}} -->
    <img class="wrap_img" title="collapse" src="images/cursor/up.png" onclick='toggle_div(this, "twidder3");'>
+  </div>
+  <!-- }}} -->
+  <!-- cheat sheets {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "cheat_sheet");'>
+   Cheat Sheets
+  </div>
+  <div id="div_cheat_sheet" class="collapsed" style="text-align:left;">
+   <p>
+   <a href="layout_browser.html" target="layout_browser">The Layout browser</a>
+   has an image switching process that can help while comparing these different layouts.
+   </p>
+   <!-- images {{{ -->
+   <em>ORML Notation</em>
+   <br>
+   <a href="images/Cheat_Blank.png" target="_blank">
+    <img id="img1" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_Blank.png">
+   </a>
+   <hr>
+
+   <a href="images/Cheat_TabSpace_Num.png" target="_blank">
+    <img id="img3" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_TabSpace_Num.png">
+   </a>
+   <a href="images/Cheat_TabSpace.png" target="_blank">
+    <img id="img2" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_TabSpace.png">
+   </a>
+   <br>
+   <em>TabSpace</em>
+   <hr>
+   <em>TabSpace 3</em>
+   <br>
+   <a href="images/Cheat_TabSpace_3.png" target="_blank">
+    <img id="img4" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_TabSpace_3.png">
+   </a>
+   <a href="images/Cheat_TabSpace_3_Num.png" target="_blank">
+    <img id="img4" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_TabSpace_3_Num.png">
+   </a>
+
+   <hr>
+   <em>MessagEase</em>
+   <br>
+   <a href="images/Cheat_MessagEase.png" target="_blank">
+    <img id="img5" style="width:80%; margin:1ex 0 2px 1ex;" src="images/Cheat_MessagEase.png">
+   </a>
+   <!-- }}} -->
+   <br>
+   <img class="wrap_img" title="collapse" src="images/cursor/up.png" onclick='toggle_div(this, "cheat_sheet");'>
   </div>
   <!-- }}} -->
  </section>

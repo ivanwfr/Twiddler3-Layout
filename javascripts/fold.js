@@ -4,9 +4,55 @@ function toggle_div(ttl,id) // {{{
     if( !div ) return;
     div.className = (div.className == "expanded") ? "collapsed" : "expanded";
 
+    if(div.className == "expanded")
+	cache_expanded(div);
+
     ttl.style.opacity = (div.className == "expanded") ? "1.0" : "0.5"; // mark read
 
 } // }}}
+function expand_div(id) // {{{
+{
+    var div = document.getElementById("div_"+id);
+    var nothing_to_expand = (div == null) || ((div != null) && (div.className == "expanded"));
+
+    collapse_expanded();
+
+    if(nothing_to_expand)
+	return;
+
+    // expand parent chain
+    while(div != null) {
+	if(div.className == "collapsed") {
+	    div.className = "expanded";
+	    cache_expanded(div);
+	}
+	div = div.parentNode;
+    }
+
+} // }}}
+
+var ExpandedArray = new Array();
+function cache_expanded(div) // {{{
+{
+    var i;
+    for(i = 0; i < ExpandedArray.length; ++i) {
+	if(ExpandedArray[i] == div)
+	    break;
+    }
+    if(i == ExpandedArray.length) ExpandedArray[i] = div;
+}
+// }}}
+function collapse_expanded() // {{{
+{
+    var div, i;
+    for(i = 0; i < ExpandedArray.length; ++i) {
+	div = ExpandedArray[i];
+	if(div.className == "expanded")
+	    div.className = "collapsed";
+    }
+}
+// }}}
+
 var IMG_MAX = 8;
 function browse_img(dir) // {{{
 {

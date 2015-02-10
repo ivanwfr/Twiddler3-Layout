@@ -426,6 +426,15 @@ footer p + p {
     background:white;
   opacity:1.0; filter:alpha(opacity=100) !important;
 }
+.expander {
+    font-weight:bold;
+    background:inherit;
+    color:inherit;
+}
+.expander:hover { color:red; }
+/*
+    color:navy;
+*/
 #bottom_div {
     height    : 70em;
     opacity   : 0.10; filter:alpha(opacity=100);
@@ -437,4 +446,38 @@ footer p + p {
     cursor:pointer;
     opacity:0.20; filter:alpha(opacity=20);
 }
+
+.clip_h_stripe { overflow:hidden;     width:512px;     height: 55px; }
+.clip_v_stripe { overflow:hidden;     width: 45px;     height:248px; }
+
+.clip_v_stripe { display:inline-block; margin-right:2px; }
+
+.clip_img_h1   {                  max-width:512px; max-height:none; margin-left:-10px !important; margin-top:-45px !important; }
+.clip_img_h2   {                  max-width:512px; max-height:none; margin-left:-10px !important; margin-top:-107px !important; }
+.clip_img_h3   {                  max-width:512px; max-height:none; margin-left:-10px !important; margin-top:-169px !important; }
+.clip_img_h4   {                  max-width:512px; max-height:none; margin-left:-10px !important; margin-top:-232px !important; }
+
+.clip_img_v1   {                  max-width:512px; max-height:none; margin-left:-10px !important; margin-top:-45px !important; }
+
+.clip_img_v2   {                  max-width:512px; max-height:none; margin-left:-60px !important; margin-top:-45px !important; }
+
+.clip_img_v3   {                  max-width:512px; max-height:none; margin-left:-110px !important; margin-top:-45px !important; }
+.clip_img_v4   {                  max-width:512px; max-height:none; margin-left:-153px !important; margin-top:-45px !important; }
+.clip_img_v5   {                  max-width:512px; max-height:none; margin-left:-197px !important; margin-top:-45px !important; }
+
+.clip_img_v6   {                  max-width:512px; max-height:none; margin-left:-248px !important; margin-top:-45px !important; }
+.clip_img_v7   {                  max-width:512px; max-height:none; margin-left:-292px !important; margin-top:-45px !important; }
+.clip_img_v8   {                  max-width:512px; max-height:none; margin-left:-334px !important; margin-top:-45px !important; }
+
+.clip_img_v9   {                  max-width:512px; max-height:none; margin-left:-385px !important; margin-top:-45px !important; }
+.clip_img_v10  {                  max-width:512px; max-height:none; margin-left:-429px !important; margin-top:-45px !important; }
+.clip_img_v11  {                  max-width:512px; max-height:none; margin-left:-470px !important; margin-top:-45px !important; }
+
+.clip_v_sep    { width:2px; display:inline-block; }
+
+/*
+.clip_img {
+    -webkit-transform:scale(1);
+}
+*/
 
