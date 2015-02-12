@@ -17,7 +17,7 @@
 <![endif]-->
 </head>
 <!-- }}} -->
-<body onload='expand_div("twiddler3_operators");'>
+<body onload='//expand_div("twiddler3_operators");'>
 <div class="wrapper">
  <header><!-- {{{ -->
   <h1>Twiddler3-layout</h1>
@@ -686,11 +686,12 @@ min: <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span>
    </p>
    </div>
    <!-- }}} -->
-   <!-- twiddler3_lock {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_lock");'>Why Num-Caps-Scroll Locks should be in lower <em>R2 6x</em> ?</div>
-   <div id="div_twiddler3_lock" class="collapsed">
+   <!-- twiddler3_locks {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_locks");'>Locks</div>
+   <div id="div_twiddler3_locks" class="collapsed">
+    Why NumLock, CapsLock and ScrollLock should be in lower <em>R2 6x</em> ?
     <p>
-    So that the easy no-mod O2 pair x6 (row O, col 2) pad can be mapped to the frequently used punctuation accents and quote.
+    ...So that the easy no-mod O2 pair x6 (row O, col 2) pad can be mapped to the frequently used punctuation accents and quote.
     </p>
 <pre style="padding:4px !important; width:190px;"
 >  Num R2            O2
@@ -707,27 +708,32 @@ min: <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span>
     </div>
     <!-- }}} -->
    <!-- twiddler3_operators {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators");'>Operators arrangement on <em>R2 6x</em> ?</div>
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators");'>Operators</div>
    <div id="div_twiddler3_operators" class="collapsed">
+   Arithmetic symbols on <em>R2 pair x6</em> put them close to the <em>R1 single x9</em> numberpad.
     <p>
     If there is no obvious layout for the bundle of the remaining arithmetic symbols,
     a small dose of logic can help at defining some kind of haddock rules:
 
     <hr>
-    Operators <em>*</em> <em>-</em> <em>+</em> on the same row can make sense.
-
-    <hr>
     Number <em>0</em> is special enough to deserve some special placement.
     Although a hardware numberpad gives it a larger keycap under <em>1</em> and <em>2</em>,
     the <em>Twiddler ORML encoding</em> cannot accommodate for 2 keys on the same row.
-    As a result, the middle <em>(home)</em> column would be good enough with it's
-<span class="vg"> 2B </span> on same column.
+    As a result, it deserves the best available pad entry <span class="vg"><em>R</em> 2B </span> on same column.
 
     <hr>
-    The <em>.</em> would be under the <em>*</em>
-    and <em>=</em> under <em>+</em> as the only place left, still not bad.
+    Operator <em>=</em> having no mirror would be set under <em>0</em>,
+    so we can use the four remaining places in two groups.
 
     <hr>
+    One group of two for Arithmetic operators <em>+</em> above <em>-</em>.
+
+    <hr>
+    The last group would receive <em>.</em> above the <em>*</em>.
+
+    <br>
+    <hr>
+    ...this deserves more thinking...
     </p>
 <pre style="padding:4px !important; width:85px;"
 >  Num R2
