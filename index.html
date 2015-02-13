@@ -17,7 +17,7 @@
 <![endif]-->
 </head>
 <!-- }}} -->
-<body onload='//expand_div("twiddler3_operators");'>
+<body onload='expand_div("_twiddler3_columns");'>
 <div class="wrapper">
  <header><!-- {{{ -->
   <h1>Twiddler3-layout</h1>
@@ -85,7 +85,7 @@
   </p> <!-- }}} -->
   <!-- }}} -->
   <!-- tabspace {{{ -->
-  <div class="fold_title" onclick='toggle_div(this,"tabspace");'>TabSpace</div>
+  <div class="fold_title" onclick='toggle_div(this,"tabspace");'>Starting from TabSpace</div>
   <div id="div_tabspace" class="collapsed">
    <div class="fold_title" onclick='toggle_div(this,"tabspace.1");'>Credit</div><!-- {{{ -->
    <div id="div_tabspace.1" class="collapsed">
@@ -411,7 +411,7 @@ num   00ll = SCROLL_LOCK
   </div>
   <!-- }}} -->
   <!-- supported {{{ -->
-  <div class="fold_title" onclick='toggle_div(this,"supported");'>Supported chords</div>
+  <div class="fold_title" onclick='toggle_div(this,"supported");'>What are the supported chords</div>
   <div id="div_supported" class="collapsed">
    <p><!-- same row {{{ -->
    The Twiddler <em>ORML encoding</em> does not support chords that would
@@ -420,7 +420,7 @@ num   00ll = SCROLL_LOCK
    <p><!-- 4x3x3 {{{ -->
    The whole set of possible chords can be seen as a group of 4 sub-sets.
    Each sub-set of <em>3x3 chords</em> from the 3 columns of the 3 lower rows
-   would have to be combined with one of the 4 <em>ORML layers of the first row</em>
+   would have to be combined with one of the 4 <em>ORML keys of the first row</em>
    to cover all the combinations.
    </p>
    <!-- }}} -->
@@ -436,8 +436,10 @@ num   00ll = SCROLL_LOCK
   <div id="div_supported_4x4" class="collapsed">
    <em>255 = (4^4 - 1)</em>
    If the configurator supports them all, some are easier to use than others.
-<pre>
-max: <span class="rr">R</span><span class="rr">R</span><span class="rr">R</span><span class="rr">R</span>
+   <br>
+<pre class="pre_card" style="width:12em;">
+     <em>&larr;&nbsp; 4x4 &nbsp;&rarr;</em>
+ 255 <span class="rr">R</span><span class="rr">R</span><span class="rr">R</span><span class="rr">R</span>
      <span class="rr">R</span><span class="rr">R</span><span class="rr">R</span><span class="mm">M</span>
      <span class="rr">R</span><span class="rr">R</span><span class="rr">R</span><span class="ll">L</span>
      <span class="rr">R</span><span class="rr">R</span><span class="rr">R</span><span class="oo">O</span>
@@ -446,111 +448,125 @@ max: <span class="rr">R</span><span class="rr">R</span><span class="rr">R</span>
      <span class="oo">O</span><span class="oo">O</span><span class="ll">L</span><span class="oo">O</span>
      <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span><span class="rr">R</span>
      <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span><span class="mm">M</span>
-     <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span><span class="ll">L</span>
-min: <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span><span class="oo">O</span>
+   1 <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span><span class="ll">L</span>
+     <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span><span class="oo">O</span>
+       <em>&larr; 3x3 &rarr;</em>
 </pre>
   </div> <!-- }}} -->
   <!-- supported_3x3 {{{ -->
   <div class="fold_title" onclick='toggle_div(this,"supported_3x3");'><em>3x3 chord set</em></div>
   <div id="div_supported_3x3" class="collapsed" style="text-align:left; vertical-align:top !important; overflow:hidden;">
    <em>63 = (4^3 - 1)</em>
-   Some chords stand out enough to justify a mapping to prominent keystrokes:
+   Some chords stand out enough to justify a mapping to prominent keystrokes.
    <p>
-<!-- {{{ --><pre class="pre_card" style="float:right;"
+<!-- legend {{{ -->
+<div style="float:left;">
+
+<pre class="pre_card" style="float:left; text-align:center !important;">
+<span class="ng">NOT SO GOOD</span>
+<span class="nb"> NOT  BAD  </span>
+<span class="bt">  BETTER   </span>
+<span class="vg"> VERY GOOD </span>
+<span class="gr">   GREAT   </span>
+</pre>
+
+<pre class="pre_card" style="float:left; clear:left; margin-top:1em !important; width:20em !important; vertical-align:middle;">
+<span class="ng">    </span> 3 random buttons
+<span class="ng">  3X</span> 3 buttons - on a diagonal
+
+<span class="nb">1+2B</span> 3 buttons - 2 on same column
+
+<span class="bt">  2b</span> 2 buttons only
+
+<span class="vg">2B+1</span> 2 buttons - same column
+
+<span class="gr">  3B</span> 3 buttons - same column
+<span class="gr">  2B</span> 2 buttons - same column
+<span class="gr">  1B</span> 1 buttons
+</pre>
+</div>
+<!-- }}} -->
+<!-- O {{{ -->
+<pre class="pre_card" style="float:right;"
 ><em style="font-size:200%;">O</em><br
-><div class="vg"><span class="oo">O</span><span class="rr">R</span><span class="rr">R</span> 2B</div>
-<div class="bt"><span class="oo">O</span><span class="rr">R</span><span class="mm">M</span> 2b</div>
-<div class="bt"><span class="oo">O</span><span class="rr">R</span><span class="ll">L</span> 2b</div>
-<div class="gr"><span class="oo">O</span><span class="rr">R</span><span class="oo">O</span> 1B</div>
-<div class="bt"><span class="oo">O</span><span class="mm">M</span><span class="rr">R</span> 2b</div>
-<div class="vg"><span class="oo">O</span><span class="mm">M</span><span class="mm">M</span> 2B</div>
-<div class="bt"><span class="oo">O</span><span class="mm">M</span><span class="ll">L</span> 2b</div>
-<div class="gr"><span class="oo">O</span><span class="mm">M</span><span class="oo">O</span> 1B</div>
-<div class="bt"><span class="oo">O</span><span class="ll">L</span><span class="rr">R</span> 2b</div>
-<div class="bt"><span class="oo">O</span><span class="ll">L</span><span class="mm">M</span> 2b</div>
-<div class="vg"><span class="oo">O</span><span class="ll">L</span><span class="ll">L</span> 2B</div>
-<div class="gr"><span class="oo">O</span><span class="ll">L</span><span class="oo">O</span> 1B</div>
-<div class="gr"><span class="oo">O</span><span class="oo">O</span><span class="rr">R</span> 1B</div>
-<div class="gr"><span class="oo">O</span><span class="oo">O</span><span class="mm">M</span> 1B</div>
-<div class="gr"><span class="oo">O</span><span class="oo">O</span><span class="ll">L</span> 1B</div>
+><div class="gr"><span class="oo">O</span><span class="rr">R</span><span class="rr">R</span> 2B</div
+><div class="bt"><span class="oo">O</span><span class="rr">R</span><span class="mm">M</span> 2b</div
+><div class="bt"><span class="oo">O</span><span class="rr">R</span><span class="ll">L</span> 2b</div
+><div class="gr"><span class="oo">O</span><span class="rr">R</span><span class="oo">O</span> 1B</div
+><div class="bt"><span class="oo">O</span><span class="mm">M</span><span class="rr">R</span> 2b</div
+><div class="gr"><span class="oo">O</span><span class="mm">M</span><span class="mm">M</span> 2B</div
+><div class="bt"><span class="oo">O</span><span class="mm">M</span><span class="ll">L</span> 2b</div
+><div class="gr"><span class="oo">O</span><span class="mm">M</span><span class="oo">O</span> 1B</div
+><div class="bt"><span class="oo">O</span><span class="ll">L</span><span class="rr">R</span> 2b</div
+><div class="bt"><span class="oo">O</span><span class="ll">L</span><span class="mm">M</span> 2b</div
+><div class="gr"><span class="oo">O</span><span class="ll">L</span><span class="ll">L</span> 2B</div
+><div class="gr"><span class="oo">O</span><span class="ll">L</span><span class="oo">O</span> 1B</div
+><div class="gr"><span class="oo">O</span><span class="oo">O</span><span class="rr">R</span> 1B</div
+><div class="gr"><span class="oo">O</span><span class="oo">O</span><span class="mm">M</span> 1B</div
+><div class="gr"><span class="oo">O</span><span class="oo">O</span><span class="ll">L</span> 1B</div>
 
 </pre> <!-- }}} -->
-<!-- {{{ --><pre class="pre_card" style="float:left; text-align:center !important;"
->
-<span class="ng"> NOT SO GOOD </span>
-<span class="nb"> NOT BAD     </span>
-<span class="bt"> BETTER      </span>
-<span class="vg"> VERY GOOD   </span>
-<span class="gr"> GREAT       </span>
-</pre> <!-- }}} -->
-<!-- {{{ --><pre class="pre_card" style="float:left; clear:left; margin-top:1em !important; width:25em !important; vertical-align:middle;">
-<span     class="ng">    </span> 3 random buttons
-<hr><span class="nb">1+2B</span> 3 buttons (2 on same column)
-<hr><span class="bt">  2b</span> 2 buttons only
-<hr><span class="vg">  2B</span> 2 buttons only (on same column)
-<span     class="vg">  2X</span> 2 buttons only (on a diagonal)
-<span     class="vg">  3X</span> 3 buttons of a diagonal
-<hr><span class="gr">  1B</span> 1 button only
-<span     class="gr">  3B</span> 3 buttons of a column
-</pre> <!-- }}} -->
-<!-- {{{ --><pre class="pre_card" style="float:left; clear:both;"
+<!-- R {{{ -->
+<pre class="pre_card" style="float:left; clear:both;"
 ><em style="font-size:200%;">R</em><br
-><div class="gr"><span class="rr">R</span><span class="rr">R</span><span class="rr">R</span>   3B</div>
-<div class="nb"><span class="rr">R</span><span class="rr">R</span><span class="mm">M</span> 1+2B</div>
-<div class="nb"><span class="rr">R</span><span class="rr">R</span><span class="ll">L</span> 1+2B</div>
-<div class="vg"><span class="rr">R</span><span class="rr">R</span><span class="oo">O</span>   2B</div>
-<div class="ng"><span class="rr">R</span><span class="mm">M</span><span class="rr">R</span>     </div>
-<div class="nb"><span class="rr">R</span><span class="mm">M</span><span class="mm">M</span> 1+2B</div>
-<div class="vg"><span class="rr">R</span><span class="mm">M</span><span class="ll">L</span>   3X</div>
-<div class="bt"><span class="rr">R</span><span class="mm">M</span><span class="oo">O</span>   2b</div>
-<div class="ng"><span class="rr">R</span><span class="ll">L</span><span class="rr">R</span>     </div>
-<div class="ng"><span class="rr">R</span><span class="ll">L</span><span class="mm">M</span>     </div>
-<div class="nb"><span class="rr">R</span><span class="ll">L</span><span class="ll">L</span> 1+2B</div>
-<div class="bt"><span class="rr">R</span><span class="ll">L</span><span class="oo">O</span>   2b</div>
-<div class="vg"><span class="rr">R</span><span class="oo">O</span><span class="rr">R</span>   2B</div>
-<div class="bt"><span class="rr">R</span><span class="oo">O</span><span class="mm">M</span>   2b</div>
-<div class="vg"><span class="rr">R</span><span class="oo">O</span><span class="ll">L</span>   2X</div>
-<div class="gr"><span class="rr">R</span><span class="oo">O</span><span class="oo">O</span>   1B</div>
+><div class="gr"><span class="rr">R</span><span class="rr">R</span><span class="rr">R</span>   3B</div
+><div class="vg"><span class="rr">R</span><span class="rr">R</span><span class="mm">M</span> 2B+1</div
+><div class="vg"><span class="rr">R</span><span class="rr">R</span><span class="ll">L</span> 2B+1</div
+><div class="gr"><span class="rr">R</span><span class="rr">R</span><span class="oo">O</span>   2B</div
+><div class="ng"><span class="rr">R</span><span class="mm">M</span><span class="rr">R</span>     </div
+><div class="nb"><span class="rr">R</span><span class="mm">M</span><span class="mm">M</span> 1+2B</div
+><div class="ng"><span class="rr">R</span><span class="mm">M</span><span class="ll">L</span>   3X</div
+><div class="bt"><span class="rr">R</span><span class="mm">M</span><span class="oo">O</span>   2b</div
+><div class="ng"><span class="rr">R</span><span class="ll">L</span><span class="rr">R</span>     </div
+><div class="ng"><span class="rr">R</span><span class="ll">L</span><span class="mm">M</span>     </div
+><div class="nb"><span class="rr">R</span><span class="ll">L</span><span class="ll">L</span> 1+2B</div
+><div class="bt"><span class="rr">R</span><span class="ll">L</span><span class="oo">O</span>   2b</div
+><div class="bt"><span class="rr">R</span><span class="oo">O</span><span class="rr">R</span>   2b</div
+><div class="bt"><span class="rr">R</span><span class="oo">O</span><span class="mm">M</span>   2b</div
+><div class="bt"><span class="rr">R</span><span class="oo">O</span><span class="ll">L</span>   2b</div
+><div class="gr"><span class="rr">R</span><span class="oo">O</span><span class="oo">O</span>   1B</div>
 
 </pre> <!-- }}} -->
-<!-- {{{ --><pre class="pre_card" style="float:left;"
+<!-- M {{{ -->
+<pre class="pre_card" style="float:left; margin-left:11px !important;"
 ><em style="font-size:200%;">M</em><br
-><div class="nb"><span class="mm">M</span><span class="rr">R</span><span class="rr">R</span> 1+2B</div>
-<div class="ng"><span class="mm">M</span><span class="rr">R</span><span class="mm">M</span>     </div>
-<div class="ng"><span class="mm">M</span><span class="rr">R</span><span class="ll">L</span>     </div>
-<div class="bt"><span class="mm">M</span><span class="rr">R</span><span class="oo">O</span>   2b</div>
-<div class="nb"><span class="mm">M</span><span class="mm">M</span><span class="rr">R</span> 1+2B</div>
-<div class="gr"><span class="mm">M</span><span class="mm">M</span><span class="mm">M</span>   3B</div>
-<div class="nb"><span class="mm">M</span><span class="mm">M</span><span class="ll">L</span> 1+2B</div>
-<div class="vg"><span class="mm">M</span><span class="mm">M</span><span class="oo">O</span>   2B</div>
-<div class="ng"><span class="mm">M</span><span class="ll">L</span><span class="rr">R</span>     </div>
-<div class="ng"><span class="mm">M</span><span class="ll">L</span><span class="mm">M</span>     </div>
-<div class="nb"><span class="mm">M</span><span class="ll">L</span><span class="ll">L</span> 1+2B</div>
-<div class="bt"><span class="mm">M</span><span class="ll">L</span><span class="oo">O</span>   2b</div>
-<div class="bt"><span class="mm">M</span><span class="oo">O</span><span class="rr">R</span>   2b</div>
-<div class="vg"><span class="mm">M</span><span class="oo">O</span><span class="mm">M</span>   2B </div>
-<div class="bt"><span class="mm">M</span><span class="oo">O</span><span class="ll">L</span>   2b </div>
-<div class="gr"><span class="mm">M</span><span class="oo">O</span><span class="oo">O</span>   1B </div>
+><div class="nb"><span class="mm">M</span><span class="rr">R</span><span class="rr">R</span> 1+2B</div
+><div class="ng"><span class="mm">M</span><span class="rr">R</span><span class="mm">M</span>     </div
+><div class="ng"><span class="mm">M</span><span class="rr">R</span><span class="ll">L</span>     </div
+><div class="bt"><span class="mm">M</span><span class="rr">R</span><span class="oo">O</span>   2b</div
+><div class="vg"><span class="mm">M</span><span class="mm">M</span><span class="rr">R</span> 2B+1</div
+><div class="gr"><span class="mm">M</span><span class="mm">M</span><span class="mm">M</span>   3B</div
+><div class="vg"><span class="mm">M</span><span class="mm">M</span><span class="ll">L</span> 2B+1</div
+><div class="gr"><span class="mm">M</span><span class="mm">M</span><span class="oo">O</span>   2B</div
+><div class="ng"><span class="mm">M</span><span class="ll">L</span><span class="rr">R</span>     </div
+><div class="ng"><span class="mm">M</span><span class="ll">L</span><span class="mm">M</span>     </div
+><div class="nb"><span class="mm">M</span><span class="ll">L</span><span class="ll">L</span> 1+2B</div
+><div class="bt"><span class="mm">M</span><span class="ll">L</span><span class="oo">O</span>   2b</div
+><div class="bt"><span class="mm">M</span><span class="oo">O</span><span class="rr">R</span>   2b</div
+><div class="bt"><span class="mm">M</span><span class="oo">O</span><span class="mm">M</span>   2b</div
+><div class="bt"><span class="mm">M</span><span class="oo">O</span><span class="ll">L</span>   2b</div
+><div class="gr"><span class="mm">M</span><span class="oo">O</span><span class="oo">O</span>   1B</div>
 
 </pre> <!-- }}} -->
-<!-- {{{ --><pre class="pre_card" style="float:left;"
+<!-- L {{{ -->
+<pre class="pre_card" style="float:right;"
 ><em style="font-size:200%;">L</em><br
-><div class="nb"><span class="ll">L</span><span class="rr">R</span><span class="rr">R</span> 1+2B</div>
-<div class="ng"><span class="ll">L</span><span class="rr">R</span><span class="mm">M</span>     </div>
-<div class="ng"><span class="ll">L</span><span class="rr">R</span><span class="ll">L</span>     </div>
-<div class="bt"><span class="ll">L</span><span class="rr">R</span><span class="oo">O</span>   2b</div>
-<div class="vg"><span class="ll">L</span><span class="mm">M</span><span class="rr">R</span>   3X</div>
-<div class="nb"><span class="ll">L</span><span class="mm">M</span><span class="mm">M</span> 1+2B</div>
-<div class="ng"><span class="ll">L</span><span class="mm">M</span><span class="ll">L</span>     </div>
-<div class="bt"><span class="ll">L</span><span class="mm">M</span><span class="oo">O</span>   2b</div>
-<div class="nb"><span class="ll">L</span><span class="ll">L</span><span class="rr">R</span> 1+2B</div>
-<div class="nb"><span class="ll">L</span><span class="ll">L</span><span class="mm">M</span> 1+2B</div>
-<div class="gr"><span class="ll">L</span><span class="ll">L</span><span class="ll">L</span>   3B</div>
-<div class="vg"><span class="ll">L</span><span class="ll">L</span><span class="oo">O</span>   2B</div>
-<div class="vg"><span class="ll">L</span><span class="oo">O</span><span class="rr">R</span>   2X</div>
-<div class="bt"><span class="ll">L</span><span class="oo">O</span><span class="mm">M</span>   2b</div>
-<div class="vg"><span class="ll">L</span><span class="oo">O</span><span class="ll">L</span>   2B</div>
-<div class="gr"><span class="ll">L</span><span class="oo">O</span><span class="oo">O</span>   1B</div>
+><div class="nb"><span class="ll">L</span><span class="rr">R</span><span class="rr">R</span> 1+2B</div
+><div class="ng"><span class="ll">L</span><span class="rr">R</span><span class="mm">M</span>     </div
+><div class="ng"><span class="ll">L</span><span class="rr">R</span><span class="ll">L</span>     </div
+><div class="bt"><span class="ll">L</span><span class="rr">R</span><span class="oo">O</span>   2b</div
+><div class="ng"><span class="ll">L</span><span class="mm">M</span><span class="rr">R</span>   3X</div
+><div class="nb"><span class="ll">L</span><span class="mm">M</span><span class="mm">M</span> 1+2B</div
+><div class="ng"><span class="ll">L</span><span class="mm">M</span><span class="ll">L</span>     </div
+><div class="bt"><span class="ll">L</span><span class="mm">M</span><span class="oo">O</span>   2b</div
+><div class="vg"><span class="ll">L</span><span class="ll">L</span><span class="rr">R</span> 2B+1</div
+><div class="vg"><span class="ll">L</span><span class="ll">L</span><span class="mm">M</span> 2B+1</div
+><div class="gr"><span class="ll">L</span><span class="ll">L</span><span class="ll">L</span>   3B</div
+><div class="gr"><span class="ll">L</span><span class="ll">L</span><span class="oo">O</span>   3B</div
+><div class="bt"><span class="ll">L</span><span class="oo">O</span><span class="rr">R</span>   2b</div
+><div class="bt"><span class="ll">L</span><span class="oo">O</span><span class="mm">M</span>   2b</div
+><div class="bt"><span class="ll">L</span><span class="oo">O</span><span class="ll">L</span>   2b</div
+><div class="gr"><span class="ll">L</span><span class="oo">O</span><span class="oo">O</span>   1B</div>
 
 </pre> <!-- }}} -->
     </p>
@@ -566,6 +582,13 @@ min: <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span>
    and <i>try</i> to build something new.
    A better graphical representation should help
    at making a decision for some mapping choices.
+   <p>
+   What follows is not supposed to be solutions based on some random thoughts or any kind of clever study.
+   Each step description must be seen as an opportunity to take control and derive an alternate or customized version.
+   Comments and suggestions would be the best way to contribute.
+   </p>
+   <p>
+   <i>...still looking for a suitable forum...</i>
    </p>
    <p>
    <!-- twiddler3_rows {{{ -->
@@ -573,8 +596,8 @@ min: <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span>
    <div id="div_twiddler3_rows" class="collapsed">
     <p>
     The layout pads are organized in 4 rows of 11 columns.
-    Each row corresponds to the 4 possible ways the index finger is used
-    with buttons of the first row <em>BS</em>, <em>Space</em> and <em>Tab</em>
+    Each row corresponds to the 4 possible ways the index finger can press
+    buttons of the first row <em>BS</em>, <em>Space</em> and <em>Tab</em>
     to serve as modifiers like this is the case on a standard keyboard with
     <em>Shift</em>, <em>Control</em> and <em>Alt</em>.
     </p>
@@ -598,6 +621,15 @@ min: <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span>
  <img class="clip_img_h4" src="images/Cheat_TabSpace_3.png">
 </div>
 </pre>
+    </p>
+    <p>
+    <i>
+     <div class="clip_div_mod" style="display:inline-block;"><img class="clip_img_RM" src="images/Cheat_TabSpace_3.png"></div>
+     <div class="clip_div_mod" style="display:inline-block;"><img class="clip_img_MM" src="images/Cheat_TabSpace_3.png"></div>
+     <div class="clip_div_mod" style="display:inline-block;"><img class="clip_img_LM" src="images/Cheat_TabSpace_3.png"></div>
+     <em>layer</em> is to be taken loosely enough to mean that a combination of one or more optional <em>modifier buttons</em>
+     is altering the default <em>O</em> <em>No modifier layer</em> mapping.
+    </i>
     </p>
    </div>
    <!-- }}} -->
@@ -689,7 +721,7 @@ min: <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span>
    <!-- twiddler3_locks {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_locks");'>Locks</div>
    <div id="div_twiddler3_locks" class="collapsed">
-    Why NumLock, CapsLock and ScrollLock should be in lower <em>R2 6x</em> ?
+    Why NumLock, CapsLock and ScrollLock should be in lower <em>R2 pair x6</em> ?
     <p>
     ...So that the easy no-mod O2 pair x6 (row O, col 2) pad can be mapped to the frequently used punctuation accents and quote.
     </p>
@@ -719,7 +751,7 @@ min: <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span>
     Number <em>0</em> is special enough to deserve some special placement.
     Although a hardware numberpad gives it a larger keycap under <em>1</em> and <em>2</em>,
     the <em>Twiddler ORML encoding</em> cannot accommodate for 2 keys on the same row.
-    As a result, it deserves the best available pad entry <span class="vg"><em>R</em> 2B </span> on same column.
+    As a result, it deserves the best available pad entry <span class="gr"><em>Num R2</em> 2B </span>.
 
     <hr>
     Operator <em>=</em> having no mirror would be set under <em>0</em>,
@@ -777,8 +809,8 @@ min: <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span>
       </ul>
       </li>
       <li>For instance, how "ing" is obtained by combining "i", "n" and "g"?
-      <br>- "i" and "n" are on the first column of "0 single" layer
-      <br>- "g" comes from "M single" layer.
+      <br>- "i" and "n" are on the first column of "0 single x9" pad
+      <br>- "g" comes from "M single x9" pad.
       </li>
      </ul>
      </p>
@@ -792,11 +824,15 @@ min: <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span>
   <div class="fold_title" onclick='toggle_div(this, "twiddler3_todo");'>...todo...</div>
   <div id="div_twiddler3_todo" class="collapsed">
    <p>
-
+   Find a good place for 
+   <em>@</em> <em>#</em> <em>&amp;</em>
+   and
+   <em>&euro;</em> <em>$</em> <em>#</em>
+   </p>
   </div>
   <!-- }}} -->
   <!-- cheat sheets {{{ -->
-  <div class="fold_title" onclick='toggle_div(this, "cheat_sheet");'>Cheat Sheets</div>
+  <div class="fold_title" onclick='toggle_div(this, "cheat_sheet");'>Collection of Cheat Sheets</div>
   <div id="div_cheat_sheet" class="collapsed" style="text-align:left;">
    <p>
    <a href="layout_browser.html" target="layout_browser">The Layout browser</a>
