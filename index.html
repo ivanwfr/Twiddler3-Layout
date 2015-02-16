@@ -17,7 +17,7 @@
 <![endif]-->
 </head>
 <!-- }}} -->
-<body onload='expand_div("twiddler3_operators");'>
+<body onload='expand_div("_twiddler3_operators");'>
 <div class="wrapper">
  <header><!-- {{{ -->
   <h1>Twiddler3-layout</h1>
@@ -48,9 +48,9 @@
   </h3>
 
   <!-- {{{ -->
-  <div style="float:right; clear:right; width:5em; margin-left:1em;">
-   <a href="http://twiddler.tekgear.com" target="_blank">
-    <img title="Twiddler 3 ... Tek Gear" src="images/front.png"style="">
+  <div id="tek_gear" style="float:right; clear:right; margin-left:1em;">
+   <a href="http://twiddler.tekgear.com" target="tek_gear">
+    <img title="Twiddler 3 ... Tek Gear" src="images/front.png">
    </a>
   </div>
   <!-- }}} -->
@@ -751,7 +751,7 @@ num   00ll = SCROLL_LOCK
     </div>
     <!-- }}} -->
    <!-- twiddler3_operators {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators");'>Operators <em>... and a quest for some rules</em></div>
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators");'>Operators and rules</div>
    <div id="div_twiddler3_operators" class="collapsed">
     <p>
     Arithmetic symbols on <em>R2 pair x6</em> put them close to the <em>R1 single x9</em> numberpad.
@@ -817,8 +817,9 @@ num   00ll = SCROLL_LOCK
     </div>
     <!-- }}} -->
     <!-- twiddler3_letters {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "twiddler3_letters");'>Why <em>2 letters</em> and <em>3 letters</em> have been moved to <em>Num layers</em> ?</div>
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_letters");'>Multi Characters Chords</div>
     <div id="div_twiddler3_letters" class="collapsed">
+    Why <em>2 letters</em> and <em>3 letters</em> should be moved to <em>Num layers</em> ?
      <p>
      Same as above, so that most confortable rows <em>O</em> and <em>M</em> pads can be mapped to frequently used punctuation accents and quote.
      <p>
