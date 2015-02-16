@@ -17,7 +17,7 @@
 <![endif]-->
 </head>
 <!-- }}} -->
-<body onload='expand_div("_twiddler3_columns");'>
+<body onload='expand_div("twiddler3_operators");'>
 <div class="wrapper">
  <header><!-- {{{ -->
   <h1>Twiddler3-layout</h1>
@@ -31,6 +31,11 @@
  </header>
  <!-- }}} -->
  <section>
+  <!-- collapse_all{{{ -->
+  <div style="float:right;;">
+   <a class="expander" href="#collapse_all" onclick='expand_div("collapse_all");'><img class="wrap_img" title="collapse" src="images/cursor/left.png"></a>
+  </div>
+  <!-- }}} -->
   <!-- INTRO {{{ -->
   <h3>
    <a
@@ -41,9 +46,15 @@
     <span class="octicon octicon-link"></span></a>
    Looking into a chorded-keyboard layout standard
   </h3>
-  <div style="position:absolute; top:1ex; right:1ex;">
-   <a class="expander" href="#collapse_all" onclick='expand_div("collapse_all");'><img class="wrap_img" title="collapse" src="images/cursor/left.png"></a>
- </div>
+
+  <!-- {{{ -->
+  <div style="float:right; clear:right; width:5em; margin-left:1em;">
+   <a href="http://twiddler.tekgear.com" target="_blank">
+    <img title="Twiddler 3 ... Tek Gear" src="images/front.png"style="">
+   </a>
+  </div>
+  <!-- }}} -->
+
   <p><!-- sense story process {{{ -->
   Why should we learn some chording layout that makes sense only to the author?
   A better idea would be to take a part in the build process.
@@ -740,32 +751,60 @@ num   00ll = SCROLL_LOCK
     </div>
     <!-- }}} -->
    <!-- twiddler3_operators {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators");'>Operators</div>
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators");'>Operators <em>... and a quest for some rules</em></div>
    <div id="div_twiddler3_operators" class="collapsed">
-   Arithmetic symbols on <em>R2 pair x6</em> put them close to the <em>R1 single x9</em> numberpad.
     <p>
-    If there is no obvious layout for the bundle of the remaining arithmetic symbols,
-    a small dose of logic can help at defining some kind of haddock rules:
+    Arithmetic symbols on <em>R2 pair x6</em> put them close to the <em>R1 single x9</em> numberpad.
 
-    <hr>
-    Number <em>0</em> is special enough to deserve some special placement.
+<pre style="padding:4px !important; width:190px;"
+>     R1            R2
+  single x9      pair x6
+<div class="clip_div_pad" style="display:inline-block;"
+><img class="clip_img_R1" src="images/Cheat_TabSpace_3.png"
+></div
+><span style="width:3em; margin-right:2px;"> &nbsp;</span
+><div class="clip_div_pad" style="display:inline-block;"
+><img class="clip_img_R2" src="images/Cheat_TabSpace_3.png"
+></div
+></pre>
+
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators_rules");'>Rules?</div>
+   <div id="div_twiddler3_operators_rules" class="collapsed">
+    As there is no obvious layout for a bundle associating these arithmetic symbols,
+    it's time to look for some rules.
+    As these rules would have to explain why some <em>set of chords</em>
+    is best for a particular <em>set of symbols</em>,
+    they would help while defining new mappings.
+   </div>
+
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators_0");'><em>0</em></div>
+   <div id="div_twiddler3_operators_0" class="collapsed">
+    <em>0</em> is special enough to deserve some special placement.
+    <p>
     Although a hardware numberpad gives it a larger keycap under <em>1</em> and <em>2</em>,
     the <em>Twiddler ORML encoding</em> cannot accommodate for 2 keys on the same row.
-    As a result, it deserves the best available pad entry <span class="gr"><em>Num R2</em> 2B </span>.
+    <p>
+    The best mapping granted by the <em>supported chords merit rule</em> for pad <em>R2</em> of <em>Num</em> layer is <span class="gr"><em>Num R2</em> 2B </span>.
+   </div>
 
-    <hr>
-    Operator <em>=</em> having no mirror would be set under <em>0</em>,
-    so we can use the four remaining places in two groups.
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators_equal");'><em>=</em></div>
+   <div id="div_twiddler3_operators_equal" class="collapsed">
+    From the 5 remaining chords of <em>Num R2 pad</em>, we can secure 2 pairs by placing <em>=</em> under <em>0</em>.
+   </div>
 
-    <hr>
-    One group for <em>+</em> above <em>-</em>,
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators_plus_minus");'><em>+</em> and <em>-</em></div>
+   <div id="div_twiddler3_operators_plus_minus" class="collapsed">
+    <em>+</em> above <em>-</em> makes one pair of <em>functionally related symbols</em>.
+   </div>
 
-    <hr>
-    Last group for <em>.</em> above <em>*</em>.
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators_dot_star");'><em>.</em> and <em>*</em></div>
+   <div id="div_twiddler3_operators_dot_star" class="collapsed">
+    <em>.</em> above <em>*</em> makes one pair of <em>visually related symbols</em>.
+   </div>
 
     <br>
     <hr>
-    ...this deserves more thinking...
+    ...this <i>still</i> deserves more thinking...
     </p>
 <pre style="padding:4px !important; width:85px;"
 >  Num R2
