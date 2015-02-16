@@ -141,3 +141,15 @@
 .pre_card div      { float:left; clear:left; }
 .pre_card div      { text-align:left; margin:1px; }
 .pre_card div span { vertical-align:middle; }
+
+.rules {
+     margin:4px 4px 40px 5em !important;
+    padding:4px;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+        -ms-border-radius: 4px;
+         -o-border-radius: 4px;
+            border-radius: 4px;
+ color:#000; background-color:#888;
+ border:1px solid #666;
+}

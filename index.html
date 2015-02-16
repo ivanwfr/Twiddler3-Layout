@@ -17,7 +17,7 @@
 <![endif]-->
 </head>
 <!-- }}} -->
-<body onload='expand_div("_twiddler3_operators");'>
+<body onload='expand_div("twiddler3_operators");'>
 <div class="wrapper">
  <header><!-- {{{ -->
   <h1>Twiddler3-layout</h1>
@@ -594,8 +594,10 @@ num   00ll = SCROLL_LOCK
    A better graphical representation should help
    at making a decision for some mapping choices.
    <p>
-   What follows is not supposed to be solutions based on some random thoughts or any kind of clever study.
-   Each step description must be seen as an opportunity to take control and derive an alternate or customized version.
+   What follows is not supposed to be solutions based on some random thoughts
+   or any kind of clever study.
+   Each step description must be seen as an opportunity to take control
+   and derive an alternate or customized version.
    Comments and suggestions would be the best way to contribute.
    </p>
    <p>
@@ -615,14 +617,19 @@ num   00ll = SCROLL_LOCK
     <p>
     Now, where is the authority in charge for making some rules in this domain?
     When Wikipedia and Google can't answer the question, I won't even try to.
-    The best I can do is to go on with every single piece of available information and have a look at the result.
+    The best I can do is to go on with every single piece of available information
+    and have a look at the result.
     </p>
     <p>
-    If we are lucky some scheme could come up from reverse-engineering the bunch of decisions that made sense
-    when working on each perticular pad without even trying to see the big picture.
+    The result will be a bunch of decisions that made sense only
+    when working on a perticular pad without even trying to see the big picture.
+    If we are lucky, some scheme could come up from reverse-engineering.
+    If this is the case, those decisions will have enough commonalities
+    that they could be used to work out some rules.
     </p>
-    <p>
-    We'll see near the end...
+    <p class="rules">
+    Some clues for this process are spread inside each topic.
+    We'll see how they can be synthesized near the end...
     </p>
    </div>
 <!-- }}} -->
@@ -631,8 +638,8 @@ num   00ll = SCROLL_LOCK
    <div id="div_twiddler3_rows" class="collapsed">
     <p>
     The proposed layout pads are organized in 4 rows of 11 columns.
-    Each row corresponds to the 4 possible ways the index finger may press
-    buttons of the first row <em>BS</em>, <em>Space</em> and <em>Tab</em>
+    Each row corresponds to the 4 possible ways the index finger may activate
+    the three buttons of the first row <em>BS</em>, <em>Space</em> and <em>Tab</em>
     turning them into modifiers, quite like this is the case on a standard keyboard with
     <em>Shift</em>, <em>Control</em> and <em>Alt</em>.
     </p>
@@ -777,8 +784,14 @@ num   00ll = SCROLL_LOCK
    <!-- twiddler3_operators {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators");'>Operators</div>
    <div id="div_twiddler3_operators" class="collapsed">
-    <p>
+    <i>
    Arithmetic symbols on <em>R2 pair x6</em> put them close to the <em>R1 single x9</em> numberpad.
+   <p class="rules">
+   When mappings  are close to one another, it means they share one or more major fingers combination.
+   The most significant finger, from index-to-pinky, would hopefully cover a whole category down to sub-categories.
+   Those categories can relate to functional or visual domains, whichever makes more sense.
+   The best to be expected from a good organization is to be applicable in more than a single occasion.
+   </p>
 <!-- R1 R2 {{{ -->
 <pre style="padding:4px !important; width:190px;"
 >     R1            R2
@@ -792,6 +805,9 @@ num   00ll = SCROLL_LOCK
 ></div
 ></pre>
 <!-- }}} -->
+   <p class="rules">
+   Index finger is pressing <em>BS modifier</em> for all numbers the period and the main arithmetic operators.
+   </p>
 <!-- 0{{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators_0");'><em>0</em></div>
    <div id="div_twiddler3_operators_0" class="collapsed">
