@@ -602,14 +602,38 @@ num   00ll = SCROLL_LOCK
    <i>...still looking for a suitable forum...</i>
    </p>
    <p>
+<!-- twiddler3_rules {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_rules");'>Rules?</div>
+   <div id="div_twiddler3_rules" class="collapsed">
+    <p>
+    As there is no obvious layout for associating for instance a bundle of arithmetic symbols,
+    we have to look for some rules.
+    These rules would have to explain why some <em>set of chords</em>
+    is best for a particular <em>set of symbols</em>,
+    so that they would help at times we have to define new mappings.
+    </p>
+    <p>
+    Now, where is the authority in charge for making some rules in this domain?
+    When Wikipedia and Google can't answer the question, I won't even try to.
+    The best I can do is to go on with every single piece of available information and have a look at the result.
+    </p>
+    <p>
+    If we are lucky some scheme could come up from reverse-engineering the bunch of decisions that made sense
+    when working on each perticular pad without even trying to see the big picture.
+    </p>
+    <p>
+    We'll see near the end...
+    </p>
+   </div>
+<!-- }}} -->
    <!-- twiddler3_rows {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_rows");'>Rows</div>
    <div id="div_twiddler3_rows" class="collapsed">
     <p>
-    The layout pads are organized in 4 rows of 11 columns.
-    Each row corresponds to the 4 possible ways the index finger can press
+    The proposed layout pads are organized in 4 rows of 11 columns.
+    Each row corresponds to the 4 possible ways the index finger may press
     buttons of the first row <em>BS</em>, <em>Space</em> and <em>Tab</em>
-    to serve as modifiers like this is the case on a standard keyboard with
+    turning them into modifiers, quite like this is the case on a standard keyboard with
     <em>Shift</em>, <em>Control</em> and <em>Alt</em>.
     </p>
     <p>
@@ -751,11 +775,11 @@ num   00ll = SCROLL_LOCK
     </div>
     <!-- }}} -->
    <!-- twiddler3_operators {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators");'>Operators and rules</div>
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators");'>Operators</div>
    <div id="div_twiddler3_operators" class="collapsed">
     <p>
-    Arithmetic symbols on <em>R2 pair x6</em> put them close to the <em>R1 single x9</em> numberpad.
-
+   Arithmetic symbols on <em>R2 pair x6</em> put them close to the <em>R1 single x9</em> numberpad.
+<!-- R1 R2 {{{ -->
 <pre style="padding:4px !important; width:190px;"
 >     R1            R2
   single x9      pair x6
@@ -767,16 +791,8 @@ num   00ll = SCROLL_LOCK
 ><img class="clip_img_R2" src="images/Cheat_TabSpace_3.png"
 ></div
 ></pre>
-
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators_rules");'>Rules?</div>
-   <div id="div_twiddler3_operators_rules" class="collapsed">
-    As there is no obvious layout for a bundle associating these arithmetic symbols,
-    it's time to look for some rules.
-    As these rules would have to explain why some <em>set of chords</em>
-    is best for a particular <em>set of symbols</em>,
-    they would help while defining new mappings.
-   </div>
-
+<!-- }}} -->
+<!-- 0{{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators_0");'><em>0</em></div>
    <div id="div_twiddler3_operators_0" class="collapsed">
     <em>0</em> is special enough to deserve some special placement.
@@ -786,23 +802,25 @@ num   00ll = SCROLL_LOCK
     <p>
     The best mapping granted by the <em>supported chords merit rule</em> for pad <em>R2</em> of <em>Num</em> layer is <span class="gr"><em>Num R2</em> 2B </span>.
    </div>
-
+<!-- }}} -->
+<!-- equal {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators_equal");'><em>=</em></div>
    <div id="div_twiddler3_operators_equal" class="collapsed">
     From the 5 remaining chords of <em>Num R2 pad</em>, we can secure 2 pairs by placing <em>=</em> under <em>0</em>.
    </div>
-
+<!-- }}} -->
+<!-- plus_minus {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators_plus_minus");'><em>+</em> and <em>-</em></div>
    <div id="div_twiddler3_operators_plus_minus" class="collapsed">
     <em>+</em> above <em>-</em> makes one pair of <em>functionally related symbols</em>.
    </div>
-
+<!-- }}} -->
+<!-- dot star {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators_dot_star");'><em>.</em> and <em>*</em></div>
    <div id="div_twiddler3_operators_dot_star" class="collapsed">
     <em>.</em> above <em>*</em> makes one pair of <em>visually related symbols</em>.
    </div>
-
-    <br>
+<!-- }}} -->
     <hr>
     ...this <i>still</i> deserves more thinking...
     </p>

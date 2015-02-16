@@ -436,7 +436,7 @@ footer p + p {
     color:navy;
 */
 #bottom_div {
-    height    : 70em;
+    height    : 30em;
     opacity   : 0.10; filter:alpha(opacity=100);
 }
 
