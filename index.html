@@ -17,7 +17,7 @@
 <![endif]-->
 </head>
 <!-- }}} -->
-<body onload='expand_div("twiddler3_operators");'>
+<body onload='expand_div("twiddler3_mcc_hotstrings");'>
 <div class="wrapper">
  <header><!-- {{{ -->
   <h1>Twiddler3-layout</h1>
@@ -419,8 +419,7 @@ num   00ll = SCROLL_LOCK
     </pre>
    </div><!-- }}} -->
    <img class="wrap_img" title="collapse" src="images/cursor/up.png" onclick='toggle_div(this, "tabspace");'>
-  </div>
-  <!-- }}} -->
+  </div> <!-- }}} -->
   <!-- supported {{{ -->
   <div class="fold_title" onclick='toggle_div(this,"supported");'>What are the supported chords</div>
   <div id="div_supported" class="collapsed">
@@ -583,8 +582,7 @@ num   00ll = SCROLL_LOCK
     </p>
    </div> <!-- }}} -->
    <img class="wrap_img" title="collapse" src="images/cursor/up.png" onclick='toggle_div(this, "supported");'>
-  </div>
-  <!-- }}} -->
+  </div> <!-- }}} -->
   <!-- twiddler3 {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "twiddler3");'>Building a Twiddler 3 Layout</div>
   <div id="div_twiddler3" class="collapsed">
@@ -622,7 +620,7 @@ num   00ll = SCROLL_LOCK
     </p>
     <p>
     The result will be a bunch of decisions that made sense only
-    when working on a perticular pad without even trying to see the big picture.
+    when working on a particular pad without even trying to see the big picture.
     If we are lucky, some scheme could come up from reverse-engineering.
     If this is the case, those decisions will have enough commonalities
     that they could be used to work out some rules.
@@ -631,8 +629,7 @@ num   00ll = SCROLL_LOCK
     Some clues for this process are spread inside each topic.
     We'll see how they can be synthesized near the end...
     </p>
-   </div>
-<!-- }}} -->
+   </div> <!-- }}} -->
    <!-- twiddler3_rows {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_rows");'>Rows</div>
    <div id="div_twiddler3_rows" class="collapsed">
@@ -673,8 +670,7 @@ num   00ll = SCROLL_LOCK
      is altering the default <em>O</em> <em>No modifier layer</em> mapping.
     </i>
     </p>
-   </div>
-   <!-- }}} -->
+   </div> <!-- }}} -->
    <!-- twiddler3_columns {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_columns");'>Columns</div>
    <div id="div_twiddler3_columns" class="collapsed">
@@ -736,8 +732,7 @@ num   00ll = SCROLL_LOCK
     </i>
     </p>
 
-   </div>
-   <!-- }}} -->
+   </div> <!-- }}} -->
    <!-- twiddler3_pads {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "twiddler3_pads");'>Pads</div>
   <div id="div_twiddler3_pads" class="collapsed">
@@ -758,15 +753,25 @@ num   00ll = SCROLL_LOCK
 ></div
 ></pre>
    </p>
-   </div>
-   <!-- }}} -->
+   </div> <!-- }}} -->
    <!-- twiddler3_locks {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_locks");'>Locks</div>
    <div id="div_twiddler3_locks" class="collapsed">
-    Why NumLock, CapsLock and ScrollLock should be in lower <em>R2 pair x6</em> ?
     <p>
-    ...So that the easy no-mod O2 pair x6 (row O, col 2) pad can be mapped to the frequently used punctuation accents and quote.
+    We currently have two good reasons to move modify TabSpace assignment for <em>NumLock</em>, <em>CapsLock</em> and <em>ScrollLock</em>:
     </p>
+
+<pre style="padding:4px 4px 0 1em !important;">
+<em>TabSpace Num</em> <em>O</em> <em>No modifier layer</em>                   v v v v v v v v v
+<div class="clip_h_stripe">
+ <img class="clip_img_h1" src="images/Cheat_TabSpace_Num.png">
+</div>
+</pre>
+
+    <ol>
+     <li><em>Multi Character Chords</em> are granted the most accessible <em>Num layer</em> chords.</li>
+     <li>Frequently used <em>punctuation accents and quote</em> are regrouped into <em>O2 pair x6</em>.</li>
+    </ol>
 <pre style="padding:4px !important; width:190px;"
 >  Num R2            O2
   pair x6         pair x6
@@ -779,19 +784,16 @@ num   00ll = SCROLL_LOCK
 ></div
 ></pre>
 
-    </div>
-    <!-- }}} -->
+    <p class="rules">
+    As a first easy decision, considering how Num layer pads are scarcely used at this stage,
+    moving them to lower <em>R2 pair x6</em> seems to be a choice as good as any.
+    </p> 
+    </div> <!-- }}} -->
    <!-- twiddler3_operators {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators");'>Operators</div>
    <div id="div_twiddler3_operators" class="collapsed">
     <i>
    Arithmetic symbols on <em>R2 pair x6</em> put them close to the <em>R1 single x9</em> numberpad.
-   <p class="rules">
-   When mappings  are close to one another, it means they share one or more major fingers combination.
-   The most significant finger, from index-to-pinky, would hopefully cover a whole category down to sub-categories.
-   Those categories can relate to functional or visual domains, whichever makes more sense.
-   The best to be expected from a good organization is to be applicable in more than a single occasion.
-   </p>
 <!-- R1 R2 {{{ -->
 <pre style="padding:4px !important; width:190px;"
 >     R1            R2
@@ -806,7 +808,13 @@ num   00ll = SCROLL_LOCK
 ></pre>
 <!-- }}} -->
    <p class="rules">
-   Index finger is pressing <em>BS modifier</em> for all numbers the period and the main arithmetic operators.
+   When mappings  are close to one another, it means they share one or more <em>major fingers</em> combinations.
+   The most significant finger, from index-to-pinky, would hopefully cover a whole category down to sub-categories.
+   Those categories can relate to <em>functional</em> or <em>visual</em> domains, whichever makes more sense.
+   The best to be expected from a good organization is to be applicable in more than a single occasion.
+   <br>
+   <br>
+   In this case, index finger is pressing <em>BS modifier</em> for all numbers the period and the main arithmetic operators.
    </p>
 <!-- 0{{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_operators_0");'><em>0</em></div>
@@ -840,26 +848,64 @@ num   00ll = SCROLL_LOCK
     <hr>
     ...this <i>still</i> deserves more thinking...
     </p>
-<pre style="padding:4px !important; width:85px;"
->  Num R2
-  pair x6
-<div class="clip_div_pad" style="display:inline-block;"
-><img class="clip_img_R2" src="images/Cheat_TabSpace_3.png"
-></div
-></pre>
 
+    </div> <!-- }}} -->
+  <!-- ...todo... {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "twiddler3_todo");'>...todo...</div>
+  <div id="div_twiddler3_todo" class="collapsed">
+   <p>
+   Find a good place for 
+   <em>@</em> <em>#</em> <em>&amp;</em>
+   and
+   <em>&euro;</em> <em>$</em> <em>#</em>
+   </p>
+  </div>
+  <!-- }}} -->
+   <img class="wrap_img" title="collapse" src="images/cursor/up.png" onclick='toggle_div(this, "twiddler3");'>
+  </div> <!-- }}} -->
+    <!-- twiddler3_mcc {{{ -->
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc");'>Multi Characters Chords</div>
+    <div id="div_twiddler3_mcc" class="collapsed">
+    <!-- twiddler3_mcc_hotstrings {{{ -->
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_hotstrings");'>Intro</div>
+    <div id="div_twiddler3_mcc_hotstrings" class="collapsed">
+     <p>
+     Getting multiple keystrokes from a single chord should not be considered a simple commodity.
+     Some extra that comes handy with a chorded keyboard.
+     </p>
+     <p>
+     In fact, we can already get something similar using a standard keyboard with the help of some hotstring handler like AutoHotkey.
+     Why does it seem so natural to expect this kind of feature from this device?
+     </p>
+     <p>
+     Aside from the wrong reasons that could explain why most don't even try to learn how to master a hotstring handler,
+     the Twiddler don't let you be this lazy.
+     Not taking the time to deal with the customization tool
+     would defeat the minimum commitment every user has opted in at purchase time.
+     Using the device as a keyboard replacement would be like waisting 90% of its possibilities!
+     </p>
+     <p>
+     Still, there is a real difference between this device and a keyboard. It has to do with the way it's 14 keys
+     are used.
+     The number of different inputs we expect from a standard keyboard are close to the number of its keys.
+     The "chording part" that involves modifiers like Shift, Control and Alt is only an accessory feature.
+     Looking at the real potential of chording, which is what Twiddler is all about, opens such a huge number of possibilities
+     that handling more than simple characters at a time is a first class feature.
+     </p>
+     <p>Exploring multi character input feature deserves more than a simple approach
+     but a few steps should be made in that direction in order to introduce the few <em>2 letters</em> and 3 <em>letters</em>
+     hotstrings already defined by TabSpace.
+     </p>
     </div>
     <!-- }}} -->
-    <!-- twiddler3_letters {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "twiddler3_letters");'>Multi Characters Chords</div>
-    <div id="div_twiddler3_letters" class="collapsed">
-    Why <em>2 letters</em> and <em>3 letters</em> should be moved to <em>Num layers</em> ?
-     <p>
-     Same as above, so that most confortable rows <em>O</em> and <em>M</em> pads can be mapped to frequently used punctuation accents and quote.
-     <p>
-     Using the <em>Num thumb-modifier</em> can be seen as a mode-switching gesture
+    <!-- twiddler3_mcc_num {{{ -->
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_num");'><em>Num layer</em> MCC</div>
+    <div id="div_twiddler3_mcc_num" class="collapsed">
+     <p class="rules">
+     In this case, using the <em>Num thumb-modifier</em> can be seen as a mode-switching gesture
      between <em>single keystrokes</em> and <em>Multi Characters Chords</em> input.
      </p>
+<!-- clip_img_h1 clip_img_h2 {{{ -->
 <pre style="padding:4px 4px 0 1em !important;">
  <em>O</em> The <em>Num</em> <em>No modifier layer</em>
  <div class="clip_h_stripe">
@@ -870,6 +916,7 @@ num   00ll = SCROLL_LOCK
   <img class="clip_img_h2" src="images/Cheat_TabSpace_3_Num.png">
  </div>
 </pre>
+<!-- }}} -->
      <p>
      TabSpace letters arrangement takes care of english letter usage frequency.
      <ul>
@@ -890,21 +937,7 @@ num   00ll = SCROLL_LOCK
      </p>
     </div>
     <!-- }}} -->
-
-   <img class="wrap_img" title="collapse" src="images/cursor/up.png" onclick='toggle_div(this, "twiddler3");'>
-  </div>
-  <!-- }}} -->
-  <!-- ...todo... {{{ -->
-  <div class="fold_title" onclick='toggle_div(this, "twiddler3_todo");'>...todo...</div>
-  <div id="div_twiddler3_todo" class="collapsed">
-   <p>
-   Find a good place for 
-   <em>@</em> <em>#</em> <em>&amp;</em>
-   and
-   <em>&euro;</em> <em>$</em> <em>#</em>
-   </p>
-  </div>
-  <!-- }}} -->
+    </div> <!-- }}} -->
   <!-- cheat sheets {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "cheat_sheet");'>Collection of Cheat Sheets</div>
   <div id="div_cheat_sheet" class="collapsed" style="text-align:left;">
