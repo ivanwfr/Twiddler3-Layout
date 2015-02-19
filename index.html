@@ -17,7 +17,7 @@
 <![endif]-->
 </head>
 <!-- }}} -->
-<body onload='expand_div("_twiddler3_locks");'>
+<body onload='expand_div("_twiddler3_locks");' id="top">
 <div class="wrapper">
  <header><!-- {{{ -->
   <h1>Twiddler3-layout</h1>
@@ -31,7 +31,7 @@
  </header>
  <!-- }}} -->
  <section>
-  <div style="float:right;"> <a class="expander" href="#collapse_all" onclick='expand_div("collapse_all");'><img class="wrap_img" title="collapse all" src="images/cursor/up.png"></a> </div>
+  <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
   <!-- INTRO {{{ -->
   <h3>
    <a
@@ -61,29 +61,29 @@
   Every single decision should be clearly justified to avoid having to keep tabs
   on unclear points requiring further explanation.
   This is not quite the case in the
-  <a class="expander" href="#tabspace" onclick='expand_div("tabspace.1");'>TabSpace Guide<span class="wh1">&nbsp;</span></a>
+  <a class="expander" href="#div_tabspace" onclick='expand_div("tabspace.1");'>TabSpace Guide<span class="wh1">&nbsp;</span></a>
   by Brandon Craig Rhodes, the original author of what stands for a standard layout of this device.
   </p> <!-- }}} -->
   <p><!-- layout rows columns study assignment rules {{{ -->
   A systematic study of all the 
-  <a class="expander" href="#supported" onclick='expand_div("supported");'>Supported chords<span class="wh2">&nbsp;</span></a>
+  <a class="expander" href="#div_supported" onclick='expand_div("supported");'>Supported chords<span class="wh2">&nbsp;</span></a>
   combinations should help to define some grouping rules 
   that would replace simply good-looking patterns.
   The empirical evaluation of the
-  <a class="expander" href="#supported_3x3" onclick='expand_div("supported_3x3");'>most efficient key assigment<span class="wh2">&nbsp;</span></a>
+  <a class="expander" href="#div_supported_3x3" onclick='expand_div("supported_3x3");'>most efficient key assigment<span class="wh2">&nbsp;</span></a>
   is a key point of this theoretical approach.
 
   </p> <!-- }}} -->
   <p><!-- twiddler3 {{{ -->
   As a result,
-  <a class="expander" href="#twiddler3" onclick='expand_div("twiddler3");'>Building a Twiddler 3 Layout<span class="wh3">&nbsp;</span></a>,
+  <a class="expander" href="#div_twiddler3" onclick='expand_div("twiddler3");'>Building a Twiddler 3 Layout<span class="wh3">&nbsp;</span></a>,
   sketching out mapping
-  <a class="expander" href="#twiddler3_columns" onclick='expand_div("twiddler3_rules");'>rules<span class="wh3">1</span></a>
+  <a class="expander" href="#div_twiddler3_columns" onclick='expand_div("twiddler3_rules");'>rules<span class="wh3">1</span></a>
   based on some
-  <a class="expander" href="#twiddler3_rows" onclick='expand_div("twiddler3_rows");'>rows<span class="wh3">2</span></a>,
-  <a class="expander" href="#twiddler3_columns" onclick='expand_div("twiddler3_columns");'>columns<span class="wh3">3</span></a>,
+  <a class="expander" href="#div_twiddler3_rows" onclick='expand_div("twiddler3_rows");'>rows<span class="wh3">2</span></a>,
+  <a class="expander" href="#div_twiddler3_columns" onclick='expand_div("twiddler3_columns");'>columns<span class="wh3">3</span></a>,
   and
-  <a class="expander" href="#twiddler3_columns" onclick='expand_div("twiddler3_columns");'>pads<span class="wh3">4</span></a>
+  <a class="expander" href="#div_twiddler3_columns" onclick='expand_div("twiddler3_columns");'>pads<span class="wh3">4</span></a>
   regrouping related functional or visual symbols bundles
   will give us a starting point for further analysis and experimentation.
 
@@ -91,19 +91,19 @@
   <p><!-- twiddler3_mcc {{{ -->
 
   A lot of works needs to be done about
-  <a class="expander" href="#twiddler3_mcc" onclick='expand_div("twiddler3_mcc");'>Multi Character Chords<span class="wh4">&nbsp;</span></a>
+  <a class="expander" href="#div_twiddler3_mcc" onclick='expand_div("twiddler3_mcc");'>Multi Character Chords<span class="wh4">&nbsp;</span></a>
   and how what
   <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>
   calls
-  <a class="expander" href="#twiddler3_mcc_hotstrings" onclick='expand_div("twiddler3_mcc_hotstrings");'>hotstrings<span class="wh4">1</span></a>
+  <a class="expander" href="#div_twiddler3_mcc_hotstrings" onclick='expand_div("twiddler3_mcc_hotstrings");'>hotstrings<span class="wh4">1</span></a>
   relates to
-  <a class="expander" href="#twiddler3_mcc_num" onclick='expand_div("twiddler3_mcc_num");'>TabSpace MCC<span class="wh4">2</span></a>
+  <a class="expander" href="#div_twiddler3_mcc_num" onclick='expand_div("twiddler3_mcc_num");'>TabSpace MCC<span class="wh4">2</span></a>
   .
   </p> <!-- }}} -->
   <p><!-- cheat_sheet {{{ -->
 
   In the end, the results of this study should make sense when dissecting a variety of
-  <a class="expander" href="#cheat_sheet" onclick='expand_div("cheat_sheet");'>Cheat Sheets<span class="wh5">&nbsp;</span></a>
+  <a class="expander" href="#div_cheat_sheet" onclick='expand_div("cheat_sheet");'>Cheat Sheets<span class="wh5">&nbsp;</span></a>
   .
   </p> <!-- }}} -->
   <!-- }}} -->
@@ -431,7 +431,7 @@ num   00ll = SCROLL_LOCK
     </pre>
    </div><!-- }}} -->
    <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "tabspace");'>
-   <div style="float:right;"> <a class="expander" href="#collapse_all" onclick='expand_div("collapse_all");'><img class="wrap_img" title="collapse all" src="images/cursor/up.png"></a> </div>
+   <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
   </div> <!-- }}} -->
   <!-- supported {{{ -->
   <div class="fold_title" onclick='toggle_div(this,"supported");'>What are the supported chords <span class="wh2">&nbsp;</span></div>
@@ -595,7 +595,7 @@ num   00ll = SCROLL_LOCK
     </p>
    </div> <!-- }}} -->
    <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "supported");'>
-   <div style="float:right;"> <a class="expander" href="#collapse_all" onclick='expand_div("collapse_all");'><img class="wrap_img" title="collapse all" src="images/cursor/up.png"></a> </div>
+   <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
   </div> <!-- }}} -->
   <!-- twiddler3 {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "twiddler3");'>Building a Twiddler 3 Layout <span class="wh3">&nbsp;</span></div>
@@ -877,7 +877,7 @@ num   00ll = SCROLL_LOCK
   </div>
   <!-- }}} -->
    <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "twiddler3");'>
-   <div style="float:right;"> <a class="expander" href="#collapse_all" onclick='expand_div("collapse_all");'><img class="wrap_img" title="collapse all" src="images/cursor/up.png"></a> </div>
+   <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
   </div> <!-- }}} -->
     <!-- twiddler3_mcc {{{ -->
     <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc");'>Multi Characters Chords <span class="wh4">&nbsp;</span></div>
@@ -959,7 +959,7 @@ num   00ll = SCROLL_LOCK
     </div>
     <!-- }}} -->
    <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "twiddler3_mcc");'>
-   <div style="float:right;"> <a class="expander" href="#collapse_all" onclick='expand_div("collapse_all");'><img class="wrap_img" title="collapse all" src="images/cursor/up.png"></a> </div>
+   <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
     </div> <!-- }}} -->
   <!-- cheat sheets {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "cheat_sheet");'>Collection of Cheat Sheets <span class="wh5">&nbsp;</span></div>
@@ -1003,7 +1003,7 @@ num   00ll = SCROLL_LOCK
    <!-- }}} -->
    <br>
    <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "cheat_sheet");'>
-   <div style="float:right;"> <a class="expander" href="#collapse_all" onclick='expand_div("collapse_all");'><img class="wrap_img" title="collapse all" src="images/cursor/up.png"></a> </div>
+   <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
   </div>
   <!-- }}} -->
  </section>
