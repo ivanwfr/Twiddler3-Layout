@@ -31,11 +31,7 @@
  </header>
  <!-- }}} -->
  <section>
-  <!-- collapse_all{{{ -->
-  <div style="float:right;;">
-   <a class="expander" href="#collapse_all" onclick='expand_div("collapse_all");'><img class="wrap_img" title="collapse" src="images/cursor/left.png"></a>
-  </div>
-  <!-- }}} -->
+  <div style="float:right;"> <a class="expander" href="#collapse_all" onclick='expand_div("collapse_all");'><img class="wrap_img" title="collapse all" src="images/cursor/up.png"></a> </div>
   <!-- INTRO {{{ -->
   <h3>
    <a
@@ -65,38 +61,54 @@
   Every single decision should be clearly justified to avoid having to keep tabs
   on unclear points requiring further explanation.
   This is not quite the case in the
-  <a class="expander" href="#tabspace" onclick='expand_div("tabspace.1");'>TabSpace Guide</a>
+  <a class="expander" href="#tabspace" onclick='expand_div("tabspace.1");'>TabSpace Guide<span class="wh1">&nbsp;</span></a>
   by Brandon Craig Rhodes, the original author of what stands for a standard layout of this device.
   </p> <!-- }}} -->
   <p><!-- layout rows columns study assignment rules {{{ -->
   A systematic study of all the 
-  <a class="expander" href="#supported" onclick='expand_div("supported");'>Supported Layout</a>
+  <a class="expander" href="#supported" onclick='expand_div("supported");'>Supported chords<span class="wh2">&nbsp;</span></a>
   combinations should help to define some grouping rules 
   that would replace simply good-looking patterns.
   The empirical evaluation of the
-  <a class="expander" href="#supported_3x3" onclick='expand_div("supported_3x3");'>most efficient key assigment</a>
+  <a class="expander" href="#supported_3x3" onclick='expand_div("supported_3x3");'>most efficient key assigment<span class="wh2">&nbsp;</span></a>
   is a key point of this theoretical approach.
 
   </p> <!-- }}} -->
   <p><!-- twiddler3 {{{ -->
-  As a result, some
-  <a class="expander" href="#twiddler3" onclick='expand_div("twiddler3");'>Twiddler 3 Layout</a>
-  illustration of some practical
-  <a class="expander" href="#twiddler3_rows" onclick='expand_div("twiddler3_rows");'>rows</a>
+  As a result,
+  <a class="expander" href="#twiddler3" onclick='expand_div("twiddler3");'>Building a Twiddler 3 Layout<span class="wh3">&nbsp;</span></a>,
+  sketching out mapping
+  <a class="expander" href="#twiddler3_columns" onclick='expand_div("twiddler3_rules");'>rules<span class="wh3">1</span></a>
+  based on some
+  <a class="expander" href="#twiddler3_rows" onclick='expand_div("twiddler3_rows");'>rows<span class="wh3">2</span></a>,
+  <a class="expander" href="#twiddler3_columns" onclick='expand_div("twiddler3_columns");'>columns<span class="wh3">3</span></a>,
   and
-  <a class="expander" href="#twiddler3_columns" onclick='expand_div("twiddler3_columns");'>columns</a>
-  mapping could be used as a base for further analysis or experimentation.
+  <a class="expander" href="#twiddler3_columns" onclick='expand_div("twiddler3_columns");'>pads<span class="wh3">4</span></a>
+  regrouping related functional or visual symbols bundles
+  will give us a starting point for further analysis and experimentation.
 
+  </p> <!-- }}} -->
+  <p><!-- twiddler3_mcc {{{ -->
+
+  A lot of works needs to be done about
+  <a class="expander" href="#twiddler3_mcc" onclick='expand_div("twiddler3_mcc");'>Multi Character Chords<span class="wh4">&nbsp;</span></a>
+  and how what
+  <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>
+  calls
+  <a class="expander" href="#twiddler3_mcc_hotstrings" onclick='expand_div("twiddler3_mcc_hotstrings");'>hotstrings<span class="wh4">1</span></a>
+  relates to
+  <a class="expander" href="#twiddler3_mcc_num" onclick='expand_div("twiddler3_mcc_num");'>TabSpace MCC<span class="wh4">2</span></a>
+  .
   </p> <!-- }}} -->
   <p><!-- cheat_sheet {{{ -->
 
-  In the end, these rules should make sense when dissecting a variety of
-  <a class="expander" href="#cheat_sheet" onclick='expand_div("cheat_sheet");'>Cheat Sheets</a>
+  In the end, the results of this study should make sense when dissecting a variety of
+  <a class="expander" href="#cheat_sheet" onclick='expand_div("cheat_sheet");'>Cheat Sheets<span class="wh5">&nbsp;</span></a>
   .
   </p> <!-- }}} -->
   <!-- }}} -->
   <!-- tabspace {{{ -->
-  <div class="fold_title" onclick='toggle_div(this,"tabspace");'>Starting from TabSpace</div>
+  <div class="fold_title" onclick='toggle_div(this,"tabspace");'>Starting from TabSpace<span class="wh1">&nbsp;</span></div>
   <div id="div_tabspace" class="collapsed">
    <div class="fold_title" onclick='toggle_div(this,"tabspace.1");'>Credit</div><!-- {{{ -->
    <div id="div_tabspace.1" class="collapsed">
@@ -418,10 +430,11 @@ num   00rr = NUM_LOCK
 num   00ll = SCROLL_LOCK
     </pre>
    </div><!-- }}} -->
-   <img class="wrap_img" title="collapse" src="images/cursor/up.png" onclick='toggle_div(this, "tabspace");'>
+   <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "tabspace");'>
+   <div style="float:right;"> <a class="expander" href="#collapse_all" onclick='expand_div("collapse_all");'><img class="wrap_img" title="collapse all" src="images/cursor/up.png"></a> </div>
   </div> <!-- }}} -->
   <!-- supported {{{ -->
-  <div class="fold_title" onclick='toggle_div(this,"supported");'>What are the supported chords</div>
+  <div class="fold_title" onclick='toggle_div(this,"supported");'>What are the supported chords <span class="wh2">&nbsp;</span></div>
   <div id="div_supported" class="collapsed">
    <p><!-- same row {{{ -->
    The Twiddler <em>ORML encoding</em> does not support chords that would
@@ -442,7 +455,7 @@ num   00ll = SCROLL_LOCK
    </p>
    <!-- }}} -->
    <!-- supported_4x4 {{{ -->
-   <div class="fold_title" onclick='toggle_div(this,"supported_4x4");'><em>4x4 chord set</em></div>
+   <div class="fold_title" onclick='toggle_div(this,"supported_4x4");'><em>4x4 chord set</em> <span class="wh2">1;</span></div>
   <div id="div_supported_4x4" class="collapsed">
    <em>255 = (4^4 - 1)</em>
    If the configurator supports them all, some are easier to use than others.
@@ -464,7 +477,7 @@ num   00ll = SCROLL_LOCK
 </pre>
   </div> <!-- }}} -->
   <!-- supported_3x3 {{{ -->
-  <div class="fold_title" onclick='toggle_div(this,"supported_3x3");'><em>3x3 chord set</em></div>
+  <div class="fold_title" onclick='toggle_div(this,"supported_3x3");'><em>3x3 chord set</em> <span class="wh2">2</span></div>
   <div id="div_supported_3x3" class="collapsed" style="text-align:left; vertical-align:top !important; overflow:hidden;">
    <em>63 = (4^3 - 1)</em>
    Some chords stand out enough to justify a mapping to prominent keystrokes.
@@ -492,7 +505,7 @@ num   00ll = SCROLL_LOCK
 
 <span class="gr">  3B</span> 3 buttons - same column
 <span class="gr">  2B</span> 2 buttons - same column
-<span class="gr">  1B</span> 1 buttons
+<span class="gr">  1B</span> 1 button
 </pre>
 </div>
 <!-- }}} -->
@@ -581,10 +594,11 @@ num   00ll = SCROLL_LOCK
 </pre> <!-- }}} -->
     </p>
    </div> <!-- }}} -->
-   <img class="wrap_img" title="collapse" src="images/cursor/up.png" onclick='toggle_div(this, "supported");'>
+   <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "supported");'>
+   <div style="float:right;"> <a class="expander" href="#collapse_all" onclick='expand_div("collapse_all");'><img class="wrap_img" title="collapse all" src="images/cursor/up.png"></a> </div>
   </div> <!-- }}} -->
   <!-- twiddler3 {{{ -->
-  <div class="fold_title" onclick='toggle_div(this, "twiddler3");'>Building a Twiddler 3 Layout</div>
+  <div class="fold_title" onclick='toggle_div(this, "twiddler3");'>Building a Twiddler 3 Layout <span class="wh3">&nbsp;</span></div>
   <div id="div_twiddler3" class="collapsed">
    <p>
    As last serious mapping approach was made in 1999, it's about time to go forward
@@ -603,7 +617,7 @@ num   00ll = SCROLL_LOCK
    </p>
    <p>
 <!-- twiddler3_rules {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_rules");'>Rules?</div>
+<div class="fold_title" onclick='toggle_div(this, "twiddler3_rules");'>Rules? <span class="wh3">1</span></div>
    <div id="div_twiddler3_rules" class="collapsed">
     <p>
     As there is no obvious layout for associating for instance a bundle of arithmetic symbols,
@@ -631,11 +645,11 @@ num   00ll = SCROLL_LOCK
     </p>
    </div> <!-- }}} -->
    <!-- twiddler3_rows {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_rows");'>Rows</div>
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_rows");'>Rows <span class="wh3">2</span></div>
    <div id="div_twiddler3_rows" class="collapsed">
     <p>
     The proposed layout pads are organized in 4 rows of 11 columns.
-    Each row corresponds to the 4 possible ways the index finger may activate
+    Each row corresponds to the four possible ways the index finger may use
     the three buttons of the first row <em>BS</em>, <em>Space</em> and <em>Tab</em>
     turning them into modifiers, quite like this is the case on a standard keyboard with
     <em>Shift</em>, <em>Control</em> and <em>Alt</em>.
@@ -672,7 +686,7 @@ num   00ll = SCROLL_LOCK
     </p>
    </div> <!-- }}} -->
    <!-- twiddler3_columns {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_columns");'>Columns</div>
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_columns");'>Columns <span class="wh3">3</span></div>
    <div id="div_twiddler3_columns" class="collapsed">
     <p>
     What the index finger does on the first row of the 4x3 full pad,
@@ -681,7 +695,7 @@ num   00ll = SCROLL_LOCK
     </p>
     <p>
     Each 3x2 sub-pad is composed of a number of mappable single or pairs of buttons.
-    <em>180 = 4x45 &mdash; (9 + 6 + 3x5 + 3x3 + 3x2)</em>
+    <em>180 = 4x45 = 4x(9 + 6 + 3x5 + 3x3 + 3x2)</em>
 <pre style="padding:4px !important;">
  Col 1  Col 2       Col 3-5            Col 6-8              Col 9-11
   Sx9    Px6          S+5                Px3                   S+2
@@ -734,7 +748,7 @@ num   00ll = SCROLL_LOCK
 
    </div> <!-- }}} -->
    <!-- twiddler3_pads {{{ -->
-  <div class="fold_title" onclick='toggle_div(this, "twiddler3_pads");'>Pads</div>
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_pads");'>Pads <span class="wh3">4</span></div>
   <div id="div_twiddler3_pads" class="collapsed">
    Best mnemonic metaphores come more easily when categories of symbols are grouped
    into pads with a disposition that builds some kind of recognizable contour.
@@ -862,20 +876,22 @@ num   00ll = SCROLL_LOCK
    </p>
   </div>
   <!-- }}} -->
-   <img class="wrap_img" title="collapse" src="images/cursor/up.png" onclick='toggle_div(this, "twiddler3");'>
+   <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "twiddler3");'>
+   <div style="float:right;"> <a class="expander" href="#collapse_all" onclick='expand_div("collapse_all");'><img class="wrap_img" title="collapse all" src="images/cursor/up.png"></a> </div>
   </div> <!-- }}} -->
     <!-- twiddler3_mcc {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc");'>Multi Characters Chords</div>
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc");'>Multi Characters Chords <span class="wh4">&nbsp;</span></div>
     <div id="div_twiddler3_mcc" class="collapsed">
     <!-- twiddler3_mcc_hotstrings {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_hotstrings");'>Intro</div>
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_hotstrings");'>Hotstrings <span class="wh4">1</span></div>
     <div id="div_twiddler3_mcc_hotstrings" class="collapsed">
      <p>
      Getting multiple keystrokes from a single chord should not be considered a simple
      extra that comes handy with a chorded keyboard.
      </p>
      <p>
-     In fact, we can already get something similar using a standard keyboard with the help of some hotstring handler like AutoHotkey.
+     In fact, we can already get something similar using a standard keyboard with the help of some hotstring handler like
+  <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>.
      Why does it seem so natural to expect this kind of feature from this device?
      </p>
      <p>
@@ -898,13 +914,13 @@ num   00ll = SCROLL_LOCK
      </p>
      <p>Exploring multi character input feature deserves more than a simple approach
      but a few steps should be made in that direction
-     while introducing the collection of <em>2 letters</em> and 3 <em>letters</em>
+     while introducing the collection of <em>2 letters</em> and <em>3 letters</em>
      hotstrings defined by TabSpace.
      </p>
     </div>
     <!-- }}} -->
     <!-- twiddler3_mcc_num {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_num");'><em>Num layer</em> MCC</div>
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_num");'>TabSpace MCC <span class="wh4">2</span></div>
     <div id="div_twiddler3_mcc_num" class="collapsed">
      <p class="rules">
      In this case, using the <em>Num thumb-modifier</em> can be seen as a <em class='todo'>mode-switching gesture</em>
@@ -942,9 +958,11 @@ num   00ll = SCROLL_LOCK
      </p>
     </div>
     <!-- }}} -->
+   <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "twiddler3_mcc");'>
+   <div style="float:right;"> <a class="expander" href="#collapse_all" onclick='expand_div("collapse_all");'><img class="wrap_img" title="collapse all" src="images/cursor/up.png"></a> </div>
     </div> <!-- }}} -->
   <!-- cheat sheets {{{ -->
-  <div class="fold_title" onclick='toggle_div(this, "cheat_sheet");'>Collection of Cheat Sheets</div>
+  <div class="fold_title" onclick='toggle_div(this, "cheat_sheet");'>Collection of Cheat Sheets <span class="wh5">&nbsp;</span></div>
   <div id="div_cheat_sheet" class="collapsed" style="text-align:left;">
    <p>
    <a href="layout_browser.html" target="layout_browser">The Layout browser</a>
@@ -984,7 +1002,8 @@ num   00ll = SCROLL_LOCK
    </a>
    <!-- }}} -->
    <br>
-   <img class="wrap_img" title="collapse" src="images/cursor/up.png" onclick='toggle_div(this, "cheat_sheet");'>
+   <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "cheat_sheet");'>
+   <div style="float:right;"> <a class="expander" href="#collapse_all" onclick='expand_div("collapse_all");'><img class="wrap_img" title="collapse all" src="images/cursor/up.png"></a> </div>
   </div>
   <!-- }}} -->
  </section>

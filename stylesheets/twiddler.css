@@ -125,6 +125,8 @@
 
 /* }}} */
 
+/* CARDS */
+/* pre_card {{{ */
 .pre_card {
      margin:4px !important;
     padding:4px;
@@ -145,6 +147,10 @@
 .pre_card div      { text-align:left; margin:1px; }
 .pre_card div span { vertical-align:middle; }
 
+/* }}} */
+
+/* NAVIGATION */
+/* rules {{{ */
 .rules {
 text-indent:initial;
   text-align:left;	
@@ -159,3 +165,28 @@ text-indent:initial;
  border:1px solid #666;
  font-size:80%;
 }
+
+/* }}} */
+/* expander {{{ */
+.expander span {
+    border-radius : 1em; -moz-border-radius :1em; -webkit-border-radius:1em;
+    font-size     : 12px;
+    font-weight   : bold;
+    opacity       : 0.2; filter:alpha(opacity= 20);
+    padding       : 0 2px 0 2px;
+    vertical-align: super;
+}
+.fold_title span {
+    border-radius : 1em; -moz-border-radius :1em; -webkit-border-radius:1em;
+    float:right;
+    font-size     : 12px;
+    opacity       : 0.2; filter:alpha(opacity= 20);
+    padding       : 0 2px 0 2px;
+}
+.wh1  { color: #F00; background-color:#Faa; border:1px solid #a00; }
+.wh2  { color: #0F0; background-color:#aFa; border:1px solid #0a0; }
+.wh3  { color: #00F; background-color:#aaF; border:1px solid #00a; }
+.wh4  { color: #000; background-color:#F0F; border:1px solid #a0a; }
+.wh5  { color: #0FF; background-color:#0FF; border:1px solid #0aa; }
+
+/* }}} */
