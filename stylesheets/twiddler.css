@@ -43,6 +43,7 @@
 /* COLORS {{{ */
 
  em {  color:#888; background-color:#111; border:1px solid #666; }
+.todo { color:red; }
 
 .o  {  color:#444; }
 .oo {  color:#444; background-color:#000; border:1px solid  #000; }
@@ -143,6 +144,8 @@
 .pre_card div span { vertical-align:middle; }
 
 .rules {
+text-indent:initial;
+  text-align:left;	
      margin:4px 4px 4px 5em !important;
     padding:4px;
     -webkit-border-radius: 4px;
