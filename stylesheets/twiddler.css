@@ -172,16 +172,20 @@ text-indent:initial;
     border-radius : 1em; -moz-border-radius :1em; -webkit-border-radius:1em;
     font-size     : 12px;
     font-weight   : bold;
-    opacity       : 0.2; filter:alpha(opacity= 20);
     padding       : 0 2px 0 2px;
     vertical-align: super;
+/*
+    opacity       : 0.2; filter:alpha(opacity= 20);
+*/
 }
 .fold_title span {
     border-radius : 1em; -moz-border-radius :1em; -webkit-border-radius:1em;
     float:right;
     font-size     : 12px;
-    opacity       : 0.2; filter:alpha(opacity= 20);
     padding       : 0 2px 0 2px;
+/*
+    opacity       : 0.2; filter:alpha(opacity= 20);
+*/
 }
 .wh1  { color: #F00; background-color:#Faa; border:1px solid #a00; }
 .wh2  { color: #0F0; background-color:#aFa; border:1px solid #0a0; }
