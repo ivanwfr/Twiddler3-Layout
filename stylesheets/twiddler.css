@@ -115,11 +115,13 @@
 /* }}} */
 /* SHADOW {{{ */
 
-.ng { box-shadow       : rgba(0, 0, 0, 0.3) 0 2px 2px; }
-.nb { box-shadow       : rgba(0, 0, 0, 0.3) 0 3px 3px; }
-.bt { box-shadow       : rgba(0, 0, 0, 0.3) 0 4px 4px; }
-.vg { box-shadow       : rgba(0, 0, 0, 0.3) 0 5px 5px; }
-.gr { box-shadow       : rgba(0, 0, 0, 0.3) 0 6px 6px; }
+.ng { box-shadow: rgba(0, 0, 0, 0.3) 0 2px 2px; }
+.nb { box-shadow: rgba(0, 0, 0, 0.3) 0 3px 3px; }
+.bt { box-shadow: rgba(0, 0, 0, 0.3) 0 4px 4px; }
+.vg { box-shadow: rgba(0, 0, 0, 0.3) 0 5px 5px; }
+.gr { box-shadow: rgba(0, 0, 0, 0.3) 0 6px 6px; }
+
+.gr * { vertical-align: middle; }
 
 /* }}} */
 
