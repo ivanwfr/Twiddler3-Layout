@@ -17,7 +17,7 @@
 <![endif]-->
 </head>
 <!-- }}} -->
-<body onload='expand_div("_twiddler3_locks");' id="top">
+<body onload='expand_div("_twiddler3_pads");' id="top">
 <div class="wrapper">
  <header><!-- {{{ -->
   <h1>Twiddler3-layout</h1>
@@ -43,7 +43,7 @@
    Looking into a chorded-keyboard layout standard
   </h3>
 
-  <!-- {{{ -->
+  <!-- images/front.png {{{ -->
   <div id="tek_gear" style="float:right; clear:right; margin-left:1em;">
    <a href="http://twiddler.tekgear.com" target="tek_gear">
     <img title="Twiddler 3 ... Tek Gear" src="images/front.png">
@@ -83,13 +83,17 @@
   As a result,
   <a class="expander" href="#div_twiddler3" onclick='expand_div("twiddler3");'>Building a Twiddler 3 Layout<span class="wh3">&nbsp;</span></a>,
   sketching out mapping
-  <a class="expander" href="#div_twiddler3_rules" onclick='expand_div("twiddler3_rules");'>rules<span class="wh3">1</span></a>
+  <a class="expander" href="#div_twiddler3_rules" onclick='expand_div("twiddler3_rules");'>Rules<span class="wh3">1</span></a>
   based on some
-  <a class="expander" href="#div_twiddler3_rows" onclick='expand_div("twiddler3_rows");'>rows<span class="wh3">2</span></a>,
-  <a class="expander" href="#div_twiddler3_columns" onclick='expand_div("twiddler3_columns");'>columns<span class="wh3">3</span></a>,
+  <a class="expander" href="#div_twiddler3_rows" onclick='expand_div("twiddler3_rows");'>Rows<span class="wh3">2</span></a>,
+  <a class="expander" href="#div_twiddler3_columns" onclick='expand_div("twiddler3_columns");'>Columns<span class="wh3">3</span></a>,
   and
-  <a class="expander" href="#div_twiddler3_pads" onclick='expand_div("twiddler3_pads");'>pads<span class="wh3">4</span></a>
-  regrouping related functional or visual symbols bundles
+  <a class="expander" href="#div_twiddler3_pads" onclick='expand_div("twiddler3_pads");'>Pads<span class="wh3">4</span></a>
+  regrouping related
+  functional (...)
+  and
+  visual (<a class="expander" href="#div_twiddler3_pads" onclick='expand_div("twiddler3_signs");'>Signs<span class="wh3">5</span></a>)
+  symbols bundles
   will give us a starting point for further analysis and experimentation.
 
   </p> <!-- }}} -->
@@ -685,7 +689,7 @@ num   00ll = SCROLL_LOCK
      <div class="clip_div_mod" style="display:inline-block;"><img class="clip_img_RM" src="images/Cheat_TabSpace_3.png"></div>
      <div class="clip_div_mod" style="display:inline-block;"><img class="clip_img_MM" src="images/Cheat_TabSpace_3.png"></div>
      <div class="clip_div_mod" style="display:inline-block;"><img class="clip_img_LM" src="images/Cheat_TabSpace_3.png"></div>
-     <em>layer</em> is to be taken loosely enough to mean that a combination of one or more optional <em>modifier buttons</em>
+     ... <em>layer</em> is to be taken loosely enough to mean that a combination of one or more optional <em>modifier buttons</em>
      is altering the default <em>O</em> <em>No modifier layer</em> mapping.
     </i>
     </p>
@@ -755,11 +759,44 @@ num   00ll = SCROLL_LOCK
    <!-- twiddler3_pads {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_pads");'>Pads <span class="wh3">4</span></div>
   <div id="div_twiddler3_pads" class="collapsed">
-   Best mnemonic metaphores come more easily when categories of symbols are grouped
-   into pads with a disposition that builds some kind of recognizable contour.
-   We can see this at work in first and second column of the last
+   <p>
+   Under rows and columns, <em>pads</em> will contain
+   groups of related symbols displayed as
+   a collection of cards.
+   </p>
+
+   <p>
+   Now, we have to decide how to distribute the remaining symbols
+   in a way that will make sense for the next stage of this approach.
+   </p>
+
+   <p>
+   Inside each pad, positioning symbols should
+   emphasize <em>functional</em> or <em>visual</em> domain that builds some kind of recognizable contour,
+   whichever makes more sense.
+   </p>
+
+   <p>
+   Working with the idea that best <em>mnemonic metaphores</em>
+   will come more easily if we can identify practical <em>categories of symbols</em>.
+   </p>
+
+   <p>
+   At this point, the mapping process would become a question of
+   associating each <em>symbol category</em> to one of the available <em>pads</em>.
+   </p>
+
+  </div> <!-- }}} -->
+  <!-- twiddler3_signs {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "twiddler3_signs");'>Signs<span class="wh3">5</span></div>
+  <div id="div_twiddler3_signs" class="collapsed">
+
+   <p>
+   Applying those guidelines, most standard signs can be mapped into pads L1 and L2,
+   in first and second column of the last
    <a href="layout_browser.html" target="layout_browser">Twiddler 3 Layout</a>
    row:
+   <!-- L1 L2 {{{ -->
 <pre style="padding:4px !important; width:190px;"
 >     L1            L2
   single x9      pair x6
@@ -771,8 +808,71 @@ num   00ll = SCROLL_LOCK
 ><img class="clip_img_L2" src="images/Cheat_TabSpace_3.png"
 ></div
 ></pre>
+   <!-- }}} -->
    </p>
+
    </div> <!-- }}} -->
+   <!-- twiddler3_arithmetic {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_arithmetic");'>Arithmetic</div>
+   <div id="div_twiddler3_arithmetic" class="collapsed">
+    <i>
+   Arithmetic symbols on <em>R2 pair x6</em> put them close to the <em>R1 single x9</em> numberpad.
+<!-- R1 R2 {{{ -->
+<pre style="padding:4px !important; width:190px;"
+>     R1            R2
+  single x9      pair x6
+<div class="clip_div_pad" style="display:inline-block;"
+><img class="clip_img_R1" src="images/Cheat_TabSpace_3.png"
+></div
+><span style="width:3em; margin-right:2px;"> &nbsp;</span
+><div class="clip_div_pad" style="display:inline-block;"
+><img class="clip_img_R2" src="images/Cheat_TabSpace_3.png"
+></div
+></pre>
+<!-- }}} -->
+   <p class="rules">
+   When mappings  are close to one another, it means they share one or more <em>major fingers</em> combinations.
+   The most significant finger, from index-to-pinky, would hopefully cover a whole category down to sub-categories.
+   Those categories can relate to <em>functional</em> or <em>visual</em> domains, whichever makes more sense.
+   The best to be expected from a good organization is to be applicable in more than a single occasion.
+   <br>
+   <br>
+   In this case, index finger is pressing <em>BS modifier</em> for numbers, the period and the main arithmetic operators.
+   </p>
+<!-- 0 {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_arithmetic_0");'><em>0</em></div>
+   <div id="div_twiddler3_arithmetic_0" class="collapsed">
+    <em>0</em> is special enough to deserve some special placement.
+    <p>
+    Although a hardware numberpad gives it a larger keycap under <em>1</em> and <em>2</em>,
+    the <em>Twiddler ORML encoding</em> cannot accommodate for 2 keys on the same row.
+    <p>
+    The best mapping granted by the <em>supported chords merit rule</em> for pad <em>R2</em> of <em>Num</em> layer is <span class="gr"><em>Num R2</em> 2B </span>.
+   </div>
+<!-- }}} -->
+<!-- equal {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_arithmetic_equal");'><em>=</em></div>
+   <div id="div_twiddler3_arithmetic_equal" class="collapsed">
+    From the 5 remaining chords of <em>Num R2 pad</em>, we can secure 2 pairs by placing <em>=</em> under <em>0</em>.
+   </div>
+<!-- }}} -->
+<!-- plus_minus {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_arithmetic_plus_minus");'><em>+</em> and <em>-</em></div>
+   <div id="div_twiddler3_arithmetic_plus_minus" class="collapsed">
+    <em>+</em> above <em>-</em> makes one pair of <em>functionally related symbols</em>.
+   </div>
+<!-- }}} -->
+<!-- dot star {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_arithmetic_dot_star");'><em>.</em> and <em>*</em></div>
+   <div id="div_twiddler3_arithmetic_dot_star" class="collapsed">
+    <em>.</em> above <em>*</em> makes one pair of <em>visually related symbols</em>.
+   </div>
+<!-- }}} -->
+    <hr>
+    ...this <i>still</i> deserves more thinking...
+    </p>
+
+    </div> <!-- }}} -->
    <!-- twiddler3_locks {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_locks");'>Locks</div>
    <div id="div_twiddler3_locks" class="collapsed">
@@ -808,67 +908,6 @@ num   00ll = SCROLL_LOCK
     moving <em>NumLock</em>, <em>ScrollLock</em> and <em>PageLock</em>
     to lower <em>R2 pair x6</em> seems to be a choice <em class='todo'>temporarily! as good as any</em>.
     </p> 
-    </div> <!-- }}} -->
-   <!-- twiddler3_arithmetic {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_arithmetic");'>Arithmetic</div>
-   <div id="div_twiddler3_arithmetic" class="collapsed">
-    <i>
-   Arithmetic symbols on <em>R2 pair x6</em> put them close to the <em>R1 single x9</em> numberpad.
-<!-- R1 R2 {{{ -->
-<pre style="padding:4px !important; width:190px;"
->     R1            R2
-  single x9      pair x6
-<div class="clip_div_pad" style="display:inline-block;"
-><img class="clip_img_R1" src="images/Cheat_TabSpace_3.png"
-></div
-><span style="width:3em; margin-right:2px;"> &nbsp;</span
-><div class="clip_div_pad" style="display:inline-block;"
-><img class="clip_img_R2" src="images/Cheat_TabSpace_3.png"
-></div
-></pre>
-<!-- }}} -->
-   <p class="rules">
-   When mappings  are close to one another, it means they share one or more <em>major fingers</em> combinations.
-   The most significant finger, from index-to-pinky, would hopefully cover a whole category down to sub-categories.
-   Those categories can relate to <em>functional</em> or <em>visual</em> domains, whichever makes more sense.
-   The best to be expected from a good organization is to be applicable in more than a single occasion.
-   <br>
-   <br>
-   In this case, index finger is pressing <em>BS modifier</em> for numbers, the period and the main arithmetic operators.
-   </p>
-<!-- 0{{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_arithmetic_0");'><em>0</em></div>
-   <div id="div_twiddler3_arithmetic_0" class="collapsed">
-    <em>0</em> is special enough to deserve some special placement.
-    <p>
-    Although a hardware numberpad gives it a larger keycap under <em>1</em> and <em>2</em>,
-    the <em>Twiddler ORML encoding</em> cannot accommodate for 2 keys on the same row.
-    <p>
-    The best mapping granted by the <em>supported chords merit rule</em> for pad <em>R2</em> of <em>Num</em> layer is <span class="gr"><em>Num R2</em> 2B </span>.
-   </div>
-<!-- }}} -->
-<!-- equal {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_arithmetic_equal");'><em>=</em></div>
-   <div id="div_twiddler3_arithmetic_equal" class="collapsed">
-    From the 5 remaining chords of <em>Num R2 pad</em>, we can secure 2 pairs by placing <em>=</em> under <em>0</em>.
-   </div>
-<!-- }}} -->
-<!-- plus_minus {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_arithmetic_plus_minus");'><em>+</em> and <em>-</em></div>
-   <div id="div_twiddler3_arithmetic_plus_minus" class="collapsed">
-    <em>+</em> above <em>-</em> makes one pair of <em>functionally related symbols</em>.
-   </div>
-<!-- }}} -->
-<!-- dot star {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_arithmetic_dot_star");'><em>.</em> and <em>*</em></div>
-   <div id="div_twiddler3_arithmetic_dot_star" class="collapsed">
-    <em>.</em> above <em>*</em> makes one pair of <em>visually related symbols</em>.
-   </div>
-<!-- }}} -->
-    <hr>
-    ...this <i>still</i> deserves more thinking...
-    </p>
-
     </div> <!-- }}} -->
   <!-- ...todo... {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "twiddler3_todo");'>...todo...</div>

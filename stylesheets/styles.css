@@ -258,6 +258,9 @@ pre code {
 
 .expanded pre {
   margin: 0 0 1ex 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 6px 6px;
+  -moz-box-shadow   : rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 6px 6px;
+  box-shadow        : rgba(0, 0, 0, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 6px 6px;
 }
 
 li pre {
@@ -450,6 +453,12 @@ footer p + p {
 }
 
 /* img pads {{{ */
+
+.clip_div_mod {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 3px 3px;
+  -moz-box-shadow   : rgba(0, 0, 0, 0.2) 0 3px 3px;
+  box-shadow        : rgba(0, 0, 0, 0.2) 0 3px 3px;
+}
 .clip_div_mod  { overflow:hidden;     width: 24px;     height:24px; vertical-align:middle; }
 .clip_div_pad  { overflow:hidden;     width: 85px;     height:112px; }
 .clip_div_pad  {
