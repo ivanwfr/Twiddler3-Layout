@@ -369,6 +369,8 @@ footer p + p {
   }
 }
 
+ em { box-shadow: rgba(0, 0, 0, 0.2) 0 0.1em 0.1em; }
+
 .collapsed { display:none;  }
 .expanded {
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px, rgba(0, 0, 0, 0.2) 0 3px 10px inset;
