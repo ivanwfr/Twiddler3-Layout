@@ -17,7 +17,7 @@
 <![endif]-->
 </head>
 <!-- }}} -->
-<body onload='expand_div("_supported_3x3");' id="top">
+<body onload='expand_div("_applying_rules");' id="top">
 <div class="wrapper">
  <header><!-- {{{ -->
   <h1>Twiddler3-layout</h1>
@@ -26,8 +26,8 @@
   <ul>
    <li><a href="layout_browser.html"                                        target="layout_browser">The Layout <strong>Browser</strong></a>
    <li style='width:2px;'></li>
-   <li><a href="https://github.com/ivanwfr/Twiddler3-Layout/zipball/master" target="_blank">Download <strong>ZIP File</strong></a></li>
-   <li><a href="https://github.com/ivanwfr/Twiddler3-Layout/tarball/master" target="_blank">Download <strong>TAR Ball</strong></a></li>
+   <!--li><a href="https://github.com/ivanwfr/Twiddler3-Layout/zipball/master" target="_blank">Download <strong>ZIP File</strong></a></li-->
+   <!--li><a href="https://github.com/ivanwfr/Twiddler3-Layout/tarball/master" target="_blank">Download <strong>TAR Ball</strong></a></li-->
    <li><a href="https://github.com/ivanwfr/Twiddler3-Layout"                target="_blank">View On <strong>GitHub</strong></a></li>
   </ul>
  </header>
@@ -35,7 +35,7 @@
  <section>
   <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
   <!-- INTRO {{{ -->
-  <h3>
+  <h3><!-- {{{ -->
    <a
     id="welcome-to-github-pages"
     class="anchor"
@@ -43,17 +43,15 @@
     aria-hidden="true">
     <span class="octicon octicon-link"></span></a>
    Looking into a chorded-keyboard layout standard
-  </h3>
-
-  <!-- images/front.png {{{ -->
+  </h3> <!-- }}} -->
+  <!-- twiddler.tekgeare.com {{{ -->
   <div id="tek_gear" style="float:right; clear:right; margin-left:1em;">
    <a href="http://twiddler.tekgear.com" target="tek_gear">
     <img title="Twiddler 3 ... Tek Gear" src="images/front.png" width="192" height="500">
    </a>
   </div>
   <!-- }}} -->
-
-  <p><!-- tabspace standard explanation {{{ -->
+  <p><!-- ...tabspace {{{ -->
   <a class="expander" href="#div_tabspace" onclick='expand_div("tabspace.1");'>TabSpace Guide<span class="wh1">&hellip;</span></a>
   by Brandon Craig Rhodes stands for the Twiddler standard layout.
   But why should we learn this if it makes sense only to the author?
@@ -64,7 +62,7 @@
   and build some additional reasoning when necessary.
 
   </p> <!-- }}} -->
-  <p><!-- layout rows columns study assignment rules {{{ -->
+  <p><!-- ...supported {{{ -->
   The 
   <a class="expander" href="#div_supported" onclick='expand_div("supported");'>Supported chords<span class="wh2">&hellip;</span></a>
   will be analyzed, looking for usability factors
@@ -80,8 +78,8 @@
   Then, a first mapping scheme for the assignment process becomes a matter of looking how these two collections could be matched.
 
   </p> <!-- }}} -->
-  <p><!-- twiddler3 {{{ -->
-  <a class="expander" href="#div_twiddler3" onclick='expand_div("twiddler3");'>Building a Twiddler 3 Layout<span class="wh3">&hellip;</span></a>
+  <p><!-- ...making_rules {{{ -->
+  <a class="expander" href="#div_making_rules" onclick='expand_div("making_rules");'>Making Layout Rules<span class="wh3">&hellip;</span></a>
   involves sketching out mapping
   <a class="expander" href="#div_twiddler3_rules" onclick='expand_div("twiddler3_rules");'>Rules<span class="wh3">1</span></a>
   and defining some graphic clusters such as
@@ -89,33 +87,35 @@
   <a class="expander" href="#div_twiddler3_columns" onclick='expand_div("twiddler3_columns");'>Columns<span class="wh3">3</span></a>,
   and
   <a class="expander" href="#div_twiddler3_pads" onclick='expand_div("twiddler3_pads");'>Pads<span class="wh3">4</span></a>.
+  </p> <!-- }}} -->
 
-  Grouping related 
-  functional
-  (...)
-  and visual
-  (<a class="expander" href="#div_twiddler3_pads" onclick='expand_div("twiddler3_signs");'>Signs<span class="wh3">5</span></a>)
+  <p><!-- ...applying_rules {{{ -->
+  <a class="expander" href="#div_twiddler3_pads" onclick='expand_div("applying_rules");'>Applying rules<span class="wh4">&hellip;</span></a>
+  when grouping related 
+  visual (<a class="expander" href="#div_twiddler3_pads" onclick='expand_div("applying_rules_signs");'>Signs<span class="wh4">1</span></a>, &hellip;)
+  and
+  functional (<a class="expander" href="#div_twiddler3_pads" onclick='expand_div("applying_rules_arithmetic");'>Arhthmetic<span class="wh4">2</span></a>, &hellip;)
   clusters should give us the best mnemonic-friendly layout possible, provided good enough rules have been defined along the way.
 
   </p> <!-- }}} -->
-  <p><!-- twiddler3_mcc {{{ -->
+  <p><!-- ...MCC {{{ -->
 
-  <a class="expander" href="#div_twiddler3_mcc" onclick='expand_div("twiddler3_mcc");'>Multi Character Chords<span class="wh4">&hellip;</span></a>
+  <a class="expander" href="#div_twiddler3_mcc" onclick='expand_div("twiddler3_mcc");'>Multi Character Chords<span class="wh5">&hellip;</span></a>
   goes one step beyond simple one-to-one chord-character mappings,
-  <a class="expander" href="#div_twiddler3_mcc_num" onclick='expand_div("twiddler3_mcc_num");'>TabSpace MCC<span class="wh4">2</span></a>
+  <a class="expander" href="#div_twiddler3_mcc_num" onclick='expand_div("twiddler3_mcc_num");'>TabSpace MCC<span class="wh5">2</span></a>
   defines a number of static bindings
   and a further step could use something like
   <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>
   to handle dynamic
-  <a class="expander" href="#div_twiddler3_mcc_hotstrings" onclick='expand_div("twiddler3_mcc_hotstrings");'>hotstrings<span class="wh4">1</span></a>.
+  <a class="expander" href="#div_twiddler3_mcc_hotstrings" onclick='expand_div("twiddler3_mcc_hotstrings");'>hotstrings<span class="wh5">1</span></a>.
   </p> <!-- }}} -->
-  <p><!-- cheat_sheet {{{ -->
+  <p><!-- ...cheatsheets {{{ -->
 
-  <a class="expander" href="#div_cheat_sheet" onclick='expand_div("cheat_sheet");'>Cheat Sheets<span class="wh5">&hellip;</span></a>
+  <a class="expander" href="#div_cheat_sheet" onclick='expand_div("cheat_sheet");'>Cheat Sheets<span class="wh6">&hellip;</span></a>
   should make enough sense to account for the usefulness of this study, hopefully.
   </p> <!-- }}} -->
   <!-- }}} -->
-  <!-- tabspace {{{ -->
+  <!-- Tabspace {{{ -->
   <div class="fold_title" onclick='toggle_div(this,"tabspace");'>Starting from TabSpace<span class="wh1">&hellip;</span></div>
   <div id="div_tabspace" class="collapsed">
    <div class="fold_title" onclick='toggle_div(this,"tabspace.1");'>Credit</div><!-- {{{ -->
@@ -441,7 +441,7 @@ num   00ll = SCROLL_LOCK
    <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "tabspace");'>
    <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
   </div> <!-- }}} -->
-  <!-- supported {{{ -->
+  <!-- Supported {{{ -->
   <div class="fold_title" onclick='toggle_div(this,"supported");'>Supported chords <span class="wh2">&hellip;</span></div>
   <div id="div_supported" class="collapsed">
    <p><!-- same row {{{ -->
@@ -601,10 +601,10 @@ num   00ll = SCROLL_LOCK
    <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "supported");'>
    <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
   </div> <!-- }}} -->
-  <!-- twiddler3 {{{ -->
-  <div class="fold_title" onclick='toggle_div(this, "twiddler3");'>Building a Twiddler 3 Layout <span class="wh3">&hellip;</span></div>
-  <div id="div_twiddler3" class="collapsed">
-   <p>
+  <!-- Making {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "making_rules");'>Making rules<span class="wh3">&hellip;</span></div>
+  <div id="div_making_rules" class="collapsed">
+   <p><!-- ...intro {{{ -->
    As last serious mapping approach was made in 1999, it's about time to go forward
    and <i>try</i> to build something new.
    A better graphical representation should help
@@ -619,7 +619,7 @@ num   00ll = SCROLL_LOCK
    <p>
    <i>...still looking for a suitable forum...</i>
    </p>
-   <p>
+   <!-- }}} -->
 <!-- twiddler3_rules {{{ -->
 <div class="fold_title" onclick='toggle_div(this, "twiddler3_rules");'>Rules? <span class="wh3">1</span></div>
    <div id="div_twiddler3_rules" class="collapsed">
@@ -649,7 +649,7 @@ num   00ll = SCROLL_LOCK
     </p>
    </div> <!-- }}} -->
    <!-- twiddler3_rows {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_rows");'>Rows <span class="wh3">2</span></div>
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_rows");'>Rows rules<span class="wh3">2</span></div>
    <div id="div_twiddler3_rows" class="collapsed">
     <p>
     The proposed layout pads are organized in 4 rows of 11 columns.
@@ -690,7 +690,7 @@ num   00ll = SCROLL_LOCK
     </p>
    </div> <!-- }}} -->
    <!-- twiddler3_columns {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_columns");'>Columns <span class="wh3">3</span></div>
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_columns");'>Columns rules<span class="wh3">3</span></div>
    <div id="div_twiddler3_columns" class="collapsed">
     <p>
     What the index finger does on the first row of the 4x3 full pad,
@@ -700,6 +700,8 @@ num   00ll = SCROLL_LOCK
     <p>
     Each 3x2 sub-pad is composed of a number of mappable single or pairs of buttons.
     <em>180 = 4x45 = 4x(9 + 6 + 3x5 + 3x3 + 3x2)</em>
+    </p>
+<!-- [Col 1-11] {{{ -->
 <pre style="padding:4px !important;">
  Col 1  Col 2       Col 3-5            Col 6-8              Col 9-11
   Sx9    Px6          S+5                Px3                   S+2
@@ -741,19 +743,19 @@ num   00ll = SCROLL_LOCK
 ><img class="clip_img_v11" src="images/Cheat_TabSpace_3.png">
 </div
 ></pre>
-    </p>
-
+<!-- }}} -->
+    <!-- Note: extended layout {{{ -->
     <p style="font-size:80%;">
     <i>
      Note: The 4x11 layout can be further extended to include the less practical, but still usable,
      combinations of 2 modifiers on the first and second row of the 3x3 sub-sub-pads to obtain 24 more mappings.
     </i>
     </p>
-
+    <!-- }}} -->
    </div> <!-- }}} -->
    <!-- twiddler3_pads {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_pads");'>Pads <span class="wh3">4</span></div>
-  <div id="div_twiddler3_pads" class="collapsed">
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_pads");'>Pads rules<span class="wh3">4</span></div>
+   <div id="div_twiddler3_pads" class="collapsed">
    <p>
    Under rows and columns, <em>pads</em> will receive
    groups of related symbols displayed as
@@ -780,15 +782,108 @@ num   00ll = SCROLL_LOCK
    </p>
 
   </div> <!-- }}} -->
-  <!-- twiddler3_signs {{{ -->
-  <div class="fold_title" onclick='toggle_div(this, "twiddler3_signs");'>Signs<span class="wh3">5</span></div>
-  <div id="div_twiddler3_signs" class="collapsed">
+   <!-- twiddler3_clusters {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "twiddler3_clusters");'>Clusters rules<span class="wh3">5</span></div>
+  <div id="div_twiddler3_clusters" class="collapsed">
+<p class="rules"><!-- {{{ -->
+   When mappings  are close to one another, it means they share one or more <em>major fingers</em> combinations.
+   The most significant finger, from index-to-pinky, would hopefully cover a whole category down to sub-categories.
+   Those categories can relate to <em>functional</em> or <em>visual</em> domains, whichever makes more sense.
+   The best to be expected from a good organization is to be applicable in more than a single occasion.
+   <br>
+   <br>
+   In this case, index finger is pressing <em>BS modifier</em> for numbers, the period and the main arithmetic operators.
+   </p> <!-- }}} -->
+  </div> <!-- }}} -->
+   <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "making_rules");'>
+   <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
+  </div> <!-- }}} -->
+  <!-- Applying {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "applying_rules");'>Applying rules<span class="wh4">&hellip;</span></div>
+  <div id="div_applying_rules" class="collapsed">
+   <p><!-- ...intro {{{ -->
+   <p>
+   Now, we have to find matches between both our symbol categories and layout categories.
+   At each stage, the best available layout clusters must be
+   matched with the most significant symbol clusters not yet assigned.
+   Symbol clusters will consist in groups of functionally or visually related symbols.
+   Our priorities will also take into account their usage frequency and how well
+   each row, pad and cluster appears to be put at good use.
+
+   </p>
+   <!-- }}} -->
+   <!-- O clusters {{{ -->
+   <div class="div_map">
+    <div class="clip_map"><img class="clip_map_O1" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_O2" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_O3" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_O4" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_O5" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_O6" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_O7" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_O8" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_O9" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_OA" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_OB" src="images/Cheat_TabSpace_3.png"></div>
+   </div>
+   <!-- }}} -->
+   <!-- M clusters {{{ -->
+   <div class="div_map">
+    <div class="clip_map"><img class="clip_map_M1" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_M2" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_M3" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_M4" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_M5" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_M6" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_M7" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_M8" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_M9" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_MA" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_MB" src="images/Cheat_TabSpace_3.png"></div>
+   </div>
+   <!-- }}} -->
+   <!-- R clusters {{{ -->
+   <div class="div_map">
+    <div class="clip_map"><img class="clip_map_R1" src="images/Cheat_TabSpace_3.png" onclick='toggle_div(this,"applying_rules_arithmetic");' title="arithmetic"></div>
+    <div class="clip_map"><img class="clip_map_R2" src="images/Cheat_TabSpace_3.png" onclick='toggle_div(this,"applying_rules_arithmetic");' title="arithmetic"></div>
+    <div class="clip_map"><img class="clip_map_R3" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_R4" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_R5" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_R6" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_R7" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_R8" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_R9" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_RA" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_RB" src="images/Cheat_TabSpace_3.png"></div>
+   </div>
+   <!-- }}} -->
+   <!-- L clusters {{{ -->
+   <div class="div_map">
+    <div class="clip_map"><img class="clip_map_L1" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_L2" src="images/Cheat_TabSpace_3.png" onclick='toggle_div(this,"applying_rules_signs");' title="signs"></div>
+    <div class="clip_map"><img class="clip_map_L3" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_L4" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_L5" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_L6" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_L7" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_L8" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_L9" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_LA" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_LB" src="images/Cheat_TabSpace_3.png"></div>
+   </div>
+   <!-- }}} -->
+
+  <!-- applying_rules_signs {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "applying_rules_signs");'>Signs<span class="wh4">1</span></div>
+  <div id="div_applying_rules_signs" class="collapsed">
 
    <p>
-   Applying those guidelines, most standard signs can be mapped into pads L1 and L2,
-   in first and second column of the last
+   By applying our guidelines, most standard signs can be mapped into pads L1 and L2
+   (first and second column of the last
    <a href="layout_browser.html" target="layout_browser">Twiddler 3 Layout</a>
-   row taking advantage of symmetry:
+   row).
+   <span class="rules">symmetry</span>
+   <span class="rules">proximity</span>
    <!-- L1 L2 {{{ -->
 <pre style="padding:4px !important; width:190px;"
 >     L1            L2
@@ -805,11 +900,13 @@ num   00ll = SCROLL_LOCK
    </p>
 
    </div> <!-- }}} -->
-   <!-- twiddler3_arithmetic {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_arithmetic");'>Arithmetic</div>
-   <div id="div_twiddler3_arithmetic" class="collapsed">
-    <i>
-   Arithmetic symbols on <em>R2 pair x6</em> put them close to the <em>R1 single x9</em> numberpad.
+   <!-- applying_rules_arithmetic {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic");'>Arithmetic<span class="wh4">2</span></div>
+   <div id="div_applying_rules_arithmetic" class="collapsed">
+    <p>
+     Arithmetic symbols on <em>R2 pair x6</em> put them close to the <em>R1 single x9</em> numberpad.
+     <span class="rules">proximity</span>
+     </p>
 <!-- R1 R2 {{{ -->
 <pre style="padding:4px !important; width:190px;"
 >     R1            R2
@@ -823,42 +920,33 @@ num   00ll = SCROLL_LOCK
 ></div
 ></pre>
 <!-- }}} -->
-   <p class="rules">
-   When mappings  are close to one another, it means they share one or more <em>major fingers</em> combinations.
-   The most significant finger, from index-to-pinky, would hopefully cover a whole category down to sub-categories.
-   Those categories can relate to <em>functional</em> or <em>visual</em> domains, whichever makes more sense.
-   The best to be expected from a good organization is to be applicable in more than a single occasion.
-   <br>
-   <br>
-   In this case, index finger is pressing <em>BS modifier</em> for numbers, the period and the main arithmetic operators.
-   </p>
 <!-- 0 {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_arithmetic_0");'><em>0</em></div>
-   <div id="div_twiddler3_arithmetic_0" class="collapsed">
+   <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic_0");'><em>0</em></div>
+   <div id="div_applying_rules_arithmetic_0" class="collapsed">
     <em>0</em> is special enough to deserve some special placement.
     <p>
-    Although a hardware numberpad gives it a larger keycap under <em>1</em> and <em>2</em>,
+    Although a stardard numberpad gives it a larger keycap under <em>1</em> and <em>2</em>,
     the <em>Twiddler ORML encoding</em> cannot accommodate for 2 keys on the same row.
     <p>
-    The best mapping granted by the <em>supported chords merit rule</em> for pad <em>R2</em> of <em>Num</em> layer is <span class="gr"><em>Num R2</em> 2B </span>.
+    The best mapping granted by the <em>supported chords merit rule</em> for pad <em>R2</em> is <span class="gr"><em>R2</em> 2B </span>.
    </div>
 <!-- }}} -->
 <!-- equal {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_arithmetic_equal");'><em>=</em></div>
-   <div id="div_twiddler3_arithmetic_equal" class="collapsed">
-    From the 5 remaining chords of <em>Num R2 pad</em>, we can secure 2 pairs by placing <em>=</em> under <em>0</em>.
-   </div>
-<!-- }}} -->
-<!-- plus_minus {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_arithmetic_plus_minus");'><em>+</em> and <em>-</em></div>
-   <div id="div_twiddler3_arithmetic_plus_minus" class="collapsed">
-    <em>+</em> above <em>-</em> makes one pair of <em>functionally related symbols</em>.
+   <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic_equal");'><em>=</em></div>
+   <div id="div_applying_rules_arithmetic_equal" class="collapsed">
+    From the 5 remaining chords of <em>R2 pad</em>, we can secure 2 pairs by placing <em>=</em> under <em>0</em>.
    </div>
 <!-- }}} -->
 <!-- dot star {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_arithmetic_dot_star");'><em>.</em> and <em>*</em></div>
-   <div id="div_twiddler3_arithmetic_dot_star" class="collapsed">
+   <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic_dot_star");'><em>.</em> and <em>*</em></div>
+   <div id="div_applying_rules_arithmetic_dot_star" class="collapsed">
     <em>.</em> above <em>*</em> makes one pair of <em>visually related symbols</em>.
+   </div>
+<!-- }}} -->
+<!-- plus_minus {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic_plus_minus");'><em>+</em> and <em>-</em></div>
+   <div id="div_applying_rules_arithmetic_plus_minus" class="collapsed">
+    <em>+</em> above <em>-</em> makes one pair of <em>functionally related symbols</em>.
    </div>
 <!-- }}} -->
     <hr>
@@ -867,7 +955,7 @@ num   00ll = SCROLL_LOCK
 
     </div> <!-- }}} -->
    <!-- twiddler3_locks {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_locks");'>Locks</div>
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_locks");'>Locks<span class="wh4">3</span></div>
    <div id="div_twiddler3_locks" class="collapsed">
     <p>
     We currently have two good reasons to move TabSpace assignment for <em>NumLock</em>, <em>CapsLock</em> and <em>ScrollLock</em>:
@@ -896,13 +984,13 @@ num   00ll = SCROLL_LOCK
 ></div
 ></pre>
 
-    <p class="rules">
+    <p>
     As a first easy decision, considering how Num layer pads are scarcely used at this stage,
     moving <em>NumLock</em>, <em>ScrollLock</em> and <em>PageLock</em>
     to lower <em>R2 pair x6</em> seems to be a choice <em class='todo'>temporarily! as good as any</em>.
     </p> 
     </div> <!-- }}} -->
-  <!-- ...todo... {{{ -->
+  <!-- todo... {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "twiddler3_todo");'>...todo...</div>
   <div id="div_twiddler3_todo" class="collapsed">
    Find a good place for:
@@ -910,14 +998,14 @@ num   00ll = SCROLL_LOCK
    <br><em>@</em> <em>%</em> <em>&amp;</em>
   </div>
   <!-- }}} -->
-   <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "twiddler3");'>
+   <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "applying_rules");'>
    <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
   </div> <!-- }}} -->
-    <!-- twiddler3_mcc {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc");'>Multi Characters Chords <span class="wh4">&hellip;</span></div>
+    <!-- MCC {{{ -->
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc");'>Multi Characters Chords <span class="wh5">&hellip;</span></div>
     <div id="div_twiddler3_mcc" class="collapsed">
     <!-- twiddler3_mcc_hotstrings {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_hotstrings");'>Hotstrings <span class="wh4">1</span></div>
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_hotstrings");'>Hotstrings <span class="wh5">1</span></div>
     <div id="div_twiddler3_mcc_hotstrings" class="collapsed">
      <p>
      Getting multiple keystrokes from a single chord should not be considered a simple
@@ -954,7 +1042,7 @@ num   00ll = SCROLL_LOCK
     </div>
     <!-- }}} -->
     <!-- twiddler3_mcc_num {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_num");'>TabSpace MCC <span class="wh4">2</span></div>
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_num");'>TabSpace MCC <span class="wh5">2</span></div>
     <div id="div_twiddler3_mcc_num" class="collapsed">
      <p class="rules">
      In this case, using the <em>Num thumb-modifier</em> can be seen as a <em class='todo'>mode-switching gesture</em>
@@ -995,8 +1083,8 @@ num   00ll = SCROLL_LOCK
    <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "twiddler3_mcc");'>
    <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
     </div> <!-- }}} -->
-  <!-- cheat sheets {{{ -->
-  <div class="fold_title" onclick='toggle_div(this, "cheat_sheet");'>Collection of Cheat Sheets <span class="wh5">&hellip;</span></div>
+  <!-- Cheat Sheets {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "cheat_sheet");'>Collection of Cheat Sheets <span class="wh6">&hellip;</span></div>
   <div id="div_cheat_sheet" class="collapsed" style="text-align:left;">
    <p>
    <a href="layout_browser.html" target="layout_browser">The Layout browser</a>

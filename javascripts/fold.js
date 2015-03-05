@@ -7,8 +7,11 @@ function toggle_div(ttl,id) // {{{
     if(div.className == "expanded")
 	cache_expanded(div);
 
-    if(ttl)
-	ttl.style.opacity = (div.className == "expanded") ? "1.0" : "0.5"; // mark read
+    // mark read
+    if(ttl) {
+//	ttl.style.opacity = (div.className == "expanded") ? "1.0" : "0.5";
+	ttl.style.opacity = "0.5";
+    }
 
 } // }}}
 function expand_div(id) // {{{
