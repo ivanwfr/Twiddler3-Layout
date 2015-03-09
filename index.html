@@ -17,7 +17,7 @@
 <![endif]-->
 </head>
 <!-- }}} -->
-<body onload='expand_div("_applying_rules");' id="top">
+<body onload='expand_div("_twiddler3_clusters");' id="top">
 <div class="wrapper">
  <header><!-- {{{ -->
   <h1>Twiddler3-layout</h1>
@@ -55,11 +55,11 @@
   <a class="expander" href="#div_tabspace" onclick='expand_div("tabspace.1");'>TabSpace Guide<span class="wh1">&hellip;</span></a>
   by Brandon Craig Rhodes stands for the Twiddler standard layout.
   But why should we learn this if it makes sense only to the author?
-  A better idea would be getting involved in the build process.
+  A better idea would be to get involved in the build process.
   And if it's too late, having a chance to read the story
-  is the next best way to understand where it comes from.<br>
-  - This survey will check the rationale of these mappings
-  and build some additional reasoning when necessary.
+  is the next best way to understand where the results come from.
+  This survey is about checking the rationale of alternate mappings
+  and build some additional reasoning when some seems to be missing.
 
   </p> <!-- }}} -->
   <p><!-- ...supported {{{ -->
@@ -74,38 +74,41 @@
   into four more manageable 
   <a class="expander" href="#div_supported_3x3" onclick='expand_div("supported_3x3");'>3x3 chord set<span class="wh2">2</span></a>
   will give us a workable graphic representation.
-  Following the same idea, symbols can be grouped into a number of mapping categories.
-  Then, a first mapping scheme for the assignment process becomes a matter of looking how these two collections could be matched.
+  Following the same idea, symbols can be grouped into categories.
+  Then, a first mapping scheme for the assignment process becomes a matter of looking into a number of ways these two collections could be matched.
 
   </p> <!-- }}} -->
   <p><!-- ...making_rules {{{ -->
   <a class="expander" href="#div_making_rules" onclick='expand_div("making_rules");'>Making Layout Rules<span class="wh3">&hellip;</span></a>
-  involves sketching out mapping
+  involves sketching out some mapping strategies to be turned into
   <a class="expander" href="#div_twiddler3_rules" onclick='expand_div("twiddler3_rules");'>Rules<span class="wh3">1</span></a>
-  and defining some graphic clusters such as
+  we could use to define
   <a class="expander" href="#div_twiddler3_rows" onclick='expand_div("twiddler3_rows");'>Rows<span class="wh3">2</span></a>,
   <a class="expander" href="#div_twiddler3_columns" onclick='expand_div("twiddler3_columns");'>Columns<span class="wh3">3</span></a>,
   and
-  <a class="expander" href="#div_twiddler3_pads" onclick='expand_div("twiddler3_pads");'>Pads<span class="wh3">4</span></a>.
+  <a class="expander" href="#div_twiddler3_pads" onclick='expand_div("twiddler3_pads");'>Pads<span class="wh3">4</span></a>
+  graphic
+  <a class="expander" href="#div_twiddler3_clusters" onclick='expand_div("twiddler3_clusters");'>Clusters<span class="wh3">4</span></a>
+  .
   </p> <!-- }}} -->
 
   <p><!-- ...applying_rules {{{ -->
-  <a class="expander" href="#div_twiddler3_pads" onclick='expand_div("applying_rules");'>Applying rules<span class="wh4">&hellip;</span></a>
-  when grouping related 
-  visual (<a class="expander" href="#div_twiddler3_pads" onclick='expand_div("applying_rules_signs");'>Signs<span class="wh4">1</span></a>, &hellip;)
+  <a class="expander" href="#div_applying_rules" onclick='expand_div("applying_rules");'>Applying rules<span class="wh4">&hellip;</span></a>
+  while assembling clusters of 
+  visually related <span class='nowrap'>(<a class="expander" href="#div_applying_rules_signs" onclick='expand_div("applying_rules_signs");'>Signs<span class="wh4">1</span></a>, &hellip;)</span>
   and
-  functional (<a class="expander" href="#div_twiddler3_pads" onclick='expand_div("applying_rules_arithmetic");'>Arhthmetic<span class="wh4">2</span></a>, &hellip;)
-  clusters should give us the best mnemonic-friendly layout possible, provided good enough rules have been defined along the way.
+  functionally related <span class='nowrap'>(<a class="expander" href="#div_applying_rules_arithmetic" onclick='expand_div("applying_rules_arithmetic");'>Arithmetic<span class="wh4">2</span></a>, &hellip;)</span>
+  should give us the best possible mnemonic-friendly layout, provided good enough rules have been crafted along the way.
 
   </p> <!-- }}} -->
   <p><!-- ...MCC {{{ -->
 
   <a class="expander" href="#div_twiddler3_mcc" onclick='expand_div("twiddler3_mcc");'>Multi Character Chords<span class="wh5">&hellip;</span></a>
-  goes one step beyond simple one-to-one chord-character mappings,
-  <a class="expander" href="#div_twiddler3_mcc_num" onclick='expand_div("twiddler3_mcc_num");'>TabSpace MCC<span class="wh5">2</span></a>
-  defines a number of static bindings
-  and a further step could use something like
-  <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>
+  goes one step beyond simple one&ndash;to&ndash;one chord&ndash;to&ndash;character mappings,
+  If <a class="expander" href="#div_twiddler3_mcc_num" onclick='expand_div("twiddler3_mcc_num");'>TabSpace MCC<span class="wh5">2</span></a>
+  defines a number of static bindings,
+  a further step could use something like
+  <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img style='margin-top:-.5ex;' src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>
   to handle dynamic
   <a class="expander" href="#div_twiddler3_mcc_hotstrings" onclick='expand_div("twiddler3_mcc_hotstrings");'>hotstrings<span class="wh5">1</span></a>.
   </p> <!-- }}} -->
@@ -441,7 +444,7 @@ num   00ll = SCROLL_LOCK
    <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "tabspace");'>
    <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
   </div> <!-- }}} -->
-  <!-- Supported {{{ -->
+  <!-- Supported chords {{{ -->
   <div class="fold_title" onclick='toggle_div(this,"supported");'>Supported chords <span class="wh2">&hellip;</span></div>
   <div id="div_supported" class="collapsed">
    <p><!-- same row {{{ -->
@@ -459,7 +462,7 @@ num   00ll = SCROLL_LOCK
    <i>Not covered here, less practical <i>(yet usable)</i> combinations of 2 modifiers
      on the first and second row
      of the 3x3 sub-pads
-     allows 24 more mappings.</i>
+     allows more mappings.</i>
    </p>
    <!-- }}} -->
    <!-- supported_4x4 {{{ -->
@@ -490,6 +493,10 @@ num   00ll = SCROLL_LOCK
    <em>63 = (4^3 - 1)</em>
    Some chords stand out enough to justify a mapping to prominent keystrokes.
    <p>
+   <div class="rules">Chord rank<br>
+    Inside each pad, the most deserving symbol should get the best available ranked chord yet available.
+   </div>
+   <hr>
 <!-- legend {{{ -->
 <div style="float:left;">
 
@@ -601,7 +608,7 @@ num   00ll = SCROLL_LOCK
    <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "supported");'>
    <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
   </div> <!-- }}} -->
-  <!-- Making {{{ -->
+  <!-- Making rules {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "making_rules");'>Making rules<span class="wh3">&hellip;</span></div>
   <div id="div_making_rules" class="collapsed">
    <p><!-- ...intro {{{ -->
@@ -631,7 +638,7 @@ num   00ll = SCROLL_LOCK
     so that they would help at times we have to define new mappings.
     </p>
     <p>
-    Now, where is the authority in charge for making some rules in this domain?
+    Now, where is the authority in charge of making rules in this domain?
     When Wikipedia and Google can't answer the question, I won't even try to.
     The best I can do is to go on with every single piece of available information
     and have a look at the result.
@@ -643,10 +650,10 @@ num   00ll = SCROLL_LOCK
     If this is the case, those decisions will have enough commonalities
     that they could be used to work out some rules.
     </p>
-    <p class="rules">
-    Some clues for this process are spread inside each topic.
-    We'll see how they can be synthesized near the end...
-    </p>
+    <div class="rules">
+    Some clues for the rule crafting process are spread inside each topic.
+    We'll see how they add up so we can build rules near the end...
+    </div>
    </div> <!-- }}} -->
    <!-- twiddler3_rows {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_rows");'>Rows rules<span class="wh3">2</span></div>
@@ -748,7 +755,9 @@ num   00ll = SCROLL_LOCK
     <p style="font-size:80%;">
     <i>
      Note: The 4x11 layout can be further extended to include the less practical, but still usable,
-     combinations of 2 modifiers on the first and second row of the 3x3 sub-sub-pads to obtain 24 more mappings.
+     combinations of 2 modifiers on the first and second row of the 3x3 sub-sub-pads to obtain <em>18 = 3x(3x2)</em> more mappings
+     looking just like 3 more <em>Col 9-11</em> but with one of 3x3 top <em>R</em><em>M</em><em>L</em> pressed by the middle finger.
+    
     </i>
     </p>
     <!-- }}} -->
@@ -756,26 +765,30 @@ num   00ll = SCROLL_LOCK
    <!-- twiddler3_pads {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_pads");'>Pads rules<span class="wh3">4</span></div>
    <div id="div_twiddler3_pads" class="collapsed">
+   <div class="rules">team of symbols</div>
    <p>
    Under rows and columns, <em>pads</em> will receive
-   groups of related symbols displayed as
-   a collection of cards.
+   groups of related symbols that
+   we can display as we would a collection of cards.
    </p>
 
+   <div class="rules">silhouetted shapes</div>
    <p>
-   Then, we will have to decide how to distribute symbols
-   in a way that will make sense for the next stage of this approach
-   where it be question of memorizing the layout.
+   Now, we have to decide how to distribute symbols
+   in a way that makes sense for the next stage
+   which is about memorizing the layout.
    </p>
 
+   <div class="rules">familiar shape</div>
    <p>
-   Inside each pad, symbol disposition should
-   emphasize a <em>functional</em> or a <em>visual</em> domain &ndash; whichever makes more sense &ndash;
+   Inside each pad, symbols disposition should
+   emphasize a <em>functional</em> or a <em>visual</em> domain (whichever makes more sense)
    working with the idea that good <em>mnemonic metaphores</em>
    will come more easily if we can identify <em>symbols categories</em>
-   that can be clearly described.
+   that can be looked at as a whole.
    </p>
 
+   <div class="rules">ranked pad allocation</div>
    <p>
    At this point, the mapping process would become a question of
    associating each <em>symbol category</em> to one of the available <em>pads</em>.
@@ -785,20 +798,17 @@ num   00ll = SCROLL_LOCK
    <!-- twiddler3_clusters {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "twiddler3_clusters");'>Clusters rules<span class="wh3">5</span></div>
   <div id="div_twiddler3_clusters" class="collapsed">
-<p class="rules"><!-- {{{ -->
+   <div class="rules">pads proximity</div>
    When mappings  are close to one another, it means they share one or more <em>major fingers</em> combinations.
-   The most significant finger, from index-to-pinky, would hopefully cover a whole category down to sub-categories.
+   The most agile finger, from index to pinky, would hopefully cover a whole category down to sub-categories.
    Those categories can relate to <em>functional</em> or <em>visual</em> domains, whichever makes more sense.
    The best to be expected from a good organization is to be applicable in more than a single occasion.
    <br>
-   <br>
-   In this case, index finger is pressing <em>BS modifier</em> for numbers, the period and the main arithmetic operators.
-   </p> <!-- }}} -->
   </div> <!-- }}} -->
    <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "making_rules");'>
    <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
   </div> <!-- }}} -->
-  <!-- Applying {{{ -->
+  <!-- Applying rules {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "applying_rules");'>Applying rules<span class="wh4">&hellip;</span></div>
   <div id="div_applying_rules" class="collapsed">
    <p><!-- ...intro {{{ -->
@@ -882,8 +892,8 @@ num   00ll = SCROLL_LOCK
    (first and second column of the last
    <a href="layout_browser.html" target="layout_browser">Twiddler 3 Layout</a>
    row).
-   <span class="rules">symmetry</span>
-   <span class="rules">proximity</span>
+   <div class="rules">shapes symmetry</div>
+   <div class="rules">pads proximity</div>
    <!-- L1 L2 {{{ -->
 <pre style="padding:4px !important; width:190px;"
 >     L1            L2
@@ -905,7 +915,9 @@ num   00ll = SCROLL_LOCK
    <div id="div_applying_rules_arithmetic" class="collapsed">
     <p>
      Arithmetic symbols on <em>R2 pair x6</em> put them close to the <em>R1 single x9</em> numberpad.
-     <span class="rules">proximity</span>
+     <div class="rules">pads proximity<br>
+      In this <em>rules use case</em>, the index is pressing <em>4x4 BS modifier</em> for both <em>3x3 numbers</em> and <em>3x3 operators</em>.
+     </div>
      </p>
 <!-- R1 R2 {{{ -->
 <pre style="padding:4px !important; width:190px;"
@@ -1044,8 +1056,8 @@ num   00ll = SCROLL_LOCK
     <!-- twiddler3_mcc_num {{{ -->
     <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_num");'>TabSpace MCC <span class="wh5">2</span></div>
     <div id="div_twiddler3_mcc_num" class="collapsed">
-     <p class="rules">
-     In this case, using the <em>Num thumb-modifier</em> can be seen as a <em class='todo'>mode-switching gesture</em>
+     <p class="rules">Mode switching<br>
+     In this <em>rules use case</em>, involving the <em>Num thumb-modifier</em> can be seen as a <em class='todo'>mode-switching gesture</em>
      between <em>single keystrokes</em> and <em>Multi Characters Chords</em> input.
      </p>
 <!-- clip_img_h1 clip_img_h2 {{{ -->

@@ -1,11 +1,15 @@
+var COOKIE_DAYS = 2;
+
 function toggle_div(ttl,id) // {{{
 {
     var  div = document.getElementById("div_"+id);
     if( !div ) return;
     div.className = (div.className == "expanded") ? "collapsed" : "expanded";
 
-    if(div.className == "expanded")
+    if(div.className == "expanded") {
 	cache_expanded(div);
+	createCookie("expanded", id, COOKIE_DAYS);
+    }
 
     // mark read
     if(ttl) {
@@ -16,13 +20,23 @@ function toggle_div(ttl,id) // {{{
 } // }}}
 function expand_div(id) // {{{
 {
+    if(id=="top") eraseCookie("expanded");
+
     var div = document.getElementById("div_"+id);
     var nothing_to_expand = (div == null) || ((div != null) && (div.className == "expanded"));
 
     collapse_expanded();
 
-    if(nothing_to_expand)
-	return;
+    if(nothing_to_expand) {
+	id = readCookie("expanded");
+	div               = (id) ? document.getElementById("div_"+id) : null;
+	nothing_to_expand = (div == null) || ((div != null) && (div.className == "expanded"));
+	if(nothing_to_expand)
+	    return;
+    }
+    else {
+	createCookie("expanded", id, COOKIE_DAYS);
+    }
 
     // expand parent chain
     while(div != null) {
@@ -171,4 +185,53 @@ function compare_target() // {{{
     }
 
 } // }}}
+
+/* COOKIES */
+function createCookie(cName, value, days)// {{{
+{
+try {
+    if(days) {
+        var date    = new Date();
+
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+
+        var expires = "; expires=" + date.toGMTString();
+    }
+    else {
+        var expires = "";
+    }
+    document.cookie = cName + "=" + value + expires + "; path=/";
+} catch(ex) {}
+
+}
+// }}}
+function readCookie(cName) // {{{
+{
+    var value   = "";
+try {
+    var nameEQ  = cName + "=";
+    var ca      = document.cookie.split(';');
+    for(var i= 0; i < ca.length; ++i)
+    {
+        var s   = ca[ i ];
+
+        while(s.charAt(0) == ' ')
+            s = s.substring(1, s.length);
+
+        if(s.indexOf(nameEQ) == 0) {
+            value = s.substring(nameEQ.length, s.length);
+            //break;
+        }
+    }
+} catch(ex) {}
+
+    return value;
+}
+// }}}
+function eraseCookie(cName)// {{{
+{
+    createCookie(cName, "", -1);
+
+}
+// }}}
 

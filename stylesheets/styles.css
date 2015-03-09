@@ -19,6 +19,7 @@ body {
 }
 
 a { white-space:nowrap; }
+.nowrap { white-space:nowrap; }
 
 .wrapper {
   width: 640px;
@@ -443,7 +444,7 @@ footer p + p {
     color:navy;
 */
 #bottom_div {
-    height    : 80em;
+    height    : 60em;
     opacity   : 0.10; filter:alpha(opacity=100);
 }
 
