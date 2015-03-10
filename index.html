@@ -17,7 +17,7 @@
 <![endif]-->
 </head>
 <!-- }}} -->
-<body onload='expand_div("_twiddler3_clusters");' id="top">
+<body onload='expand_div("_twiddler3_rules");' id="top">
 <div class="wrapper">
  <header><!-- {{{ -->
   <h1>Twiddler3-layout</h1>
@@ -33,7 +33,7 @@
  </header>
  <!-- }}} -->
  <section>
-  <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
+  <div class="wrap_div" id="wrap_div_top" style="float:right; visibility:hidden;" onclick='expand_div("top");'><img title="all wrapped" src="images/cursor/top.png">                            </div>
   <!-- INTRO {{{ -->
   <h3><!-- {{{ -->
    <a
@@ -79,7 +79,7 @@
 
   </p> <!-- }}} -->
   <p><!-- ...making_rules {{{ -->
-  <a class="expander" href="#div_making_rules" onclick='expand_div("making_rules");'>Making Layout Rules<span class="wh3">&hellip;</span></a>
+  <a class="expander" href="#div_making_rules" onclick='expand_div("making_rules");'>Making rules<span class="wh3">&hellip;</span></a>
   involves sketching out some mapping strategies to be turned into
   <a class="expander" href="#div_twiddler3_rules" onclick='expand_div("twiddler3_rules");'>Rules<span class="wh3">1</span></a>
   we could use to define
@@ -95,9 +95,9 @@
   <p><!-- ...applying_rules {{{ -->
   <a class="expander" href="#div_applying_rules" onclick='expand_div("applying_rules");'>Applying rules<span class="wh4">&hellip;</span></a>
   while assembling clusters of 
-  visually related <span class='nowrap'>(<a class="expander" href="#div_applying_rules_signs" onclick='expand_div("applying_rules_signs");'>Signs<span class="wh4">1</span></a>, &hellip;)</span>
+  functionally related <span class='nowrap'>(<a class="expander" href="#div_applying_rules_arithmetic" onclick='expand_div("applying_rules_arithmetic");'>Arithmetic<span class="wh4">1</span></a>, &hellip;)</span>
   and
-  functionally related <span class='nowrap'>(<a class="expander" href="#div_applying_rules_arithmetic" onclick='expand_div("applying_rules_arithmetic");'>Arithmetic<span class="wh4">2</span></a>, &hellip;)</span>
+  visually related <span class='nowrap'>(<a class="expander" href="#div_applying_rules_signs" onclick='expand_div("applying_rules_signs");'>Signs<span class="wh4">2</span></a>, &hellip;)</span>
   should give us the best possible mnemonic-friendly layout, provided good enough rules have been crafted along the way.
 
   </p> <!-- }}} -->
@@ -105,12 +105,12 @@
 
   <a class="expander" href="#div_twiddler3_mcc" onclick='expand_div("twiddler3_mcc");'>Multi Character Chords<span class="wh5">&hellip;</span></a>
   goes one step beyond simple one&ndash;to&ndash;one chord&ndash;to&ndash;character mappings,
-  If <a class="expander" href="#div_twiddler3_mcc_num" onclick='expand_div("twiddler3_mcc_num");'>TabSpace MCC<span class="wh5">2</span></a>
+  If <a class="expander" href="#div_twiddler3_mcc_num" onclick='expand_div("twiddler3_mcc_num");'>TabSpace MCC<span class="wh5">1</span></a>
   defines a number of static bindings,
   a further step could use something like
   <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img style='margin-top:-.5ex;' src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>
   to handle dynamic
-  <a class="expander" href="#div_twiddler3_mcc_hotstrings" onclick='expand_div("twiddler3_mcc_hotstrings");'>hotstrings<span class="wh5">1</span></a>.
+  <a class="expander" href="#div_twiddler3_mcc_hotstrings" onclick='expand_div("twiddler3_mcc_hotstrings");'>hotstrings<span class="wh5">2</span></a>.
   </p> <!-- }}} -->
   <p><!-- ...cheatsheets {{{ -->
 
@@ -118,7 +118,7 @@
   should make enough sense to account for the usefulness of this study, hopefully.
   </p> <!-- }}} -->
   <!-- }}} -->
-  <!-- Tabspace {{{ -->
+  <!-- TabSpace {{{ -->
   <div class="fold_title" onclick='toggle_div(this,"tabspace");'>Starting from TabSpace<span class="wh1">&hellip;</span></div>
   <div id="div_tabspace" class="collapsed">
    <div class="fold_title" onclick='toggle_div(this,"tabspace.1");'>Credit</div><!-- {{{ -->
@@ -441,8 +441,8 @@ num   00rr = NUM_LOCK
 num   00ll = SCROLL_LOCK
     </pre>
    </div><!-- }}} -->
-   <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "tabspace");'>
-   <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
+   <div class="wrap_div" onclick='toggle_div(this, "tabspace");'><img title="collapse" src="images/cursor/left.png">Starting from TabSpace</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png">                            </div>
   </div> <!-- }}} -->
   <!-- Supported chords {{{ -->
   <div class="fold_title" onclick='toggle_div(this,"supported");'>Supported chords <span class="wh2">&hellip;</span></div>
@@ -605,8 +605,8 @@ num   00ll = SCROLL_LOCK
 </pre> <!-- }}} -->
     </p>
    </div> <!-- }}} -->
-   <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "supported");'>
-   <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
+   <div class="wrap_div" onclick='toggle_div(this, "supported");'><img title="collapse" src="images/cursor/left.png">Supported chords</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png">                            </div>
   </div> <!-- }}} -->
   <!-- Making rules {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "making_rules");'>Making rules<span class="wh3">&hellip;</span></div>
@@ -617,15 +617,18 @@ num   00ll = SCROLL_LOCK
    A better graphical representation should help
    at making a decision for some mapping choices.
    <p>
-   What follows is not supposed to be solutions based on some random thoughts
-   or any kind of clever study.
-   Each step description must be seen as an opportunity to take control
-   and derive an alternate or customized version.
-   Comments and suggestions would be the best way to contribute.
+   What follows is not
+   based on some random thoughts
+   or any kind of obscure clever study you would find a link to in a footnote.
+
+   Each step will have a description
+   that must be seen as an opportunity for critics
+   or some custom version based on different premises.
    </p>
-   <p>
-   <i>...still looking for a suitable forum...</i>
-   </p>
+   <i>
+    Comments and suggestions would be a good way to contribute
+    but I'm still looking for a suitable forum!
+   </i>
    <!-- }}} -->
 <!-- twiddler3_rules {{{ -->
 <div class="fold_title" onclick='toggle_div(this, "twiddler3_rules");'>Rules? <span class="wh3">1</span></div>
@@ -639,28 +642,31 @@ num   00ll = SCROLL_LOCK
     </p>
     <p>
     Now, where is the authority in charge of making rules in this domain?
-    When Wikipedia and Google can't answer the question, I won't even try to.
-    The best I can do is to go on with every single piece of available information
-    and have a look at the result.
+    When Wikipedia and Google can't answer the question,
+    the best we can do is to go on with every single piece of available information
+    and see where it goes.
     </p>
     <p>
-    The result will be a bunch of decisions that made sense only
-    when working on a particular pad without even trying to see the big picture.
+    The result will be a list of decisions that made sense
+    while working on a particular pad, not looking at the big picture.
     If we are lucky, some scheme could come up from reverse-engineering.
-    If this is the case, those decisions will have enough commonalities
+    If this is the case, some decisions will have enough commonalities
     that they could be used to work out some rules.
     </p>
     <div class="rules">
-    Some clues for the rule crafting process are spread inside each topic.
-    We'll see how they add up so we can build rules near the end...
+     Crafting rules<br>
+     Some clues are spread inside each topic.
+     We'll see if we can add them up in such a way
+     we can turn some of them into rules near the end&hellip;
     </div>
+    <br style='clear:left;'>
    </div> <!-- }}} -->
    <!-- twiddler3_rows {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_rows");'>Rows rules<span class="wh3">2</span></div>
    <div id="div_twiddler3_rows" class="collapsed">
     <p>
     The proposed layout pads are organized in 4 rows of 11 columns.
-    Each row corresponds to the four possible ways the index finger may use
+    Each row corresponds to one of the four ways the index finger may use
     the three buttons of the first row <em>BS</em>, <em>Space</em> and <em>Tab</em>
     turning them into modifiers, quite like this is the case on a standard keyboard with
     <em>Shift</em>, <em>Control</em> and <em>Alt</em>.
@@ -788,10 +794,13 @@ num   00ll = SCROLL_LOCK
    that can be looked at as a whole.
    </p>
 
-   <div class="rules">ranked pad allocation</div>
+   <div class="rules">ranked symbols</div>
+   <div class="rules">ranked pads</div>
    <p>
-   At this point, the mapping process would become a question of
-   associating each <em>symbol category</em> to one of the available <em>pads</em>.
+   At this point, the mapping process becomes a question of
+   associating each <em>symbol category</em> to one of the available <em>pads</em>
+   and reserving the most accessible pads for the most used symbols
+   suggest the right order in which to do that.
    </p>
 
   </div> <!-- }}} -->
@@ -805,8 +814,8 @@ num   00ll = SCROLL_LOCK
    The best to be expected from a good organization is to be applicable in more than a single occasion.
    <br>
   </div> <!-- }}} -->
-   <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "making_rules");'>
-   <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
+   <div class="wrap_div" onclick='toggle_div(this, "making_rules");'><img title="collapse" src="images/cursor/left.png">Making rules</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png">                            </div>
   </div> <!-- }}} -->
   <!-- Applying rules {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "applying_rules");'>Applying rules<span class="wh4">&hellip;</span></div>
@@ -854,8 +863,8 @@ num   00ll = SCROLL_LOCK
    <!-- }}} -->
    <!-- R clusters {{{ -->
    <div class="div_map">
-    <div class="clip_map"><img class="clip_map_R1" src="images/Cheat_TabSpace_3.png" onclick='toggle_div(this,"applying_rules_arithmetic");' title="arithmetic"></div>
-    <div class="clip_map"><img class="clip_map_R2" src="images/Cheat_TabSpace_3.png" onclick='toggle_div(this,"applying_rules_arithmetic");' title="arithmetic"></div>
+    <div class="clip_map"><img class="clip_map_R1" src="images/Cheat_TabSpace_3.png" onclick='toggle_div(this,"applying_rules_arithmetic");' title="Arithmetic..."></div>
+    <div class="clip_map"><img class="clip_map_R2" src="images/Cheat_TabSpace_3.png" onclick='toggle_div(this,"applying_rules_arithmetic");' title="Arithmetic..."></div>
     <div class="clip_map"><img class="clip_map_R3" src="images/Cheat_TabSpace_3.png"></div>
     <div class="clip_map"><img class="clip_map_R4" src="images/Cheat_TabSpace_3.png"></div>
     <div class="clip_map"><img class="clip_map_R5" src="images/Cheat_TabSpace_3.png"></div>
@@ -870,7 +879,7 @@ num   00ll = SCROLL_LOCK
    <!-- L clusters {{{ -->
    <div class="div_map">
     <div class="clip_map"><img class="clip_map_L1" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_L2" src="images/Cheat_TabSpace_3.png" onclick='toggle_div(this,"applying_rules_signs");' title="signs"></div>
+    <div class="clip_map"><img class="clip_map_L2" src="images/Cheat_TabSpace_3.png" onclick='toggle_div(this,"applying_rules_signs");' title="Signs..."></div>
     <div class="clip_map"><img class="clip_map_L3" src="images/Cheat_TabSpace_3.png"></div>
     <div class="clip_map"><img class="clip_map_L4" src="images/Cheat_TabSpace_3.png"></div>
     <div class="clip_map"><img class="clip_map_L5" src="images/Cheat_TabSpace_3.png"></div>
@@ -883,35 +892,8 @@ num   00ll = SCROLL_LOCK
    </div>
    <!-- }}} -->
 
-  <!-- applying_rules_signs {{{ -->
-  <div class="fold_title" onclick='toggle_div(this, "applying_rules_signs");'>Signs<span class="wh4">1</span></div>
-  <div id="div_applying_rules_signs" class="collapsed">
-
-   <p>
-   By applying our guidelines, most standard signs can be mapped into pads L1 and L2
-   (first and second column of the last
-   <a href="layout_browser.html" target="layout_browser">Twiddler 3 Layout</a>
-   row).
-   <div class="rules">shapes symmetry</div>
-   <div class="rules">pads proximity</div>
-   <!-- L1 L2 {{{ -->
-<pre style="padding:4px !important; width:190px;"
->     L1            L2
-  single x9      pair x6
-<div class="clip_div_pad" style="display:inline-block;"
-><img class="clip_img_L1" src="images/Cheat_TabSpace_3.png"
-></div
-><span style="width:3em; margin-right:2px;"> &nbsp;</span
-><div class="clip_div_pad" style="display:inline-block;"
-><img class="clip_img_L2" src="images/Cheat_TabSpace_3.png"
-></div
-></pre>
-   <!-- }}} -->
-   </p>
-
-   </div> <!-- }}} -->
    <!-- applying_rules_arithmetic {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic");'>Arithmetic<span class="wh4">2</span></div>
+   <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic");'>Arithmetic<span class="wh4">1</span></div>
    <div id="div_applying_rules_arithmetic" class="collapsed">
     <p>
      Arithmetic symbols on <em>R2 pair x6</em> put them close to the <em>R1 single x9</em> numberpad.
@@ -966,6 +948,33 @@ num   00ll = SCROLL_LOCK
     </p>
 
     </div> <!-- }}} -->
+  <!-- applying_rules_signs {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "applying_rules_signs");'>Signs<span class="wh4">2</span></div>
+  <div id="div_applying_rules_signs" class="collapsed">
+
+   <p>
+   By applying our guidelines, most standard signs can be mapped into pads L1 and L2
+   (first and second column of the last
+   <a href="layout_browser.html" target="layout_browser">Twiddler 3 Layout</a>
+   row).
+   <div class="rules">shapes symmetry</div>
+   <div class="rules">pads proximity</div>
+   <!-- L1 L2 {{{ -->
+<pre style="padding:4px !important; width:190px;"
+>     L1            L2
+  single x9      pair x6
+<div class="clip_div_pad" style="display:inline-block;"
+><img class="clip_img_L1" src="images/Cheat_TabSpace_3.png"
+></div
+><span style="width:3em; margin-right:2px;"> &nbsp;</span
+><div class="clip_div_pad" style="display:inline-block;"
+><img class="clip_img_L2" src="images/Cheat_TabSpace_3.png"
+></div
+></pre>
+   <!-- }}} -->
+   </p>
+
+   </div> <!-- }}} -->
    <!-- twiddler3_locks {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_locks");'>Locks<span class="wh4">3</span></div>
    <div id="div_twiddler3_locks" class="collapsed">
@@ -1010,55 +1019,18 @@ num   00ll = SCROLL_LOCK
    <br><em>@</em> <em>%</em> <em>&amp;</em>
   </div>
   <!-- }}} -->
-   <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "applying_rules");'>
-   <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
+   <div class="wrap_div" onclick='toggle_div(this, "applying_rules");'><img title="collapse" src="images/cursor/left.png">Applying rules</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png">                            </div>
   </div> <!-- }}} -->
     <!-- MCC {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc");'>Multi Characters Chords <span class="wh5">&hellip;</span></div>
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc");'>Multi Character Chords <span class="wh5">&hellip;</span></div>
     <div id="div_twiddler3_mcc" class="collapsed">
-    <!-- twiddler3_mcc_hotstrings {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_hotstrings");'>Hotstrings <span class="wh5">1</span></div>
-    <div id="div_twiddler3_mcc_hotstrings" class="collapsed">
-     <p>
-     Getting multiple keystrokes from a single chord should not be considered a simple
-     extra that comes handy with a chorded keyboard.
-     </p>
-     <p>
-     In fact, we can already get something similar using a standard keyboard with the help of some hotstring handler like
-  <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>.
-     Why does it seem so natural to expect this kind of feature from this device?
-     </p>
-     <p>
-     Aside from the wrong reasons that could explain why most don't even try to learn how to master a hotstring handler,
-     the Twiddler don't let you be this lazy.
-     Not taking the time to deal with the customization tool
-     would defeat the minimum commitment every user has opted in at purchase time.
-     Using the device as a keyboard replacement would be like waisting 90% of its possibilities!
-     </p>
-     <p>
-     Still, there is a real difference between this device and a keyboard. It has to do with the way its 14 keys
-     are used.
-     The number of different inputs we expect from a standard keyboard are close to the number of its keys.
-     The "chording part" that involves modifiers like Shift, Control and Alt is only an accessory feature.
-     Looking at the real potential of chording,
-     which is what a Twiddler is all about,
-     opens such a huge number of possibilities
-     beyond handling one single character per chord
-     that this is in fact a first class feature.
-     </p>
-     <p>Exploring multi character input feature deserves more than a simple approach
-     but a few steps should be made in that direction
-     while introducing the collection of <em>2 letters</em> and <em>3 letters</em>
-     hotstrings defined by TabSpace.
-     </p>
-    </div>
-    <!-- }}} -->
     <!-- twiddler3_mcc_num {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_num");'>TabSpace MCC <span class="wh5">2</span></div>
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_num");'>TabSpace MCC <span class="wh5">1</span></div>
     <div id="div_twiddler3_mcc_num" class="collapsed">
      <p class="rules">Mode switching<br>
      In this <em>rules use case</em>, involving the <em>Num thumb-modifier</em> can be seen as a <em class='todo'>mode-switching gesture</em>
-     between <em>single keystrokes</em> and <em>Multi Characters Chords</em> input.
+     between <em>single keystrokes</em> and <em>Multi Character Chords</em> input.
      </p>
 <!-- clip_img_h1 clip_img_h2 {{{ -->
 <pre style="padding:4px 4px 0 1em !important;">
@@ -1092,15 +1064,52 @@ num   00ll = SCROLL_LOCK
      </p>
     </div>
     <!-- }}} -->
-   <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "twiddler3_mcc");'>
-   <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
+    <!-- twiddler3_mcc_hotstrings {{{ -->
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_hotstrings");'>Hotstrings <span class="wh5">2</span></div>
+    <div id="div_twiddler3_mcc_hotstrings" class="collapsed">
+     <p>
+     Getting multiple keystrokes from a single chord should not be considered a simple
+     extra that comes handy with a chorded keyboard.
+     </p>
+     <p>
+     In fact, we can already get something similar using a standard keyboard with the help of some hotstring handler like
+  <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>.
+     Why does it seem so natural to expect this kind of feature from this device?
+     </p>
+     <p>
+     Aside from the wrong reasons that could explain why most don't even try to learn how to master a hotstring handler,
+     a Twiddler won't let you be that lazy.
+     Not taking the time to deal with the customization tool
+     would defeat the minimum commitment every user has opted in at purchase time.
+     Using the device as a keyboard replacement would be like waisting 90% of its possibilities!
+     </p>
+     <p>
+     Still, there is a real difference between this device and a keyboard. It has to do with the way its 12 main keys
+     are used.
+     The number of different inputs we expect from a standard keyboard are close to the number of its keys.
+     The "chording part" that involves modifiers like Shift, Control and Alt is only an accessory feature.
+     Looking at the real potential of chording,
+     which is what a Twiddler is all about,
+     shows such a huge number of possibilities
+     beyond handling one single character per chord.
+     In fact, sending whole words and phrases looks like something to be expected from the next keyboard generations.
+     </p>
+     <p>Exploring multi character input feature deserves more than a simple approach
+     but a few steps should be made in that direction
+     while introducing the collection of <em>2 letters</em> and <em>3 letters</em>
+     hotstrings defined by TabSpace.
+     </p>
+    </div>
+    <!-- }}} -->
+   <div class="wrap_div" onclick='toggle_div(this, "twiddler3_mcc");'><img title="collapse" src="images/cursor/left.png">Multi Character Chords</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png">                            </div>
     </div> <!-- }}} -->
   <!-- Cheat Sheets {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "cheat_sheet");'>Collection of Cheat Sheets <span class="wh6">&hellip;</span></div>
   <div id="div_cheat_sheet" class="collapsed" style="text-align:left;">
    <p>
    <a href="layout_browser.html" target="layout_browser">The Layout browser</a>
-   has an image switching process that can help while comparing these different layouts.
+   has an image switching mechanism that helps comparing these different layouts.
    </p>
    <!-- images {{{ -->
    <em>ORML Notation</em>
@@ -1148,9 +1157,8 @@ num   00ll = SCROLL_LOCK
     <img id="img8" style="width:80%; margin:1ex 0 2px 1ex;" src="images/Cheat_MessagEase.png">
    </a>
    <!-- }}} -->
-   <br>
-   <img class="wrap_img" title="collapse" src="images/cursor/left.png" onclick='toggle_div(this, "cheat_sheet");'>
-   <div style="float:right;"> <a class="expander" href="#top" onclick='expand_div("top");'><img class="wrap_img" title="top" src="images/cursor/up.png"></a> </div>
+   <div class="wrap_div"                      onclick='toggle_div(this, "cheat_sheet");'><img title="collapse" src="images/cursor/left.png">Collection of Cheat Sheets</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png"></div>
   </div>
   <!-- }}} -->
  </section>

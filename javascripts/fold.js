@@ -2,6 +2,8 @@ var COOKIE_DAYS = 2;
 
 function toggle_div(ttl,id) // {{{
 {
+    set_wrap_div_top_visibility(id);
+
     var  div = document.getElementById("div_"+id);
     if( !div ) return;
     div.className = (div.className == "expanded") ? "collapsed" : "expanded";
@@ -20,6 +22,8 @@ function toggle_div(ttl,id) // {{{
 } // }}}
 function expand_div(id) // {{{
 {
+    set_wrap_div_top_visibility(id);
+
     if(id=="top") eraseCookie("expanded");
 
     var div = document.getElementById("div_"+id);
@@ -48,6 +52,21 @@ function expand_div(id) // {{{
     }
 
 } // }}}
+
+function set_wrap_div_top_visibility(id) // {{{
+{
+    // ignore missing targets
+    if(id != "top") {
+	var div = document.getElementById("div_"+id);
+	if(!div) return;
+    }
+
+    // hide top most wrap_div when done
+    var wrap_div_top = document.getElementById("wrap_div_top");
+    if(wrap_div_top)
+	wrap_div_top.style.visibility = (id == "top") ? "hidden" : "visible";
+}
+// }}}
 
 var ExpandedArray = new Array();
 function cache_expanded(div) // {{{
