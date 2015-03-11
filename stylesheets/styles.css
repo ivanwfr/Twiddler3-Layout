@@ -371,6 +371,7 @@ footer p + p {
 }
 
  em { box-shadow: rgba(0, 0, 0, 0.2) 0 0.1em 0.1em; }
+ em { padding:0 .5ex 0 .5ex; }
 
 .collapsed { display:none;  }
 .expanded {
