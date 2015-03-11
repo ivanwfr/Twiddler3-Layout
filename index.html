@@ -1,0 +1,1263 @@
+<!doctype html>
+<html>
+<head><!-- {{{ -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<title>Twiddler3-layout by ivanwfr</title>
+
+<link rel="stylesheet" href="stylesheets/pygment_trac.css">
+<link rel="stylesheet" href="stylesheets/styles.css">
+<link rel="stylesheet" href="stylesheets/twiddler.css">
+<script src="javascripts/scale.fix.js"></script>
+<script src="javascripts/fold.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<!-- }}} -->
+<body onload='expand_div("_twiddler3_road_map");' id="top">
+<div class="wrapper">
+ <header><!-- {{{ -->
+  <h1>Twiddler3-layout</h1>
+  <p>Twiddler 3 - TabSpace Customization</p>
+  <p class="view"><a href="https://github.com/ivanwfr/Twiddler3-Layout"     target="_blank">View the Project on GitHub <small>ivanwfr/Twiddler3-Layout</small></a></p>
+  <ul>
+   <li><a href="layout_browser.html"                                        target="layout_browser">The Layout <strong>Browser</strong></a>
+   <li style='width:2px;'></li>
+   <!--li><a href="https://github.com/ivanwfr/Twiddler3-Layout/zipball/master" target="_blank">Download <strong>ZIP File</strong></a></li-->
+   <!--li><a href="https://github.com/ivanwfr/Twiddler3-Layout/tarball/master" target="_blank">Download <strong>TAR Ball</strong></a></li-->
+   <li><a href="https://github.com/ivanwfr/Twiddler3-Layout"                target="_blank">View On <strong>GitHub</strong></a></li>
+  </ul>
+ </header>
+ <!-- }}} -->
+ <section>
+  <div class="wrap_div" id="wrap_div_top" style="float:right; visibility:hidden;" onclick='expand_div("top");'><img title="all wrapped" src="images/cursor/top.png">                            </div>
+  <!-- INTRO {{{ -->
+
+  <h3><!-- {{{ -->
+   <a
+    id="welcome-to-github-pages"
+    class="anchor"
+    href="#welcome-to-github-pages"
+    aria-hidden="true">
+    <span class="octicon octicon-link"></span></a>
+   Looking into a chorded-keyboard layout standard
+  </h3> <!-- }}} -->
+  <!-- twiddler.tekgear.com {{{ -->
+  <div id="tek_gear" style="float:right; clear:right; margin-left:1em;">
+   <a href="http://twiddler.tekgear.com" target="tek_gear">
+    <img title="Twiddler 3 ... Tek Gear" src="images/front.png" width="192" height="500">
+   </a>
+  </div>
+  <!-- }}} -->
+  <p><!-- ...tabspace {{{ -->
+  <a class="expander" href="#div_tabspace" onclick='expand_div("tabspace.1");'>TabSpace Guide<span class="wh1">&hellip;</span></a>
+  by Brandon Craig Rhodes stands for the Twiddler standard layout.
+  But why should we learn this if it makes sense only to the author?
+  A better idea would be to get involved in the build process.
+  And if it's too late, having a chance to read the story
+  is the next best way to understand where the results come from.
+  This survey is about checking the rationale of alternate mappings
+  and build some additional reasoning when some seems to be missing.
+
+  </p> <!-- }}} -->
+  <p><!-- ...supported {{{ -->
+  The 
+  <a class="expander" href="#div_supported" onclick='expand_div("supported");'>Supported chords<span class="wh2">&hellip;</span></a>
+  will be analyzed, looking for usability factors
+  to define efficient mappings
+  that could replace simply good-looking patterns.
+
+  Breaking down the full
+  <a class="expander" href="#div_supported_4x4" onclick='expand_div("supported_4x4");'>4x4 chord set<span class="wh2">1</span></a>
+  into four more manageable 
+  <a class="expander" href="#div_supported_3x3" onclick='expand_div("supported_3x3");'>3x3 chord set<span class="wh2">2</span></a>
+  will give us a workable graphic representation.
+  Following the same idea, symbols can be segmented into categories.
+  Then, a first mapping scheme for the assignment process becomes a matter of looking into a number of ways these two collections could be matched.
+
+  </p> <!-- }}} -->
+  <p><!-- ...making_rules {{{ -->
+  <a class="expander" href="#div_making_rules" onclick='expand_div("making_rules");'>Making rules<span class="wh3">&hellip;</span></a>
+
+  involves sketching out some mapping strategies
+
+
+  based on some
+  <a class="expander" href="#div_twiddler3_road_map" onclick='expand_div("twiddler3_road_map");'>Rulling road map<span class="wh3">1</span></a>.
+  spelling out our objectives and how we are going to get there.
+  Gathering facts will bring enough material to craft an initial set of
+  <a class="expander" href="#div_twiddler3_work_rules" onclick='expand_div("twiddler3_work_rules");'>Work rules<span class="wh3">2</span></a>
+  so we can make an attempt to apply them and build a first complete layout.
+  </p> <!-- }}} -->
+  <p><!-- ...some_rules {{{ -->
+  <a class="expander" href="#div_some_rules" onclick='expand_div("some_rules");'>Some rules<span class="wh4">&hellip;</span></a>
+  reflecting our mapping strategies will take advantage of a graphical representation based on
+  <a class="expander" href="#div_twiddler3_rows" onclick='expand_div("twiddler3_rows");'>Rows<span class="wh4">1</span></a>,
+  <a class="expander" href="#div_twiddler3_columns" onclick='expand_div("twiddler3_columns");'>Columns<span class="wh4">2</span></a>,
+  <a class="expander" href="#div_twiddler3_pads" onclick='expand_div("twiddler3_pads");'>Pads<span class="wh4">3</span></a>
+  and some other
+  <a class="expander" href="#div_twiddler3_clusters" onclick='expand_div("twiddler3_clusters");'>Clusters<span class="wh4">4</span></a>
+  .
+  </p> <!-- }}} -->
+  <p><!-- ...applying_rules {{{ -->
+  <a class="expander" href="#div_applying_rules" onclick='expand_div("applying_rules");'>Applying rules<span class="wh5">&hellip;</span></a>
+  while assembling
+  functionally related <span class='nowrap'>(<a class="expander" href="#div_applying_rules_arithmetic" onclick='expand_div("applying_rules_arithmetic");'>Arithmetic<span class="wh5">1</span></a>, &hellip;)</span>
+  and
+  visually related <span class='nowrap'>(<a class="expander" href="#div_applying_rules_signs" onclick='expand_div("applying_rules_signs");'>Signs<span class="wh5">2</span></a>, &hellip;)</span>
+  should give us the best possible mnemonic-friendly layout, provided good enough rules have been crafted along the way.
+
+  </p> <!-- }}} -->
+  <p><!-- ...MCC {{{ -->
+  <a class="expander" href="#div_twiddler3_mcc" onclick='expand_div("twiddler3_mcc");'>Multi Character Chords<span class="wh6">&hellip;</span></a>
+  goes one step beyond simple one&ndash;to&ndash;one chord&ndash;to&ndash;character mappings,
+  If <a class="expander" href="#div_twiddler3_mcc_num" onclick='expand_div("twiddler3_mcc_num");'>TabSpace MCC<span class="wh6">1</span></a>
+  defines a number of static bindings,
+  a further step could use something like
+  <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img style='margin-top:-.5ex;' src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>
+  to handle dynamic
+  <a class="expander" href="#div_twiddler3_mcc_hotstrings" onclick='expand_div("twiddler3_mcc_hotstrings");'>hotstrings<span class="wh6">2</span></a>.
+  </p> <!-- }}} -->
+  <p><!-- ...cheatsheets {{{ -->
+  <a class="expander" href="#div_cheat_sheet" onclick='expand_div("cheat_sheet");'>Cheat Sheets<span class="wh7">&hellip;</span></a>
+  should make enough sense to account for the usefulness of this study, hopefully.
+  </p> <!-- }}} -->
+
+  <!-- }}} -->
+  <!-- TabSpace {{{ -->
+  <div class="fold_title" onclick='toggle_div(this,"tabspace");'>Starting from TabSpace<span class="wh1">&hellip;</span></div>
+  <div id="div_tabspace" class="collapsed">
+
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.1");'>Credit</div><!-- {{{ -->
+   <div id="div_tabspace.1" class="collapsed">
+    <pre>
+    Brandon Craig Rhodes http://www.rhodesmill.org/brandon
+    Version 0.3, Monday 15 November 1999
+    May be shared and modified if credited
+    </pre>
+    <a href="https://github.com/ivanwfr/Twiddler3-Layout/wiki/3.1-TabSpace-Guide" target="_blank">
+     The TabSpace Twiddler Key Assignments (PNG)
+    </a>
+    ...
+    <a href="http://rhodesmill.org/brandon/projects/tabspace-guide.pdf" target="_blank">
+     <small><i>original PDF document</i></small>
+    </a>
+   </div> <!-- }}} -->
+   <!-- tabspace.2 {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.2");'>The three top buttons</div>
+   <div id="div_tabspace.2" class="collapsed">
+    <pre>
+# The three top buttons map to the most frequently used keys.  Note
+# that in sane command line environments (those that support
+# completions), tab is used nearly as much as backspace and both are
+# often used many times per line (so we make them more convenient than
+# a carriage return).
+
+0     r000 = BACKSPACE
+0     m000 = " "
+0     l000 = TAB
+    </pre>
+   </div><!-- }}} -->
+   <!-- tabspace.3 {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.3");'>Nine most common letters &ndash; <em>2L strings</em></div>
+   <div id="div_tabspace.3" class="collapsed">
+    <pre>
+
+# Next are the nine most common letters, which can each be produced
+# with a single keypress.  They are carefully arranged so that the
+# most common combinations of them can be pressed simultaneously to
+# produce double letters.  In each case the double letter combinations
+# output their two constituent letters in the most common order
+# (though with some such as er-re it was a close call).  The doubles
+# can be expected to account for roughly one-third of the adjacent
+# letter pairs in normal English text!
+
+0     0m00 = "e"
+0     00m0 = "t"
+0     000m = "h"
+0     0l00 = "o"
+0     00l0 = "r"
+0     000l = "s"
+0     0r00 = "i"
+0     00r0 = "n"
+0     000r = "a"
+
+0     0r0r = "ai"
+0     0r0m = "hi"
+0     0r0l = "is"
+0     0rr0 = "in"
+0     0rm0 = "it"
+0     0rl0 = "ri"
+0     0m0r = "ea"
+0     0m0m = "he"
+0     0m0l = "es"
+0     0mr0 = "en"
+0     0mm0 = "te"
+0     0ml0 = "er"
+0     0l0r = "oa"
+0     0l0m = "ho"
+0     0l0l = "so"
+0     0lr0 = "on"
+0     0lm0 = "to"
+0     0ll0 = "or"
+0     00rr = "an"
+0     00rm = "hn"
+0     00rl = "ns"
+0     00mr = "at"
+0     00mm = "th"
+0     00ml = "st"
+0     00lr = "ar"
+0     00lm = "hr"
+0     00ll = "rs"
+    </pre>
+   </div><!-- }}} -->
+   <!-- tabspace.4 {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.4");'>Other letters with index finger on spacebar &ndash; <em>2L strings</em></div>
+   <div id="div_tabspace.4" class="collapsed">
+    <pre>
+# Every other letter is produced by pressing the top middle button
+# (the spacebar) and some combination of the lower keys.  It is
+# expected that during normal typing the index finger will stay on the
+# spacebar.  A few combinations that involve these second-tier letters
+# are also supported.
+
+0     mm00 = "d"
+0     m0m0 = "l"
+0     m00m = "m"
+0     mr00 = "c"
+0     m0r0 = "f"
+0     m00r = "g"
+0     ml00 = "u"
+0     m0l0 = "w"
+0     m00l = "y"
+0     mmm0 = "p"
+0     m0mm = "k"
+0     mrr0 = "b"
+0     m0rr = "j"
+0     mll0 = "v"
+0     m0ll = "x"
+0     mm0m = "q"
+0     ml0l = "z"
+
+0     mlr0 = "of"
+0     mmr0 = "nd"
+0     mr0m = "ch"
+0     ml0m = "qu"
+0     m0lm = "wh"
+    </pre>
+   </div><!-- }}} -->
+    <!-- tabspace.5 {{{ -->
+    <div class="fold_title" onclick='toggle_div(this,"tabspace.5");'>Three-letter combinations &ndash; <em>3L strings</em></div>
+   <div id="div_tabspace.5" class="collapsed">
+    <pre>
+# Finally, we support some three-letter combinations.  As above, note
+# that they are produced simply by pressing all of their letters
+# simulateously.
+
+0     0mmm = "the"
+0     0rrr = "ain"
+0     0mlr = "are"
+0     mrrr = "ing"
+0     mmrr = "and"
+0     mlrr = "ong"
+    </pre>
+   </div><!-- }}} -->
+    <!-- tabspace.6 {{{ -->
+    <div class="fold_title" onclick='toggle_div(this,"tabspace.6");'>Numberpad</div>
+   <div id="div_tabspace.6" class="collapsed">
+    <pre>
+# As everyone knows, keypads are supposed to be three by three.
+
+0     rr00 = "1"
+0     rm00 = "2"
+0     rl00 = "3"
+0     r0r0 = "4"
+0     r0m0 = "5"
+0     r0l0 = "6"
+0     r00r = "7"
+0     r00m = "8"
+0     r00l = "9"
+0     rrr0 = "0"
+0     rmm0 = "."
+0     rll0 = "-"
+    </pre>
+   </div><!-- }}} -->
+    <!-- tabspace.7 {{{ -->
+    <div class="fold_title" onclick='toggle_div(this,"tabspace.7");'>Math operators</div>
+   <div id="div_tabspace.7" class="collapsed">
+    <pre>
+# Below the number keypad we place three tiers of mathematical
+# operators and symbols.  First come the arithmetic operators, which
+# we cascade off of the minus sign.
+
+0     rlm0 = "+"
+0     rlr0 = "^"
+0     rl0l = "/"
+0     rl0m = "*"
+0     rl0r = "%"
+    </pre>
+   </div><!-- }}} -->
+    <!-- tabspace.8 {{{ -->
+    <div class="fold_title" onclick='toggle_div(this,"tabspace.8");'>Logic operators</div>
+   <div id="div_tabspace.8" class="collapsed">
+    <pre>
+# The middle tier of operators include those usually used for logic
+# operations.
+
+0     rmr0 = "&amp;"
+0     rml0 = "|"
+0     rm0m = "~"
+0     rm0r = "^"
+    </pre>
+   </div><!-- }}} -->
+    <!-- tabspace.9 {{{ -->
+    <div class="fold_title" onclick='toggle_div(this,"tabspace.9");'>Comparators</div>
+   <div id="div_tabspace.9" class="collapsed">
+    <pre>
+# The double key combinations along the bottom two rows
+# produce the comparitive operators.  Note that the greater than and
+# less than symbols, which we also use as angle brackets, are in
+# positions similar to all other brackets (see below).
+
+0     r0rr = "<"
+0     r0mm = ">"
+0     r0ll = "="
+    </pre>
+   </div><!-- }}} -->
+    <!-- tabspace.10 {{{ -->
+    <div class="fold_title" onclick='toggle_div(this,"tabspace.10");'>Punctuation, quotes and brackets</div>
+   <div id="div_tabspace.10" class="collapsed">
+    <pre>
+# The last major section involves punctuation.  The period, comma, and
+# enter key are both intended to be very easy to press.  The semicolon
+# is of course produced by pressing period and comma simultaneously.
+# Quotes and brackets are also available here.
+
+0     ll00 = "."
+0     lll0 = ";"
+0     l0l0 = ","
+0     l0ll = ":"
+0     l00l = 34     # quotation mark
+0     l00m = "'"
+0     l00r = "`"
+0     lm00 = ENTER
+0     lr00 = "-"
+0     lrr0 = "["
+0     lmm0 = "]"
+0     l0r0 = "("
+0     l0m0 = ")"
+0     l0rr = "{"
+0     l0mm = "}"
+    </pre>
+   </div><!-- }}} -->
+    <!-- tabspace.11 {{{ -->
+    <div class="fold_title" onclick='toggle_div(this,"tabspace.11");'>...more punctuation and computer specifics</div>
+   <div id="div_tabspace.11" class="collapsed">
+    <pre>
+# Now that we have exhausted the same-row combinations of the lower
+# three keys, we place two more echelons of symbols: one of textual
+# punctuation, and the other of more obscure symbols more often
+# encountered in programming (and computer typesetting).  People who
+# use such keys exceedingly often may have cause to be upset with me.
+
+0     llm0 = "?"
+0     llr0 = "!"
+0     ll0l = "$"
+0     ll0m = "#"
+0     ll0r = "~"
+0     llll = "@"
+0     llmm = "&amp;"
+
+0     lmr0 = "/"
+0     lml0 = "\\"
+0     lm0m = "_"
+0     lm0r = "%"
+    </pre>
+   </div><!-- }}} -->
+    <!-- tabspace.12 {{{ -->
+    <div class="fold_title" onclick='toggle_div(this,"tabspace.12");'>U R D L ... PgUp PgDn Home End ... Insert Del ... BS Tab Enter</div>
+   <div id="div_tabspace.12" class="collapsed">
+    <pre>
+# The FN modifier has no useful native function under X-windows
+# (unlike the Shift, CTRL, and ALT modifiers), so we use it for useful
+# keystrokes that need to be easy to get to.  Hitting single keys with
+# FUNC give an arrow key rose and other screen navigation sequences.
+# This is also where we put important codes like Escape, Delete, Null,
+# and Linefeed.
+
+func  r000 = 127            # func + BACKSPACE = delete (ascii rubout)
+func  m000 = NULL           # func + SPACE = null
+func  l000 = ESCAPE         # func + TAB = ESCAPE
+func  lm00 = 10             # func + ENTER = linefeed
+func  0m00 = 20,"FF52",20   # XK_Up
+func  00m0 = 20,"FF54",20   # XK_Down
+func  0r00 = 20,"FF51",20   # XK_Left
+func  0l00 = 20,"FF53",20   # XK_Right
+func  00r0 = 20,"FF55",20   # XK_Page_Up
+func  000r = 20,"FF56",20   # XK_Page_Down
+func  00l0 = 20,"FF95",20   # XK_Home
+func  000l = 20,"FF9C",20   # XK_End
+func  000m = 20,"FF9E",20   # XK_Insert
+    </pre>
+   </div><!-- }}} -->
+    <!-- tabspace.13 {{{ -->
+    <div class="fold_title" onclick='toggle_div(this,"tabspace.13");'>Emacs</div>
+   <div id="div_tabspace.13" class="collapsed">
+    <pre>
+# Every Emacs user will appreciate these easily accessible sequences,
+# if only they can bring themselves to remember them.
+
+func  ll00 = 4              # C-d
+func  mm00 = 7              # C-g
+func  0rr0 = 3              # C-c
+func  0mm0 = 24             # C-x
+func  0ll0 = 24,"u"         # C-x u
+func  00rr = 24,"("         # C-x (
+func  00mm = 24,")"         # C-x )
+func  00ll = 24,"e"         # C-x e
+    </pre>
+   </div><!-- }}} -->
+    <!-- tabspace.14 {{{ -->
+    <div class="fold_title" onclick='toggle_div(this,"tabspace.14");'>F-Keys</div>
+   <div id="div_tabspace.14" class="collapsed">
+    <pre>
+# FUNC + keypad produces function keys.
+
+func  rr00 = 20,"FFBE",20   # XK_F1
+func  rm00 = 20,"FFBF",20   # XK_F2
+func  rl00 = 20,"FFC0",20   # XK_F3
+func  r0r0 = 20,"FFC1",20   # XK_F4
+func  r0m0 = 20,"FFC2",20   # XK_F5
+func  r0l0 = 20,"FFC3",20   # XK_F6
+func  r00r = 20,"FFC4",20   # XK_F7
+func  r00m = 20,"FFC5",20   # XK_F8
+func  r00l = 20,"FFC6",20   # XK_F9
+func  rrr0 = 20,"FFC7",20   # XK_F10
+func  rmm0 = 20,"FFC8",20   # XK_F11
+func  rll0 = 20,"FFC9",20   # XK_F12
+    </pre>
+   </div><!-- }}} -->
+    <!-- tabspace.15 {{{ -->
+    <div class="fold_title" onclick='toggle_div(this,"tabspace.15");'>Locks (Caps, Num, Scroll)</div>
+   <div id="div_tabspace.15" class="collapsed">
+    <pre>
+# I feel like I should throw these in somewhere so here they are:
+
+num   00mm = CAPS_LOCK
+num   00rr = NUM_LOCK
+num   00ll = SCROLL_LOCK
+    </pre>
+   </div><!-- }}} -->
+
+   <div class="wrap_div" onclick='toggle_div(this, "tabspace");'><img title="collapse" src="images/cursor/left.png">Starting from TabSpace</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png">                            </div>
+  </div> <!-- }}} -->
+  <!-- Supported chords {{{ -->
+  <div class="fold_title" onclick='toggle_div(this,"supported");'>Supported chords <span class="wh2">&hellip;</span></div>
+  <div id="div_supported" class="collapsed">
+
+   <p><!-- same row {{{ -->
+   The Twiddler <em>ORML encoding</em> does not support chords that would
+   require pressing more than one button on the same row.
+   </p> <!-- }}} -->
+   <p><!-- 4x3x3 {{{ -->
+   The whole set of possible chords can be seen as a group of 4 sub-sets.
+   Each sub-set of <em>3x3 chords</em> from the 3 columns of the 3 lower rows
+   would have to be combined with one of the 4 <em>ORML keys of the first row</em>
+   to cover all the combinations.
+   </p>
+   <!-- }}} -->
+   <p><!-- 24 more {{{ -->
+   <i>Not covered here, less practical <i>(yet usable)</i> combinations of 2 modifiers
+     on the first and second row
+     of the 3x3 sub-pads
+     allows more mappings.</i>
+   </p>
+   <!-- }}} -->
+   <!-- supported_4x4 {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"supported_4x4");'><em>4x4 chord set</em> <span class="wh2">1</span></div>
+  <div id="div_supported_4x4" class="collapsed">
+   <em>255 = (4^4 - 1)</em>
+   If the configurator supports them all, some are easier to use than others.
+   <br>
+<pre class="pre_card" style="width:12em;">
+     <em>&larr;&nbsp; 4x4 &nbsp;&rarr;</em>
+ 255 <span class="rr">R</span><span class="rr">R</span><span class="rr">R</span><span class="rr">R</span>
+     <span class="rr">R</span><span class="rr">R</span><span class="rr">R</span><span class="mm">M</span>
+     <span class="rr">R</span><span class="rr">R</span><span class="rr">R</span><span class="ll">L</span>
+     <span class="rr">R</span><span class="rr">R</span><span class="rr">R</span><span class="oo">O</span>
+     <span class="rr">R</span><span class="rr">R</span><span class="mm">M</span><span class="rr">R</span>
+     ...
+     <span class="oo">O</span><span class="oo">O</span><span class="ll">L</span><span class="oo">O</span>
+     <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span><span class="rr">R</span>
+     <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span><span class="mm">M</span>
+   1 <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span><span class="ll">L</span>
+     <span class="oo">O</span><span class="oo">O</span><span class="oo">O</span><span class="oo">O</span>
+       <em>&larr; 3x3 &rarr;</em>
+</pre>
+  </div> <!-- }}} -->
+  <!-- supported_3x3 {{{ -->
+  <div class="fold_title" onclick='toggle_div(this,"supported_3x3");'><em>3x3 chord set</em> <span class="wh2">2</span></div>
+  <div id="div_supported_3x3" class="collapsed" style="text-align:left; vertical-align:top !important; overflow:hidden;">
+   <em>63 = (4^3 - 1)</em>
+   Some chords stand out enough to justify a mapping to prominent keystrokes.
+   <p>
+   <div class="rules">Chord rank<br>
+    Inside each pad, the most deserving symbol should get the best available ranked chord yet available.
+   </div>
+<!-- legend {{{ -->
+<div style="float:left;">
+
+<pre class="pre_card" style="float:left; text-align:center !important;">
+<span class="ng">NOT SO GOOD</span>
+<span class="nb"> NOT  BAD  </span>
+<span class="bt">  BETTER   </span>
+<span class="vg"> VERY GOOD </span>
+<span class="gr">   GREAT   </span>
+</pre>
+
+<pre class="pre_card" style="float:left; clear:left; margin-top:1em !important; width:20em !important; vertical-align:middle;">
+<span class="ng">    </span> random
+<span class="ng">  3X</span> diagonal
+<span class="nb">2B+1</span> 2 same column
+<span class="bt">1+2B</span> ring with pinky
+<span class="vg">  2b</span> 2 only
+<span class="gr">  3B</span> 3 same column
+<span class="gr">  2B</span> 2 only same column
+<span class="gr">  1B</span> 1 only
+</pre>
+</div>
+<!-- }}} -->
+<!-- O {{{ -->
+<pre class="pre_card" style="float:right;"
+><em style="font-size:200%;">O</em><br
+><div class="gr"><span class="oo">O</span><span class="rr">R</span><span class="rr">R</span> 2B</div
+><div class="vg"><span class="oo">O</span><span class="rr">R</span><span class="mm">M</span> 2b</div
+><div class="vg"><span class="oo">O</span><span class="rr">R</span><span class="ll">L</span> 2b</div
+><div class="gr"><span class="oo">O</span><span class="rr">R</span><span class="oo">O</span> 1B</div
+><div class="vg"><span class="oo">O</span><span class="mm">M</span><span class="rr">R</span> 2b</div
+><div class="gr"><span class="oo">O</span><span class="mm">M</span><span class="mm">M</span> 2B</div
+><div class="vg"><span class="oo">O</span><span class="mm">M</span><span class="ll">L</span> 2b</div
+><div class="gr"><span class="oo">O</span><span class="mm">M</span><span class="oo">O</span> 1B</div
+><div class="vg"><span class="oo">O</span><span class="ll">L</span><span class="rr">R</span> 2b</div
+><div class="vg"><span class="oo">O</span><span class="ll">L</span><span class="mm">M</span> 2b</div
+><div class="gr"><span class="oo">O</span><span class="ll">L</span><span class="ll">L</span> 2B</div
+><div class="gr"><span class="oo">O</span><span class="ll">L</span><span class="oo">O</span> 1B</div
+><div class="gr"><span class="oo">O</span><span class="oo">O</span><span class="rr">R</span> 1B</div
+><div class="gr"><span class="oo">O</span><span class="oo">O</span><span class="mm">M</span> 1B</div
+><div class="gr"><span class="oo">O</span><span class="oo">O</span><span class="ll">L</span> 1B</div>
+
+</pre> <!-- }}} -->
+<!-- R {{{ -->
+<pre class="pre_card" style="float:left; clear:both;"
+><em style="font-size:200%;">R</em><br
+><div class="gr"><span class="rr">R</span><span class="rr">R</span><span class="rr">R</span>   3B</div
+><div class="nb"><span class="rr">R</span><span class="rr">R</span><span class="mm">M</span> 2B+1</div
+><div class="nb"><span class="rr">R</span><span class="rr">R</span><span class="ll">L</span> 2B+1</div
+><div class="gr"><span class="rr">R</span><span class="rr">R</span><span class="oo">O</span>   2B</div
+><div class="ng"><span class="rr">R</span><span class="mm">M</span><span class="rr">R</span>     </div
+><div class="bt"><span class="rr">R</span><span class="mm">M</span><span class="mm">M</span> 1+2B</div
+><div class="ng"><span class="rr">R</span><span class="mm">M</span><span class="ll">L</span>   3X</div
+><div class="vg"><span class="rr">R</span><span class="mm">M</span><span class="oo">O</span>   2b</div
+><div class="ng"><span class="rr">R</span><span class="ll">L</span><span class="rr">R</span>     </div
+><div class="ng"><span class="rr">R</span><span class="ll">L</span><span class="mm">M</span>     </div
+><div class="bt"><span class="rr">R</span><span class="ll">L</span><span class="ll">L</span> 1+2B</div
+><div class="vg"><span class="rr">R</span><span class="ll">L</span><span class="oo">O</span>   2b</div
+><div class="vg"><span class="rr">R</span><span class="oo">O</span><span class="rr">R</span>   2b</div
+><div class="vg"><span class="rr">R</span><span class="oo">O</span><span class="mm">M</span>   2b</div
+><div class="vg"><span class="rr">R</span><span class="oo">O</span><span class="ll">L</span>   2b</div
+><div class="gr"><span class="rr">R</span><span class="oo">O</span><span class="oo">O</span>   1B</div>
+
+</pre> <!-- }}} -->
+<!-- M {{{ -->
+<pre class="pre_card" style="float:left; margin-left:11px !important;"
+><em style="font-size:200%;">M</em><br
+><div class="bt"><span class="mm">M</span><span class="rr">R</span><span class="rr">R</span> 1+2B</div
+><div class="ng"><span class="mm">M</span><span class="rr">R</span><span class="mm">M</span>     </div
+><div class="ng"><span class="mm">M</span><span class="rr">R</span><span class="ll">L</span>     </div
+><div class="vg"><span class="mm">M</span><span class="rr">R</span><span class="oo">O</span>   2b</div
+><div class="nb"><span class="mm">M</span><span class="mm">M</span><span class="rr">R</span> 2B+1</div
+><div class="gr"><span class="mm">M</span><span class="mm">M</span><span class="mm">M</span>   3B</div
+><div class="nb"><span class="mm">M</span><span class="mm">M</span><span class="ll">L</span> 2B+1</div
+><div class="gr"><span class="mm">M</span><span class="mm">M</span><span class="oo">O</span>   2B</div
+><div class="ng"><span class="mm">M</span><span class="ll">L</span><span class="rr">R</span>     </div
+><div class="ng"><span class="mm">M</span><span class="ll">L</span><span class="mm">M</span>     </div
+><div class="bt"><span class="mm">M</span><span class="ll">L</span><span class="ll">L</span> 1+2B</div
+><div class="vg"><span class="mm">M</span><span class="ll">L</span><span class="oo">O</span>   2b</div
+><div class="vg"><span class="mm">M</span><span class="oo">O</span><span class="rr">R</span>   2b</div
+><div class="vg"><span class="mm">M</span><span class="oo">O</span><span class="mm">M</span>   2b</div
+><div class="vg"><span class="mm">M</span><span class="oo">O</span><span class="ll">L</span>   2b</div
+><div class="gr"><span class="mm">M</span><span class="oo">O</span><span class="oo">O</span>   1B</div>
+
+</pre> <!-- }}} -->
+<!-- L {{{ -->
+<pre class="pre_card" style="float:right;"
+><em style="font-size:200%;">L</em><br
+><div class="bt"><span class="ll">L</span><span class="rr">R</span><span class="rr">R</span> 1+2B</div
+><div class="ng"><span class="ll">L</span><span class="rr">R</span><span class="mm">M</span>     </div
+><div class="ng"><span class="ll">L</span><span class="rr">R</span><span class="ll">L</span>     </div
+><div class="vg"><span class="ll">L</span><span class="rr">R</span><span class="oo">O</span>   2b</div
+><div class="ng"><span class="ll">L</span><span class="mm">M</span><span class="rr">R</span>   3X</div
+><div class="bt"><span class="ll">L</span><span class="mm">M</span><span class="mm">M</span> 1+2B</div
+><div class="ng"><span class="ll">L</span><span class="mm">M</span><span class="ll">L</span>     </div
+><div class="vg"><span class="ll">L</span><span class="mm">M</span><span class="oo">O</span>   2b</div
+><div class="nb"><span class="ll">L</span><span class="ll">L</span><span class="rr">R</span> 2B+1</div
+><div class="nb"><span class="ll">L</span><span class="ll">L</span><span class="mm">M</span> 2B+1</div
+><div class="gr"><span class="ll">L</span><span class="ll">L</span><span class="ll">L</span>   3B</div
+><div class="gr"><span class="ll">L</span><span class="ll">L</span><span class="oo">O</span>   2B</div
+><div class="vg"><span class="ll">L</span><span class="oo">O</span><span class="rr">R</span>   2b</div
+><div class="vg"><span class="ll">L</span><span class="oo">O</span><span class="mm">M</span>   2b</div
+><div class="vg"><span class="ll">L</span><span class="oo">O</span><span class="ll">L</span>   2b</div
+><div class="gr"><span class="ll">L</span><span class="oo">O</span><span class="oo">O</span>   1B</div>
+
+</pre> <!-- }}} -->
+    </p>
+   </div> <!-- }}} -->
+
+   <div class="wrap_div" onclick='toggle_div(this, "supported");'><img title="collapse" src="images/cursor/left.png">Supported chords</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png">                            </div>
+  </div> <!-- }}} -->
+  <!-- Making rules {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "making_rules");'>Making rules<span class="wh3">&hellip;</span></div>
+  <div id="div_making_rules" class="collapsed">
+
+   <p><!-- ...intro {{{ -->
+   As last serious mapping approach was made in 1999, it's about time to go forward
+   and <i>try</i> to build something new.
+   A better graphical representation should help
+   at making a decision for some mapping choices.
+   <p>
+   What follows is not
+   based on some random thoughts
+   or any kind of obscure clever study you would find a link to in a footnote.
+
+   Each step has a description
+   that must be seen as an opportunity for critics
+   or some custom version based on different premises.
+   </p>
+   <i>
+    Comments and suggestions would be a good way to contribute
+    but I'm still looking for a suitable forum!
+   </i>
+   <!-- }}} -->
+   <!-- twiddler3_road_map {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "twiddler3_road_map");'>Rulling road map<span class="wh3">1</span></div>
+  <div id="div_twiddler3_road_map" class="collapsed">
+   <img title="sure!" style="float:right; "src="images/emoticons/^^.png">
+   <div class="rules">learning phase benefit &larr;&rarr; <em>memorized at first glance</em></div>
+   <div class="rules">long term benefit</div>
+   <p>
+   Working with learning phase comfort in mind
+   will require some checking to make sure no decisions are made
+   against long term benefits.
+   Those two periods of time are equally important
+   as long as a too steep learning curve
+   could as well become a barrier on the road.
+   </p>
+   <p>
+   What could still be helpful to some one who worked everyday for years with a layout?
+   </p>
+   <p>
+   Long term memorization may be an issue worth some effort only when it comes to remember very scarcely used symbols forgotten chord.
+   In that case, some well grounded logic should propose an obvious <em>mnemonic path</em> to the answer.
+   The required effectiveness would be only to avoid having to depend on some cheat-sheet!
+   </p>
+
+   <p>
+   In which other way a layout could be long term friendly or not?
+   The obvious answer would certainly contains the following keywords:
+   </p>
+   <ul class="rules">
+    <li>Efficiency</li>
+    <li>Comfort</li>
+    <li>RSI aware</li>
+    <li>Customizable</li>
+    <li>&hellip; XXX</li>
+   </ul>
+   <p>
+   The Efficiency factor is in fact a compound substance.
+   All kind of disturbances may get in the way.
+   Some could depend on the different kind of circumstances in which some symbols are used.
+   </p>
+   <ul class="rules">
+    <li>Messaging</li>
+    <li>Calculation</li>
+    <li>Programming</li>
+    <li>Controlling</li>
+    <li>&hellip; XXX</li>
+   </ul>
+
+  </div> <!-- }}} -->
+<!-- twiddler3_work_rules {{{ -->
+<div class="fold_title" onclick='toggle_div(this, "twiddler3_work_rules");'>Work rules <span class="wh3">2</span></div>
+   <div id="div_twiddler3_work_rules" class="collapsed">
+    <p>
+    As there is no obvious layout for associating for instance a bundle of arithmetic symbols,
+    we have to look for some rules.
+    These rules would have to explain why some <em>set of chords</em>
+    is best for a particular <em>set of symbols</em>,
+    so that they would help at times we have to define new mappings.
+    </p>
+    <p>
+    Now, where is the authority in charge of making rules in this domain?
+    When Wikipedia and Google can't answer the question,
+    the best we can do is to go on with every single piece of available information
+    and see where it goes.
+    </p>
+    <p>
+    The result will be a list of decisions that made sense
+    while working on a particular pad, not looking at the big picture.
+    If we are lucky, some scheme could come up from reverse-engineering.
+    If this is the case, some decisions will have enough commonalities
+    that they could be used to work out some rules.
+    </p>
+    <div class="rules">
+     Crafting rules<br>
+     Some clues are spread inside each topic.
+     Near the end, we will see if they add up in such a way
+     we can turn some of them into rules&hellip;
+    </div>
+    <br style='clear:left;'>
+    <div class="rules">
+     Private dictionary:<br>
+     For the sake of conciseness the word <em class="fingers">FINGER</em> has been redefined
+     from here down to the bottom of this page to mean everything that's not your <em class="fingers">INDEX</em> !!
+    </div>
+    <br style='clear:left;'>
+   </div> <!-- }}} -->
+
+   <div class="wrap_div" onclick='toggle_div(this, "making_rules");'><img title="collapse" src="images/cursor/left.png">Making rules</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png">                            </div>
+  </div> <!-- }}} -->
+  <!-- Some rules {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "some_rules");'>Some rules<span class="wh4">&hellip;</span></div>
+  <div id="div_some_rules" class="collapsed">
+
+   <!-- twiddler3_rows {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_rows");'>Rows rules<span class="wh4">1</span></div>
+   <div id="div_twiddler3_rows" class="collapsed">
+    <div class="rules">ROW &larr;&rarr; <em class="fingers">INDEX</em> MODIFIERS <em>Space</em> <em>BS</em> <em>Tab</em> </div>
+    <p>
+    The proposed layout pads are organized in 4 rows of 11 columns.
+    Each row corresponds to one of the four ways the index finger may use
+    the three buttons of the first row <em>BS</em>, <em>Space</em> and <em>Tab</em>
+    turning them into modifiers, quite like this is the case on a standard keyboard with
+    <em>Shift</em>, <em>Control</em> and <em>Alt</em>.
+    </p>
+    <p>
+<pre style="padding:4px 4px 0 1em !important;">
+<em>O</em> The <em>No modifier layer</em>
+<div class="clip_h_stripe">
+ <img class="clip_img_h1" src="images/Cheat_TabSpace_3.png">
+</div>
+<em>M</em> The <em>Middle modifier layer</em> &ndash; index on <em>Space</em>
+<div class="clip_h_stripe">
+ <img class="clip_img_h2" src="images/Cheat_TabSpace_3.png">
+</div>
+<em>R</em> The <em>Right modifier layer</em> &ndash; index on <em>BS</em>
+<div class="clip_h_stripe">
+ <img class="clip_img_h3" src="images/Cheat_TabSpace_3.png">
+</div>
+<em>L</em> The <em>Left modifier layer</em> &ndash; index on <em>Tab</em>
+<div class="clip_h_stripe">
+ <img class="clip_img_h4" src="images/Cheat_TabSpace_3.png">
+</div>
+</pre>
+    </p>
+    <p>
+     <div class="clip_div_mod" style="display:inline-block;"><img class="clip_img_RM" src="images/Cheat_TabSpace_3.png"></div>
+     <div class="clip_div_mod" style="display:inline-block;"><img class="clip_img_MM" src="images/Cheat_TabSpace_3.png"></div>
+     <div class="clip_div_mod" style="display:inline-block;"><img class="clip_img_LM" src="images/Cheat_TabSpace_3.png"></div>
+     <br>
+     <i>These <em>layers</em> are to be taken loosely enough to mean that a combination of one or more optional <em>modifier buttons</em>
+     is altering the default <em>O</em> <em>No modifier layer</em> mapping.
+     </i>
+    </p>
+   </div> <!-- }}} -->
+   <!-- twiddler3_columns {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_columns");'>Columns rules<span class="wh4">2</span></div>
+   <div id="div_twiddler3_columns" class="collapsed">
+    <div class="rules">COL SETS &larr;&rarr; <em class="fingers">FINGER</em> MODIFIER</div>
+    <p>
+    What the index finger does on the first row of the 4x3 full pad,
+    the other fingers can do on their respective row of the 3x3 sub-pad to introduce more layers.
+    The remaining buttons can then be mapped individually or by pairs.
+    </p>
+    <div class="rules">COL PADS &larr;&rarr; CONTAIN <em class="fingers">FINGER</em> COMBINATIONS</div>
+    <p>
+    Each 3x2 sub-pad is composed of a number of mappable single or pairs of buttons.
+    <em>180 = 4x45 = 4x(9 + 6 + 3x5 + 3x3 + 3x2)</em>
+    </p>
+<!-- [Col 1-11] {{{ -->
+<pre style="padding:4px !important;">
+ Col 1  Col 2       Col 3-5            Col 6-8              Col 9-11
+  Sx9    Px6          S+5                Px3                   S+2
+<div class="clip_v_stripe"
+><img class="clip_img_v1" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_sep"></div
+><div class="clip_v_stripe"
+><img class="clip_img_v2" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_sep"></div
+><div class="clip_v_stripe"
+><img class="clip_img_v3" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_stripe"
+><img class="clip_img_v4" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_stripe"
+><img class="clip_img_v5" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_sep"></div
+><div class="clip_v_stripe"
+><img class="clip_img_v6" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_stripe"
+><img class="clip_img_v7" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_stripe"
+><img class="clip_img_v8" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_sep"></div
+><div class="clip_v_stripe"
+><img class="clip_img_v9" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_stripe"
+><img class="clip_img_v10" src="images/Cheat_TabSpace_3.png">
+</div
+><div class="clip_v_stripe"
+><img class="clip_img_v11" src="images/Cheat_TabSpace_3.png">
+</div
+></pre>
+<!-- }}} -->
+    <!-- Note: extended layout {{{ -->
+    <p style="font-size:80%;">
+    <i>
+     Note: The 4x11 layout can be further extended to include the less practical, but still usable,
+     combinations of 2 modifiers on the first and second row of the 3x3 sub-sub-pads to obtain <em>18 = 3x(3x2)</em> more mappings
+     looking just like 3 more <em>Col 9-11</em> but with one of 3x3 top <em>R</em><em>M</em><em>L</em> pressed by the middle finger.
+    
+    </i>
+    </p>
+    <!-- }}} -->
+   </div> <!-- }}} -->
+   <!-- twiddler3_pads {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_pads");'>Pads rules<span class="wh4">3</span></div>
+   <div id="div_twiddler3_pads" class="collapsed">
+   <div class="rules">team of symbols</div>
+   <p>
+   Under rows and columns, <em>pads</em> will receive
+   groups of related symbols that
+   we can display as we would a collection of cards.
+   </p>
+
+   <div class="rules">silhouetted shapes</div>
+   <p>
+   Now, we have to decide how to distribute symbols
+   in a way that makes sense for the next stage
+   which is about memorizing the layout.
+   </p>
+
+   <div class="rules">familiar shape</div>
+   <p>
+   Inside each pad, symbols disposition should
+   emphasize a <em>functional</em> or a <em>visual</em> domain (whichever makes more sense)
+   working with the idea that good <em>mnemonic metaphores</em>
+   will come more easily if we can identify <em>symbols categories</em>
+   that can be looked at as a whole.
+   </p>
+
+   <div class="rules">ranked symbols</div>
+   <div class="rules">ranked pads</div>
+   <p>
+   At this point, the mapping process becomes a question of
+   associating each <em>symbol category</em> to one of the available <em>pads</em>
+   and reserving the most accessible pads for the most used symbols
+   suggest the right order in which to do that.
+   </p>
+
+  </div> <!-- }}} -->
+   <!-- twiddler3_clusters {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "twiddler3_clusters");'>Clusters rules<span class="wh4">4</span></div>
+  <div id="div_twiddler3_clusters" class="collapsed">
+   <div class="rules">pads proximity</div>
+   When mappings are close to one another, it means they share one or more <em>major fingers</em> combinations.
+   The most agile finger, from index to pinky, would hopefully cover a collection of related symbols.
+   Those categories can relate to <em>functional</em> or <em>visual</em> domains, whichever makes more sense.
+   The best to be expected from a good organization is to be applicable in more than a single occasion.
+  </div> <!-- }}} -->
+
+   <div class="wrap_div" onclick='toggle_div(this, "some_rules");'><img title="collapse" src="images/cursor/left.png">Some rules</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png">                            </div>
+  </div> <!-- }}} -->
+  <!-- Applying rules {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "applying_rules");'>Applying rules<span class="wh5">&hellip;</span></div>
+  <div id="div_applying_rules" class="collapsed">
+   <p><!-- ...intro {{{ -->
+   <p>
+   Now, we have to find matches between both our symbol categories and layout categories.
+   At each stage, the best available layout clusters must be
+   matched with the most significant symbol clusters not yet assigned.
+   Symbol clusters will consist in groups of functionally or visually related symbols.
+   Our priorities will also take into account their usage frequency and how well
+   each row, pad and cluster appears to be put at good use.
+
+   </p>
+   <!-- }}} -->
+   <!-- O clusters {{{ -->
+   <div class="div_map">
+    <div class="clip_map"><img class="clip_map_O1" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_O2" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_O3" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_O4" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_O5" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_O6" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_O7" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_O8" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_O9" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_OA" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_OB" src="images/Cheat_TabSpace_3.png"></div>
+   </div>
+   <!-- }}} -->
+   <!-- M clusters {{{ -->
+   <div class="div_map">
+    <div class="clip_map"><img class="clip_map_M1" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_M2" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_M3" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_M4" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_M5" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_M6" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_M7" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_M8" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_M9" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_MA" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_MB" src="images/Cheat_TabSpace_3.png"></div>
+   </div>
+   <!-- }}} -->
+   <!-- R clusters {{{ -->
+   <div class="div_map">
+    <div class="clip_map"><img class="clip_map_R1" src="images/Cheat_TabSpace_3.png" onclick='toggle_div(this,"applying_rules_arithmetic");' title="Arithmetic..."></div>
+    <div class="clip_map"><img class="clip_map_R2" src="images/Cheat_TabSpace_3.png" onclick='toggle_div(this,"applying_rules_arithmetic");' title="Arithmetic..."></div>
+    <div class="clip_map"><img class="clip_map_R3" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_R4" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_R5" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_R6" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_R7" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_R8" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_R9" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_RA" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_RB" src="images/Cheat_TabSpace_3.png"></div>
+   </div>
+   <!-- }}} -->
+   <!-- L clusters {{{ -->
+   <div class="div_map">
+    <div class="clip_map"><img class="clip_map_L1" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_L2" src="images/Cheat_TabSpace_3.png" onclick='toggle_div(this,"applying_rules_signs");' title="Signs..."></div>
+    <div class="clip_map"><img class="clip_map_L3" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_L4" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_L5" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_L6" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_L7" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_L8" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_L9" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_LA" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map"><img class="clip_map_LB" src="images/Cheat_TabSpace_3.png"></div>
+   </div>
+   <!-- }}} -->
+
+   <!-- applying_rules_arithmetic {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic");'>Arithmetic<span class="wh5">1</span></div>
+   <div id="div_applying_rules_arithmetic" class="collapsed">
+    <p>
+     Arithmetic symbols on <em>R2 pair x6</em> put them close to the <em>R1 single x9</em> numberpad.
+     <div class="rules">pads proximity<br>
+      In this <em>rules use case</em>, the index is pressing <em>4x4 BS modifier</em> for both <em>3x3 numbers</em> and <em>3x3 operators</em>.
+     </div>
+     </p>
+<!-- R1 R2 {{{ -->
+<pre style="padding:4px !important; width:190px;"
+>     R1            R2
+  single x9      pair x6
+<div class="clip_div_pad" style="display:inline-block;"
+><img class="clip_img_R1" src="images/Cheat_TabSpace_3.png"
+></div
+><span style="width:3em; margin-right:2px;"> &nbsp;</span
+><div class="clip_div_pad" style="display:inline-block;"
+><img class="clip_img_R2" src="images/Cheat_TabSpace_3.png"
+></div
+></pre>
+<!-- }}} -->
+<!-- 0 {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic_0");'><em>0</em></div>
+   <div id="div_applying_rules_arithmetic_0" class="collapsed">
+    <em>0</em> is special enough to deserve some special placement.
+    <p>
+    Although a stardard numberpad gives it a larger keycap under <em>1</em> and <em>2</em>,
+    the <em>Twiddler ORML encoding</em> cannot accommodate for 2 keys on the same row.
+    <p>
+    The best mapping granted by the <em>supported chords merit rule</em> for pad <em>R2</em> is <span class="gr"><em>R2</em> 2B </span>.
+   </div>
+<!-- }}} -->
+<!-- equal {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic_equal");'><em>=</em></div>
+   <div id="div_applying_rules_arithmetic_equal" class="collapsed">
+    From the 5 remaining chords of <em>R2 pad</em>, we can secure 2 pairs by placing <em>=</em> under <em>0</em>.
+   </div>
+<!-- }}} -->
+<!-- dot star {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic_dot_star");'><em>.</em> and <em>*</em></div>
+   <div id="div_applying_rules_arithmetic_dot_star" class="collapsed">
+    <em>.</em> above <em>*</em> makes one pair of <em>visually related symbols</em>.
+   </div>
+<!-- }}} -->
+<!-- plus_minus {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic_plus_minus");'><em>+</em> and <em>-</em></div>
+   <div id="div_applying_rules_arithmetic_plus_minus" class="collapsed">
+    <em>+</em> above <em>-</em> makes one pair of <em>functionally related symbols</em>.
+   </div>
+<!-- }}} -->
+    <hr>
+    ...this <i>still</i> deserves more thinking...
+    </p>
+
+    </div> <!-- }}} -->
+  <!-- applying_rules_signs {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "applying_rules_signs");'>Signs<span class="wh5">2</span></div>
+  <div id="div_applying_rules_signs" class="collapsed">
+
+   <p>
+   By applying our guidelines, most standard signs can be mapped into pads L1 and L2
+   (first and second column of the last
+   <a href="layout_browser.html" target="layout_browser">Twiddler 3 Layout</a>
+   row).
+   <div class="rules">shapes symmetry</div>
+   <div class="rules">pads proximity</div>
+   <!-- L1 L2 {{{ -->
+<pre style="padding:4px !important; width:190px;"
+>     L1            L2
+  single x9      pair x6
+<div class="clip_div_pad" style="display:inline-block;"
+><img class="clip_img_L1" src="images/Cheat_TabSpace_3.png"
+></div
+><span style="width:3em; margin-right:2px;"> &nbsp;</span
+><div class="clip_div_pad" style="display:inline-block;"
+><img class="clip_img_L2" src="images/Cheat_TabSpace_3.png"
+></div
+></pre>
+   <!-- }}} -->
+   </p>
+
+   </div> <!-- }}} -->
+   <!-- twiddler3_locks {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_locks");'>Locks<span class="wh5">3</span></div>
+   <div id="div_twiddler3_locks" class="collapsed">
+    <p>
+    We currently have two good reasons to move TabSpace assignment for <em>NumLock</em>, <em>CapsLock</em> and <em>ScrollLock</em>:
+    </p>
+
+<pre style="padding:4px 4px 0 1em !important;">
+<em>TabSpace Num</em> <em>O</em> <em>No modifier layer</em>                   v v v v v v v v v
+<div class="clip_h_stripe">
+ <img class="clip_img_h1" src="images/Cheat_TabSpace_Num.png">
+</div>
+</pre>
+
+    <ol>
+     <li><em>Multi Character Chords</em> are granted the most accessible <em>Num layer</em> chords.</li>
+     <li>Frequently used <em>punctuation accents and quote</em> are organized into <em>O2 pair x6</em>.</li>
+    </ol>
+<pre style="padding:4px !important; width:190px;"
+>  Num R2            O2
+  pair x6         pair x6
+<div class="clip_div_pad" style="display:inline-block;"
+><img class="clip_img_R2" src="images/Cheat_TabSpace_3_Num.png"
+></div
+><span style="width:3em; margin-right:2px;"> &nbsp;</span
+><div class="clip_div_pad" style="display:inline-block;"
+><img class="clip_img_O2" src="images/Cheat_TabSpace_3.png"
+></div
+></pre>
+
+    <p>
+    As a first easy decision, considering how Num layer pads are scarcely used at this stage,
+    moving <em>NumLock</em>, <em>ScrollLock</em> and <em>PageLock</em>
+    to lower <em>R2 pair x6</em> seems to be a choice <em class='todo'>temporarily! as good as any</em>.
+    </p> 
+    </div> <!-- }}} -->
+  <!-- todo... {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "twiddler3_todo");'>...todo...</div>
+  <div id="div_twiddler3_todo" class="collapsed">
+   Find a good place for:
+   <br><em>&euro;</em> <em>$</em> <em>#</em>
+   <br><em>@</em> <em>%</em> <em>&amp;</em>
+  </div>
+  <!-- }}} -->
+   <div class="wrap_div" onclick='toggle_div(this, "applying_rules");'><img title="collapse" src="images/cursor/left.png">Applying rules</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png">                            </div>
+  </div> <!-- }}} -->
+    <!-- MCC {{{ -->
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc");'>Multi Character Chords <span class="wh6">&hellip;</span></div>
+    <div id="div_twiddler3_mcc" class="collapsed">
+    <!-- twiddler3_mcc_num {{{ -->
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_num");'>TabSpace MCC <span class="wh6">1</span></div>
+    <div id="div_twiddler3_mcc_num" class="collapsed">
+     <p class="rules">Mode switching<br>
+     In this <em>rules use case</em>, involving the <em>Num thumb-modifier</em> can be seen as a <em class='todo'>mode-switching gesture</em>
+     between <em>single keystrokes</em> and <em>Multi Character Chords</em> input.
+     </p>
+<!-- clip_img_h1 clip_img_h2 {{{ -->
+<pre style="padding:4px 4px 0 1em !important;">
+ <em>O</em> The <em>Num</em> <em>No modifier layer</em>
+ <div class="clip_h_stripe">
+  <img class="clip_img_h1" src="images/Cheat_TabSpace_3_Num.png">
+ </div>
+ <em>M</em> The <em>Num</em> <em>Middle modifier layer</em> &ndash; index on <em>Space</em>
+ <div class="clip_h_stripe">
+  <img class="clip_img_h2" src="images/Cheat_TabSpace_3_Num.png">
+ </div>
+</pre>
+<!-- }}} -->
+     <p>
+     TabSpace letters arrangement takes care of english letter usage frequency.
+     <ul>
+      <li>Most 2 and 3 combined letters are placed over their constitutive letters location
+      but some belong to different layers <i>(modifier-combos)</i>:</li>
+      <li>If combinations such "an", "in", "qu" or "the" are obtained by pressing the letters they contain
+      , it is not the case for "ch", "nd", "of" or "ing" which refer to letters from 2 different modifier combinations.
+      <ul>
+       <li>The good part in this loose rule is that each button of these chords involve the finger used to produce those individual letters.</li>
+       <li>The not so good is that it relies on some unspecified rule that would have to "explain" how the selected modifier combo works to produce the result.</li>
+      </ul>
+      </li>
+      <li>For instance, how "ing" is obtained by combining "i", "n" and "g"?
+      <br>- "i" and "n" are on the first column of "0 single x9" pad
+      <br>- "g" comes from "M single x9" pad.
+      </li>
+     </ul>
+     </p>
+    </div>
+    <!-- }}} -->
+    <!-- twiddler3_mcc_hotstrings {{{ -->
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_hotstrings");'>Hotstrings <span class="wh6">2</span></div>
+    <div id="div_twiddler3_mcc_hotstrings" class="collapsed">
+     <p>
+     Getting multiple keystrokes from a single chord should not be considered a simple
+     extra that comes handy with a chorded keyboard.
+     </p>
+     <p>
+     In fact, we can already get something similar using a standard keyboard with the help of some hotstring handler like
+  <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>.
+     Why does it seem so natural to expect this kind of feature from this device?
+     </p>
+     <p>
+     Aside from the wrong reasons that could explain why most don't even try to learn how to master a hotstring handler,
+     a Twiddler won't let you be that lazy.
+     Not taking the time to deal with the customization tool
+     would defeat the minimum commitment every user has opted in at purchase time.
+     Using the device as a keyboard replacement would be like waisting 90% of its possibilities!
+     </p>
+     <p>
+     Still, there is a real difference between this device and a keyboard. It has to do with the way its 12 main keys
+     are used.
+     The number of different inputs we expect from a standard keyboard are close to the number of its keys.
+     The "chording part" that involves modifiers like Shift, Control and Alt is only an accessory feature.
+     Looking at the real potential of chording,
+     which is what a Twiddler is all about,
+     shows such a huge number of possibilities
+     beyond handling one single character per chord.
+     In fact, sending whole words and phrases looks like something to be expected from the next keyboard generations.
+     </p>
+     <p>Exploring multi character input feature deserves more than a simple approach
+     but a few steps should be made in that direction
+     while introducing the collection of <em>2L strings</em> and <em>3L strings</em>
+     hotstrings defined by TabSpace.
+     </p>
+    </div>
+    <!-- }}} -->
+   <div class="wrap_div" onclick='toggle_div(this, "twiddler3_mcc");'><img title="collapse" src="images/cursor/left.png">Multi Character Chords</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png">                            </div>
+    </div> <!-- }}} -->
+  <!-- Cheat Sheets {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "cheat_sheet");'>Collection of Cheat Sheets <span class="wh7">&hellip;</span></div>
+  <div id="div_cheat_sheet" class="collapsed" style="text-align:left;">
+
+   <p>
+   <a href="layout_browser.html" target="layout_browser">The Layout browser</a>
+   has an image switching mechanism that helps comparing these different layouts.
+   </p>
+   <!-- images {{{ -->
+   <em>ORML Notation</em>
+   <br>
+   <a href="images/Cheat_Blank.png" target="_blank">
+    <img id="img1" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_Blank.png">
+   </a>
+   <hr>
+
+   <a href="images/Cheat_TabSpace_Num.png" target="_blank">
+    <img id="img3" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_TabSpace_Num.png">
+   </a>
+   <a href="images/Cheat_TabSpace.png" target="_blank">
+    <img id="img2" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_TabSpace.png">
+   </a>
+   <br>
+   <em>TabSpace</em>
+   <hr>
+   <em>TabSpace 3</em>
+   <br>
+   <a href="images/Cheat_TabSpace_3.png" target="_blank">
+    <img id="img4" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_TabSpace_3.png">
+   </a>
+   <a href="images/Cheat_TabSpace_3_Num.png" target="_blank">
+    <img id="img5" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_TabSpace_3_Num.png">
+   </a>
+   <hr>
+
+   <a href="images/Cheat_TabSpace_Ranked.png" target="_blank">
+    <img id="img6" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_TabSpace_Ranked.png">
+   </a>
+   <br>
+   <em>TabSpace Ranked</em>
+   <hr>
+   <em>TabSpace 3 Ranked</em>
+   <br>
+   <a href="images/Cheat_TabSpace_3_Ranked.png" target="_blank">
+    <img id="img7" style="width:80%; margin:2px 0 2px 1ex;" src="images/Cheat_TabSpace_3_Ranked.png">
+   </a>
+
+   <hr>
+   <em>MessagEase</em>
+   <br>
+   <a href="images/Cheat_MessagEase.png" target="_blank">
+    <img id="img8" style="width:80%; margin:1ex 0 2px 1ex;" src="images/Cheat_MessagEase.png">
+   </a>
+   <!-- }}} -->
+   <div class="wrap_div"                      onclick='toggle_div(this, "cheat_sheet");'><img title="collapse" src="images/cursor/left.png">Collection of Cheat Sheets</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png"></div>
+
+  </div>
+  <!-- }}} -->
+ </section>
+ <!-- email {{{ -->
+ <div style=' text-align:center; color:#000; margin:0; pading:0;'>
+  <small>
+   <i>
+    If anyone knows about a live forum discussing the subject
+    please, drop me a message here: &nbsp; <a style="color:#000;" class="email" href="mailto:ivanw@orange.fr?Subject=GitHub%30pages:%20Twiddler3-Layout"><b>ivanw@orange.fr</b></a>
+   </i>
+  </small>
+ </div>
+ <!-- }}} -->
+</div>
+<footer><!-- {{{ -->
+ <p>Project maintained by                   <a href="https://github.com/ivanwfr"     target="_blank">ivanwfr</a></p>
+ <p>Hosted on GitHub Pages &ndash; Theme by <a href="https://github.com/orderedlist" target="_blank">orderedlist</a></p>
+</footer>
+<div id="bottom_div">&nbsp;</div>
+<!--[if !IE]><script>fixScale(document);</script><![endif]-->
+<!-- }}} -->
+</body>
+</html>
