@@ -171,7 +171,7 @@
     float:left;
     clear:left;
 */
-    width:20em;
+    width:90%;
     display                            : block;
     background-color                   : #888;
     border                             : 1px solid #666;
@@ -203,20 +203,23 @@
     padding       : 0 2px 0 2px;
 }
 
-.wh1  { color: #FA0; background-color:#B33; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh2  { color: #FF0; background-color:#F33; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh3  { color: #00F; background-color:#FA0; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh4  { color: #F00; background-color:#FF0; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh5  { color: #00F; background-color:#0F0; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh6  { color: #0F0; background-color:#00F; border:0px solid #666; padding:0 3px 0 3px !important; }
-
 .wh1 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
 .wh2 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
 .wh3 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
 .wh4 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
 .wh5 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
 .wh6 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+.wh7 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
 
+.wh1  { color: #FA0; background-color:#B33; border:0px solid #666; padding:0 3px 0 3px !important; }
+.wh2  { color: #FF0; background-color:#F33; border:0px solid #666; padding:0 3px 0 3px !important; }
+.wh3  { color: #00F; background-color:#FA0; border:0px solid #666; padding:0 3px 0 3px !important; }
+.wh4  { color: #F00; background-color:#FF0; border:0px solid #666; padding:0 3px 0 3px !important; }
+.wh5  { color: #00F; background-color:#0F0; border:0px solid #666; padding:0 3px 0 3px !important; }
+.wh6  { color: #0F0; background-color:#00F; border:0px solid #666; padding:0 3px 0 3px !important; }
+.wh7  { color: #FF0; background-color:#F0F; border:0px solid #666; padding:0 3px 0 3px !important; }
+
+.fingers {  color:#400 !important; background-color:#aaffaa !important; border:2px red dotted !important; }
 
 /* }}} */
 
