@@ -37,6 +37,8 @@ function expand_div(id) // {{{
 	nothing_to_expand = (div == null) || ((div != null) && (div.className == "expanded"));
 	if(nothing_to_expand)
 	    return;
+
+	set_wrap_div_top_visibility(id);
     }
     else {
 	createCookie("expanded", id, COOKIE_DAYS);
