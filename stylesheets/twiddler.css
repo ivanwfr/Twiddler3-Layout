@@ -244,6 +244,8 @@
 
 
 .div_map { margin:0; text-align:center; white-space:nowrap; }
+.div_map img { opacity:0.5; filter:alpha(opacity= 50); }
+.div_map img:hover { opacity:0.8 !important; filter:alpha(opacity= 80) !important; }
 
 .clip_map  { overflow:hidden;     width: 40px;     height: 53px; margin:0 0 5px 2px; display:inline-block; cursor:pointer; }
 .clip_map  {
