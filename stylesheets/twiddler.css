@@ -25,6 +25,7 @@
 
 /* }}} */
 /* COLORS {{{ */
+.expanded .expanded { background: #DEDEDE; }
 
  em {  color:#444 !important; background-color:#fafafa !important; border:1px solid #aaa !important; }
 
@@ -127,7 +128,7 @@
 /* pre_card {{{ */
 .pre_card {
      margin:4px !important;
-    padding:4px;
+    padding:4px !important;
     width:160px !important;
     display:inline-block;
     vertical-align:top;
@@ -322,6 +323,7 @@
 
 /* }}} */
 /* h and v img stripes {{{ */
+.clip_h_hm     { overflow:hidden;     width: 44px;     height: 15px; }
 .clip_h_stripe { overflow:hidden;     width:512px;     height: 55px; }
 .clip_v_stripe { overflow:hidden;     width: 45px;     height:248px; }
 

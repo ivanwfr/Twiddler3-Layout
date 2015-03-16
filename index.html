@@ -17,7 +17,7 @@
 <![endif]-->
 </head>
 <!-- }}} -->
-<body onload='expand_div("_twiddler3_road_map");' id="top">
+<body onload='expand_div("twiddler3_fingers_agility");' id="top">
 <div class="wrapper">
  <header><!-- {{{ -->
   <h1>Twiddler3-layout</h1>
@@ -64,7 +64,7 @@
 
   </p> <!-- }}} -->
   <p><!-- ...supported {{{ -->
-  The 
+  The
   <a class="expander" href="#div_supported" onclick='expand_div("supported");'>Supported chords<span class="wh2">&hellip;</span></a>
   will be analyzed, looking for usability factors
   to define efficient mappings
@@ -72,7 +72,7 @@
 
   Breaking down the full
   <a class="expander" href="#div_supported_4x4" onclick='expand_div("supported_4x4");'>4x4 chord set<span class="wh2">1</span></a>
-  into four more manageable 
+  into four more manageable
   <a class="expander" href="#div_supported_3x3" onclick='expand_div("supported_3x3");'>3x3 chord set<span class="wh2">2</span></a>
   will give us a workable graphic representation.
   Following the same idea, symbols can be segmented into categories.
@@ -95,11 +95,12 @@
   <p><!-- ...some_rules {{{ -->
   <a class="expander" href="#div_some_rules" onclick='expand_div("some_rules");'>Some rules<span class="wh4">&hellip;</span></a>
   reflecting our mapping strategies will take advantage of a graphical representation based on
-  <a class="expander" href="#div_twiddler3_rows" onclick='expand_div("twiddler3_rows");'>Rows<span class="wh4">1</span></a>,
+  <a class="expander" href="#div_twiddler3_fingers_agility" onclick='expand_div("twiddler3_fingers_agility");'>Fingers agility<span class="wh4">1</span></a>,
   <a class="expander" href="#div_twiddler3_columns" onclick='expand_div("twiddler3_columns");'>Columns<span class="wh4">2</span></a>,
-  <a class="expander" href="#div_twiddler3_pads" onclick='expand_div("twiddler3_pads");'>Pads<span class="wh4">3</span></a>
+  <a class="expander" href="#div_twiddler3_rows" onclick='expand_div("twiddler3_rows");'>Rows<span class="wh4">3</span></a>,
+  <a class="expander" href="#div_twiddler3_pads" onclick='expand_div("twiddler3_pads");'>Pads<span class="wh4">4</span></a>
   and some other kind of
-  <a class="expander" href="#div_twiddler3_clusters" onclick='expand_div("twiddler3_clusters");'>Clusters<span class="wh4">4</span></a>
+  <a class="expander" href="#div_twiddler3_clusters" onclick='expand_div("twiddler3_clusters");'>Clusters<span class="wh4">5</span></a>
   .
   </p> <!-- }}} -->
   <p><!-- ...applying_rules {{{ -->
@@ -129,7 +130,7 @@
   <!-- }}} -->
   <!-- TabSpace {{{ -->
   <div class="fold_title" onclick='toggle_div(this,"tabspace");'>Starting from TabSpace<span class="wh1">&hellip;</span></div>
-  <div id="div_tabspace" class="collapsed">
+  <div id="div_tabspace" class="collapsed" style="background-color:#a88 !important;">
 
    <div class="fold_title" onclick='toggle_div(this,"tabspace.1");'>Credit</div><!-- {{{ -->
    <div id="div_tabspace.1" class="collapsed">
@@ -457,7 +458,7 @@ num   00ll = SCROLL_LOCK
   </div> <!-- }}} -->
   <!-- Supported chords {{{ -->
   <div class="fold_title" onclick='toggle_div(this,"supported");'>Supported chords <span class="wh2">&hellip;</span></div>
-  <div id="div_supported" class="collapsed">
+  <div id="div_supported" class="collapsed" style="background-color:#ecc !important;">
 
    <p><!-- same row {{{ -->
    The Twiddler <em>ORML encoding</em> does not support chords that would
@@ -622,7 +623,7 @@ num   00ll = SCROLL_LOCK
   </div> <!-- }}} -->
   <!-- Making rules {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "making_rules");'>Making rules<span class="wh3">&hellip;</span></div>
-  <div id="div_making_rules" class="collapsed">
+  <div id="div_making_rules" class="collapsed" style="background-color:#fed !important;">
 
    <p><!-- ...intro {{{ -->
    As last serious mapping approach was made in 1999, it's about time to go forward
@@ -740,66 +741,93 @@ num   00ll = SCROLL_LOCK
   </div> <!-- }}} -->
   <!-- Some rules {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "some_rules");'>Some rules<span class="wh4">&hellip;</span></div>
-  <div id="div_some_rules" class="collapsed">
+  <div id="div_some_rules" class="collapsed" style="background-color:#ffe !important;">
+   <!-- twiddler3_fingers_agility {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "twiddler3_fingers_agility");'>Fingers agility<span class="wh4">1</span></div>
+  <div id="div_twiddler3_fingers_agility" class="collapsed">
+I will assume that agility goes, for most of us, from index to pinky.
+Then we have to consider how combinations are to be classified.
+<pre>
+<b>2 fingers:</b>
+<em>index + major</em> <em>index + ring</em> <em>index + pinky</em>
+<em>major + ring</em> <em>major + pinky</em>
+<em>ring + pinky</em>
+<b>3 fingers:</b>
+<em>index + major + ring </em> <i>(3 top)</i>
+<em>major + ring  + pinky</em> <i>(3 bottom)</i>
+<em>index + major + pinky</em> <i>(2 top + 2 bottom)</i>
+<em>index + ring  + pinky</em> <i>(1 top + 1 bottom &hellip; poor pinky on its own)</i
+>
+<b>4 fingers:</b>
+<em>index + major + ring + pinky</em>
+</pre>
 
-   <!-- twiddler3_rows {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_rows");'>Rows rules<span class="wh4">1</span></div>
-   <div id="div_twiddler3_rows" class="collapsed">
-    <div class="rules">ROW &larr;&rarr; <em class="fingers">INDEX</em> MODIFIERS <em>Space</em> <em>BS</em> <em>Tab</em> </div>
-    <p>
-    The proposed layout pads are organized in 4 rows of 11 columns.
-    Each row corresponds to one of the four ways the index finger may use
-    the three buttons of the first row <em>BS</em>, <em>Space</em> and <em>Tab</em>
-    turning them into modifiers, quite like this is the case on a standard keyboard with
-    <em>Shift</em>, <em>Control</em> and <em>Alt</em>.
-    </p>
-    <p>
-<pre style="padding:4px 4px 0 1em !important;">
-<em>O</em> The <em>No modifier layer</em>
+<br>
+Still, it's much easier to punch several fingers at once
+if they are to be align on the same column.
+The other situations are (roughly) as follows:
+<pre>
+<em>more than one finger</em>
+&ndash; neighboring fingers on the same column kinda work together
+&ndash; those on their own may have to be trained to work alone
+<em>only 2 or 3 fingers down, the others raised</em>
+&ndash; difficulty depends on which are raised.
+<em>pinky on its own</em> &mdash; as in not paired with <em>ring finger on the same column</em>
+&ndash; difficulty being to train your pinky &mdash; or not!
+</pre>
+
+<br>
+A summary of these combinations for each row &mdash; difficulty going from left pad to right pad and, within each pad, from top row buttons to bottom ones&hellip;
+<pre><em>Col 1 4x4 top-row</em>
+<div class="clip_h_hm">
+ <img class="clip_img_h1" src="images/Cheat_TabSpace_3.png">
+</div>Best reserved for the <em class="fingers">INDEX modifiers</em> finger for all 4 rows of 3x3 pads.
+
+ <em>Col 1</em>  <em>Col 2</em>       <em>Col 3-5</em>            <em>Col 6-8</em>              <em>Col 9-11</em>
+  Sx9    Px6          S+5                Px3                   S+2
 <div class="clip_h_stripe">
  <img class="clip_img_h1" src="images/Cheat_TabSpace_3.png">
 </div>
-<em>M</em> The <em>Middle modifier layer</em> &ndash; index on <em>Space</em>
-<div class="clip_h_stripe">
- <img class="clip_img_h2" src="images/Cheat_TabSpace_3.png">
-</div>
-<em>R</em> The <em>Right modifier layer</em> &ndash; index on <em>BS</em>
-<div class="clip_h_stripe">
- <img class="clip_img_h3" src="images/Cheat_TabSpace_3.png">
-</div>
-<em>L</em> The <em>Left modifier layer</em> &ndash; index on <em>Tab</em>
-<div class="clip_h_stripe">
- <img class="clip_img_h4" src="images/Cheat_TabSpace_3.png">
-</div>
+<em>Col 1 3x3</em> pad involves only a <em class="fingers">single finger</em> at a time.
+Rows bellow are to be mastered by the other <em class="fingers">FINGERS</em>.
+<em>Col 2</em> pad involves <em class="fingers">finger pairs</em> which are the easiest combinations we have.
+<em>Col 3-5</em> pad use the <em class="fingers">major modifier</em> with 5 additional <em class="fingers">single fingers</em>.
+<em>Col 6-8</em> pad use the <em class="fingers">major modifier</em> with 3 additional <em class="fingers">finger pairs</em>.
+<em>Col 9-11</em> pad use the <em class="fingers">ring modifier</em> with 2 additional <em class="fingers">single finger</em>.
 </pre>
-    </p>
-    <p>
-     <div class="clip_div_mod" style="display:inline-block;"><img class="clip_img_RM" src="images/Cheat_TabSpace_3.png"></div>
-     <div class="clip_div_mod" style="display:inline-block;"><img class="clip_img_MM" src="images/Cheat_TabSpace_3.png"></div>
-     <div class="clip_div_mod" style="display:inline-block;"><img class="clip_img_LM" src="images/Cheat_TabSpace_3.png"></div>
-     <br>
-     <i>These <em>layers</em> are to be taken loosely enough to mean that a combination of one or more optional <em>modifier buttons</em>
-     is altering the default <em>O</em> <em>No modifier layer</em> mapping.
-     </i>
-    </p>
-   </div> <!-- }}} -->
+
+  </div> <!-- }}} -->
+
    <!-- twiddler3_columns {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_columns");'>Columns rules<span class="wh4">2</span></div>
    <div id="div_twiddler3_columns" class="collapsed">
-    <div class="rules">COL SETS &larr;&rarr; <em class="fingers">FINGER</em> MODIFIER</div>
+    <pre class="rules">
+    A <em>column</em> contains 4 identical <em>3x3 pads</em>
+    combined with one of the 4x4 <em class="fingers">INDEX MODIFIERS</em></pre>
+
     <p>
-    What the index finger does on the first row of the 4x3 full pad,
-    the other fingers can do on their respective row of the 3x3 sub-pad to introduce more layers.
+    What the <em class="fingers">INDEX</em> does on the first row of the 4x3 full pad,
+    the other <em class="fingers">FINGERS</em> can do on their respective row of the 3x3 sub-pad to introduce more layers.
     The remaining buttons can then be mapped individually or by pairs.
     </p>
-    <div class="rules">COL PADS &larr;&rarr; CONTAIN <em class="fingers">FINGER</em> COMBINATIONS</div>
+
+    Chord assignment is based on:
+    <ul>
+     <li> order of finger combinations agility: <em>index</em>-<em>major</em>-<em>ring</em>-<em>pinky</em></li>
+     <li> from top to bottom row: <em>none</em>-<em>Middle</em>-<em>Right</em>-<em>Left</em></li>
+     <li> from left to right column: <em>Col 1</em>&hellip;<em>Col 11</em></li>
+    </ul>
+
     <p>
-    Each 3x2 sub-pad is composed of a number of mappable single or pairs of buttons.
-    <em>180 = 4x45 = 4x(9 + 6 + 3x5 + 3x3 + 3x2)</em>
+    Each sub-pad is composed of a number of <em>single buttons</em> or <em>button pairs</em>.
     </p>
+
+    <br>
 <!-- [Col 1-11] {{{ -->
 <pre style="padding:4px !important;">
- Col 1  Col 2       Col 3-5            Col 6-8              Col 9-11
+<em>180 = 4x45 = 4x(9 + 6 + 3x5 + 3x3 + 3x2)</em>
+
+ <em>Col 1</em>  <em>Col 2</em>       <em>Col 3-5</em>            <em>Col 6-8</em>              <em>Col 9-11</em>
   Sx9    Px6          S+5                Px3                   S+2
 <div class="clip_v_stripe"
 ><img class="clip_img_v1" src="images/Cheat_TabSpace_3.png">
@@ -846,13 +874,84 @@ num   00ll = SCROLL_LOCK
      Note: The 4x11 layout can be further extended to include the less practical, but still usable,
      combinations of 2 modifiers on the first and second row of the 3x3 sub-sub-pads to obtain <em>18 = 3x(3x2)</em> more mappings
      looking just like 3 more <em>Col 9-11</em> but with one of 3x3 top <em>R</em><em>M</em><em>L</em> pressed by the middle finger.
-    
+
     </i>
     </p>
     <!-- }}} -->
    </div> <!-- }}} -->
+   <!-- twiddler3_rows {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_rows");'>Rows rules<span class="wh4">3</span></div>
+   <div id="div_twiddler3_rows" class="collapsed">
+    <div class="rules">ROW &larr;&rarr; <em>3x3 PADS</em> + <em class="fingers">INDEX MODIFIERS</em> <em>Space</em> <em>BS</em> <em>Tab</em> </div>
+
+    <p>
+    The proposed layout pads are organized in 4 rows of 11 columns.
+    Each row corresponds to one of the four ways the <em class="fingers">INDEX</em> may use
+    the three buttons of the first row <em>BS</em>, <em>Space</em> and <em>Tab</em>
+    turning them into modifiers, quite like this is the case on a standard keyboard with
+    <em>Shift</em>, <em>Control</em> and <em>Alt</em>.
+    </p>
+
+    <p>
+     <div class="clip_div_mod" style="display:inline-block;"><img class="clip_img_RM" src="images/Cheat_TabSpace_3.png"></div>
+     <div class="clip_div_mod" style="display:inline-block;"><img class="clip_img_MM" src="images/Cheat_TabSpace_3.png"></div>
+     <div class="clip_div_mod" style="display:inline-block;"><img class="clip_img_LM" src="images/Cheat_TabSpace_3.png"></div>
+     <br>
+     <i>These <em>layers</em> are to be taken loosely enough to mean that a combination of one or more optional <em>modifier buttons</em>
+     is altering the default <em>O</em> <em>No modifier layer</em> mapping.
+     </i>
+    </p>
+
+   <!-- twiddler3_rows_order {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_rows_order");'>Rows order<span class="wh4">3.1</span></div>
+   <div id="div_twiddler3_rows_order" class="collapsed">
+
+    <p>
+    Looking for a usability order for these four rows
+    comes to decide how keeping <em class="fingers">INDEX</em> raised
+    or holding one of the three first row modifers
+    are to be compared.  Here is something based on what we have so far&hellip;
+    </p>
+
+<b class="rules">1 - MOST USED LETTERS</b>
+&hellip;let's assume 3 buttons are easier than 4 buttons chords:
+<pre style="padding:2px !important; margin:0px !important;">
+<em>O</em> The <em>No modifier layer</em> &mdash; <em class="fingers">INDEX</em> raised
+<div class="clip_h_stripe">
+ <img class="clip_img_h1" src="images/Cheat_TabSpace_3.png">
+</div></pre>
+
+<br>
+<b class="rules">2 - OTHER LETTERS</b>
+&hellip;next best is <em class="fingers">INDEX</em> pressing <em>Home-row Space</em> modifier:
+<pre style="padding:2px !important; margin:0px !important;">
+<em>M</em> The <em>Middle modifier layer</em> &mdash; <em class="fingers">INDEX</em> on <em>Space</em>
+<div class="clip_h_stripe">
+ <img class="clip_img_h2" src="images/Cheat_TabSpace_3.png">
+</div></pre>
+
+<br>
+<b class="rules">3 - NUMBERS &AMP; OPERATORS</b>
+&hellip;then Right or Left? &hellip;no idea, let's pick one:
+<pre style="padding:2px !important; margin:0px !important;">
+<em>R</em> The <em>Right modifier layer</em> &mdash; <em class="fingers">INDEX</em> on <em>Backspace</em>
+<div class="clip_h_stripe">
+ <img class="clip_img_h3" src="images/Cheat_TabSpace_3.png">
+</div></pre>
+
+<br>
+<b class="rules">4 - SIGNS</b>
+&hellip;and finally:
+<pre style="padding:2px !important; margin:0px !important;">
+<em>L</em> The <em>Left modifier layer</em> &mdash; <em class="fingers">INDEX</em> on <em>Tab</em>
+<div class="clip_h_stripe">
+ <img class="clip_img_h4" src="images/Cheat_TabSpace_3.png">
+</div></pre>
+   </div> <!-- }}} -->
+
+   </div> <!-- }}} -->
    <!-- twiddler3_pads {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_pads");'>Pads rules<span class="wh4">3</span></div>
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_pads");'>Pads rules<span class="wh4">4</span></div>
    <div id="div_twiddler3_pads" class="collapsed">
    <div class="rules">team of symbols</div>
    <p>
@@ -887,7 +986,7 @@ num   00ll = SCROLL_LOCK
 
   </div> <!-- }}} -->
    <!-- twiddler3_clusters {{{ -->
-  <div class="fold_title" onclick='toggle_div(this, "twiddler3_clusters");'>Clusters rules<span class="wh4">4</span></div>
+  <div class="fold_title" onclick='toggle_div(this, "twiddler3_clusters");'>Clusters rules<span class="wh4">5</span></div>
   <div id="div_twiddler3_clusters" class="collapsed">
    <div class="rules">pads proximity</div>
    When mappings are close to one another, it means they share one or more <em>major fingers</em> combinations.
@@ -901,7 +1000,7 @@ num   00ll = SCROLL_LOCK
   </div> <!-- }}} -->
   <!-- Applying rules {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "applying_rules");'>Applying rules<span class="wh5">&hellip;</span></div>
-  <div id="div_applying_rules" class="collapsed">
+  <div id="div_applying_rules" class="collapsed" style="background-color:#efe !important;">
    <p><!-- ...intro {{{ -->
    <p>
    Now, we have to find matches between both our symbol categories and layout categories.
@@ -1091,7 +1190,7 @@ num   00ll = SCROLL_LOCK
     As a first easy decision, considering how Num layer pads are scarcely used at this stage,
     moving <em>NumLock</em>, <em>ScrollLock</em> and <em>PageLock</em>
     to lower <em>R2 pair x6</em> seems to be a choice <em class='todo'>temporarily! as good as any</em>.
-    </p> 
+    </p>
     </div> <!-- }}} -->
   <!-- todo... {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "twiddler3_todo");'>...todo...</div>
@@ -1106,7 +1205,7 @@ num   00ll = SCROLL_LOCK
   </div> <!-- }}} -->
     <!-- MCC {{{ -->
     <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc");'>Multi Character Chords <span class="wh6">&hellip;</span></div>
-    <div id="div_twiddler3_mcc" class="collapsed">
+    <div id="div_twiddler3_mcc" class="collapsed" style="background-color:#ddf !important;">
     <!-- twiddler3_mcc_num {{{ -->
     <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_num");'>TabSpace MCC <span class="wh6">1</span></div>
     <div id="div_twiddler3_mcc_num" class="collapsed">
@@ -1188,7 +1287,7 @@ num   00ll = SCROLL_LOCK
     </div> <!-- }}} -->
   <!-- Cheat Sheets {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "cheat_sheet");'>Collection of Cheat Sheets <span class="wh7">&hellip;</span></div>
-  <div id="div_cheat_sheet" class="collapsed" style="text-align:left;">
+  <div id="div_cheat_sheet" class="collapsed" style="background-color:#edf !important; text-align:left;">
 
    <p>
    <a href="layout_browser.html" target="layout_browser">The Layout browser</a>
