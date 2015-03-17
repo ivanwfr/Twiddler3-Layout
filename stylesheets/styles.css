@@ -44,11 +44,6 @@ a {
     text-decoration: none;
 }
 
-p {
-    margin: 0 0 20px;
-    padding: 0;
-}
-
 strong {
     color: #222;
     font-weight: 700;
@@ -179,7 +174,7 @@ header ul a strong {
 
 section {
     padding: 15px 20px;
-    font-size: 18px;
+    font-size: 14px;
     border-top: 1px solid #fff;
     background: -webkit-gradient(linear, 50% 0%, 50% 700, color-stop(0%, #fafafa), color-stop(100%, #dedede));
     background: -webkit-linear-gradient(#fafafa, #dedede 700px);
@@ -193,7 +188,7 @@ section {
     -o-border-radius: 0 0 8px 8px;
     border-radius: 0 0 8px 8px;
     position: relative;
-    text-align:justify;	
+    text-align:justify;
     text-justify:inter-word;
 }
 
@@ -205,8 +200,15 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
 }
 
+p {
+    padding: 0;
+}
+
 p, ul, ol, table, pre, dl {
     margin: 0 0 20px;
+}
+.expanded p {
+    margin: 0 0 1ex;
 }
 
 h1, h2, h3 {
