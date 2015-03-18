@@ -361,3 +361,21 @@
 */
 
 /* }}} */
+
+/* SUPPORT */
+/* TEXT {{{ */
+
+#div_support_tuner .label {
+    background-color : #100   !important;
+    color            : orange !important;
+    padding          : 1px 1ex 2px 1ex;
+}
+
+#div_support_tuner .button {
+    background-color : orange !important;
+    color            : white  !important;
+    padding          : 1px 1ex 2px 1ex;
+}
+
+/* }}} */
+

@@ -17,7 +17,7 @@
 <![endif]-->
 </head>
 <!-- }}} -->
-<body onload='expand_div("_twiddler3_fingers_agility");' id="top">
+<body onload='expand_div("_support_tuner");' id="top">
 <div class="wrapper">
  <header><!-- {{{ -->
   <h1>Twiddler3-layout</h1>
@@ -33,7 +33,7 @@
  </header>
  <!-- }}} -->
  <section>
-  <div class="wrap_div" id="wrap_div_top" style="float:right; visibility:hidden;" onclick='expand_div("top");'><img title="all wrapped" src="images/cursor/top.png">                            </div>
+  <div class="wrap_div" id="wrap_div_top" style="float:right; visibility:hidden;" onclick='expand_div("top");'><img title="all wrapped" src="images/cursors/top.png">                            </div>
   <!-- INTRO {{{ -->
 
   <!-- Looking into... {{{ -->
@@ -59,21 +59,20 @@
   this is a thorough description of a complementary survey.
 
   </p> <!-- }}} -->
-  <p><!-- ...supported {{{ -->
+  <p><!-- ...support {{{ -->
 
-  <a class="expander" href="#div_supported" onclick='expand_div("supported");'>Supported chords<span class="wh2">&hellip;</span></a>
-
-  are mapped to keyboard symbols by TekGear's
-  <a href="http://twiddler.tekgear.com/tuner" target="tuner">Twiddler 3 tuner<img style='margin-top:-.5ex;' src="http://twiddler.tekgear.com/favicon.ico"></a>.
-
-  A graphic rendering of its
-  <a class="expander" href="#div_supported_orml" onclick='expand_div("supported_orml");'>ORML encoding<span class="wh2">1</span></a>
+  <a class="expander" href="#div_support" onclick='expand_div("support");'>Supported chords<span class="wh2">&hellip;</span></a>
+  are stored using an
+  <a class="expander" href="#div_support_orml" onclick='expand_div("support_orml");'>ORML encoding<span class="wh2">1</span></a>
+  the user can customize with
+  <a class="expander" href="#div_support_orml" onclick='expand_div("support_tuner");'>TekGear's Twiddler 3 tuner<span class="wh2">2</span></a>
+  online application.
 
   shows the full
-  <a class="expander" href="#div_supported_4x4" onclick='expand_div("supported_4x4");'>4x4 chord sets<span class="wh2">2</span></a>
+  <a class="expander" href="#div_support_4x4" onclick='expand_div("support_4x4");'>4x4 chord sets<span class="wh2">3</span></a>
 
   broken down into four more convenient
-  <a class="expander" href="#div_supported_3x3" onclick='expand_div("supported_3x3");'>3x3 chord sets<span class="wh2">3</span></a>.
+  <a class="expander" href="#div_support_3x3" onclick='expand_div("support_3x3");'>3x3 chord sets<span class="wh2">4</span></a>.
 
   </p> <!-- }}} -->
   <p><!-- ...making_rules {{{ -->
@@ -491,45 +490,89 @@ num   00ll = SCROLL_LOCK
     </pre>
    </div><!-- }}} -->
 
-   <div class="wrap_div" onclick='toggle_div(this, "tabspace");'><img title="collapse" src="images/cursor/left.png">Starting from TabSpace</div>
-   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png">                            </div>
+   <div class="wrap_div" onclick='toggle_div(this, "tabspace");'><img title="collapse" src="images/cursors/left.png">Starting from TabSpace</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
   </div> <!-- }}} -->
   <!-- Supported chords {{{ -->
-  <div class="fold_title" onclick='toggle_div(this,"supported");'>Supported chords <span class="wh2">&hellip;</span></div>
-  <div id="div_supported" class="collapsed" style="background-color:#ecc !important;">
+  <div class="fold_title" onclick='toggle_div(this,"support");'>Supported chords <span class="wh2">&hellip;</span></div>
+  <div id="div_support" class="collapsed" style="background-color:#ecc !important;">
 
-   <!-- supported_orml {{{ -->
-   <div class="fold_title" onclick='toggle_div(this,"supported_orml");'>Chord &larr;&rarr; Symbol<span class="wh2">1</span></div>
-    <div id="div_supported_orml" class="collapsed">
+   <!-- support_orml {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"support_orml");'>Chord &larr;&rarr; Symbol<span class="wh2">1</span></div>
+   <div id="div_support_orml" class="collapsed">
 
-   <p><!-- Chord and symbols {{{ -->
-   With symbols segmented into categories,
-   the assignment process becomes a matter of
-   looking into how they can be matched with our chord sets.
-   </p> <!-- }}} -->
-   <p><!-- 4x3x3 {{{ -->
-   As the Twiddler <em>ORML encoding</em> does not support chords that would
-   require pressing more than one button on the same row,
+    <p><!-- Chord and symbols {{{ -->
+    With symbols segmented into categories,
+    the assignment process becomes a matter of
+    looking into how they can be matched with our chord sets.
+    </p> <!-- }}} -->
+    <p><!-- 4x3x3 {{{ -->
+    As the Twiddler <em>ORML encoding</em> does not support chords that would
+    require pressing more than one button on the same row,
 
-   its full set of <em>4x4 chords</em> can be segmented
-   into four groups of <em>3x3 chords</em>
-   involving the <em>3 columns of the 3 lower rows</em>.
+    its full set of <em>4x4 chords</em> can be segmented
+    into four groups of <em>3x3 chords</em>
+    involving the <em>3 columns of the 3 lower rows</em>.
 
-   All combinations are addressed once combined with one of the four <em>ORML</em>&larr;&rarr;<em class="fingers">INDEX MODIFIERS</em> on the <em>4x4</em> top row.
-   </p>
-   <!-- }}} -->
-   <p><!-- 24 more {{{ -->
-   <i>Not covered here, less practical <i>(yet usable)</i> combinations of 2 modifiers
+    All combinations are addressed once combined with one of the four <em>ORML</em>&larr;&rarr;<em class="fingers">INDEX MODIFIERS</em> on the <em>4x4</em> top row.
+    </p>
+    <!-- }}} -->
+    <p><!-- 24 more {{{ -->
+    <i>Not covered here, less practical <i>(yet usable)</i> combinations of 2 modifiers
      on the first and second row
      of the 3x3 sub-pads
      allows more mappings.</i>
-   </p>
-   <!-- }}} -->
+    </p>
+    <!-- }}} -->
 
-    </div> <!-- }}} -->
-   <!-- supported_4x4 {{{ -->
-   <div class="fold_title" onclick='toggle_div(this,"supported_4x4");'><em>4x4 chord set</em> <span class="wh2">2</span></div>
-  <div id="div_supported_4x4" class="collapsed">
+   </div> <!-- }}} -->
+   <!-- support_tuner {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"support_tuner");'>TekGear Tuner<span class="wh2">2</span></div>
+   <div id="div_support_tuner" class="collapsed">
+
+    <!-- wrong {{{ -->
+    <b>What is wrong with TekGear's
+    <a href="http://twiddler.tekgear.com/tuner" target="tuner">Twiddler 3 tuner <img style='margin-top:-.5ex;' src="http://twiddler.tekgear.com/favicon.ico"></a></b>
+     <img style="float:right;" src="images/emoticons/huh.png">
+    <ul style="clear:right;">
+     <li>
+     No <em>X-Ray view option</em> <i>(see-through)</i> so that
+     <em>Device LEFT</em> and <em>User's LEFT</em> coincide
+     </li>
+     <li>
+     Having to activate an obvious
+     <img style="height:18px;" src="images/icons/edit-icon.png">
+     after each
+     <em class="label">Add a new chord</em>
+     </li>
+     <li>
+     Although <em class="label">Key Stroke(s) </em> buttons
+     <em class="button">Insert</em> and <em class="button">Apply</em>
+     display their current <em>enabled</em> or <em>disabled</em> state correctly
+     &mdash; <em>the Keystroke input text</em> does not.
+     </li>
+     <li>
+     Display order fixed to <em>Bottom&mdash;up</em>
+     </li>
+     <li>
+     Not open-source! &hellip; as if there were concerns with exploitation
+     </li>
+     <li>
+     Some hardly readable symbols in <em class="label">left pane Key Stroke(s) </em> column
+     </li>
+     <li>
+     A display of <em>Chord ORML notation</em> should be updated with each button selection while in edit mode
+     instead of after a click on the <em class="button">Apply</em> button.
+     </li>
+
+    </ul>
+
+    <!-- }}} -->
+
+   </div> <!-- }}} -->
+   <!-- support_4x4 {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"support_4x4");'><em>4x4 chord set</em> <span class="wh2">3</span></div>
+  <div id="div_support_4x4" class="collapsed">
    <em>255 = (4^4 - 1)</em>
    If the tuner supports them all, some are easier to use than others.
    <br>
@@ -549,9 +592,9 @@ num   00ll = SCROLL_LOCK
        <em>&larr; 3x3 &rarr;</em>
 </pre>
   </div> <!-- }}} -->
-  <!-- supported_3x3 {{{ -->
-  <div class="fold_title" onclick='toggle_div(this,"supported_3x3");'><em>3x3 chord set</em> <span class="wh2">3</span></div>
-  <div id="div_supported_3x3" class="collapsed" style="text-align:left; vertical-align:top !important; overflow:hidden;">
+  <!-- support_3x3 {{{ -->
+  <div class="fold_title" onclick='toggle_div(this,"support_3x3");'><em>3x3 chord set</em> <span class="wh2">4</span></div>
+  <div id="div_support_3x3" class="collapsed" style="text-align:left; vertical-align:top !important; overflow:hidden;">
    <em>63 = (4^3 - 1)</em>
    Some chords stand out enough to justify a mapping to prominent keystrokes.
    <p>
@@ -667,8 +710,8 @@ num   00ll = SCROLL_LOCK
     </p>
    </div> <!-- }}} -->
 
-   <div class="wrap_div" onclick='toggle_div(this, "supported");'><img title="collapse" src="images/cursor/left.png">Supported chords</div>
-   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png">                            </div>
+   <div class="wrap_div" onclick='toggle_div(this, "support");'><img title="collapse" src="images/cursors/left.png">Supported chords</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
   </div> <!-- }}} -->
   <!-- Making rules {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "making_rules");'>Making rules<span class="wh3">&hellip;</span></div>
@@ -696,7 +739,7 @@ num   00ll = SCROLL_LOCK
    <!-- twiddler3_road_map {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "twiddler3_road_map");'>Rulling road map<span class="wh3">1</span></div>
   <div id="div_twiddler3_road_map" class="collapsed">
-   <img title="sure!" style="float:right; "src="images/emoticons/^^.png">
+   <img title="sure!" style="float:right;" src="images/emoticons/^^.png">
    <div class="rules">learning phase benefit &larr; &rarr; <em>memorized at first glance</em></div>
    <p>
    Working with learning phase comfort in mind
@@ -785,8 +828,8 @@ num   00ll = SCROLL_LOCK
     <br style='clear:left;'>
    </div> <!-- }}} -->
 
-   <div class="wrap_div" onclick='toggle_div(this, "making_rules");'><img title="collapse" src="images/cursor/left.png">Making rules</div>
-   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png">                            </div>
+   <div class="wrap_div" onclick='toggle_div(this, "making_rules");'><img title="collapse" src="images/cursors/left.png">Making rules</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
   </div> <!-- }}} -->
   <!-- Some rules {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "some_rules");'>Some rules<span class="wh4">&hellip;</span></div>
@@ -1051,8 +1094,8 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
    The best to be expected from a good organization is to be applicable in more than a single occasion.
    </p>
   </div> <!-- }}} -->
-   <div class="wrap_div" onclick='toggle_div(this, "some_rules");'><img title="collapse" src="images/cursor/left.png">Some rules</div>
-   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png">                            </div>
+   <div class="wrap_div" onclick='toggle_div(this, "some_rules");'><img title="collapse" src="images/cursors/left.png">Some rules</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
   </div> <!-- }}} -->
   <!-- Applying rules {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "applying_rules");'>Applying rules<span class="wh5">&hellip;</span></div>
@@ -1256,8 +1299,8 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
    <br><em>@</em> <em>%</em> <em>&amp;</em>
   </div>
   <!-- }}} -->
-   <div class="wrap_div" onclick='toggle_div(this, "applying_rules");'><img title="collapse" src="images/cursor/left.png">Applying rules</div>
-   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png">                            </div>
+   <div class="wrap_div" onclick='toggle_div(this, "applying_rules");'><img title="collapse" src="images/cursors/left.png">Applying rules</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
   </div> <!-- }}} -->
     <!-- MCC {{{ -->
     <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc");'>Multi Character Chords <span class="wh6">&hellip;</span></div>
@@ -1338,8 +1381,8 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
      </p>
     </div>
     <!-- }}} -->
-   <div class="wrap_div" onclick='toggle_div(this, "twiddler3_mcc");'><img title="collapse" src="images/cursor/left.png">Multi Character Chords</div>
-   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png">                            </div>
+   <div class="wrap_div" onclick='toggle_div(this, "twiddler3_mcc");'><img title="collapse" src="images/cursors/left.png">Multi Character Chords</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
     </div> <!-- }}} -->
   <!-- Cheat Sheets {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "cheat_sheet");'>Collection of Cheat Sheets <span class="wh7">&hellip;</span></div>
@@ -1395,8 +1438,8 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
     <img id="img8" style="width:80%; margin:1ex 0 2px 1ex;" src="images/Cheat_MessagEase.png">
    </a>
    <!-- }}} -->
-   <div class="wrap_div"                      onclick='toggle_div(this, "cheat_sheet");'><img title="collapse" src="images/cursor/left.png">Collection of Cheat Sheets</div>
-   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursor/top.png"></div>
+   <div class="wrap_div"                      onclick='toggle_div(this, "cheat_sheet");'><img title="collapse" src="images/cursors/left.png">Collection of Cheat Sheets</div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursors/top.png"></div>
 
   </div>
   <!-- }}} -->
