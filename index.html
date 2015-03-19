@@ -530,7 +530,7 @@ num   00ll = SCROLL_LOCK
    <div class="fold_title" onclick='toggle_div(this,"support_tuner");'>TekGear Tuner<span class="wh2">2</span></div>
    <div id="div_support_tuner" class="collapsed">
 
-    <!-- bad {{{ -->
+    <!-- the bad {{{ -->
     <img style="float:right;" src="images/emoticons/huh.png">
     <br>
     <b>The bad with TekGear's
@@ -550,7 +550,7 @@ num   00ll = SCROLL_LOCK
      Although <em class="label">Key Stroke(s) </em> buttons
      <em class="button">Insert</em> and <em class="button">Apply</em>
      display their current <em>enabled</em> or <em>disabled</em> state correctly
-     &mdash; <em>the Keystroke input text</em> does not.
+     &mdash; <em>the Keystroke text input</em> does not.
      </li>
      <li>
      Display order fixed to <em>Bottom&mdash;up</em>
@@ -559,7 +559,22 @@ num   00ll = SCROLL_LOCK
      Not open-source! &hellip; as if there were concerns with exploitation
      </li>
      <li>
-     Some hardly readable symbols in <em class="label">left pane Key Stroke(s) </em> column
+     Some hardly readable symbols with font issues:
+     <ul>
+      <li><em class="label">Keystroke text input</em></li>
+      <li><em class="label">left pane Key Stroke(s) column </em></li>
+      <li>Using variable font breaks vertical alignment in
+      <em class="label">left pane Chord column </em></li>
+      <li>Using fancy font for <em class="label">Keystroke text input</em>
+      is not convenient when dealing with tiny simbols like these:
+      <div style="display:inline; font-size:120%; font-family:'Lucida Console', Monaco, monospace;">
+      <em class="label" style="padding:2px;">'</em>
+      <em class="label" style="padding:2px;">"</em>
+      <em class="label" style="padding:2px;">`</em>
+      euro € 
+     </div>
+      </li>
+     </ul>
      </li>
      <li>
      A display of <em>Chord ORML notation</em> should be updated with each button selection while in edit mode
@@ -568,11 +583,19 @@ num   00ll = SCROLL_LOCK
      <li>
      A session timeout that may ditch unsaved changes ... what's the stress ?
      </li>
+     <li>
+     Some missing <em>Special Keys</em>:
+     <ul>
+      <li><em class="label">&lt;Space&gt;</em> <i>(currently an invisble blank)</i></li>
+      <li><em class="label">&euro;</em></li>
+      <li><em class="label">...scancode support for more...</em></li>
+     </ul>
+     </li>
 
     </ul>
 
     <!-- }}} -->
-    <!-- good {{{ -->
+    <!-- the good {{{ -->
     <img style="float:right;" src="images/emoticons/=).png">
     <br>
     <b>The good &hellip;</b>
@@ -584,6 +607,20 @@ num   00ll = SCROLL_LOCK
     </ul>
 
     <!-- }}} -->
+
+    <b>A better text input made for testing:</b>
+    <br>
+    <input
+    type="text"
+    class="label"
+    style="
+    font-size:200%;
+    font-family:'Lucida Console', Monaco, monospace;
+    width:90%;
+    margin-left:20px;
+    "
+    value="&colon;&semi;&apos; &quot;&amp;&grave;"
+    >
 
    </div> <!-- }}} -->
    <!-- support_4x4 {{{ -->
