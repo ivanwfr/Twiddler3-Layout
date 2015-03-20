@@ -256,41 +256,134 @@ function eraseCookie(cName)// {{{
 }
 // }}}
 
+/* MOUSE */
      function fold_onclick(num, url) { // {{{
 //alert("fold_onclick(num=["+num+"], url=["+url+"]")
       for(var n=1; n<=8; ++n) {
 
-       fold_div  = document.getElementById("fold_div"+n);
-       fold_pane = document.getElementById("fold_pane"+n);
+       var fold_div  = document.getElementById("fold_div"+n);
+       var fold_pane = document.getElementById("fold_pane"+n);
+       var tanscript = document.getElementById("transcript");
        if(!fold_div || !fold_pane)
 	continue;
 
        if(n == num) {
-	   toggle_show = (fold_pane.className != "fold_show");
+	   show_hide = (fold_pane.className != "fold_show");
        }
        else {
 	    continue;
-	   //toggle_show = false;
+	   //show_hide = false;
        }
 
-       if( toggle_show ) {
+       if( show_hide ) {
 	if(url.indexOf("http") == 0)
 	 if(fold_pane.src != url) fold_pane.src = url;
        }
 
-       fold_div.className  = (toggle_show) ? "fold_show" : "fold_dim";
-       fold_pane.className = (toggle_show) ? "fold_show" : "fold_hide";
+       fold_div.className		= (show_hide) ? "fold_show" : "fold_dim";
+       fold_pane.className		= (show_hide) ? "fold_show" : "fold_hide";
+       transcript.style.visibility	= (show_hide) ? "visible"   : "hidden";
 
-       if(toggle_show) fold_pane1.focus();
+       if(show_hide) {
+	   transcript.style.left	= "100px";
+	   transcript.style.bottom	= "100px";
+       }
+
+       if(show_hide) fold_pane1.focus();
 
 //alert("fold_pane.className=["+fold_pane.className+"]")
       }
      } // }}}
+    function trns_onclick(e) { // {{{
+	// INIT {{{
+	e.stopPropagation();
+	if(e.target.id) {
+	    transcript.innerHTML = "<pre>XXX</pre>";
+	    return;
+	}
+	//}}}
+	// BORDER-CLICK - MOVE {{{
+	var tanscript  = document.getElementById("transcript");
+	if(!transcript) return;
+
+	var clickPos = getClickPosition(e);
+	clickPos.x -= e.target.offsetLeft;
+
+	var moveX = "";
+	if     (clickPos.x < (1 * transcript.clientWidth /4)) moveX = "L";
+	else if(clickPos.x > (3 * transcript.clientWidth /4)) moveX = "R";
+
+	var moveY = "";
+	if     (clickPos.y < (1 * transcript.clientHeight/4)) moveY = "U";
+	else if(clickPos.y > (3 * transcript.clientHeight/4)) moveY = "D";
+
+	//}}}
+	// CENTER-CLICK - HIDE {{{
+	if((moveX == "") && (moveY == "")) {
+	    transcript.innerHTML        = "<pre>hidden</pre>";
+	    transcript.style.visibility = "hidden";
+	    return;
+	}
+	//}}}
+	//  MOVE {{{
+	if(moveX == "L") transcript.style.left   = "100px"; 
+	if(moveX == "R") transcript.style.left   = (window.innerWidth  - transcript.clientWidth  - 100)+"px";
+
+	if(moveY == "U") transcript.style.bottom = (window.innerHeight - transcript.clientHeight - 100)+"px";
+	if(moveY == "D") transcript.style.bottom = "100px";
+
+	//}}}
+//// LOG {{{
+//	transcript.innerHTML = "<pre style='font-family:fixedsys;'>"
+//	    +"     clickPos.x      =["+  clickPos.x          +"]   clickPos.y           =["+    clickPos.y            +"]\n"
+//	    +"        t.clientWidth=["+transcript.clientWidth+"]          t.clientHeight=["+  transcript.clientHeight +"]\n"
+//	    +"     moveX=["+moveX+"] moveY=["+moveY+"]\n"
+//	    +"    window.innerWidth=["+    window.innerWidth +"]     window.innerHeight =["+      window.innerHeight +"]\n"
+//	    +"\n"
+//	    +"transcript.style.left   =["+transcript.style.left +"]\n"
+//	    +"transcript.style.right  =["+transcript.style.right +"]\n"
+//	    +"transcript.style.top    =["+transcript.style.top +"]\n"
+//	    +"transcript.style.bottom =["+transcript.style.bottom +"]\n"
+//	    +"\n"
+//	    +"            e.clientX=["+         e.clientX    +"]          e.clientY     =["+           e.clientY      +"]\n"
+//	    +"            e.screenX=["+         e.screenX    +"]          e.screenY     =["+           e.screenY      +"]\n"
+//	    +"document.body.scrollLeft=["+document.body.scrollLeft +"] document.body.scrollTop=["+document.body.scrollTop +"]\n"
+//	    +"       window.screenX=["+    window.screenX    +"]     window.screenY     =["+      window.screenY      +"]\n"
+//	    +"  e.target.offsetLeft=["+  e.target.offsetLeft +"]   e.target.offsetTop   =["+  e.target.offsetTop      +"]\n"
+//	    +"  e.target.id=["+e.target.id  +"]\n"
+//	    +"\n"
+//	    +"transcript.offsetLeft=["+transcript.offsetLeft +"] transcript.offsetTop   =["+transcript.offsetTop      +"]\n"
+//	    +"transcript.scrollLeft=["+transcript.scrollLeft +"] transcript.scrollTop   =["+transcript.scrollTop      +"]\n"
+//	    +"transcript.id=["+transcript.id+"]\n"
+//	    +"transcript.style.marginLeft=["+transcript.style.marginLeft +"]\n"
+//	    +"</pre>"
+////}}}
+    } // }}}
     function fold_stopEventPropagation(e, el) { //{{{
 	if(!e) e = window.event;
+	if(e.preventDefault ) e.preventDefault();
 	if(e.stopPropagation) e.stopPropagation();
 	else                  e.cancelBubble = true;
     } // }}}
+function getClickPosition(e) { //{{{
+    var parentPosition = getPosition(e.currentTarget);
+    var xPosition = e.clientX - parentPosition.x;
+    var yPosition = e.clientY - parentPosition.y;
+    return { x: xPosition, y: yPosition };
+} //}}}
+function getPosition(el) { //{{{
+    var xPosition = 0;
+    var yPosition = 0;
+      
+    while (el) {
+        xPosition += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+        yPosition += (el.offsetTop - el.scrollTop + el.clientTop);
+        el = el.offsetParent;
+    }
+    return { x: xPosition, y: yPosition };
+} //}}}
+
+/* KEYBOARD */
     function fold_keydown(e, el) { //{{{
 
 // :!start explorer "http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes"
@@ -298,7 +391,10 @@ function eraseCookie(cName)// {{{
 	var el_id = ""; try { el_id = el.id } catch(ex) {}
 	//alert("el_id=["+el_id+"]")
 
+	if(e.preventDefault ) e.preventDefault();
+	if(e.stopPropagation) e.stopPropagation();
 	//if(e.defaultPrevented) return; // Should do nothing if the key event was already consumed.
+
 	if(e.repeat) return;
 
 	var charCode = (e.keyCode) ? e.keyCode : e.which;
@@ -397,21 +493,21 @@ function eraseCookie(cName)// {{{
 
 	//}}}
 	// [ 112- 128] {{{
-	else if(charCode == 112) value = "<F1>"            ;
-	else if(charCode == 113) value = "<F2>"            ;
-	else if(charCode == 114) value = "<F3>"            ;
-	else if(charCode == 115) value = "<F4>"            ;
+	else if(charCode == 112) value = "<F1>"          ;
+	else if(charCode == 113) value = "<F2>"          ;
+	else if(charCode == 114) value = "<F3>"          ;
+	else if(charCode == 115) value = "<F4>"          ;
 
-	else if(charCode == 116) value = "<F5>"            ;
-	else if(charCode == 117) value = "<F6>"            ;
-	else if(charCode == 118) value = "<F7>"            ;
-	else if(charCode == 119) value = "<F8>"            ;
+	else if(charCode == 116) value = "<F5>"          ;
+	else if(charCode == 117) value = "<F6>"          ;
+	else if(charCode == 118) value = "<F7>"          ;
+	else if(charCode == 119) value = "<F8>"          ;
 
-	else if(charCode == 120) value = "<F9>"            ;
-	else if(charCode == 121) value = "<F10>"           ;
-	else if(charCode == 122) value = "<F11>"           ;
-	else if(charCode == 123) value = "<F12>"           ;
-	else if(charCode == 127) value = "<DEL>"         ; //  ^A
+	else if(charCode == 120) value = "<F9>"          ;
+	else if(charCode == 121) value = "<F10>"         ;
+	else if(charCode == 122) value = "<F11>"         ;
+	else if(charCode == 123) value = "<F12>"         ;
+	else if(charCode == 127) value = "<DEL>"         ;
 
 	//}}}
 	// [ 128- 144] {{{
@@ -514,23 +610,31 @@ function eraseCookie(cName)// {{{
 	// transcript {{{
 	var transcript = document.getElementById("transcript");
 	if(transcript)
-	    transcript.innerHTML    = "<pre>"
-		+"     keyIdentifier=["+ e.keyIdentifier    +"]\n"
-		+"\n"
-		+"             which=["+ e.which	    +"]\n"
-		+"           keyCode=["+ e.keyCode	    +"]\n"
-		+"          charCode=["+   charCode	    +"]\n"
-		+"\n"
-		+"            altKey=["+ e.altKey           +"]\n"
-		+"          shiftKey=["+ e.shiftKey         +"]\n"
-		+"           ctrlKey=["+ e.ctrlKey          +"]\n"
-		+"           metaKey=["+ e.metaKey          +"]\n"
-		+"            repeat=["+ e.repeat           +"]\n"
-		+"          location=["+ e.location         +"]\n"
-		+"\n"
-		+"             value=["+   value	    +"]\n"
-		+"         is_a_char=["+   is_a_char	    +"]\n"
-		+"</pre>" 
+
+	    var a = e.altKey   ? "X" : "-";
+	    var s = e.shiftKey ? "X" : "-";
+	    var c = e.ctrlKey  ? "X" : "-";
+	    var m = e.metaKey  ? "X" : "-";
+
+	    var v = value.replace(/&/g,"&amp;"); // ...must be first!
+	    v     =     v.replace(/</g, "&lt;");
+	    v     =     v.replace(/>/g, "&gt;");
+
+	    transcript.innerHTML    = ""
+		+ "<div>"
+		+ "<table>"
+
+		+"<tr><th>     ALT            </th><th>     SHIFT       </th><th>     CTRL      </th><th>     META       </th></tr>"
+		+"<tr><td>"+   a            +"</td><td>"+   s         +"</td><td>"+   c       +"</td><td>"+   m        +"</td></tr>"
+
+		+"<tr><th>     keyIdentifier  </th><th>     which       </th><th>     keyCode   </th><th>     charCode   </th></tr>"
+		+"<tr><td>"+ e.keyIdentifier+"</tn><td>"+ e.which     +"</td><td>"+ e.keyCode +"</td><td>"+   charCode +"</td></tr>"
+
+		+"<tr><th>     value          </th><th>     is_a_char   </th><th>     repeat    </th>                         </tr>"
+		+"<tr><td>"+   v            +"</td><td>"+   is_a_char +"</td><td>"+ e.repeat  +"</td>                         </tr>"
+
+		+"</table>" 
+		+"</div>" 
 		;
 
 //		+"               key=["+ e.key              +"]\n"

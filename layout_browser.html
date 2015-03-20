@@ -83,9 +83,9 @@
 
   <!-- }}} -->
    <!-- input-text {{{ -->
-   <div    id="fold_div1">
-    <div   id="transcript" style="display:none; height:30em; width:20em; margin-left:4em;"   onclick='fold_onclick(1,"");'></div>
-    <img   id="fold_grip1" class="fold_grip" src="images/icons/gripper.png" draggable="true" onclick='fold_onclick(1,"");'/>
+   <div    id="fold_div1" style='border:red groove 3px;'>
+    <div   id="transcript" style=""    onclick='trns_onclick(event);'></div>
+    <img   id="fold_grip1" class="fold_grip" src="images/icons/gripper.png" draggable="false" onclick='fold_onclick(1,"");'/>
     <input id="fold_pane1" type="text"
     onkeydown ='fold_keydown(event,this);          return false;'
     onkeypress='fold_stopEventPropagation(event);  return false;'
