@@ -450,50 +450,59 @@ function eraseCookie(cName)// {{{
 	//}}}
 	else                   value = String.fromCharCode(charCode);
 
+	var is_a_char = (value.length == 1) && (value != " ");
+
 	// SHIFT {{{
+	var shifted_value =  "";
+
 	if(e.shiftKey) {
 
-	    if     (value == "-") value = "_";
+	    if     (value == "-") shifted_value = "_";
 
-	    else if(value == "1") value = "!";
-	    else if(value == "2") value = "@";
-	    else if(value == "3") value = "#";
-	    else if(value == "4") value = "$";
-	    else if(value == "5") value = "%";
+	    else if(value == "1") shifted_value = "!";
+	    else if(value == "2") shifted_value = "@";
+	    else if(value == "3") shifted_value = "#";
+	    else if(value == "4") shifted_value = "$";
+	    else if(value == "5") shifted_value = "%";
 
-	    else if(value == "`") value = "~";
+	    else if(value == "`") shifted_value = "~";
 
-	    else if(value == "6") value = "^";
-	    else if(value == "7") value = "&";
-	    else if(value == "8") value = "*";
-	    else if(value == "9") value = "(";
-	    else if(value == "0") value = ")";
+	    else if(value == "6") shifted_value = "^";
+	    else if(value == "7") shifted_value = "&";
+	    else if(value == "8") shifted_value = "*";
+	    else if(value == "9") shifted_value = "(";
+	    else if(value == "0") shifted_value = ")";
 
-	    else if(value == "=") value = "+";
+	    else if(value == "=") shifted_value = "+";
 
-	    else if(value == "[") value = "{";
-	    else if(value == "]") value = "}";
+	    else if(value == "[") shifted_value = "{";
+	    else if(value == "]") shifted_value = "}";
 
-	    else if(value == ";") value = ":";
-	    else if(value == ",") value = "<";
-	    else if(value == ".") value = ">";
-	    else if(value == "'") value = '"';
+	    else if(value == ";") shifted_value = ":";
+	    else if(value == ",") shifted_value = "<";
+	    else if(value == ".") shifted_value = ">";
+	    else if(value == "'") shifted_value = '"';
 
-	    else if(value =="\\") value = "|";
-	    else if(value == "/") value = "?";
+	    else if(value =="\\") shifted_value = "|";
+	    else if(value == "/") shifted_value = "?";
 
+	    if(shifted_value != "") {
+		value     = shifted_value;
+		is_a_char = false;
+	    }
 	}
 	else {
-	    if(value.charAt(0) != '<') value = value.toLowerCase();
+	    if(is_a_char) value = value.toLowerCase();
 	}
 
 	//}}}
 	// Prefix [+^!#] {{{
 	var mod = "";
-	if(e.metaKey                             ) mod = mod+"M-";
-	if(e.altKey                              ) mod = mod+"A-";
-	if(e.ctrlKey                             ) mod = mod+"C-";
-	if(e.shiftKey && (value.charAt(0) == '<')) mod = mod+"S-";
+	if(e.metaKey ) mod = mod+"M-";
+	if(e.altKey  ) mod = mod+"A-";
+	if(e.ctrlKey ) mod = mod+"C-";
+	if(e.shiftKey && (shifted_value=="") && !is_a_char)
+	    mod = mod+"S-";
 
 	if(mod != "") {
 	    if(value.charAt(0) == '<')
@@ -506,36 +515,41 @@ function eraseCookie(cName)// {{{
 	var transcript = document.getElementById("transcript");
 	if(transcript)
 	    transcript.innerHTML    = "<pre>"
-		+"               key=["+ e.key           +"]\n"
-		+"     keyIdentifier=["+ e.keyIdentifier +"]\n"
+		+"     keyIdentifier=["+ e.keyIdentifier    +"]\n"
 		+"\n"
-		+"              code=["+ e.code	    +"]\n"
-		+"           keyCode=["+ e.keyCode	    +"]\n"
 		+"             which=["+ e.which	    +"]\n"
-		+"\n"
-		+"            altKey=["+ e.altKey        +"]\n"
-		+"          shiftKey=["+ e.shiftKey        +"]\n"
-		+"           ctrlKey=["+ e.ctrlKey        +"]\n"
-		+"           metaKey=["+ e.metaKey        +"]\n"
-		+"            repeat=["+ e.repeat        +"]\n"
-		+"       isComposing=["+ e.isComposing        +"]\n"
-		+"  defaultPrevented=["+ e.defaultPrevented +"]\n"
-		+"          location=["+ e.location      +"]\n"
-		+"\n"
+		+"           keyCode=["+ e.keyCode	    +"]\n"
 		+"          charCode=["+   charCode	    +"]\n"
+		+"\n"
+		+"            altKey=["+ e.altKey           +"]\n"
+		+"          shiftKey=["+ e.shiftKey         +"]\n"
+		+"           ctrlKey=["+ e.ctrlKey          +"]\n"
+		+"           metaKey=["+ e.metaKey          +"]\n"
+		+"            repeat=["+ e.repeat           +"]\n"
+		+"          location=["+ e.location         +"]\n"
+		+"\n"
 		+"             value=["+   value	    +"]\n"
+		+"         is_a_char=["+   is_a_char	    +"]\n"
 		+"</pre>" 
 		;
+
+//		+"               key=["+ e.key              +"]\n"
+//		+"              code=["+ e.code	            +"]\n"
+//		+"       isComposing=["+ e.isComposing      +"]\n"
+//		+"  defaultPrevented=["+ e.defaultPrevented +"]\n"
+
 	//}}}
 	// COMMAND / APPEND {{{
 	if(     value == "<ESCAPE>") {
 	    el.value = "";
+	    if(transcript) transcript.innerHTML = ""
 	}
 	else if(value == "<BS>"    ) {
 	    if(el.value.substring(el.value.length-1, el.value.length) == ">")
 		el.value = el.value.substring(0, el.value.lastIndexOf("<"));
 	    else
 		el.value = el.value.substring(0, el.value.length-1);
+	    if(transcript) transcript.innerHTML = ""
 	}
 	else if((charCode !=   16)   // Shift
 	    &&  (charCode !=   17)   // Ctrl
