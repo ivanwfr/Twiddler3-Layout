@@ -384,12 +384,12 @@
 	background-color : transparent;
 	border-radius    : 25px;
 	cursor           : pointer;
-	filter           : alpha(opacity =  10);
-	opacity          :                0.10;
+	filter           : alpha(opacity =  30);
+	opacity          :                0.30;
     }
     .fold_grip:hover {
-	filter       : alpha(opacity =  50);
-	opacity      :                0.50;
+	filter       : alpha(opacity = 100);
+	opacity      :                1.00;
     }
 
     #fold_div1 {
@@ -437,8 +437,8 @@
     }
     .fold_dim {
 	display:inline-block;
-	filter : alpha(opacity =  30);
-	opacity:                0.30;
+	filter : alpha(opacity =  60);
+	opacity:                0.60;
     }
     .fold_hide {
 	display:none;
