@@ -6,6 +6,7 @@
   <title>Twiddler Layout Browser</title>
 
   <link rel="stylesheet" href="stylesheets/styles.css">
+  <link rel="stylesheet" href="stylesheets/twiddler.css">
   <script src="javascripts/fold.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
   <!-- CSS NAV {{{ -->
@@ -81,4 +82,25 @@
   <script> show_img(4); </script>
 
   <!-- }}} -->
-</html>
+   <!-- input-text {{{ -->
+   <div    id="fold_div1">
+    <div   id="transcript" style="display:none; height:30em; width:30em; margin-left:4em;"></div>
+    <img   id="fold_grip1" class="fold_grip" src="images/icons/gripper.png" draggable="true" onclick='fold_onclick(1,"");'/>
+    <input id="fold_pane1" type="text"
+    onkeydown ='fold_keydown(event,this);          return false;'
+    onkeypress='fold_stopEventPropagation(event);  return false;'
+    onkeyup   ='fold_stopEventPropagation(event);  return false;'
+    value="&colon;&semi;&apos; &quot;&amp;&grave;" >
+   </div>
+   <!-- }}} -->
+   <!-- ASCII TABLE {{{ -->
+   <div  id="fold_div2" onclick='fold_onclick(2,"");'>
+    <img id="fold_grip2" class="fold_grip" src="images/icons/gripper.png"/>
+    <div id="fold_pane2">
+     <img style="width:715px; height:488px;" src="http://www.asciitable.com/index/asciifull.gif"/>
+     <img style="width:573px; height:335px;" src="http://www.asciitable.com/index/extend.gif"/>
+   </div>
+   </div>
+   <!-- }}} -->
+  <script> fold_onclick(1,""); </script>
+   </html>
