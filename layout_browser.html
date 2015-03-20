@@ -83,25 +83,30 @@
 
   <!-- }}} -->
    <!-- input-text {{{ -->
-   <div    id="fold_div1" style='border:red groove 3px;'>
-    <div   id="transcript" style=""    onclick='trns_onclick(event);'></div>
+   <div
+    title="Double Click to hide"
+    id="transcript1"
+    class="transcript"
+    ondblclick='this.style.visibility="hidden";'
+    >
+   </div>
+
+   <div    id="fold_div1">
     <img   id="fold_grip1" class="fold_grip" src="images/icons/gripper.png" draggable="false" onclick='fold_onclick(1,"");'/>
     <input id="fold_pane1" type="text"
     onkeydown ='fold_keydown(event,this);          return false;'
     onkeypress='fold_stopEventPropagation(event);  return false;'
     onkeyup   ='fold_stopEventPropagation(event);  return false;'
+    onmouseover='this.focus();'
     >
-    <!--
-    value="&colon;&semi;&apos; &quot;&amp;&grave;"
-    -->
    </div>
    <!-- }}} -->
    <!-- ASCII TABLE {{{ -->
    <div  id="fold_div2" onclick='fold_onclick(2,"");'>
-    <img id="fold_grip2" class="fold_grip" src="images/icons/gripper.png"/>
+    <img id="fold_grip2" class="fold_grip"   src="images/icons/gripper.png"/>
     <div id="fold_pane2">
-     <img style="width:715px; height:488px;" src="http://www.asciitable.com/index/asciifull.gif"/>
      <img style="width:573px; height:335px;" src="http://www.asciitable.com/index/extend.gif"/>
+     <img style="width:715px; height:488px;" src="http://www.asciitable.com/index/asciifull.gif"/>
    </div>
    </div>
    <!-- }}} -->

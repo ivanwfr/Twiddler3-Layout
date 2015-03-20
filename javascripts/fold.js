@@ -261,9 +261,11 @@ function eraseCookie(cName)// {{{
 //alert("fold_onclick(num=["+num+"], url=["+url+"]")
       for(var n=1; n<=8; ++n) {
 
-       var fold_div  = document.getElementById("fold_div"+n);
-       var fold_pane = document.getElementById("fold_pane"+n);
-       var tanscript = document.getElementById("transcript");
+       if(n != num) continue; // leave others alone
+
+       var fold_div   = document.getElementById("fold_div"+n);
+       var fold_pane  = document.getElementById("fold_pane"+n);
+       var transcript = document.getElementById("transcript"+n);
        if(!fold_div || !fold_pane)
 	continue;
 
@@ -282,83 +284,14 @@ function eraseCookie(cName)// {{{
 
        fold_div.className		= (show_hide) ? "fold_show" : "fold_dim";
        fold_pane.className		= (show_hide) ? "fold_show" : "fold_hide";
-       transcript.style.visibility	= (show_hide) ? "visible"   : "hidden";
-
-       if(show_hide) {
-	   transcript.style.left	= "100px";
-	   transcript.style.bottom	= "100px";
-       }
+       if(transcript)
+	   transcript.style.visibility	= (show_hide) ? "visible"   : "hidden";
 
        if(show_hide) fold_pane1.focus();
 
 //alert("fold_pane.className=["+fold_pane.className+"]")
       }
      } // }}}
-    function trns_onclick(e) { // {{{
-	// INIT {{{
-	e.stopPropagation();
-	if(e.target.id) {
-	    transcript.innerHTML = "<pre>XXX</pre>";
-	    return;
-	}
-	//}}}
-	// BORDER-CLICK - MOVE {{{
-	var tanscript  = document.getElementById("transcript");
-	if(!transcript) return;
-
-	var clickPos = getClickPosition(e);
-	clickPos.x -= e.target.offsetLeft;
-
-	var moveX = "";
-	if     (clickPos.x < (1 * transcript.clientWidth /4)) moveX = "L";
-	else if(clickPos.x > (3 * transcript.clientWidth /4)) moveX = "R";
-
-	var moveY = "";
-	if     (clickPos.y < (1 * transcript.clientHeight/4)) moveY = "U";
-	else if(clickPos.y > (3 * transcript.clientHeight/4)) moveY = "D";
-
-	//}}}
-	// CENTER-CLICK - HIDE {{{
-	if((moveX == "") && (moveY == "")) {
-	    transcript.innerHTML        = "<pre>hidden</pre>";
-	    transcript.style.visibility = "hidden";
-	    return;
-	}
-	//}}}
-	//  MOVE {{{
-	if(moveX == "L") transcript.style.left   = "100px"; 
-	if(moveX == "R") transcript.style.left   = (window.innerWidth  - transcript.clientWidth  - 100)+"px";
-
-	if(moveY == "U") transcript.style.bottom = (window.innerHeight - transcript.clientHeight - 100)+"px";
-	if(moveY == "D") transcript.style.bottom = "100px";
-
-	//}}}
-//// LOG {{{
-//	transcript.innerHTML = "<pre style='font-family:fixedsys;'>"
-//	    +"     clickPos.x      =["+  clickPos.x          +"]   clickPos.y           =["+    clickPos.y            +"]\n"
-//	    +"        t.clientWidth=["+transcript.clientWidth+"]          t.clientHeight=["+  transcript.clientHeight +"]\n"
-//	    +"     moveX=["+moveX+"] moveY=["+moveY+"]\n"
-//	    +"    window.innerWidth=["+    window.innerWidth +"]     window.innerHeight =["+      window.innerHeight +"]\n"
-//	    +"\n"
-//	    +"transcript.style.left   =["+transcript.style.left +"]\n"
-//	    +"transcript.style.right  =["+transcript.style.right +"]\n"
-//	    +"transcript.style.top    =["+transcript.style.top +"]\n"
-//	    +"transcript.style.bottom =["+transcript.style.bottom +"]\n"
-//	    +"\n"
-//	    +"            e.clientX=["+         e.clientX    +"]          e.clientY     =["+           e.clientY      +"]\n"
-//	    +"            e.screenX=["+         e.screenX    +"]          e.screenY     =["+           e.screenY      +"]\n"
-//	    +"document.body.scrollLeft=["+document.body.scrollLeft +"] document.body.scrollTop=["+document.body.scrollTop +"]\n"
-//	    +"       window.screenX=["+    window.screenX    +"]     window.screenY     =["+      window.screenY      +"]\n"
-//	    +"  e.target.offsetLeft=["+  e.target.offsetLeft +"]   e.target.offsetTop   =["+  e.target.offsetTop      +"]\n"
-//	    +"  e.target.id=["+e.target.id  +"]\n"
-//	    +"\n"
-//	    +"transcript.offsetLeft=["+transcript.offsetLeft +"] transcript.offsetTop   =["+transcript.offsetTop      +"]\n"
-//	    +"transcript.scrollLeft=["+transcript.scrollLeft +"] transcript.scrollTop   =["+transcript.scrollTop      +"]\n"
-//	    +"transcript.id=["+transcript.id+"]\n"
-//	    +"transcript.style.marginLeft=["+transcript.style.marginLeft +"]\n"
-//	    +"</pre>"
-////}}}
-    } // }}}
     function fold_stopEventPropagation(e, el) { //{{{
 	if(!e) e = window.event;
 	if(e.preventDefault ) e.preventDefault();
@@ -367,8 +300,8 @@ function eraseCookie(cName)// {{{
     } // }}}
 function getClickPosition(e) { //{{{
     var parentPosition = getPosition(e.currentTarget);
-    var xPosition = e.clientX - parentPosition.x;
-    var yPosition = e.clientY - parentPosition.y;
+    var xPosition      = e.clientX - parentPosition.x;
+    var yPosition      = e.clientY - parentPosition.y;
     return { x: xPosition, y: yPosition };
 } //}}}
 function getPosition(el) { //{{{
@@ -377,8 +310,8 @@ function getPosition(el) { //{{{
       
     while (el) {
         xPosition += (el.offsetLeft - el.scrollLeft + el.clientLeft);
-        yPosition += (el.offsetTop - el.scrollTop + el.clientTop);
-        el = el.offsetParent;
+        yPosition += (el.offsetTop  - el.scrollTop  + el.clientTop);
+	el = el.offsetParent;
     }
     return { x: xPosition, y: yPosition };
 } //}}}
@@ -551,7 +484,7 @@ function getPosition(el) { //{{{
 	// SHIFT {{{
 	var shifted_value =  "";
 
-	if(e.shiftKey) {
+	if(e.shiftKey && !e.ctrlKey) {
 
 	    if     (value == "-") shifted_value = "_";
 
@@ -597,7 +530,7 @@ function getPosition(el) { //{{{
 	if(e.metaKey ) mod = mod+"M-";
 	if(e.altKey  ) mod = mod+"A-";
 	if(e.ctrlKey ) mod = mod+"C-";
-	if(e.shiftKey && (shifted_value=="") && !is_a_char)
+	if(e.shiftKey && (shifted_value==""))
 	    mod = mod+"S-";
 
 	if(mod != "") {
@@ -608,7 +541,7 @@ function getPosition(el) { //{{{
 
 	//}}}
 	// transcript {{{
-	var transcript = document.getElementById("transcript");
+	var transcript = document.getElementById("transcript1");
 	if(transcript)
 
 	    var a = e.altKey   ? "X" : "-";
@@ -616,12 +549,14 @@ function getPosition(el) { //{{{
 	    var c = e.ctrlKey  ? "X" : "-";
 	    var m = e.metaKey  ? "X" : "-";
 
-	    var v = value.replace(/&/g,"&amp;"); // ...must be first!
-	    v     =     v.replace(/</g, "&lt;");
-	    v     =     v.replace(/>/g, "&gt;");
+	    var v = value;
+	    if(v==" ") v = "SPACE";
+	    v = v.replace(/&/g,"&amp;"); // ...must be first!
+	    v = v.replace(/</g, "&lt;");
+	    v = v.replace(/>/g, "&gt;");
 
 	    transcript.innerHTML    = ""
-		+ "<div>"
+		+"<div>"
 		+ "<table>"
 
 		+"<tr><th>     ALT            </th><th>     SHIFT       </th><th>     CTRL      </th><th>     META       </th></tr>"
@@ -646,14 +581,14 @@ function getPosition(el) { //{{{
 	// COMMAND / APPEND {{{
 	if(     value == "<ESCAPE>") {
 	    el.value = "";
-	    if(transcript) transcript.innerHTML = ""
+	    //if(transcript) transcript.innerHTML = ""
 	}
 	else if(value == "<BS>"    ) {
 	    if(el.value.substring(el.value.length-1, el.value.length) == ">")
 		el.value = el.value.substring(0, el.value.lastIndexOf("<"));
 	    else
 		el.value = el.value.substring(0, el.value.length-1);
-	    if(transcript) transcript.innerHTML = ""
+	    //if(transcript) transcript.innerHTML = ""
 	}
 	else if((charCode !=   16)   // Shift
 	    &&  (charCode !=   17)   // Ctrl
@@ -666,4 +601,38 @@ function getPosition(el) { //{{{
 	}
 	//}}}
     } // }}}
+
+/* MOVE */
+//{{{
+var MO_el=null;
+var MO_id="transcript1";
+var MO_cp;
+
+window.onload = addListeners;
+
+function addListeners() {
+    MO_el = document.getElementById(MO_id);
+
+    MO_el .addEventListener('mousedown', mouseDown, false);
+    window.addEventListener('mouseup'  , mouseUp  , false);
+}
+
+function mouseUp() {
+    window.removeEventListener('mousemove', divMove, true);
+}
+
+function mouseDown(e) {
+    MO_cp = getClickPosition(e);
+
+    MO_el.style.position = 'absolute';
+
+    window.addEventListener('mousemove', divMove, true);
+}
+
+function divMove(e){
+    MO_el.style.left     = e.clientX - MO_cp.x +'px';
+    MO_el.style.top      = e.clientY - MO_cp.y +'px';
+}
+
+//}}}
 
