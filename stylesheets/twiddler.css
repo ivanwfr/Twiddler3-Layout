@@ -423,14 +423,19 @@
 	text-shadow : 3px 3px 3px #111;
 	margin:0;
     }
-    .transcript table th {
+    .transcript th {
 	text-align:center;
 	color:#aaa;
 	font-size:120%;
     }
-    .transcript table td {
+    .transcript td {
 	text-align:center;
 	color:#ddd;
+    }
+    .transcript .vtd {
+	white-space : nowrap;
+	font-size:300%;
+	width:6em;
     }
 
     #fold_div1 {

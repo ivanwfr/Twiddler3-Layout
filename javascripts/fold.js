@@ -526,17 +526,21 @@ function getPosition(el) { //{{{
 
 	//}}}
 	// Prefix [+^!#] {{{
-	var mod = "";
-	if(e.metaKey ) mod = mod+"M-";
-	if(e.altKey  ) mod = mod+"A-";
-	if(e.ctrlKey ) mod = mod+"C-";
-	if(e.shiftKey && (shifted_value==""))
-	    mod = mod+"S-";
+	var is_a_ctrl = (value=="<CTRL>") || (value=="<SHIFT>") || (value=="<ALT>") || (value=="<META>");
+	if( !is_a_ctrl ) {
+	    var mod = "";
 
-	if(mod != "") {
-	    if(value.charAt(0) == '<')
-		value =  value.substring(1, value.length-1);
-	    value = "<"+mod+value.toUpperCase()+">";
+	    if(e.metaKey ) mod = mod+"M-";
+	    if(e.altKey  ) mod = mod+"A-";
+	    if(e.ctrlKey ) mod = mod+"C-";
+	    if(e.shiftKey && (shifted_value==""))
+		mod = mod+"S-";
+
+	    if(mod != "") {
+		if(value.charAt(0) == '<')
+		    value =  value.substring(1, value.length-1);
+		value = "<"+mod+value.toUpperCase()+">";
+	    }
 	}
 
 	//}}}
@@ -566,7 +570,7 @@ function getPosition(el) { //{{{
 		+"<tr><td>"+ e.keyIdentifier+"</tn><td>"+ e.which     +"</td><td>"+ e.keyCode +"</td><td>"+   charCode +"</td></tr>"
 
 		+"<tr><th>     value          </th><th>     is_a_char   </th><th>     repeat    </th>                         </tr>"
-		+"<tr><td>"+   v            +"</td><td>"+   is_a_char +"</td><td>"+ e.repeat  +"</td>                         </tr>"
+		+"<tr><td class='vtd'>"+ v  +"</td><td>"+   is_a_char +"</td><td>"+ e.repeat  +"</td>                         </tr>"
 
 		+"</table>" 
 		+"</div>" 
