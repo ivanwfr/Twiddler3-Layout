@@ -299,8 +299,6 @@ function eraseCookie(cName)// {{{
 	else                  e.cancelBubble = true;
     } // }}}
 function getClickPosition(e) { //{{{
-    if(!e.clientX)
-	return { x: 0, y: 0 };
     var parentPosition = getPosition(e.currentTarget);
     var xPosition      = e.clientX - parentPosition.x;
     var yPosition      = e.clientY - parentPosition.y;
@@ -619,15 +617,12 @@ window.onload = addListeners;
 function addListeners() {
     MO_el = document.getElementById(MO_id);
 
-    MO_el .addEventListener('touchstart', mouseDown, false);
-    MO_el .addEventListener('mousedown' , mouseDown, false);
-    window.addEventListener('mouseup'   , mouseUp  , false);
-    window.addEventListener('touchend'  , mouseUp  , false);
+    MO_el .addEventListener('mousedown', mouseDown, false);
+    window.addEventListener('mouseup'  , mouseUp  , false);
 }
 
 function mouseUp() {
     window.removeEventListener('mousemove', divMove, true);
-    window.removeEventListener('touchmove', divMove, true);
 }
 
 function mouseDown(e) {
@@ -636,14 +631,11 @@ function mouseDown(e) {
     MO_el.style.position = 'absolute';
 
     window.addEventListener('mousemove', divMove, true);
-    window.addEventListener('touchmove', divMove, true);
 }
 
 function divMove(e){
-    if(e.clientX) MO_el.style.left = e.clientX - MO_cp.x +'px';
-    if(e.clientY) MO_el.style.top  = e.clientY - MO_cp.y +'px';
-    if(e.x      ) MO_el.style.left = e.x       - MO_cp.x +'px';
-    if(e.y      ) MO_el.style.top  = e.y       - MO_cp.y +'px';
+    MO_el.style.left     = e.clientX - MO_cp.x +'px';
+    MO_el.style.top      = e.clientY - MO_cp.y +'px';
 }
 
 //}}}
