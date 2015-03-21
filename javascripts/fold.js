@@ -379,7 +379,7 @@ function getPosition(el) { //{{{
 
 	//}}}
 	// [  32-  48] {{{
-	else if(charCode ==  32) value = " "              ;
+	else if(charCode ==  32) value = " "                ;
 	else if(charCode ==  33) value = "<PGUP>"           ;
 	else if(charCode ==  34) value = "<PGDOWN>"         ;
 	else if(charCode ==  35) value = "<END>"            ;
@@ -515,11 +515,11 @@ function getPosition(el) { //{{{
 		else if(value == "/") shifted_value = "?";
 	    }
 
-	    if((shifted_value == "") && (value.length == 1) && (value != " "))
+	    if((shifted_value == "") && (value.length == 1))
 		shifted_value = value.toUpperCase();
 	}
 	else {
-	    if((value.length == 1) && (value != " "))
+	    if((value.length == 1))
 		shifted_value = value.toLowerCase();
 	}
 
@@ -556,7 +556,7 @@ function getPosition(el) { //{{{
 	    var m = e.metaKey  ? "X" : "-";
 
 	    var v = value;
-	    if(v==" ") v = "SPACE";
+	    if(v==" ") v = "<SPACE>";
 	    v = v.replace(/&/g,"&amp;"); // ...must be first!
 	    v = v.replace(/</g, "&lt;");
 	    v = v.replace(/>/g, "&gt;");
