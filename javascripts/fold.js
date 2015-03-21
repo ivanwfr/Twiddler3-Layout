@@ -623,6 +623,7 @@ function addListeners() {
 
 function mouseUp() {
     window.removeEventListener('mousemove', divMove, true);
+    window.removeEventListener('touchmove', divMove, true);
 }
 
 function mouseDown(e) {
