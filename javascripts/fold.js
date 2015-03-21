@@ -479,50 +479,52 @@ function getPosition(el) { //{{{
 	//}}}
 	else                   value = String.fromCharCode(charCode);
 
-	var is_a_char = (value.length == 1) && (value != " ");
-
 	// SHIFT {{{
 	var shifted_value =  "";
 
-	if(e.shiftKey && !e.ctrlKey) {
+	if(e.shiftKey) {
 
-	    if     (value == "-") shifted_value = "_";
+	    if(!e.ctrlKey) {
+		if     (value == "-") shifted_value = "_";
 
-	    else if(value == "1") shifted_value = "!";
-	    else if(value == "2") shifted_value = "@";
-	    else if(value == "3") shifted_value = "#";
-	    else if(value == "4") shifted_value = "$";
-	    else if(value == "5") shifted_value = "%";
+		else if(value == "1") shifted_value = "!";
+		else if(value == "2") shifted_value = "@";
+		else if(value == "3") shifted_value = "#";
+		else if(value == "4") shifted_value = "$";
+		else if(value == "5") shifted_value = "%";
 
-	    else if(value == "`") shifted_value = "~";
+		else if(value == "`") shifted_value = "~";
 
-	    else if(value == "6") shifted_value = "^";
-	    else if(value == "7") shifted_value = "&";
-	    else if(value == "8") shifted_value = "*";
-	    else if(value == "9") shifted_value = "(";
-	    else if(value == "0") shifted_value = ")";
+		else if(value == "6") shifted_value = "^";
+		else if(value == "7") shifted_value = "&";
+		else if(value == "8") shifted_value = "*";
+		else if(value == "9") shifted_value = "(";
+		else if(value == "0") shifted_value = ")";
 
-	    else if(value == "=") shifted_value = "+";
+		else if(value == "=") shifted_value = "+";
 
-	    else if(value == "[") shifted_value = "{";
-	    else if(value == "]") shifted_value = "}";
+		else if(value == "[") shifted_value = "{";
+		else if(value == "]") shifted_value = "}";
 
-	    else if(value == ";") shifted_value = ":";
-	    else if(value == ",") shifted_value = "<";
-	    else if(value == ".") shifted_value = ">";
-	    else if(value == "'") shifted_value = '"';
+		else if(value == ";") shifted_value = ":";
+		else if(value == ",") shifted_value = "<";
+		else if(value == ".") shifted_value = ">";
+		else if(value == "'") shifted_value = '"';
 
-	    else if(value =="\\") shifted_value = "|";
-	    else if(value == "/") shifted_value = "?";
-
-	    if(shifted_value != "") {
-		value     = shifted_value;
-		is_a_char = false;
+		else if(value =="\\") shifted_value = "|";
+		else if(value == "/") shifted_value = "?";
 	    }
+
+	    if((shifted_value == "") && (value.length == 1) && (value != " "))
+		shifted_value = value.toUpperCase();
 	}
 	else {
-	    if(is_a_char) value = value.toLowerCase();
+	    if((value.length == 1) && (value != " "))
+		shifted_value = value.toLowerCase();
 	}
+
+	if(shifted_value != "")
+	    value     = shifted_value;
 
 	//}}}
 	// Prefix [+^!#] {{{
@@ -569,8 +571,8 @@ function getPosition(el) { //{{{
 		+"<tr><th>     keyIdentifier  </th><th>     which       </th><th>     keyCode   </th><th>     charCode   </th></tr>"
 		+"<tr><td>"+ e.keyIdentifier+"</tn><td>"+ e.which     +"</td><td>"+ e.keyCode +"</td><td>"+   charCode +"</td></tr>"
 
-		+"<tr><th>     value          </th><th>     is_a_char   </th><th>     repeat    </th>                         </tr>"
-		+"<tr><td class='vtd'>"+ v  +"</td><td>"+   is_a_char +"</td><td>"+ e.repeat  +"</td>                         </tr>"
+		+"<tr><th>     value          </th><th>     repeat      </th><th>               </th><td>                </td></tr>"
+		+"<tr><td class='vtd'>"+ v  +"</td><td>"+ e.repeat    +"</td><td>               </td><td>                </td></tr>"
 
 		+"</table>" 
 		+"</div>" 
