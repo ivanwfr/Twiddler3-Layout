@@ -631,6 +631,7 @@ function mouseDown(e) {
     MO_el.style.position = 'absolute';
 
     window.addEventListener('mousemove', divMove, true);
+    window.addEventListener('touchmove', divMove, true);
 }
 
 function divMove(e){
