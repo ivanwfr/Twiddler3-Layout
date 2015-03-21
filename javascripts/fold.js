@@ -479,6 +479,52 @@ function getPosition(el) { //{{{
 	//}}}
 	else                   value = String.fromCharCode(charCode);
 
+	// CNTRL {{{
+	var controled_value =  "";
+
+	if(e.ctrlKey) {
+
+		if     (value == "@") controled_value =    "<NUL>"; // 0
+		else if(value == "A") controled_value =    "<SOH>"; // 1
+		else if(value == "B") controled_value =    "<STX>"; // 2
+		else if(value == "C") controled_value =    "<ETX>"; // 3
+		else if(value == "D") controled_value =    "<EOT>"; // 4
+		else if(value == "E") controled_value =    "<ENQ>"; // 5
+		else if(value == "F") controled_value =    "<ACK>"; // 6
+		else if(value == "G") controled_value =    "<BEL>"; // 7
+		else if(value == "H") controled_value =     "<BS>"; // 8
+		else if(value == "I") controled_value =    "<TAB>"; // 9
+
+		else if(value == "J") controled_value =     "<LF>"; // 10
+		else if(value == "K") controled_value =     "<VT>"; // 11
+		else if(value == "L") controled_value =     "<FF>"; // 12
+		else if(value == "M") controled_value =  "<ENTER>"; // 13
+		else if(value == "N") controled_value =     "<SO>"; // 14
+		else if(value == "O") controled_value =     "<SI>"; // 15
+		else if(value == "P") controled_value =    "<DLE>"; // 16
+		else if(value == "Q") controled_value =    "<DC1>"; // 17
+		else if(value == "R") controled_value =    "<DC2>"; // 18
+		else if(value == "S") controled_value =    "<DC3>"; // 19
+
+		else if(value == "T") controled_value =    "<DC4>"; // 20
+		else if(value == "U") controled_value =    "<NAK>"; // 21
+		else if(value == "V") controled_value =    "<SYN>"; // 22
+		else if(value == "W") controled_value =    "<ETB>"; // 23
+		else if(value == "X") controled_value =    "<CAN>"; // 24
+		else if(value == "Y") controled_value =     "<EM>"; // 25
+		else if(value == "Z") controled_value =    "<SUB>"; // 26
+		else if(value == "[") controled_value = "<ESCAPE>"; // 27
+		else if(value =="\\") controled_value =     "<FS>"; // 28
+		else if(value == "]") controled_value =     "<GS>"; // 29
+
+		else if(value == "^") controled_value =     "<RS>"; // 30
+		else if(value == "_") controled_value =     "<US>"; // 31
+
+		if(controled_value != "")
+		    value = controled_value;
+
+	}
+	//}}}
 	// SHIFT {{{
 	var shifted_value =  "";
 
@@ -524,20 +570,17 @@ function getPosition(el) { //{{{
 	}
 
 	if(shifted_value != "")
-	    value     = shifted_value;
+	    value = shifted_value;
 
 	//}}}
 	// Prefix [+^!#] {{{
-	var is_a_ctrl = (value=="<CTRL>") || (value=="<SHIFT>") || (value=="<ALT>") || (value=="<META>");
-	if( !is_a_ctrl ) {
+	var is_modifier = (value=="<CTRL>") || (value=="<SHIFT>") || (value=="<ALT>") || (value=="<META>");
+	if(!is_modifier) {
 	    var mod = "";
-
-	    if(e.metaKey ) mod = mod+"M-";
-	    if(e.altKey  ) mod = mod+"A-";
-	    if(e.ctrlKey ) mod = mod+"C-";
-	    if(e.shiftKey && (shifted_value==""))
-		mod = mod+"S-";
-
+	    if(e.metaKey  && (controled_value=="")                         ) mod = mod+"M-";
+	    if(e.altKey   && (controled_value=="")                         ) mod = mod+"A-";
+	    if(e.ctrlKey  && (controled_value=="")                         ) mod = mod+"C-";
+	    if(e.shiftKey && (controled_value=="") && (shifted_value  =="")) mod = mod+"S-";
 	    if(mod != "") {
 		if(value.charAt(0) == '<')
 		    value =  value.substring(1, value.length-1);
