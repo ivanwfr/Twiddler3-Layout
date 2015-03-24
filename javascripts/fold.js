@@ -323,7 +323,6 @@ function fold_keydown(e, el) { //{{{
 
     //}}}
     // value {{{
-    KEY_TIC += 1;
 
     var charCode = (e.keyCode) ? e.keyCode : e.which;
     var value                     = "<undefined_charCode>"
@@ -568,8 +567,9 @@ function fold_keydown(e, el) { //{{{
 	}
 
 	// UPPERCASE
-	if((shifted_value == "") && (value.length == 1))
+	if((shifted_value == "") && (value.length == 1)) {
 	    value = value.toUpperCase();
+	}
     }
     else {
 	// LOWERCASE
@@ -597,22 +597,28 @@ function fold_keydown(e, el) { //{{{
     var is_modifier = (value=="<CTRL>") || (value=="<SHIFT>") || (value=="<ALT>") || (value=="<META>");
     var mod = "";
     if(!is_modifier) {
-	if(controlled_value == "") {					// not ASCII first column
+	if(controlled_value == "") {	// not ASCII first column
 	    if(e.ctrlKey                           )    mod = mod+"C-";
 	    if(e.metaKey                           )    mod = mod+"M-";
 	    if(e.altKey                            )    mod = mod+"A-";
-	    if(e.shiftKey &&  (shifted_value  ==""))    mod = mod+"S-";	// not an already shifted values
+	    if(shifted_value == "") {	// not an already shifted values
+		if(e.shiftKey) {
+		    if("ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(value) < 0)
+			mod = mod+"S-";
+		}
+	    }
 	}
     }
 
     var v;
     if     (controlled_stroke != "")    v = controlled_value;
     else if(shifted_value     != "")    v = shifted_value;
-    else				    v = value
-	if(mod != "") {
-	    if(v.charAt(0) == "<") v =  v.substring(1, v.length-1);
-	    v = "<"+mod+v.toUpperCase()+">";
-	}
+    else				v = value;
+    if(mod != "") {
+	if(v.charAt(0) == "<") v =  v.substring(1, v.length-1);
+	v = "<"+mod+v.toUpperCase()+">";
+    }
+
     //}}}
 
     // COMMAND / APPEND {{{
@@ -631,7 +637,7 @@ function fold_keydown(e, el) { //{{{
 	//if(transcript) transcript.innerHTML = ""
     }
     //}}}
-    //---- CLEAR (AUTO) {{{
+    //---- APPEND [AUTO-CLEAR] {{{
     else if((charCode !=   16)   // Shift
 	&&  (charCode !=   17)   // Ctrl
 	&&  (charCode !=   18)   // Alt
@@ -691,6 +697,9 @@ function fold_keydown(e, el) { //{{{
 	sv = sv.replace(/&/g,"&amp;");
 	sv = sv.replace(/</g, "&lt;");
 	sv = sv.replace(/>/g, "&gt;");
+
+	if(!is_modifier)
+	    KEY_TIC += 1;
 
 	var m0 = ((KEY_TIC  ) % 8) ? "." : "o";
 	var m1 = ((KEY_TIC+1) % 8) ? "." : "o";
