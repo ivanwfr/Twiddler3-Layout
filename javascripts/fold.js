@@ -595,8 +595,9 @@ function fold_keydown(e, el) { //{{{
     var m =  e.metaKey                          ? "m" : "";
 
     var is_modifier = (value=="<CTRL>") || (value=="<SHIFT>") || (value=="<ALT>") || (value=="<META>");
+    var is_space    = (value==" ");
     var mod = "";
-    if(!is_modifier) {
+    if(!is_modifier && !is_space) {
 	if(controlled_value == "") {	// not ASCII first column
 	    if(e.ctrlKey                           )    mod = mod+"C-";
 	    if(e.metaKey                           )    mod = mod+"M-";
@@ -672,11 +673,16 @@ function fold_keydown(e, el) { //{{{
 	else if(shifted_value     != "")    k = shifted_value;
 	else				k = value;
 	mod = "";
-	if(!is_modifier) {
+	if(!is_modifier && !is_space) { // no jumpt to ASCII first column
 	    if(e.ctrlKey                           )    mod = mod+"C-";
 	    if(e.metaKey                           )    mod = mod+"M-";
 	    if(e.altKey                            )    mod = mod+"A-";
-	    if(e.shiftKey &&  (shifted_value  ==""))    mod = mod+"S-";	// not an already shifted values
+	    if(shifted_value == "") {	// not an already shifted values
+		if(e.shiftKey) {
+		    if("ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(value) < 0)
+			mod = mod+"S-";
+		}
+	    }
 	}
 	if(mod != "") {
 	    if(k.charAt(0) == "<") k =  k.substring(1, k.length-1);
