@@ -588,11 +588,11 @@ function fold_keydown(e, el) { //{{{
     var i = e.keyIdentifier;
     var o = charCode
 
-	// MODIFIER PREFIX {{{
-	var a =  e.altKey                           ? "a" : "";
-    var s = (e.shiftKey && (shifted_value=="")) ? "s" : "";
-    var c =  e.ctrlKey                          ? "c" : "";
-    var m =  e.metaKey                          ? "m" : "";
+    // MODIFIER PREFIX {{{
+    var a =  e.altKey                           ? "a" : "&nbsp;";
+    var s = (e.shiftKey && (shifted_value=="")) ? "s" : "&nbsp;";
+    var c =  e.ctrlKey                          ? "c" : "&nbsp;";
+    var m =  e.metaKey                          ? "m" : "&nbsp;";
 
     var is_modifier = (value=="<CTRL>") || (value=="<SHIFT>") || (value=="<ALT>") || (value=="<META>");
     var is_space    = (value==" ");
@@ -727,7 +727,7 @@ function fold_keydown(e, el) { //{{{
 	    +"<tr><td>"+   i            +"</tn><td>"+ charCode   +"</td><td>"+   cv       +"</td><td>"+   sv       +"</td></tr>"
 
 	    +"<tr><th             colspan=2>   value               </th><th>     key        </th><th>    KEY_TIC     </th></tr>"
-	    +"<tr><td class='vtd' colspan=2>"+ v                 +"</td><td>"+   k        +"</td><td>"+" "+m7+" "+m6+" "+m5+" "+m4+"<br>"+KEY_TIC+"<br>"+m3+" "+m2+" "+m1+" "+m0+"</td></tr>"
+	    +"<tr><td class='vtd' colspan=2>"+ v     +"</td><td class='ktd'>"+   k        +"</td><td>"+" "+m7+" "+m6+" "+m5+" "+m4+"<br>"+KEY_TIC+"<br>"+m3+" "+m2+" "+m1+" "+m0+"</td></tr>"
 
 	    +"</table>" 
 	    +"</div>" 

@@ -446,6 +446,10 @@
     .transcript .vtd {
 	white-space      : nowrap;
 	font-size        : 300%;
+	width            : 8em;
+    }
+    .transcript .ktd {
+	white-space      : nowrap;
 	width            : 6em;
     }
 
