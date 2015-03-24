@@ -436,10 +436,12 @@
 	text-align       : center;
 	color            : #aaa;
 	font-size        : 120%;
+	font-weight:bold;
     }
     .transcript td {
 	text-align       : center;
 	color            : #ddd;
+	color            : orange;
     }
     .transcript .vtd {
 	white-space      : nowrap;

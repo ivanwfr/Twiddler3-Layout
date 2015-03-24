@@ -298,12 +298,6 @@ function eraseCookie(cName)// {{{
 	if(e.stopPropagation) e.stopPropagation();
 	else                  e.cancelBubble = true;
     } // }}}
-function getClickPosition(e) { //{{{
-    var parentPosition = getPosition(e.currentTarget);
-    var xPosition      = e.clientX - parentPosition.x;
-    var yPosition      = e.clientY - parentPosition.y;
-    return { x: xPosition, y: yPosition };
-} //}}}
 function getPosition(el) { //{{{
     var xPosition = 0;
     var yPosition = 0;
@@ -317,21 +311,22 @@ function getPosition(el) { //{{{
 } //}}}
 
 /* KEYBOARD */
-    function fold_keydown(e, el) { //{{{
+var KEY_TIC = 0;
+function fold_keydown(e, el) { //{{{
+    // :!start explorer "http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes"
+    // EVENT {{{
+    if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+    if(e.stopPropagation         ) e.stopPropagation();
+    if(e.preventDefault          ) e.preventDefault();
+    //if(e.defaultPrevented) return; // Should do nothing if the key event was already consumed.
+    if(e.repeat) return;
 
-// :!start explorer "http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes"
+    //}}}
+    // value {{{
+    KEY_TIC += 1;
 
-	var el_id = ""; try { el_id = el.id } catch(ex) {}
-	//alert("el_id=["+el_id+"]")
-
-	if(e.preventDefault ) e.preventDefault();
-	if(e.stopPropagation) e.stopPropagation();
-	//if(e.defaultPrevented) return; // Should do nothing if the key event was already consumed.
-
-	if(e.repeat) return;
-
-	var charCode = (e.keyCode) ? e.keyCode : e.which;
-	var value                     = "<undefined_charCode>"
+    var charCode = (e.keyCode) ? e.keyCode : e.which;
+    var value                     = "<undefined_charCode>"
 	// [   0-  15] {{{
 
 	if     (charCode ==    0) value = "<NUL>"           ; // +^@ YES
@@ -355,8 +350,8 @@ function getPosition(el) { //{{{
 	else if(charCode ==   14) value = "<SO>"          ; //  ^N
 	else if(charCode ==   15) value = "<SI>"          ; //  ^O
 
-	//}}}
-	// [  16-  31] {{{
+    //}}}
+    // [  16-  31] {{{
 	else if(charCode ==   16) value = "<SHIFT>"         ;
 	else if(charCode ==   17) value = "<CTRL>"          ;
 	else if(charCode ==   18) value = "<ALT>"           ;
@@ -377,8 +372,8 @@ function getPosition(el) { //{{{
 	else if(charCode ==   30) value = "<RS>"          ; //  ^^
 	else if(charCode ==   31) value = "<US>"          ; //  ^_
 
-	//}}}
-	// [  32-  48] {{{
+    //}}}
+    // [  32-  48] {{{
 	else if(charCode ==  32) value = " "                ;
 	else if(charCode ==  33) value = "<PGUP>"           ;
 	else if(charCode ==  34) value = "<PGDOWN>"         ;
@@ -389,17 +384,17 @@ function getPosition(el) { //{{{
 	else if(charCode ==  39) value = "<RIGHT>"          ;
 	else if(charCode ==  40) value = "<DOWN>"           ;
 
-	//}}}
-	// [  48-  64] {{{
+    //}}}
+    // [  48-  64] {{{
 
 	else if(charCode ==  45) value = "<INSERT>"        ;
 	else if(charCode ==  46) value = "<DELETE>"        ;
 
-	//}}}
-	// [  64-  80] {{{
+    //}}}
+    // [  64-  80] {{{
 
-	//}}}
-	// [  80-  96] {{{
+    //}}}
+    // [  80-  96] {{{
 
 	else if(charCode ==  91) value = "<LWIN>"          ;
 	else if(charCode ==  92) value = "<RWIN>"          ;
@@ -410,8 +405,8 @@ function getPosition(el) { //{{{
 	else if(charCode ==  99) value = "<KP3>"           ;
 	else if(charCode == 100) value = "<KP4>"           ;
 
-	//}}}
-	// [  96- 112] {{{
+    //}}}
+    // [  96- 112] {{{
 
 	else if(charCode == 101) value = "<KP5>"           ;
 	else if(charCode == 102) value = "<KP6>"           ;
@@ -424,8 +419,8 @@ function getPosition(el) { //{{{
 	else if(charCode == 110) value = "."             ;
 	else if(charCode == 111) value = "/"             ;
 
-	//}}}
-	// [ 112- 128] {{{
+    //}}}
+    // [ 112- 128] {{{
 	else if(charCode == 112) value = "<F1>"          ;
 	else if(charCode == 113) value = "<F2>"          ;
 	else if(charCode == 114) value = "<F3>"          ;
@@ -442,20 +437,20 @@ function getPosition(el) { //{{{
 	else if(charCode == 123) value = "<F12>"         ;
 	else if(charCode == 127) value = "<DEL>"         ;
 
-	//}}}
-	// [ 128- 144] {{{
+    //}}}
+    // [ 128- 144] {{{
 
 	else if(charCode == 144) value = "<NUMLOCK>"       ;
 	else if(charCode == 145) value = "<SCROLLLOCK>"    ;
 
-	//}}}
-	// [ 144- 160] {{{
+    //}}}
+    // [ 144- 160] {{{
 
-	//}}}
-	// [ 160- 176] {{{
+    //}}}
+    // [ 160- 176] {{{
 
-	//}}}
-	// [ 176- 192] {{{
+    //}}}
+    // [ 176- 192] {{{
 
 	else if(charCode == 186) value = ";"             ;
 	else if(charCode == 187) value = "="             ;
@@ -465,223 +460,333 @@ function getPosition(el) { //{{{
 	else if(charCode == 191) value = "/"             ;
 	else if(charCode == 192) value = "`"             ;
 
-	//}}}
-	// [ 192- 208] {{{
+    //}}}
+    // [ 192- 208] {{{
 
-	//}}}
-	// [ 208- 224] {{{
+    //}}}
+    // [ 208- 224] {{{
 
 	else if(charCode == 219) value = "["             ;
 	else if(charCode == 220) value = "\\"            ;
 	else if(charCode == 221) value = "]"             ;
 	else if(charCode == 222) value = "'"             ;
 
-	//}}}
-	else                   value = String.fromCharCode(charCode);
+    //}}}
+	else                   value = String.fromCharCode(charCode).toLowerCase();
 
-	// CNTRL {{{
-	var controled_value =  "";
+    //}}}
+    // CONTROL {{{
+    var controlled_value =  "";
+    var controlled_stroke=  "";
 
-	if(e.ctrlKey) {
+    if(e.ctrlKey) {
 
-		if     (value == "@") controled_value =    "<NUL>"; // 0
-		else if(value == "A") controled_value =    "<SOH>"; // 1
-		else if(value == "B") controled_value =    "<STX>"; // 2
-		else if(value == "C") controled_value =    "<ETX>"; // 3
-		else if(value == "D") controled_value =    "<EOT>"; // 4
-		else if(value == "E") controled_value =    "<ENQ>"; // 5
-		else if(value == "F") controled_value =    "<ACK>"; // 6
-		else if(value == "G") controled_value =    "<BEL>"; // 7
-		else if(value == "H") controled_value =     "<BS>"; // 8
-		else if(value == "I") controled_value =    "<TAB>"; // 9
+	if     (value == "@") controlled_value =    "<NUL>"; // 0
+	else if(value == "a") controlled_value =    "<SOH>"; // 1
+	else if(value == "b") controlled_value =    "<STX>"; // 2
+	else if(value == "c") controlled_value =    "<ETX>"; // 3
+	else if(value == "d") controlled_value =    "<EOT>"; // 4
+	else if(value == "e") controlled_value =    "<ENQ>"; // 5
+	else if(value == "f") controlled_value =    "<ACK>"; // 6
+	else if(value == "g") controlled_value =    "<BEL>"; // 7
+	else if(value == "h") controlled_value =     "<BS>"; // 8
+	else if(value == "i") controlled_value =    "<TAB>"; // 9
 
-		else if(value == "J") controled_value =     "<LF>"; // 10
-		else if(value == "K") controled_value =     "<VT>"; // 11
-		else if(value == "L") controled_value =     "<FF>"; // 12
-		else if(value == "M") controled_value =  "<ENTER>"; // 13
-		else if(value == "N") controled_value =     "<SO>"; // 14
-		else if(value == "O") controled_value =     "<SI>"; // 15
-		else if(value == "P") controled_value =    "<DLE>"; // 16
-		else if(value == "Q") controled_value =    "<DC1>"; // 17
-		else if(value == "R") controled_value =    "<DC2>"; // 18
-		else if(value == "S") controled_value =    "<DC3>"; // 19
+	else if(value == "j") controlled_value =     "<LF>"; // 10
+	else if(value == "k") controlled_value =     "<VT>"; // 11
+	else if(value == "l") controlled_value =     "<FF>"; // 12
+	else if(value == "m") controlled_value =  "<ENTER>"; // 13
+	else if(value == "n") controlled_value =     "<SO>"; // 14
+	else if(value == "o") controlled_value =     "<SI>"; // 15
+	else if(value == "p") controlled_value =    "<DLE>"; // 16
+	else if(value == "q") controlled_value =    "<DC1>"; // 17
+	else if(value == "r") controlled_value =    "<DC2>"; // 18
+	else if(value == "s") controlled_value =    "<DC3>"; // 19
 
-		else if(value == "T") controled_value =    "<DC4>"; // 20
-		else if(value == "U") controled_value =    "<NAK>"; // 21
-		else if(value == "V") controled_value =    "<SYN>"; // 22
-		else if(value == "W") controled_value =    "<ETB>"; // 23
-		else if(value == "X") controled_value =    "<CAN>"; // 24
-		else if(value == "Y") controled_value =     "<EM>"; // 25
-		else if(value == "Z") controled_value =    "<SUB>"; // 26
-		else if(value == "[") controled_value = "<ESCAPE>"; // 27
-		else if(value =="\\") controled_value =     "<FS>"; // 28
-		else if(value == "]") controled_value =     "<GS>"; // 29
-
-		else if(value == "^") controled_value =     "<RS>"; // 30
-		else if(value == "_") controled_value =     "<US>"; // 31
-
-		if(controled_value != "")
-		    value = controled_value;
-
-	}
-	//}}}
-	// SHIFT {{{
-	var shifted_value =  "";
+	else if(value == "t") controlled_value =    "<DC4>"; // 20
+	else if(value == "u") controlled_value =    "<NAK>"; // 21
+	else if(value == "v") controlled_value =    "<SYN>"; // 22
+	else if(value == "w") controlled_value =    "<ETB>"; // 23
+	else if(value == "x") controlled_value =    "<CAN>"; // 24
+	else if(value == "y") controlled_value =     "<EM>"; // 25
+	else if(value == "z") controlled_value =    "<SUB>"; // 26
+	else if(value == "[") controlled_value = "<ESCAPE>"; // 27
+	else if(value =="\\") controlled_value =     "<FS>"; // 28
+	else if(value == "]") controlled_value =     "<GS>"; // 29
 
 	if(e.shiftKey) {
+	    if     (value == "6") controlled_value = "<RS>"; // <c-s-6> = <c-^> = 30
+	    else if(value == "-") controlled_value = "<US>"; // <c-s--> = <c-_> = 31
+	}
 
-	    if(!e.ctrlKey) {
-		if     (value == "-") shifted_value = "_";
+	if(controlled_value != "")
+	    controlled_stroke = value;
 
-		else if(value == "1") shifted_value = "!";
-		else if(value == "2") shifted_value = "@";
-		else if(value == "3") shifted_value = "#";
-		else if(value == "4") shifted_value = "$";
-		else if(value == "5") shifted_value = "%";
+    }
+    //}}}
+    // SHIFT {{{
+    var shifted_value =  "";
+    //	var shifted_stoke =  "";
 
-		else if(value == "`") shifted_value = "~";
+    if(e.shiftKey) {
 
-		else if(value == "6") shifted_value = "^";
-		else if(value == "7") shifted_value = "&";
-		else if(value == "8") shifted_value = "*";
-		else if(value == "9") shifted_value = "(";
-		else if(value == "0") shifted_value = ")";
-
-		else if(value == "=") shifted_value = "+";
-
-		else if(value == "[") shifted_value = "{";
-		else if(value == "]") shifted_value = "}";
-
-		else if(value == ";") shifted_value = ":";
-		else if(value == ",") shifted_value = "<";
-		else if(value == ".") shifted_value = ">";
-		else if(value == "'") shifted_value = '"';
-
-		else if(value =="\\") shifted_value = "|";
-		else if(value == "/") shifted_value = "?";
-	    }
-
-	    if((shifted_value == "") && (value.length == 1))
-		shifted_value = value.toUpperCase();
+	// CONTROLLED SHIFTED-KEYS
+	if(e.ctrlKey) {
+	    if	(value == "<RS>")    shifted_value = "^"; // <c-s-6> = <c-^> = 30
+	    else if	(value == "<US>")    shifted_value = "_"; // <c-s--> = <c-_> = value
 	}
 	else {
-	    if((value.length == 1))
-		shifted_value = value.toLowerCase();
+
+	    if	(value ==    "-")    shifted_value = "_";
+
+	    else if	(value ==    "1")    shifted_value = "!";
+	    else if	(value ==    "2")    shifted_value = "@";
+	    else if	(value ==    "3")    shifted_value = "#";
+	    else if	(value ==    "4")    shifted_value = "$";
+	    else if	(value ==    "5")    shifted_value = "%";
+
+	    else if	(value ==    "`")    shifted_value = "~";
+
+	    else if	(value ==    "6")    shifted_value = "^";
+	    else if	(value ==    "7")    shifted_value = "&";
+	    else if	(value ==    "8")    shifted_value = "*";
+	    else if	(value ==    "9")    shifted_value = "(";
+	    else if	(value ==    "0")    shifted_value = ")";
+
+	    else if	(value ==    "=")    shifted_value = "+";
+
+	    else if	(value ==    "[")    shifted_value = "{";
+	    else if	(value ==    "]")    shifted_value = "}";
+
+	    else if	(value ==    ";")    shifted_value = ":";
+	    else if	(value ==    ",")    shifted_value = "<";
+	    else if	(value ==    ".")    shifted_value = ">";
+	    else if	(value ==    "'")    shifted_value = '"';
+
+	    else if	(value ==   "\\")    shifted_value = "|";
+	    else if	(value ==    "/")    shifted_value = "?";
 	}
 
-	if(shifted_value != "")
-	    value = shifted_value;
+	// UPPERCASE
+	if((shifted_value == "") && (value.length == 1))
+	    value = value.toUpperCase();
+    }
+    else {
+	// LOWERCASE
+	if((value.length == 1))
+	    value = value.toLowerCase();
+    }
 
-	//}}}
-	// Prefix [+^!#] {{{
-	var is_modifier = (value=="<CTRL>") || (value=="<SHIFT>") || (value=="<ALT>") || (value=="<META>");
+    //	if(shifted_value != "") {
+    //	    shifted_stoke = value;
+    //	    value = shifted_value;
+    //	}
+
+    //}}}
+    // RESULT {{{
+
+    var i = e.keyIdentifier;
+    var o = charCode
+
+	// MODIFIER PREFIX {{{
+	var a =  e.altKey                           ? "a" : "";
+    var s = (e.shiftKey && (shifted_value=="")) ? "s" : "";
+    var c =  e.ctrlKey                          ? "c" : "";
+    var m =  e.metaKey                          ? "m" : "";
+
+    var is_modifier = (value=="<CTRL>") || (value=="<SHIFT>") || (value=="<ALT>") || (value=="<META>");
+    var mod = "";
+    if(!is_modifier) {
+	if(controlled_value == "") {					// not ASCII first column
+	    if(e.ctrlKey                           )    mod = mod+"C-";
+	    if(e.metaKey                           )    mod = mod+"M-";
+	    if(e.altKey                            )    mod = mod+"A-";
+	    if(e.shiftKey &&  (shifted_value  ==""))    mod = mod+"S-";	// not an already shifted values
+	}
+    }
+
+    var v;
+    if     (controlled_stroke != "")    v = controlled_value;
+    else if(shifted_value     != "")    v = shifted_value;
+    else				    v = value
+	if(mod != "") {
+	    if(v.charAt(0) == "<") v =  v.substring(1, v.length-1);
+	    v = "<"+mod+v.toUpperCase()+">";
+	}
+    //}}}
+
+    // COMMAND / APPEND {{{
+    //---- BACKSPACE {{{
+    if(     v == "<BS>"    ) {
+	if(el.value.substring(el.value.length-1, el.value.length) == ">")
+	    el.value = el.value.substring(0, el.value.lastIndexOf("<"));
+	else
+	    el.value = el.value.substring(0, el.value.length-1);
+	//if(transcript) transcript.innerHTML = ""
+    }
+    //}}}
+    //---- CLEAR COMMAND {{{
+    else if(v == "<ESCAPE>") {
+	el.value = "";
+	//if(transcript) transcript.innerHTML = ""
+    }
+    //}}}
+    //---- CLEAR (AUTO) {{{
+    else if((charCode !=   16)   // Shift
+	&&  (charCode !=   17)   // Ctrl
+	&&  (charCode !=   18)   // Alt
+	)
+    {
+	if(el.value.length > 60) el.value = "";
+	el.value += v;
+    }
+    //}}}
+    //---- LAYOUT BROWSER {{{
+    if(     v == "<C-=>") {
+	browse_img( 1);
+    }
+    else if(v == "<C-->") {
+	browse_img(-1);
+    }
+    //}}}
+    //}}}
+
+    // TRANSCRIPT {{{
+    var transcript = document.getElementById("transcript1");
+    if(transcript) {
+
+	if(v==" ") v = "<SPACE>";
+	v = v.replace(/&/g,"&amp;"); // ...must be first!
+	v = v.replace(/</g, "&lt;");
+	v = v.replace(/>/g, "&gt;");
+
+	// MODIER + KEYSTROKE (INSTEAD OF CONTROLLED_VALUE)
+	var k;
+	if     (controlled_stroke != "")	k = controlled_stroke;
+	else if(shifted_value     != "")    k = shifted_value;
+	else				k = value;
+	mod = "";
 	if(!is_modifier) {
-	    var mod = "";
-	    if(e.metaKey  && (controled_value=="")                         ) mod = mod+"M-";
-	    if(e.altKey   && (controled_value=="")                         ) mod = mod+"A-";
-	    if(e.ctrlKey  && (controled_value=="")                         ) mod = mod+"C-";
-	    if(e.shiftKey && (controled_value=="") && (shifted_value  =="")) mod = mod+"S-";
-	    if(mod != "") {
-		if(value.charAt(0) == '<')
-		    value =  value.substring(1, value.length-1);
-		value = "<"+mod+value.toUpperCase()+">";
-	    }
+	    if(e.ctrlKey                           )    mod = mod+"C-";
+	    if(e.metaKey                           )    mod = mod+"M-";
+	    if(e.altKey                            )    mod = mod+"A-";
+	    if(e.shiftKey &&  (shifted_value  ==""))    mod = mod+"S-";	// not an already shifted values
+	}
+	if(mod != "") {
+	    if(k.charAt(0) == "<") k =  k.substring(1, k.length-1);
+	    k =     mod+k.toUpperCase();
 	}
 
-	//}}}
-	// transcript {{{
-	var transcript = document.getElementById("transcript1");
-	if(transcript)
+	if(k==" ") k = "<SPACE>";
+	k = k.replace(/&/g,"&amp;"); // ...must be first!
+	k = k.replace(/</g, "&lt;");
+	k = k.replace(/>/g, "&gt;");
 
-	    var a = e.altKey   ? "X" : "-";
-	    var s = e.shiftKey ? "X" : "-";
-	    var c = e.ctrlKey  ? "X" : "-";
-	    var m = e.metaKey  ? "X" : "-";
+	var cv = controlled_value;
+	cv = cv.replace(/&/g,"&amp;");
+	cv = cv.replace(/</g, "&lt;");
+	cv = cv.replace(/>/g, "&gt;");
 
-	    var v = value;
-	    if(v==" ") v = "<SPACE>";
-	    v = v.replace(/&/g,"&amp;"); // ...must be first!
-	    v = v.replace(/</g, "&lt;");
-	    v = v.replace(/>/g, "&gt;");
+	var sv = shifted_value;
+	sv = sv.replace(/&/g,"&amp;");
+	sv = sv.replace(/</g, "&lt;");
+	sv = sv.replace(/>/g, "&gt;");
 
-	    transcript.innerHTML    = ""
-		+"<div>"
-		+ "<table>"
+	var m0 = ((KEY_TIC  ) % 8) ? "." : "o";
+	var m1 = ((KEY_TIC+1) % 8) ? "." : "o";
+	var m2 = ((KEY_TIC+2) % 8) ? "." : "o";
+	var m3 = ((KEY_TIC+3) % 8) ? "." : "o";
+	var m4 = ((KEY_TIC+4) % 8) ? "." : "o";
+	var m5 = ((KEY_TIC+5) % 8) ? "." : "o";
+	var m6 = ((KEY_TIC+6) % 8) ? "." : "o";
+	var m7 = ((KEY_TIC+7) % 8) ? "." : "o";
 
-		+"<tr><th>     ALT            </th><th>     SHIFT       </th><th>     CTRL      </th><th>     META       </th></tr>"
-		+"<tr><td>"+   a            +"</td><td>"+   s         +"</td><td>"+   c       +"</td><td>"+   m        +"</td></tr>"
+	transcript.innerHTML    = ""
+	    +"<div>"
+	    + "<table>"
 
-		+"<tr><th>     keyIdentifier  </th><th>     which       </th><th>     keyCode   </th><th>     charCode   </th></tr>"
-		+"<tr><td>"+ e.keyIdentifier+"</tn><td>"+ e.which     +"</td><td>"+ e.keyCode +"</td><td>"+   charCode +"</td></tr>"
+	    +"<tr><th>     ALT            </th><th>     SHIFT      </th><th>     CTRL       </th><th>     META       </th></tr>"
+	    +"<tr><td>"+   a            +"</td><td>"+   s        +"</td><td>"+   c        +"</td><td>"+   m        +"</td></tr>"
 
-		+"<tr><th>     value          </th><th>     repeat      </th><th>               </th><td>                </td></tr>"
-		+"<tr><td class='vtd'>"+ v  +"</td><td>"+ e.repeat    +"</td><td>               </td><td>                </td></tr>"
+	    +"<tr><th>     keyIdentifier  </th><th>   charCode     </th><th>     cv         </th><th>     sv         </th></tr>"
+	    +"<tr><td>"+   i            +"</tn><td>"+ charCode   +"</td><td>"+   cv       +"</td><td>"+   sv       +"</td></tr>"
 
-		+"</table>" 
-		+"</div>" 
-		;
+	    +"<tr><th             colspan=2>   value               </th><th>     key        </th><th>    KEY_TIC     </th></tr>"
+	    +"<tr><td class='vtd' colspan=2>"+ v                 +"</td><td>"+   k        +"</td><td>"+" "+m7+" "+m6+" "+m5+" "+m4+"<br>"+KEY_TIC+"<br>"+m3+" "+m2+" "+m1+" "+m0+"</td></tr>"
 
-//		+"               key=["+ e.key              +"]\n"
-//		+"              code=["+ e.code	            +"]\n"
-//		+"       isComposing=["+ e.isComposing      +"]\n"
-//		+"  defaultPrevented=["+ e.defaultPrevented +"]\n"
+	    +"</table>" 
+	    +"</div>" 
+	    ;
 
-	//}}}
-	// COMMAND / APPEND {{{
-	if(     value == "<ESCAPE>") {
-	    el.value = "";
-	    //if(transcript) transcript.innerHTML = ""
-	}
-	else if(value == "<BS>"    ) {
-	    if(el.value.substring(el.value.length-1, el.value.length) == ">")
-		el.value = el.value.substring(0, el.value.lastIndexOf("<"));
-	    else
-		el.value = el.value.substring(0, el.value.length-1);
-	    //if(transcript) transcript.innerHTML = ""
-	}
-	else if((charCode !=   16)   // Shift
-	    &&  (charCode !=   17)   // Ctrl
-	    &&  (charCode !=   18)   // Alt
-	    )
-	{
-	    if(el.value.length > 60) el.value = "";
+    }
+    //}}}
 
-	    el.value += value;
-	}
-	//}}}
-    } // }}}
+    //}}}
+} // }}}
 
 /* MOVE */
 //{{{
-var MO_el=null;
 var MO_id="transcript1";
+var MO_el=null;
+var LG_el=null;
 var MO_cp;
+
+var dx = 0;
+var dy = 0;
+var sx = 0;
+var sy = 0;
 
 window.onload = addListeners;
 
-function addListeners() {
+function addListeners()
+{
     MO_el = document.getElementById(MO_id);
-
-    MO_el .addEventListener('mousedown', mouseDown, false);
-    window.addEventListener('mouseup'  , mouseUp  , false);
+    MO_el .addEventListener("mousedown", mouseDown , false);
+    window.addEventListener("mouseup"  , mouseUp   , false);
+    MO_el.addEventListener("touchstart", touchstart, false);
+    MO_el.addEventListener("touchend"  , touchend  , false)
 }
 
-function mouseUp() {
-    window.removeEventListener('mousemove', divMove, true);
+//:!start explorer "http://www.javascriptkit.com/javatutors/touchevents.shtml"
+function touchstart(e) {
+    MO_cp = getPosition(MO_el);
+    sx    = parseInt(e.changedTouches[0].clientX);
+    sy    = parseInt(e.changedTouches[0].clientY);
+    MO_el.addEventListener("touchmove" , touchmove , false);
+    e.preventDefault();
 }
+function touchmove(e) {
+    dx               = parseInt(e.changedTouches[0].clientX) - sx;
+    dy               = parseInt(e.changedTouches[0].clientY) - sy;
+    MO_el.style.left = (MO_cp.x + dx) +"px";
+    MO_el.style.top  = (MO_cp.y + dy) +"px";
+    e.preventDefault();
+}
+function touchend(e) {
+    MO_el.removeEventListener("touchmove", touchmove, false);
+    e.preventDefault();
+}
+
+
 
 function mouseDown(e) {
     MO_cp = getClickPosition(e);
-
-    MO_el.style.position = 'absolute';
-
-    window.addEventListener('mousemove', divMove, true);
+    MO_el.style.position = "absolute";
+    window.addEventListener("mousemove", divMove, true);
+}
+function mouseUp() {
+    window.removeEventListener("mousemove", divMove, true);
+}
+function divMove(e) {
+    MO_el.style.left     = e.clientX - MO_cp.x +"px";
+    MO_el.style.top      = e.clientY - MO_cp.y +"px";
 }
 
-function divMove(e){
-    MO_el.style.left     = e.clientX - MO_cp.x +'px';
-    MO_el.style.top      = e.clientY - MO_cp.y +'px';
+function getClickPosition(e) {
+    var parentPosition = getPosition(e.currentTarget);
+    var xPosition      = e.clientX - parentPosition.x;
+    var yPosition      = e.clientY - parentPosition.y;
+    return { x: xPosition, y: yPosition };
 }
 
 //}}}
-
