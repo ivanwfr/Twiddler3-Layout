@@ -257,47 +257,42 @@ function eraseCookie(cName)// {{{
 // }}}
 
 /* MOUSE */
-     function fold_onclick(num, url) { // {{{
-//alert("fold_onclick(num=["+num+"], url=["+url+"]")
-      for(var n=1; n<=8; ++n) {
+function fold_onclick(num, url) { // {{{
+    for(var n=1; n<=8; ++n) {
+	// HTML ELEMENTS {{{
+	if(n != num) continue; // leave others alone
 
-       if(n != num) continue; // leave others alone
-
-       var fold_div   = document.getElementById("fold_div"+n);
-       var fold_pane  = document.getElementById("fold_pane"+n);
-       var transcript = document.getElementById("transcript"+n);
-       if(!fold_div || !fold_pane)
-	continue;
-
-       if(n == num) {
-	   show_hide = (fold_pane.className != "fold_show");
-       }
-       else {
+	var fold_div   = document.getElementById("fold_div"+n);
+	var fold_grip  = document.getElementById("fold_grip"+n);
+	var fold_pane  = document.getElementById("fold_pane"+n);
+	var transcript = document.getElementById("transcript"+n);
+	if(!fold_div || !fold_pane)
 	    continue;
-	   //show_hide = false;
-       }
 
-       if( show_hide ) {
-	if(url.indexOf("http") == 0)
-	 if(fold_pane.src != url) fold_pane.src = url;
-       }
+	//}}}
+	// Hide-Show [url] {{{
+	show_hide = (fold_pane.className != "fold_show");
 
-       fold_div.className		= (show_hide) ? "fold_show" : "fold_dim";
-       fold_pane.className		= (show_hide) ? "fold_show" : "fold_hide";
-       if(transcript)
-	   transcript.style.visibility	= (show_hide) ? "visible"   : "hidden";
+	if( show_hide ) {
+	    if(url.indexOf("http") == 0)
+		if(fold_pane.src != url) fold_pane.src = url;
+	}
 
-       if(show_hide) fold_pane1.focus();
+	//}}}
+        // update {{{
 
-//alert("fold_pane.className=["+fold_pane.className+"]")
-      }
-     } // }}}
-    function fold_stopEventPropagation(e, el) { //{{{
-	if(!e) e = window.event;
-	if(e.preventDefault ) e.preventDefault();
-	if(e.stopPropagation) e.stopPropagation();
-	else                  e.cancelBubble = true;
-    } // }}}
+        if(fold_div  ) fold_div .className         = (show_hide) ? "fold_show" : "fold_dim";
+	if(fold_pane ) fold_pane.className         = (show_hide) ? "fold_show" : "fold_hide";
+
+//      if(fold_grip ) fold_grip.style.display     = (show_hide) ? "none"      : "inline";
+        if(transcript) transcript.style.visibility = (show_hide) ? "visible"   : "hidden";
+
+        // PANE focus-blur
+        if(fold_pane) if(show_hide) fold_pane.focus();
+
+        //}}}
+    }
+} // }}}
 function getPosition(el) { //{{{
     var xPosition = 0;
     var yPosition = 0;
@@ -309,6 +304,12 @@ function getPosition(el) { //{{{
     }
     return { x: xPosition, y: yPosition };
 } //}}}
+    function fold_stopEventPropagation(e, el) { //{{{
+	if(!e) e = window.event;
+	if(e.preventDefault ) e.preventDefault();
+	if(e.stopPropagation) e.stopPropagation();
+	else                  e.cancelBubble = true;
+    } // }}}
 
 /* KEYBOARD */
 var KEY_TIC = 0;
@@ -531,39 +532,39 @@ function fold_keydown(e, el) { //{{{
 
 	// CONTROLLED SHIFTED-KEYS
 	if(e.ctrlKey) {
-	    if	(value == "<RS>")    shifted_value = "^"; // <c-s-6> = <c-^> = 30
-	    else if	(value == "<US>")    shifted_value = "_"; // <c-s--> = <c-_> = value
+	    if	   (value == "<RS>")        shifted_value = "^"; // <c-s-6> = <c-^> = 30
+	    else if(value == "<US>")        shifted_value = "_"; // <c-s--> = <c-_> = value
 	}
 	else {
 
-	    if	(value ==    "-")    shifted_value = "_";
+	    if	(value ==    "-")           shifted_value = "_";
 
-	    else if	(value ==    "1")    shifted_value = "!";
-	    else if	(value ==    "2")    shifted_value = "@";
-	    else if	(value ==    "3")    shifted_value = "#";
-	    else if	(value ==    "4")    shifted_value = "$";
-	    else if	(value ==    "5")    shifted_value = "%";
+	    else if	(value ==    "1")   shifted_value = "!";
+	    else if	(value ==    "2")   shifted_value = "@";
+	    else if	(value ==    "3")   shifted_value = "#";
+	    else if	(value ==    "4")   shifted_value = "$";
+	    else if	(value ==    "5")   shifted_value = "%";
 
-	    else if	(value ==    "`")    shifted_value = "~";
+	    else if	(value ==    "`")   shifted_value = "~";
 
-	    else if	(value ==    "6")    shifted_value = "^";
-	    else if	(value ==    "7")    shifted_value = "&";
-	    else if	(value ==    "8")    shifted_value = "*";
-	    else if	(value ==    "9")    shifted_value = "(";
-	    else if	(value ==    "0")    shifted_value = ")";
+	    else if	(value ==    "6")   shifted_value = "^";
+	    else if	(value ==    "7")   shifted_value = "&";
+	    else if	(value ==    "8")   shifted_value = "*";
+	    else if	(value ==    "9")   shifted_value = "(";
+	    else if	(value ==    "0")   shifted_value = ")";
 
-	    else if	(value ==    "=")    shifted_value = "+";
+	    else if	(value ==    "=")   shifted_value = "+";
 
-	    else if	(value ==    "[")    shifted_value = "{";
-	    else if	(value ==    "]")    shifted_value = "}";
+	    else if	(value ==    "[")   shifted_value = "{";
+	    else if	(value ==    "]")   shifted_value = "}";
 
-	    else if	(value ==    ";")    shifted_value = ":";
-	    else if	(value ==    ",")    shifted_value = "<";
-	    else if	(value ==    ".")    shifted_value = ">";
-	    else if	(value ==    "'")    shifted_value = '"';
+	    else if	(value ==    ";")   shifted_value = ":";
+	    else if	(value ==    ",")   shifted_value = "<";
+	    else if	(value ==    ".")   shifted_value = ">";
+	    else if	(value ==    "'")   shifted_value = '"';
 
-	    else if	(value ==   "\\")    shifted_value = "|";
-	    else if	(value ==    "/")    shifted_value = "?";
+	    else if	(value ==   "\\")   shifted_value = "|";
+	    else if	(value ==    "/")   shifted_value = "?";
 	}
 
 	// UPPERCASE
@@ -583,29 +584,20 @@ function fold_keydown(e, el) { //{{{
     //	}
 
     //}}}
-    // RESULT {{{
-
-    var i = e.keyIdentifier;
-    var o = charCode
-
-    // MODIFIER PREFIX {{{
-    var a =  e.altKey                           ? "a" : "&nbsp;";
-    var s = (e.shiftKey && (shifted_value=="")) ? "s" : "&nbsp;";
-    var c =  e.ctrlKey                          ? "c" : "&nbsp;";
-    var m =  e.metaKey                          ? "m" : "&nbsp;";
+    // KEYEVENT (ID CODE MODIFIERS) {{{
 
     var is_modifier = (value=="<CTRL>") || (value=="<SHIFT>") || (value=="<ALT>") || (value=="<META>");
     var is_space    = (value==" ");
     var mod = "";
     if(!is_modifier && !is_space) {
 	if(controlled_value == "") {	// not ASCII first column
-	    if(e.ctrlKey                           )    mod = mod+"C-";
-	    if(e.metaKey                           )    mod = mod+"M-";
-	    if(e.altKey                            )    mod = mod+"A-";
+	    if(e.metaKey                           )    mod = mod+"m-";
+	    if(e.altKey                            )    mod = mod+"a-";
+	    if(e.ctrlKey                           )    mod = mod+"c-";
 	    if(shifted_value == "") {	// not an already shifted values
 		if(e.shiftKey) {
 		    if("ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(value) < 0)
-			mod = mod+"S-";
+			mod = mod+"s-";
 		}
 	    }
 	}
@@ -617,97 +609,107 @@ function fold_keydown(e, el) { //{{{
     else				v = value;
     if(mod != "") {
 	if(v.charAt(0) == "<") v =  v.substring(1, v.length-1);
-	v = "<"+mod+v.toUpperCase()+">";
+	v = "<"+mod+v+">";
+	v = v.toUpperCase();
     }
 
     //}}}
-
-    // COMMAND / APPEND {{{
-    //---- BACKSPACE {{{
+    // COMMAND {{{
+    var transcript = document.getElementById("transcript2");
+    //---- backspace {{{
     if(     v == "<BS>"    ) {
 	if(el.value.substring(el.value.length-1, el.value.length) == ">")
 	    el.value = el.value.substring(0, el.value.lastIndexOf("<"));
 	else
 	    el.value = el.value.substring(0, el.value.length-1);
-	//if(transcript) transcript.innerHTML = ""
     }
     //}}}
-    //---- CLEAR COMMAND {{{
+    //---- clear {{{
     else if(v == "<ESCAPE>") {
+	KEY_TIC = 0;
+	if(el.value=="") { // extra escape
+	    if(transcript)
+		transcript.style.visibility = (transcript.style.visibility != "visible") ? "visible" : "hidden";
+	}
 	el.value = "";
-	//if(transcript) transcript.innerHTML = ""
+	v="";
     }
     //}}}
-    //---- APPEND [AUTO-CLEAR] {{{
+    //---- append [auto-clear] {{{
     else if((charCode !=   16)   // Shift
 	&&  (charCode !=   17)   // Ctrl
 	&&  (charCode !=   18)   // Alt
 	)
     {
 	if(el.value.length > 60) el.value = "";
-	el.value += v;
+	if(v) el.value += v;
     }
     //}}}
-    //---- LAYOUT BROWSER {{{
-    if(     v == "<C-=>") {
+    //---- layout browse image {{{
+    if(     v == "<c-=>") {
 	browse_img( 1);
     }
-    else if(v == "<C-->") {
+    else if(v == "<c-->") {
 	browse_img(-1);
     }
     //}}}
     //}}}
-
     // TRANSCRIPT {{{
-    var transcript = document.getElementById("transcript1");
     if(transcript) {
-
+	// KEY-VALUE {{{
 	if(v==" ") v = "<SPACE>";
 	v = v.replace(/&/g,"&amp;"); // ...must be first!
 	v = v.replace(/</g, "&lt;");
 	v = v.replace(/>/g, "&gt;");
 
-	// MODIER + KEYSTROKE (INSTEAD OF CONTROLLED_VALUE)
+	//}}}
+	// KEY-STROKE  {{{
 	var k;
-	if     (controlled_stroke != "")	k = controlled_stroke;
-	else if(shifted_value     != "")    k = shifted_value;
-	else				k = value;
+	if     (controlled_stroke != "") k = controlled_stroke;
+	else if(shifted_value     != "") k = shifted_value;
+	else				 k = value;
 	mod = "";
 	if(!is_modifier && !is_space) { // no jumpt to ASCII first column
-	    if(e.ctrlKey                           )    mod = mod+"C-";
-	    if(e.metaKey                           )    mod = mod+"M-";
-	    if(e.altKey                            )    mod = mod+"A-";
+	    if(e.metaKey                           )    mod = mod+"m-";
+	    if(e.altKey                            )    mod = mod+"a-";
+	    if(e.ctrlKey                           )    mod = mod+"c-";
 	    if(shifted_value == "") {	// not an already shifted values
 		if(e.shiftKey) {
 		    if("ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(value) < 0)
-			mod = mod+"S-";
+			mod = mod+"s-";
 		}
 	    }
 	}
 	if(mod != "") {
 	    if(k.charAt(0) == "<") k =  k.substring(1, k.length-1);
-	    k =     mod+k.toUpperCase();
+	    k = mod+k;
+	    k = k.toLowerCase();
 	}
 
 	if(k==" ") k = "<SPACE>";
+
 	k = k.replace(/&/g,"&amp;"); // ...must be first!
 	k = k.replace(/</g, "&lt;");
 	k = k.replace(/>/g, "&gt;");
 
+	//}}}
+	// CONTROLLED VALUE {{{
 	var cv = controlled_value;
 	cv = cv.replace(/&/g,"&amp;");
 	cv = cv.replace(/</g, "&lt;");
 	cv = cv.replace(/>/g, "&gt;");
 
+	//}}}
+	// SHIFTED VALUE {{{
 	var sv = shifted_value;
 	sv = sv.replace(/&/g,"&amp;");
 	sv = sv.replace(/</g, "&lt;");
 	sv = sv.replace(/>/g, "&gt;");
 
+	//}}}
+	// KEY_TIC {{{
 	if(!is_modifier)
-	    KEY_TIC += 1;
-
-	var m0 = ((KEY_TIC  ) % 8) ? "." : "o";
+	    KEY_TIC += (v) ? 1 : 0;
 	var m1 = ((KEY_TIC+1) % 8) ? "." : "o";
 	var m2 = ((KEY_TIC+2) % 8) ? "." : "o";
 	var m3 = ((KEY_TIC+3) % 8) ? "." : "o";
@@ -715,7 +717,19 @@ function fold_keydown(e, el) { //{{{
 	var m5 = ((KEY_TIC+5) % 8) ? "." : "o";
 	var m6 = ((KEY_TIC+6) % 8) ? "." : "o";
 	var m7 = ((KEY_TIC+7) % 8) ? "." : "o";
+	var m8 = ((KEY_TIC+8) % 8) ? "." : "o";
 
+	//}}}
+	// MODIFIERS STATE {{{
+	var i =  e.keyIdentifier;
+	var o =  charCode;
+	var m =  e.metaKey                          ? "m" : "&nbsp;";
+	var a =  e.altKey                           ? "a" : "&nbsp;";
+	var c =  e.ctrlKey                          ? "c" : "&nbsp;";
+	var s = (e.shiftKey && (shifted_value=="")) ? "s" : "&nbsp;";
+
+	//}}}
+	// TRANSCRIPT {{{
 	transcript.innerHTML    = ""
 	    +"<div>"
 	    + "<table>"
@@ -726,22 +740,35 @@ function fold_keydown(e, el) { //{{{
 	    +"<tr><th>     keyIdentifier  </th><th>   charCode     </th><th>     cv         </th><th>     sv         </th></tr>"
 	    +"<tr><td>"+   i            +"</tn><td>"+ charCode   +"</td><td>"+   cv       +"</td><td>"+   sv       +"</td></tr>"
 
-	    +"<tr><th             colspan=2>   value               </th><th>     key        </th><th>    KEY_TIC     </th></tr>"
-	    +"<tr><td class='vtd' colspan=2>"+ v     +"</td><td class='ktd'>"+   k        +"</td><td>"+" "+m7+" "+m6+" "+m5+" "+m4+"<br>"+KEY_TIC+"<br>"+m3+" "+m2+" "+m1+" "+m0+"</td></tr>"
+	    +"<tr><th          colspan=2>   value               </th><th>     key        </th><th>    KEY_TIC     </th></tr>"
+	    +"<tr><td id='vtd' colspan=2>"+ v        +"</td><td id='ktd'>"+   k        +"</td><td>"+" "+m8+" "+m7+" "+m6+" "+m5+"<br>"+KEY_TIC+"<br>"+m4+" "+m3+" "+m2+" "+m1+"</td></tr>"
 
 	    +"</table>" 
 	    +"</div>" 
 	    ;
 
+	//}}}
     }
     //}}}
+} // }}}
+function fold_keypress(e,el) { //{{{
+//    var el = document.getElementById("fold_pane1");
+//    el.value = el.value+"fold_keypress ";
+    fold_stopEventPropagation(e,el);
+} // }}}
+function fold_keyup(e,el) { //{{{
+    //el = document.getElementById("vtd");
+    //if(el) el.innerHTML = "";
 
-    //}}}
+    //el = document.getElementById("ktd");
+    //if(el) el.innerHTML = "";
+
+    fold_stopEventPropagation(e,el);
 } // }}}
 
 /* MOVE */
 //{{{
-var MO_id="transcript1";
+var MO_id="transcript2";
 var MO_el=null;
 var LG_el=null;
 var MO_cp;
@@ -756,13 +783,54 @@ window.onload = addListeners;
 function addListeners()
 {
     MO_el = document.getElementById(MO_id);
+    if(!MO_el) return;
+
     MO_el .addEventListener("mousedown", mouseDown , false);
     window.addEventListener("mouseup"  , mouseUp   , false);
     MO_el.addEventListener("touchstart", touchstart, false);
-    MO_el.addEventListener("touchend"  , touchend  , false)
+    MO_el.addEventListener("touchend"  , touchend  , false);
+
+    window.addEventListener("orientationchange", orientationchange  , false);
 }
 
-//:!start explorer "http://www.javascriptkit.com/javatutors/touchevents.shtml"
+// :!start explorer "http://davidwalsh.name/orientation-change"
+function orientationchange() {
+    if(!MO_el) return;
+
+    setTimeout(updateOrientation, 200); // wait for new window geometry
+}
+
+function updateOrientation() {
+    if(!MO_el) return;
+
+    MO_cp = getPosition(MO_el);
+
+
+    var MARGIN = 30;
+    var x_max = screen.width  - MO_el.clientWidth  - MARGIN;
+    var y_max = screen.height - MO_el.clientHeight - MARGIN;
+
+/*
+    alert(""
+    +"screen.width =["+ screen.width  +"]\n"
+    +"screen.height=["+ screen.height +"]\n"
+    +"MO_el.style.left  =["+ MO_el.style.left   +"]\n"
+    +"MO_el.style.top   =["+ MO_el.style.top    +"]\n"
+    +"MO_el.clientWidth =["+ MO_el.clientWidth  +"]\n"
+    +"MO_el.clientHeight=["+ MO_el.clientHeight +"]\n"
+    +"MO_cp.x           =["+ MO_cp.x            +"]\n"
+    +"MO_cp.y           =["+ MO_cp.y            +"]\n"
+    +"      x_max       =["+       x_max        +"]\n"
+    +"      y_max       =["+       y_max        +"]\n"
+    )
+*/
+
+    if(MO_cp.x > x_max) MO_el.style.left = x_max+"px";
+    if(MO_cp.y > y_max) MO_el.style.top  = y_max+"px";
+
+}
+
+// :!start explorer "http://www.javascriptkit.com/javatutors/touchevents.shtml"
 function touchstart(e) {
     MO_cp = getPosition(MO_el);
     sx    = parseInt(e.changedTouches[0].clientX);

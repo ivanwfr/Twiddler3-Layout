@@ -1,114 +1,117 @@
 <!doctype html>
 <html>
-  <head><!-- {{{ -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="chrome=1">
-  <title>Twiddler Layout Browser</title>
+ <head><!-- {{{ -->
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="chrome=1">
+ <title>Twiddler Layout Browser</title>
 
-  <link rel="stylesheet" href="stylesheets/styles.css">
-  <link rel="stylesheet" href="stylesheets/twiddler.css">
-  <script src="javascripts/fold.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
-  <!-- CSS NAV {{{ -->
-  <style>
+ <link rel="stylesheet" href="stylesheets/styles.css">
+ <link rel="stylesheet" href="stylesheets/twiddler.css">
+ <script src="javascripts/fold.js"></script>
+ <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+ <!-- CSS NAV {{{ -->
+ <style>
 
-   body { padding:0; }
+  body { padding:0; }
 
-   #navi       { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
-   #navi       { position:absolute; top:1ex; left:0; text-align:center; width:100%; }
-   #navi       { opacity:0.50; filter:alpha(opacity = 0.5); }
-   #navi:hover { opacity:1.00; filter:alpha(opacity = 1.0); }
-   #navi:hover { color:red; font-weight:bold; font-size:150%; }
-   #navi       { cursor:help; }
+  #navi       { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
+  #navi       { position:absolute; top:1ex; left:0; text-align:center; width:100%; }
+  #navi       { opacity:0.50; filter:alpha(opacity = 0.5); }
+  #navi:hover { opacity:1.00; filter:alpha(opacity = 1.0); }
+  #navi:hover { color:red; font-weight:bold; font-size:150%; }
+  #navi       { cursor:help; }
+  #navi       { z-index:1; }
 
-   #swpL { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
-   #swpR { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
+  #swpL { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
+  #swpR { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
 
-   #swpL { position:absolute; top:0; left :0; width:50%; height:100%; float: left; text-align: left; }
-   #swpR { position:absolute; top:0; right:0; width:50%; height:100%; float:right; text-align:right; }
+  #swpL { position:absolute; top:0; left :0; width:50%; height:100%; float: left; text-align: left; }
+  #swpR { position:absolute; top:0; right:0; width:50%; height:100%; float:right; text-align:right; }
 
-   #swpL { background-color:red;   }
-   #swpR { background-color:green; }
+  #swpL { background-color:red;   }
+  #swpR { background-color:green; }
 
-   #swpL { opacity:0.01; filter:alpha(opacity = 1); }
-   #swpR { opacity:0.01; filter:alpha(opacity = 1); }
+  #swpL { opacity:0.01; filter:alpha(opacity = 1); }
+  #swpR { opacity:0.01; filter:alpha(opacity = 1); }
 
-   .swpL { cursor:url("images/cursors/left.png" ), auto; }
-   .swpR { cursor:url("images/cursors/right.png"), auto; }
-   .endC { cursor:url("images/cursors/end.png"  ), auto; }
+  .swpL { cursor:url("images/cursors/left.png" ), auto; }
+  .swpR { cursor:url("images/cursors/right.png"), auto; }
+  .endC { cursor:url("images/cursors/end.png"  ), auto; }
 
-   #curL { position:absolute; top:0; left :0; width:32px; height:32px; float: left; text-align: left; }
-   #curR { position:absolute; top:0; right:0; width:32px; height:32px; float:right; text-align:right; }
-   #curL { background-position:left  top; background-attachment:fixed; background-repeat:no-repeat; }
-   #curR { background-position:right top; background-attachment:fixed; background-repeat:no-repeat; }
+  #curL { position:absolute; top:0; left :0; width:32px; height:32px; float: left; text-align: left; }
+  #curR { position:absolute; top:0; right:0; width:32px; height:32px; float:right; text-align:right; }
+  #curL { background-position:left  top; background-attachment:fixed; background-repeat:no-repeat; }
+  #curR { background-position:right top; background-attachment:fixed; background-repeat:no-repeat; }
 
-   .curL { background-image:url("images/cursors/left.png" ); }
-   .curR { background-image:url("images/cursors/right.png"); }
-   .endC { background-image:url("images/cursors/end.png"  ); }
+  .curL { background-image:url("images/cursors/left.png" ); }
+  .curR { background-image:url("images/cursors/right.png"); }
+  .endC { background-image:url("images/cursors/end.png"  ); }
 
-  </style>
+ </style>
+ <!-- }}} -->
+ </head>
+ <!-- }}} -->
+ <body onload='show_img(4); fold_onclick(2,"");' onkeypress='keypress(event);'>
+ <!-- BROWSE {{{ -->
+  <div id="navi" title="SET & TOGGLE TARGET ... (pretty sure you can figure out how it works)" onclick="compare_target();">
+   &larr; <span id="span_compare_target_num"></span> &rarr;
+   <br>
+   a w &nbsp; - = &nbsp; 1-9
+  </div>
+
+  <!-- onclick catch transparent V-SPLIT-MASKS -->
+  <div id="swpL" class="swpL" onclick='browse_img(-1);' >&nbsp;</div>
+  <div id="swpR" class="swpR" onclick='browse_img( 1);' >&nbsp;</div>
+
+  <!-- inline-nav-cursor -->
+  <div id="curL" class="endC">&nbsp;</div>
+  <div id="curR" class="endC">&nbsp;</div>
+
+ <!-- }}} -->
+ <!-- IMAGES {{{ -->
+  <img id="img1" style="display:block;" title="ORML Notation" src="images/Cheat_Blank.png">
+
+  <img id="img2" style="display: none;" title="TabSpace Num"  src="images/Cheat_TabSpace_Num.png">
+  <img id="img3" style="display: none;" title="TabSpace"      src="images/Cheat_TabSpace.png">
+
+  <img id="img4" style="display: none;" title="TabSpace++"    src="images/Cheat_TabSpace_3.png">
+  <img id="img5" style="display: none;" title="TabSpace++"    src="images/Cheat_TabSpace_3_Num.png">
+
+  <img id="img6" style="display: none;" title="TabSpace Num"  src="images/Cheat_TabSpace_Ranked.png">
+  <img id="img7" style="display: none;" title="TabSpace++"    src="images/Cheat_TabSpace_3_Ranked.png">
+
+  <img id="img8" style="display: none;" title="MessagEase"    src="images/Cheat_MessagEase.png">
+
+ <!-- }}} -->
+  <!-- ASCII TABLE {{{ -->
+  <div  id="fold_div1" onclick='fold_onclick(1,"");'>
+   <img id="fold_grip1" class="fold_grip"   src="images/icons/gripper.png"/>
+   <div id="fold_pane1">
+    <img style="width:715px; height:488px;" src="http://www.asciitable.com/index/asciifull.gif"/>
+    <img style="width:573px; height:335px;" src="http://www.asciitable.com/index/extend.gif"/>
+  </div>
+  </div>
   <!-- }}} -->
-  </head>
+  <!-- TRANSCRIPT {{{ -->
+  <div
+   title="Double Click to hide"
+   id="transcript2"
+   class="transcript"
+   ondblclick='this.style.visibility="hidden";'
+   onresize='this.style.left="10px"; this.style.top="10px";';
+   >
+  </div>
   <!-- }}} -->
-  <body onkeypress="keypress(event);"><!-- {{{ -->
-
-   <div id="swpL" class="swpL" onclick='browse_img(-1);' >&nbsp;</div>
-   <div id="swpR" class="swpR" onclick='browse_img( 1);' >&nbsp;</div>
-
-   <div id="curL" class="endC">&nbsp;</div>
-   <div id="curR" class="endC">&nbsp;</div>
-
-   <div id="navi" title="SET & TOGGLE TARGET ... (pretty sure you can figure out how it works)" onclick="compare_target();">
-    &larr; <span id="span_compare_target_num"></span> &rarr;
-    <br>
-    a w &nbsp; - = &nbsp; 1-9
-   </div>
-
-   <img id="img1" style="display:block;" title="ORML Notation" src="images/Cheat_Blank.png">
-
-   <img id="img2" style="display: none;" title="TabSpace Num"  src="images/Cheat_TabSpace_Num.png">
-   <img id="img3" style="display: none;" title="TabSpace"      src="images/Cheat_TabSpace.png">
-
-   <img id="img4" style="display: none;" title="TabSpace++"    src="images/Cheat_TabSpace_3.png">
-   <img id="img5" style="display: none;" title="TabSpace++"    src="images/Cheat_TabSpace_3_Num.png">
-
-   <img id="img6" style="display: none;" title="TabSpace Num"  src="images/Cheat_TabSpace_Ranked.png">
-   <img id="img7" style="display: none;" title="TabSpace++"    src="images/Cheat_TabSpace_3_Ranked.png">
-
-   <img id="img8" style="display: none;" title="MessagEase"    src="images/Cheat_MessagEase.png">
-
-  </body>
-
-  <script> show_img(4); </script>
-
+  <!-- TEXT INPUT {{{ -->
+  <div    id="fold_div2">
+   <img   id="fold_grip2" class="fold_grip" src="images/icons/gripper.png" draggable="false" onclick='fold_onclick(2,"");'/>
+   <input id="fold_pane2" type="text"                                                        onclick='//fold_onclick(2,"");'
+   onkeydown ='fold_keydown (event,this);          return false;'
+   onkeypress='fold_keypress(event,this);  return false;'
+   onkeyup   ='fold_keyup   (event,this);  return false;'
+   onmouseover='this.focus();'
+   >
+  </div>
   <!-- }}} -->
-   <!-- input-text {{{ -->
-   <div
-    title="Double Click to hide"
-    id="transcript1"
-    class="transcript"
-    ondblclick='this.style.visibility="hidden";'
-    >
-   </div>
-
-   <div    id="fold_div1">
-    <img   id="fold_grip1" class="fold_grip" src="images/icons/gripper.png" draggable="false" onclick='fold_onclick(1,"");'/>
-    <input id="fold_pane1" type="text"
-    onkeydown ='fold_keydown(event,this);          return false;'
-    onkeypress='fold_stopEventPropagation(event);  return false;'
-    onkeyup   ='fold_stopEventPropagation(event);  return false;'
-    onmouseover='this.focus();'
-    >
-   </div>
-   <!-- }}} -->
-   <!-- ASCII TABLE {{{ -->
-   <div  id="fold_div2" onclick='fold_onclick(2,"");'>
-    <img id="fold_grip2" class="fold_grip"   src="images/icons/gripper.png"/>
-    <div id="fold_pane2">
-     <img style="width:715px; height:488px;" src="http://www.asciitable.com/index/asciifull.gif"/>
-     <img style="width:573px; height:335px;" src="http://www.asciitable.com/index/extend.gif"/>
-   </div>
-   </div>
-   <!-- }}} -->
-  <script> fold_onclick(1,""); </script>
-   </html>
+ </body>
+</html>

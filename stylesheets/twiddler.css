@@ -120,7 +120,17 @@
 /* }}} */
 /* TEXT {{{ */
 
-.gr * { vertical-align: middle; }
+.bt { white-space:nowrap; }
+.gr { white-space:nowrap; }
+.nb { white-space:nowrap; }
+.ng { white-space:nowrap; }
+.vg { white-space:nowrap; }
+
+.bt * { vertical-align:text-top; }
+.gr * { vertical-align:text-top; }
+.nb * { vertical-align:text-top; }
+.ng * { vertical-align:text-top; }
+.vg * { vertical-align:text-top; }
 
 /* }}} */
 
@@ -380,15 +390,7 @@
 /* }}} */
 /* FOLD - grip div pane {{{ */
 
-    @media (max-device-width:1980px) and (orientation:landscape) {
-	.fold_grip { width            : 64px !important; }
-    }
-    @media (orientation:portrait)  {
-	.fold_grip { background-color :  red !important; }
-	#fold_div2 { bottom           : 12em !important; }
-	.fold_grip { width            : 96px !important; }
-    }
-
+/* GRIP {{{ */
     .fold_grip {
 	background-color : transparent;
 	border-radius    : 25px;
@@ -400,6 +402,19 @@
 	filter           : alpha(opacity = 100);
 	opacity          :                1.00;
     }
+
+    @media (max-device-width:1980px) and (orientation:landscape) {
+	.fold_grip { width            : 64px !important; }
+    }
+
+    @media (orientation:portrait)  {
+	.fold_grip { background-color :  red !important; }
+	.fold_grip { width            : 96px !important; }
+    }
+
+/* }}} */
+
+/* TRANSCRIPT {{{ */
     .transcript {
 	//display        : none;
 	//display        : inline-block !important;
@@ -411,10 +426,20 @@
 	margin           : 0;
 	padding          : 0;
 	position         : absolute;
-	left             : 600px;
-	bottom           : 100px;
+	left             : 50%;
+	top              : 50%;
 	z-index          : 1;
     }
+
+    @media (orientation:landscape)  {
+	.transcript  { left : 50%; }
+	.transcript  {  top : 50%; }
+    }
+    @media (orientation:portrait)  {
+	.transcript  { left : 20%; }
+	.transcript  {  top : 60%; }
+    }
+
     .transcript div {
 	border-radius    : 25px;
 	background       : rgba( 0, 0, 0, 0.6);
@@ -437,44 +462,60 @@
 	color            : #aaa;
 	font-size        : 120%;
 	font-weight:bold;
+	border-bottom: 0px solid black !important;
     }
     .transcript td {
 	text-align       : center;
 	color            : #ddd;
 	color            : orange;
+	border-bottom: 5px groove #600 !important;
     }
-    .transcript .vtd {
+    .transcript #vtd {
 	white-space      : nowrap;
 	font-size        : 300%;
 	width            : 8em;
+	height           : 1.5em !important;
+	//border-radius    : 25px;
+	//border           : 5px inset #600 !important;
     }
-    .transcript .ktd {
+    .transcript #ktd {
 	white-space      : nowrap;
 	width            : 6em;
     }
-
+/* }}} */
+/* FOLD1 {{{ */
     #fold_div1 {
-	position         : fixed;
-	bottom           : 1px;
-	left             : 1em;
-    }
-
-    #fold_div1 * {
-	vertical-align   : middle;
-    }
-
-    #fold_div2 {
 	position         : fixed;
 	bottom           : 4em;
 	left             : 1em;
     }
-    #fold_pane2 {
+    #fold_pane1 {
 	display          : none;
 	width            : 715px !important;
 	white-space      : nowrap;
     }
 
-    #fold_pane1 {
+    @media (orientation:landscape)  {
+	#fold_pane1 { white-space : nowrap; }
+    }
+    @media (orientation:portrait)  {
+	#fold_div1  { bottom      : 100px; }
+	#fold_pane1 { white-space : normal; }
+    }
+
+/* }}} */
+
+/* FOLD2 {{{ */
+    #fold_div2 {
+	position         : fixed;
+	bottom           : 1px;
+	left             : 1em;
+	width            : 90%;
+    }
+    #fold_div2 * {
+	vertical-align   : middle;
+    }
+    #fold_pane2 {
 	background-color : lightgray;
 	border-radius    : 25px;
 	display          : none;
@@ -484,19 +525,27 @@
 	padding          : 1px 1ex 2px 1ex;
 	white-space      : nowrap;
 	width            : 90%;
+	filter           : alpha(opacity =  60);
+	opacity          :                0.60;
     }
-    #fold_pane1:focus {
+    #fold_pane2:focus {
 	background-color : #100   !important;
 	color            : orange !important;
 	outline		 : none;
+	filter           : alpha(opacity =  80);
+	opacity          :                0.80;
     }
+    @media (orientation:portrait)  {
+	#fold_pane2 {width : 80%;}
+    }
+/* }}} */
 
+/* FOLD SHOW HIDE DIM {{{ */
     .fold_show {
 	border           : 0;
 	display          : inline-block !important;
 	filter           : alpha(opacity = 100);
 	opacity          :                1.00;
-	width            : 90%;
     }
     .fold_show div {
 	display          : block !important;
@@ -511,5 +560,7 @@
 	display          : none;
 	visibility       : hidden;
     }
+/* }}} */
+
 /* }}} */
 

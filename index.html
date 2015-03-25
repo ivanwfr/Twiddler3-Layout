@@ -1214,12 +1214,6 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
    <!-- applying_rules_arithmetic {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic");'>Arithmetic<span class="wh5">1</span></div>
    <div id="div_applying_rules_arithmetic" class="collapsed">
-    <p>
-     Arithmetic symbols on <em>R2 pair x6</em> put them close to the <em>R1 single x9</em> numberpad.
-     <div class="rules">pads proximity<br>
-      In this <em>rules use case</em>, the index is pressing 4x4 <em class="fingers">INDEX BACKSPACE MODIFIER</em> for both <em>3x3 numbers</em> and <em>3x3 operators</em>.
-     </div>
-     </p>
 <!-- R1 R2 {{{ -->
 <pre style="padding:4px !important; width:190px;"
 >     R1            R2
@@ -1233,38 +1227,56 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
 ></div
 ></pre>
 <!-- }}} -->
+    <hr>
+    <p>
+    Arithmetic symbols on <em>R2 pair x6</em> put them close to the <em>R1 single x9</em> numberpad.
+    <div class="rules">
+     <em>pads proximity</em>
+     <br>
+     In this case, the <em class="fingers">INDEX</em> is pressing 4x4 <em>BACKSPACE MODIFIER</em>
+     <br>for both <em>3x3 numbers</em> and <em>3x3 operators</em>.
+    </div>
+    </p>
+
 <!-- 0 {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic_0");'><em>0</em></div>
    <div id="div_applying_rules_arithmetic_0" class="collapsed">
-    <em>0</em> is special enough to deserve some special placement.
+    <em>0</em> is special enough to deserve a special placement.
     <p>
-    Although a stardard numberpad gives it a larger keycap under <em>1</em> and <em>2</em>,
+    Although a standard numberpad gives it a larger keycap under <em>1</em> and <em>2</em>,
     the <em>Twiddler ORML encoding</em> cannot accommodate for 2 keys on the same row.
+    </p>
     <p>
-    The best mapping granted by the <em>supported chords merit rule</em> for pad <em>R2</em> is <span class="gr"><em>R2</em> 2B </span>.
+    The best mapping granted by the
+    <i>chords merit rule</i> of the <a class="expander" href="#div_support_3x3" onclick='expand_div("support_3x3");'>3x3 chord sets<span class="wh2">4</span></a>.
+    for this pad is <span class="gr"><em>R2</em> 2B </span>.
+    </p>
    </div>
 <!-- }}} -->
 <!-- equal {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic_equal");'><em>=</em></div>
    <div id="div_applying_rules_arithmetic_equal" class="collapsed">
+    <p>
     From the 5 remaining chords of <em>R2 pad</em>, we can secure 2 pairs by placing <em>=</em> under <em>0</em>.
+    </p>
    </div>
 <!-- }}} -->
 <!-- dot star {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic_dot_star");'><em>.</em> and <em>*</em></div>
    <div id="div_applying_rules_arithmetic_dot_star" class="collapsed">
-    <em>.</em> above <em>*</em> makes one pair of <em>visually related symbols</em>.
+    <p>
+    &hellip;<em>.</em> above <em>*</em> makes one pair of <em>visually related symbols</em>.
+    </p>
    </div>
 <!-- }}} -->
 <!-- plus_minus {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic_plus_minus");'><em>+</em> and <em>-</em></div>
    <div id="div_applying_rules_arithmetic_plus_minus" class="collapsed">
-    <em>+</em> above <em>-</em> makes one pair of <em>functionally related symbols</em>.
+    <p>
+    &hellip;<em>+</em> above <em>-</em> makes one pair of <em>functionally related symbols</em>.
+    </p>
    </div>
 <!-- }}} -->
-    <hr>
-    ...this <i>still</i> deserves more thinking...
-    </p>
 
     </div> <!-- }}} -->
   <!-- applying_rules_signs {{{ -->
@@ -1272,12 +1284,16 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
   <div id="div_applying_rules_signs" class="collapsed">
 
    <p>
-   By applying our guidelines, most standard signs can be mapped into pads L1 and L2
+   Following our guidelines, most standard signs can be mapped into pads L1 and L2
    (first and second column of the last
    <a href="layout_browser.html" target="layout_browser">Twiddler 3 Layout</a>
    row).
-   <div class="rules">shapes symmetry</div>
-   <div class="rules">pads proximity</div>
+   <div class="rules"><em>shapes symmetry</em>
+    <br>&hellip;5 symbol pairs
+    <br>&hellip;<em>()</em> <em>{}</em> <em>[]</em> disposed from top to bottom &mdash; as on a standard keyboard
+   </div>
+   <div class="rules"><em>pads proximity</em>
+    <br>&hellip;both pads from <em class='fingers'>INDEX Tab modifier</em></div>
    <!-- L1 L2 {{{ -->
 <pre style="padding:4px !important; width:190px;"
 >     L1            L2
@@ -1298,7 +1314,8 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
    <div class="fold_title" onclick='toggle_div(this, "twiddler3_locks");'>Locks<span class="wh5">3</span></div>
    <div id="div_twiddler3_locks" class="collapsed">
     <p>
-    We currently have two good reasons to move TabSpace assignment for <em>NumLock</em>, <em>CapsLock</em> and <em>ScrollLock</em>:
+    TabSpace assignment for <em>NumLock</em>, <em>CapsLock</em> and <em>ScrollLock</em> <em>Row O</em>&ndash;<em>Col 9-11</em>
+    occupies only 3 slots of the this row.
     </p>
 
 <pre style="padding:4px 4px 0 1em !important;">
@@ -1308,8 +1325,9 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
 </div>
 </pre>
 
+    We currently have two good reasons to move those symbols in order to do the following:
     <ol>
-     <li><em>Multi Character Chords</em> are granted the most accessible <em>Num layer</em> chords.</li>
+     <li><em>Multi Character Chords</em> is going to be granted the most accessible <em>Num layer</em> chords.</li>
      <li>Frequently used <em>punctuation accents and quote</em> are organized into <em>O2 pair x6</em>.</li>
     </ol>
 <pre style="padding:4px !important; width:190px;"
