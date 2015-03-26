@@ -403,13 +403,13 @@
 	opacity          :                1.00;
     }
 
-    @media (max-device-width:1980px) and (orientation:landscape) {
+    @media (max-device-width:1200) and (orientation:landscape) {
 	.fold_grip { width            : 64px !important; }
     }
 
     @media (orientation:portrait)  {
 	.fold_grip { background-color :  red !important; }
-	.fold_grip { width            : 96px !important; }
+	.fold_grip { width            : 48px !important; }
     }
 
 /* }}} */
@@ -483,6 +483,7 @@
 	width            : 6em;
     }
 /* }}} */
+
 /* FOLD1 {{{ */
     #fold_div1 {
 	position         : fixed;
@@ -504,7 +505,6 @@
     }
 
 /* }}} */
-
 /* FOLD2 {{{ */
     #fold_div2 {
 	position         : fixed;
@@ -537,6 +537,14 @@
     }
     @media (orientation:portrait)  {
 	#fold_pane2 {width : 80%;}
+    }
+/* }}} */
+/* FOLD3 {{{ */
+    #fold_div3 {
+	position : fixed;
+	top      : 1px;
+	left     : 4em;
+	z-index  : 2;
     }
 /* }}} */
 
