@@ -257,19 +257,22 @@
 .div_map img { opacity:0.5; filter:alpha(opacity= 50); }
 .div_map img:hover { opacity:0.8 !important; filter:alpha(opacity= 80) !important; }
 
-.clip_map  { overflow:hidden;     width: 40px;     height: 53px; margin:0 0 5px 2px; display:inline-block; cursor:pointer; }
-.clip_map  {
+.div_map div  { overflow:hidden;     width: 40px;     height: 53px; margin:0 0 5px 2px; display:inline-block; cursor:pointer; }
+.div_map div  {
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px, rgba(0, 0, 0, 0.5) 0 3px 10px;
      -moz-box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px, rgba(0, 0, 0, 0.5) 0 3px 10px;
           box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px, rgba(0, 0, 0, 0.5) 0 3px 10px;
 	  cursor:pointer;
-	  border:1px outset white;
+	  border:3px solid white;
 }
-.clip_map:hover  {
+.div_map div:hover  {
   -webkit-box-shadow:none;
      -moz-box-shadow:none;
           box-shadow:none;
-	  border:1px outset white;
+	  border:3px solid white;
+}
+.clip_pad {
+    border:3px #666 solid !important;
 }
 
 .clip_map_O1   {                  max-width: 512px; margin-left:  -5px; margin-top:-31px; }
