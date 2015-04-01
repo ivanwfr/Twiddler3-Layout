@@ -197,13 +197,13 @@ function compare_target() // {{{
     if(compare_target_num == 0)
 	compare_target_num = crnt;
 
-    var el = document.getElementById("span_compare_target_num");
-    if(el) el.innerHTML = compare_target_num;
-
     if(crnt != compare_target_num) {
 	show_img( compare_target_num );
 	compare_target_num = crnt;
     }
+
+    var el = document.getElementById("span_compare_target_num");
+    if(el) el.innerHTML = compare_target_num;
 
 } // }}}
 
