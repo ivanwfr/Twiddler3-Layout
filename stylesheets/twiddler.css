@@ -102,8 +102,8 @@
 .vg { box-shadow: rgba(0, 0, 0, 0.3) 0 5px 5px; }
 
 .fav_icon_span img       { margin:0 0 0 1em; vertical-align:top; }
-.fav_icon_span img       { box-shadow: rgba(0, 0, 0, 0.9) 1px 1px 1px; }
-.fav_icon_span img:hover { box-shadow: rgba(0, 0, 0, 0.3) 1px 1px 1px; }
+.fav_icon_span img       { box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 2px; }
+.fav_icon_span img:hover { box-shadow: rgba(0, 0, 0, 0.5) 2px 2px 5px; }
 
 
 /* }}} */
