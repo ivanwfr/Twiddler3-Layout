@@ -51,7 +51,11 @@
  <!-- }}} -->
  </head>
  <!-- }}} -->
- <body onload='show_img(4); fold_onclick(2,"");' onkeypress='keypress(event);'>
+ <body id="body"
+ onload     ='show_img(4); fold_onclick(2,"");'
+ onkeypress ='keypress(event);'
+ onresize   ='log_screen_info();'
+ >
  <!-- BROWSE {{{ -->
   <div id="navi" title="SET & TOGGLE-BACK-TO target ... (pretty sure you can figure out how it works)" onclick="compare_target();">
    &rarr; <span id="span_compare_target_num"></span> &larr;

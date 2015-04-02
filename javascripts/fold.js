@@ -743,10 +743,12 @@ function fold_keydown(e, el) { //{{{
 	    +"<tr><th          colspan=2>   value               </th><th>     key        </th><th>    KEY_TIC     </th></tr>"
 	    +"<tr><td id='vtd' colspan=2>"+ v        +"</td><td id='ktd'>"+   k        +"</td><td>"+" "+m8+" "+m7+" "+m6+" "+m5+"<br>"+KEY_TIC+"<br>"+m4+" "+m3+" "+m2+" "+m1+"</td></tr>"
 
+	    +"<tr><td id='browser_info' colspan=4 style='border:0 !important; color:#888; font-size:80%;'></td></tr>"
 	    +"</table>" 
 	    +"</div>" 
 	    ;
 
+	    log_screen_info();
 	//}}}
     }
     //}}}
@@ -780,96 +782,108 @@ var sy = 0;
 
 window.onload = addListeners;
 
-function addListeners()
+function addListeners() //{{{
 {
-    MO_el = document.getElementById(MO_id);
-    if(!MO_el) return;
+    MO_el = document.getElementById(MO_id); if(!MO_el) return;
 
     MO_el .addEventListener("mousedown", mouseDown , false);
     window.addEventListener("mouseup"  , mouseUp   , false);
+
+    window.addEventListener("orientationchange", orientationchange  , false);
     MO_el.addEventListener("touchstart", touchstart, false);
     MO_el.addEventListener("touchend"  , touchend  , false);
 
-    window.addEventListener("orientationchange", orientationchange  , false);
-}
+} //}}}
 
-// :!start explorer "http://davidwalsh.name/orientation-change"
-function orientationchange() {
+function orientationchange() //{{{
+{
     if(!MO_el) return;
 
     setTimeout(updateOrientation, 200); // wait for new window geometry
-}
-
-function updateOrientation() {
+} //}}}
+function updateOrientation() //{{{
+{
     if(!MO_el) return;
 
     MO_cp = getPosition(MO_el);
-
 
     var MARGIN = 30;
     var x_max = screen.width  - MO_el.clientWidth  - MARGIN;
     var y_max = screen.height - MO_el.clientHeight - MARGIN;
 
-/*
-    alert(""
-    +"screen.width =["+ screen.width  +"]\n"
-    +"screen.height=["+ screen.height +"]\n"
-    +"MO_el.style.left  =["+ MO_el.style.left   +"]\n"
-    +"MO_el.style.top   =["+ MO_el.style.top    +"]\n"
-    +"MO_el.clientWidth =["+ MO_el.clientWidth  +"]\n"
-    +"MO_el.clientHeight=["+ MO_el.clientHeight +"]\n"
-    +"MO_cp.x           =["+ MO_cp.x            +"]\n"
-    +"MO_cp.y           =["+ MO_cp.y            +"]\n"
-    +"      x_max       =["+       x_max        +"]\n"
-    +"      y_max       =["+       y_max        +"]\n"
-    )
-*/
-
     if(MO_cp.x > x_max) MO_el.style.left = x_max+"px";
     if(MO_cp.y > y_max) MO_el.style.top  = y_max+"px";
 
-}
+} //}}}
 
-// :!start explorer "http://www.javascriptkit.com/javatutors/touchevents.shtml"
-function touchstart(e) {
+function touchstart(e) //{{{
+{
     MO_cp = getPosition(MO_el);
     sx    = parseInt(e.changedTouches[0].clientX);
     sy    = parseInt(e.changedTouches[0].clientY);
     MO_el.addEventListener("touchmove" , touchmove , false);
     e.preventDefault();
-}
-function touchmove(e) {
+} //}}}
+function touchmove(e) //{{{
+{
     dx               = parseInt(e.changedTouches[0].clientX) - sx;
     dy               = parseInt(e.changedTouches[0].clientY) - sy;
-    MO_el.style.left = (MO_cp.x + dx) +"px";
-    MO_el.style.top  = (MO_cp.y + dy) +"px";
+    var x = (MO_cp.x + dx);
+    var y = (MO_cp.y + dy);
+    MO_el.style.left = x +"px";
+    MO_el.style.top  = y +"px";
     e.preventDefault();
-}
-function touchend(e) {
+
+    log_screen_info();
+} //}}}
+function touchend(e) //{{{
+{
     MO_el.removeEventListener("touchmove", touchmove, false);
     e.preventDefault();
-}
+} //}}}
 
-
-
-function mouseDown(e) {
+function mouseDown(e) //{{{
+{
     MO_cp = getClickPosition(e);
     MO_el.style.position = "absolute";
     window.addEventListener("mousemove", divMove, true);
-}
-function mouseUp() {
+} //}}}
+function mouseUp() //{{{
+{
     window.removeEventListener("mousemove", divMove, true);
-}
-function divMove(e) {
-    MO_el.style.left     = e.clientX - MO_cp.x +"px";
-    MO_el.style.top      = e.clientY - MO_cp.y +"px";
-}
+} //}}}
+function divMove(e) //{{{
+{
+    var x = e.clientX - MO_cp.x ;
+    var y = e.clientY - MO_cp.y ;
+    MO_el.style.left  = x+"px";
+    MO_el.style.top   = y+"px";
 
-function getClickPosition(e) {
+    log_screen_info();
+} //}}}
+
+function getClickPosition(e) //{{{
+{
     var parentPosition = getPosition(e.currentTarget);
     var xPosition      = e.clientX - parentPosition.x;
     var yPosition      = e.clientY - parentPosition.y;
     return { x: xPosition, y: yPosition };
-}
+} //}}}
+function log_screen_info() //{{{
+{
+    var el = document.getElementById("browser_info");
+    if(el) {
+
+	var ti = (MO_el) ?  MO_el.style.left +" "+ MO_el.style.top : "";
+
+	var be = document.getElementById("body");
+	var bi = be.clientWidth+"x"+body.clientHeight;
+
+	var si = screen.width+"x"+screen.height;
+	var color    = (screen.width > screen.height) ? "#002" : "#020";
+
+	el.innerHTML = "<div style='padding:1px; background-color:"+color+";'>"+ti+" &nbsp; "+bi+" &nbsp; "+si+"</div>";
+    }
+} //}}}
 
 //}}}
