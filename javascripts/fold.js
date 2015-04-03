@@ -1,6 +1,6 @@
 var COOKIE_DAYS = 2;
 
-function toggle_div(ttl,id) // {{{
+function toggle_div(el,id) // {{{
 {
     set_wrap_div_top_visibility(id);
 
@@ -8,19 +8,16 @@ function toggle_div(ttl,id) // {{{
     if( !div ) return;
     div.className = (div.className == "expanded") ? "collapsed" : "expanded";
 
+//  if(el) el.style.opacity   = (div.className == "expanded") ? "1.0" : "0.5";
+    if(el) el.style.boxShadow = "rgba(  0, 0, 0, 0.3) 0px 0px 20px inset";
+
     if(div.className == "expanded") {
 	cache_expanded(div);
 	createCookie("expanded", id, COOKIE_DAYS);
     }
 
-    // mark read
-    if(ttl) {
-  	ttl.style.opacity = (div.className == "expanded") ? "1.0" : "0.5";
-//	ttl.style.opacity = "0.5";
-    }
-
 } // }}}
-function expand_div(id) // {{{
+function expand_div(el,id) // {{{
 {
     set_wrap_div_top_visibility(id);
 
@@ -52,6 +49,9 @@ function expand_div(id) // {{{
 	}
 	div = div.parentNode;
     }
+
+//  if(el) el.style.opacity   = "1.0";
+    if(el) el.style.boxShadow = "rgba(  0, 0, 0, 0.3) 0px 0px 20px inset";
 
 } // }}}
 

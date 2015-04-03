@@ -449,8 +449,10 @@ em { padding:.2ex .5ex .2ex .5ex; }
 .expander:hover { color:red; }
 
 #bottom_div {
+/*
     height    : 60em;
-    opacity   : 0.10; filter:alpha(opacity=100);
+*/
+    opacity   : 0.10; filter:alpha(opacity=10);
 }
 
 .wrap_div {

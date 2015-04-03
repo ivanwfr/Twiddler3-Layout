@@ -130,6 +130,12 @@
 .ng { white-space:nowrap; }
 .vg { white-space:nowrap; }
 
+.bt { display:inline-block; }
+.gr { display:inline-block; }
+.nb { display:inline-block; }
+.ng { display:inline-block; }
+.vg { display:inline-block; }
+
 .bt * { vertical-align:text-top; }
 .gr * { vertical-align:text-top; }
 .nb * { vertical-align:text-top; }
@@ -261,7 +267,7 @@
 
 .div_map { margin:0; text-align:center; white-space:nowrap; }
 .div_map img { opacity:0.5; filter:alpha(opacity= 50); }
-.div_map img:hover { opacity:0.8 !important; filter:alpha(opacity= 80) !important; }
+.div_map img:hover { opacity:1.0 !important; filter:alpha(opacity=100) !important; }
 
 .div_map div  { overflow:hidden;     width: 40px;     height: 53px; margin:0 0 5px 2px; display:inline-block; cursor:pointer; }
 .div_map div  {
@@ -337,6 +343,8 @@
 
 .clip_img_R1   {                  max-width:1024px; margin-left:  -8px; margin-top:-307px; }
 .clip_img_R2   {                  max-width:1024px; margin-left:-107px; margin-top:-307px; }
+.clip_img_R3   {                  max-width:1024px; margin-left:-206px; margin-top:-307px; }
+.clip_img_R4   {                  max-width:1024px; margin-left:-305px; margin-top:-307px; }
 
 .clip_img_MM   {                  max-width:1024px; margin-left:-238px; margin-top:-188px; }
 .clip_img_RM   {                  max-width:1024px; margin-left:-213px; margin-top: -88px; }

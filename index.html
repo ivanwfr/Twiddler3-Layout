@@ -17,7 +17,7 @@
 <![endif]-->
 </head>
 <!-- }}} -->
-<body onload='expand_div("_support_tuner");' id="top">
+<body onload='expand_div("","_support_tuner");' id="top">
 <div class="wrapper">
  <header><!-- {{{ -->
   <h1>Twiddler3-layout</h1>
@@ -33,7 +33,7 @@
  </header>
  <!-- }}} -->
  <section>
-  <div class="wrap_div" id="wrap_div_top" style="float:right; visibility:hidden;" onclick='expand_div("top");'><img title="all wrapped" src="images/cursors/top.png">                            </div>
+  <div class="wrap_div" id="wrap_div_top" style="float:right; visibility:hidden;" onclick='expand_div(this,"top");'><img title="all wrapped" src="images/cursors/top.png">                            </div>
   <!-- INTRO {{{ -->
 
   <!-- Looking into... {{{ -->
@@ -54,73 +54,75 @@
   </div>
   <!-- }}} -->
   <p><!-- ...tabspace {{{ -->
-  <a class="expander" href="#div_tabspace" onclick='expand_div("tabspace");'>TabSpace Guide<span class="wh1">&hellip;</span></a>
+  <a class="expander" href="#div_tabspace" onclick='expand_div(this,"tabspace");'>TabSpace Guide<span class="wh1">&hellip;</span></a>
   by Brandon Craig Rhodes stands for the Twiddler standard layout dated 1999,
   this is a thorough description of a complementary survey.
 
   </p> <!-- }}} -->
   <p><!-- ...support {{{ -->
 
-  <a class="expander" href="#div_support" onclick='expand_div("support");'>Supported chords<span class="wh2">&hellip;</span></a>
+  <a class="expander" href="#div_support" onclick='expand_div(this,"support");'>Supported chords<span class="wh2">&hellip;</span></a>
   are stored using an
-  <a class="expander" href="#div_support_orml" onclick='expand_div("support_orml");'>ORML encoding<span class="wh2">1</span></a>
+  <a class="expander" href="#div_support_orml" onclick='expand_div(this,"support_orml");'>ORML encoding<span class="wh2">1</span></a>
   the user can customize with
-  <a class="expander" href="#div_support_orml" onclick='expand_div("support_tuner");'>TekGear's Twiddler 3 tuner<span class="wh2">2</span></a>
+  <a class="expander" href="#div_support_tuner" onclick='expand_div(this,"support_tuner");'>TekGear's Twiddler 3 Tuner<span class="wh2">4</span></a>
   online application.
 
   shows the full
-  <a class="expander" href="#div_support_4x4" onclick='expand_div("support_4x4");'>4x4 chord sets<span class="wh2">3</span></a>
+  <a class="expander" href="#div_support_4x4" onclick='expand_div(this,"support_4x4");'>4x4 chord sets<span class="wh2">2</span></a>
 
   broken down into four more convenient
-  <a class="expander" href="#div_support_3x3" onclick='expand_div("support_3x3");'>3x3 chord sets<span class="wh2">4</span></a>.
+  <a class="expander" href="#div_support_3x3" onclick='expand_div(this,"support_3x3");'>3x3 chord sets<span class="wh2">3</span></a>.
 
   </p> <!-- }}} -->
   <p><!-- ...making_rules {{{ -->
 
-  <a class="expander" href="#div_making_rules" onclick='expand_div("making_rules");'>Making rules<span class="wh3">&hellip;</span></a>
+  <a class="expander" href="#div_making_rules" onclick='expand_div(this,"making_rules");'>Making rules<span class="wh3">&hellip;</span></a>
 
   involves sketching out some mapping technique by following a
-  <a class="expander" href="#div_twiddler3_road_map" onclick='expand_div("twiddler3_road_map");'>Rulling road map<span class="wh3">1</span></a>.
+  <a class="expander" href="#div_twiddler3_road_map" onclick='expand_div(this,"twiddler3_road_map");'>Rulling road map<span class="wh3">1</span></a>.
   spelling out our objectives and how we are going to get there.
 
   Gathering facts should bring enough material to craft an initial set of
-  <a class="expander" href="#div_twiddler3_work_rules" onclick='expand_div("twiddler3_work_rules");'>Work rules<span class="wh3">2</span></a>
+  <a class="expander" href="#div_twiddler3_work_rules" onclick='expand_div(this,"twiddler3_work_rules");'>Work rules<span class="wh3">2</span></a>
 
   for a first layout build.
 
   </p> <!-- }}} -->
   <p><!-- ...some_rules {{{ -->
-  <a class="expander" href="#div_some_rules" onclick='expand_div("some_rules");'>Some rules<span class="wh4">&hellip;</span></a>
+  <a class="expander" href="#div_some_rules" onclick='expand_div(this,"some_rules");'>Some rules<span class="wh4">&hellip;</span></a>
   reflecting our mapping strategy will take advantage of a graphical representation based on
-  <a class="expander" href="#div_twiddler3_fingers_agility" onclick='expand_div("twiddler3_fingers_agility");'>Fingers agility<span class="wh4">1</span></a>,
-  <a class="expander" href="#div_twiddler3_rows" onclick='expand_div("twiddler3_rows");'>Rows<span class="wh4">2</span></a>,
-  <a class="expander" href="#div_twiddler3_columns" onclick='expand_div("twiddler3_columns");'>Columns<span class="wh4">3</span></a>,
-  <a class="expander" href="#div_twiddler3_pads" onclick='expand_div("twiddler3_pads");'>Pads<span class="wh4">4</span></a>
+  <a class="expander" href="#div_twiddler3_fingers_agility" onclick='expand_div(this,"twiddler3_fingers_agility");'>Fingers agility<span class="wh4">1</span></a>,
+  <a class="expander" href="#div_twiddler3_rows" onclick='expand_div(this,"twiddler3_rows");'>Rows<span class="wh4">2</span></a>,
+  <a class="expander" href="#div_twiddler3_columns" onclick='expand_div(this,"twiddler3_columns");'>Columns<span class="wh4">3</span></a>,
+  <a class="expander" href="#div_twiddler3_pads" onclick='expand_div(this,"twiddler3_pads");'>Pads<span class="wh4">4</span></a>
   and some other kind of
-  <a class="expander" href="#div_twiddler3_clusters" onclick='expand_div("twiddler3_clusters");'>Clusters<span class="wh4">5</span></a>
+  <a class="expander" href="#div_twiddler3_clusters" onclick='expand_div(this,"twiddler3_clusters");'>Clusters<span class="wh4">5</span></a>
   .
   </p> <!-- }}} -->
   <p><!-- ...applying_rules {{{ -->
-  <a class="expander" href="#div_applying_rules" onclick='expand_div("applying_rules");'>Applying rules<span class="wh5">&hellip;</span></a>
-  while assembling
-  functionally related <span class='nowrap'>(<a class="expander" href="#div_applying_rules_arithmetic" onclick='expand_div("applying_rules_arithmetic");'>Arithmetic<span class="wh5">1</span></a>, &hellip;)</span>
-  and
-  visually related <span class='nowrap'>(<a class="expander" href="#div_applying_rules_signs" onclick='expand_div("applying_rules_signs");'>Signs<span class="wh5">2</span></a>, &hellip;)</span>
+  <a class="expander" href="#div_applying_rules" onclick='expand_div(this,"applying_rules");'>Applying rules<span class="wh5">&hellip;</span></a>
+  while assembling functionally related groups like
+  <span class='nowrap'><a class="expander" href="#div_applying_rules_numbers_operators" onclick='expand_div(this,"applying_rules_numbers_operators");'>Numbers and Operators<span class="wh5">1</span></a></span>
+  or
+  <a class="expander" href="#div_applying_rules_signs" onclick='expand_div(this,"applying_rules_tradesigns");'>Trade signs<span class="wh5">2</span></a>
+  and visually related ones like
+  <a class="expander" href="#div_applying_rules_signs" onclick='expand_div(this,"applying_rules_signs");'     >Signs        <span class="wh5">3</span></a>
   should give us the best possible mnemonic-friendly layout, provided good enough rules have been crafted along the way.
 
   </p> <!-- }}} -->
   <p><!-- ...MCC {{{ -->
-  <a class="expander" href="#div_twiddler3_mcc" onclick='expand_div("twiddler3_mcc");'>Multi Character Chords<span class="wh6">&hellip;</span></a>
+  <a class="expander" href="#div_twiddler3_mcc" onclick='expand_div(this,"twiddler3_mcc");'>Multi Character Chords<span class="wh6">&hellip;</span></a>
   goes one step beyond simple one&ndash;to&ndash;one chord&ndash;to&ndash;character mappings,
-  If <a class="expander" href="#div_twiddler3_mcc_num" onclick='expand_div("twiddler3_mcc_num");'>TabSpace MCC<span class="wh6">1</span></a>
+  If <a class="expander" href="#div_twiddler3_mcc_num" onclick='expand_div(this,"twiddler3_mcc_num");'>TabSpace MCC<span class="wh6">1</span></a>
   defines a number of static bindings,
   a further step could use something like
   <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img style='margin-top:-.5ex;' src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>
   to handle dynamic
-  <a class="expander" href="#div_twiddler3_mcc_hotstrings" onclick='expand_div("twiddler3_mcc_hotstrings");'>hotstrings<span class="wh6">2</span></a>.
+  <a class="expander" href="#div_twiddler3_mcc_hotstrings" onclick='expand_div(this,"twiddler3_mcc_hotstrings");'>hotstrings<span class="wh6">2</span></a>.
   </p> <!-- }}} -->
   <p><!-- ...cheatsheets {{{ -->
-  <a class="expander" href="#div_cheat_sheet" onclick='expand_div("cheat_sheet");'>Cheat Sheets<span class="wh7">&hellip;</span></a>
+  <a class="expander" href="#div_cheat_sheet" onclick='expand_div(this,"cheat_sheet");'>Cheat Sheets<span class="wh7">&hellip;</span></a>
   should make enough sense to account for the usefulness of this study.
   </p> <!-- }}} -->
   <p><!-- ...contributions {{{ -->
@@ -506,7 +508,7 @@ num   00ll = SCROLL_LOCK
    </div><!-- }}} -->
 
    <div class="wrap_div" onclick='toggle_div(this, "tabspace");'><img title="collapse" src="images/cursors/left.png">Starting from TabSpace</div>
-   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
   </div> <!-- }}} -->
   <!-- Supported chords {{{ -->
   <div class="fold_title" onclick='toggle_div(this,"support");'>Supported chords <span class="wh2">&hellip;</span></div>
@@ -541,91 +543,8 @@ num   00ll = SCROLL_LOCK
     <!-- }}} -->
 
    </div> <!-- }}} -->
-   <!-- support_tuner {{{ -->
-   <div class="fold_title" onclick='toggle_div(this,"support_tuner");'>TekGear Tuner<span class="wh2">2</span></div>
-   <div id="div_support_tuner" class="collapsed">
-
-    <!-- the bad {{{ -->
-    <img style="float:right;" src="images/emoticons/huh.png">
-    <br>
-    <b>The bad with TekGear's
-     <a href="http://twiddler.tekgear.com/tuner" target="tuner">Twiddler 3 tuner <img style='margin-top:-.5ex;' src="http://twiddler.tekgear.com/favicon.ico"></a></b>
-    <ul style="clear:right;">
-     <li>
-     No <em>X-Ray view option</em> <i>(see-through)</i> so that
-     <em>Device LEFT</em> and <em>User's LEFT</em> coincide
-     </li>
-     <li>
-     Having to activate an obvious
-     <img style="height:18px;" src="images/icons/edit-icon.png">
-     after each
-     <em class="label">Add a new chord</em>
-     </li>
-     <li>
-     Although <em class="label">Key Stroke(s) </em> buttons
-     <em class="button">Insert</em> and <em class="button">Apply</em>
-     display their current <em>enabled</em> or <em>disabled</em> state correctly
-     &mdash; the <em>TEXT INPUT</em> does not.
-     </li>
-     <li>
-     Display order fixed to <em>Bottom&mdash;up created order</em>
-     </li>
-     <li>
-     Not open-source! &hellip; as if there were concerns with exploitation
-     </li>
-     <li>
-     Some hardly readable symbols with font issues:
-     <ul>
-      <li>in the <em class="label">Keystroke</em> <em>TEXT INPUT</em></li>
-      <li>in the left pane <em class="label">Key Stroke(s) column</em></li>
-      <li>Using variable font breaks vertical alignment in
-      left pane <em class="label">Chord column </em></li>
-      <li>Using fancy font for <em class="label">Keystroke text input</em>
-      is not convenient when dealing with tiny symbols like these:
-      <div style="display:inline; font-size:120%; font-family:'Lucida Console', Monaco, monospace;">
-      <em class="label" style="padding:2px;">'</em>
-      <em class="label" style="padding:2px;">"</em>
-      <em class="label" style="padding:2px;">`</em>
-      euro € 
-     </div>
-      </li>
-     </ul>
-     </li>
-     <li>
-     A display of <em>Chord ORML notation</em> should be updated with each button selection while in edit mode
-     instead of after a click on the <em class="button">Apply</em> button.
-     </li>
-     <li>
-     A session timeout that may ditch unsaved changes ... what's the stress ?
-     </li>
-     <li>
-     Some missing <em>Special Keys</em>:
-     <ul>
-      <li><em class="label">&lt;Space&gt;</em> <i>(currently an invisble blank)</i></li>
-      <li><em class="label">&euro;</em></li>
-      <li><em class="label">...scancode support for more...</em></li>
-     </ul>
-     </li>
-
-    </ul>
-
-    <!-- }}} -->
-    <!-- the good {{{ -->
-    <img style="float:right;" src="images/emoticons/=).png">
-    <br>
-    <b>The good &hellip;</b>
-    <ul style="clear:right;">
-     <li>
-     With all the above, it's a real challenge to get some job done!
-     </li>
-
-    </ul>
-
-    <!-- }}} -->
-
-   </div> <!-- }}} -->
    <!-- support_4x4 {{{ -->
-   <div class="fold_title" onclick='toggle_div(this,"support_4x4");'><em>4x4 chord set</em> <span class="wh2">3</span></div>
+   <div class="fold_title" onclick='toggle_div(this,"support_4x4");'><em>4x4 chord set</em> <span class="wh2">2</span></div>
   <div id="div_support_4x4" class="collapsed">
    <em>255 = (4^4 - 1)</em>
    If the tuner supports them all, some are easier to use than others.
@@ -647,14 +566,17 @@ num   00ll = SCROLL_LOCK
 </pre>
   </div> <!-- }}} -->
   <!-- support_3x3 {{{ -->
-  <div class="fold_title" onclick='toggle_div(this,"support_3x3");'><em>3x3 chord set</em> <span class="wh2">4</span></div>
-  <div id="div_support_3x3" class="collapsed" style="text-align:left; vertical-align:top !important; overflow:hidden;">
+  <div class="fold_title" onclick='toggle_div(this,"support_3x3");'><em>3x3 chord set</em> <span class="wh2">3</span></div>
+  <div id="div_support_3x3" class="collapsed">
    <em>63 = (4^3 - 1)</em>
    Some chords stand out enough to justify a mapping to prominent keystrokes.
-   <p>
-   <div class="rules">Chord rank<br>
-    Inside each pad, the most deserving symbol should get the best available ranked chord yet available.
-   </div>
+
+   <ul class="rules">
+    <li>Chord rank</li>
+    <li>Inside each pad, the most deserving symbol should get the best available ranked chord yet available</li>
+   </ul>
+
+   <div style="text-align:left; vertical-align:top !important; overflow:hidden;">
 <!-- legend {{{ -->
 <div style="float:left;">
 
@@ -761,11 +683,127 @@ num   00ll = SCROLL_LOCK
 ><div class="gr"><span class="ll">L</span><span class="oo">O</span><span class="oo">O</span>   1B</div>
 
 </pre> <!-- }}} -->
-    </p>
+    </div>
+   </div> <!-- }}} -->
+   <!-- support_tuner {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"support_tuner");'>TekGear Tuner<span class="wh2">4</span></div>
+   <div id="div_support_tuner" class="collapsed">
+
+    <!-- the good {{{ -->
+    <img style="float:right;" src="images/emoticons/=).png">
+    <br>
+    <b>The good</b>
+     with TekGear's <a href="http://twiddler.tekgear.com/tuner" target="tuner">Twiddler 3 tuner<img style='margin-top:-.5ex;' src="http://twiddler.tekgear.com/favicon.ico"></a></b>
+    <ul style="clear:right;">
+     <li>
+     Its sleek looking, worthy of Twiddler 3 design, something worth mentioning when compared to the average standard level of
+     what Apple did not do on the web.
+     <br><small><i>(I'm not an Apple proselyte but it's not far from the truth)</i></small>
+     </li>
+    </ul>
+
+    <!-- }}} -->
+    <hr>
+    <!-- the bad {{{ -->
+    <img style="float:right;" src="images/emoticons/huh.png">
+    <br>
+    <b>The bad</b>
+    <ul style="clear:right;">
+     <li>
+     No <em>X-Ray view option</em> <i>(see-through)</i> so that
+     <em>Device LEFT</em> and <em>User's LEFT</em> coincide
+     </li>
+     <li>
+     Having to activate an obvious
+     <img style="height:18px;" src="images/icons/edit-icon.png">
+     after each
+     <em class="label">Add a new chord</em>
+     </li>
+     <li>
+     Although <em class="label">Key Stroke(s) </em> buttons
+     <em class="button">Insert</em> and <em class="button">Apply</em>
+     display their current <em>enabled</em> or <em>disabled</em> state correctly
+     &mdash; the <em>TEXT INPUT</em> does not.
+     </li>
+     <li>
+     Display order fixed to <em>Bottom&mdash;up created order</em>
+     </li>
+     <li>
+     Not open-source! &hellip; as if there were concerns with exploitation
+     </li>
+     <li>
+     Some hardly readable symbols with font issues:
+     <ul>
+      <li>in the <em class="label">Keystroke</em> <em>TEXT INPUT</em></li>
+      <li>in the left pane <em class="label">Key Stroke(s) column</em></li>
+      <li>Using variable font breaks vertical alignment in
+      left pane <em class="label">Chord column </em></li>
+      <li>Using fancy font for <em class="label">Keystroke text input</em>
+      is not convenient when dealing with tiny symbols like these:
+      <div style="display:inline; font-size:120%; font-family:'Lucida Console', Monaco, monospace;">
+      <em class="label" style="padding:2px;">'</em>
+      <em class="label" style="padding:2px;">"</em>
+      <em class="label" style="padding:2px;">`</em>
+      euro € 
+     </div>
+      </li>
+     </ul>
+     </li>
+     <li>
+     A display of <em>Chord ORML notation</em> should be updated with each button selection while in edit mode
+     instead of after a click on the <em class="button">Apply</em> button.
+     </li>
+     <li>
+     A session timeout that may ditch unsaved changes ... what's the stress ?
+     </li>
+     <li>
+     Some missing <em>Special Keys</em>:
+     <ul>
+      <li><em class="label">&lt;Space&gt;</em> <i>(currently an invisble blank)</i></li>
+      <li><em class="label">&euro;</em></li>
+      <li><em class="label">...scancode support for more...</em></li>
+     </ul>
+     </li>
+
+    </ul>
+
+    <!-- }}} -->
+    <hr>
+    <!-- the ugly {{{ -->
+    <img style="float:right;" src="images/emoticons/huh.png">
+    <img style="float:right;" src="images/emoticons/huh.png">
+    <br>
+    <b>The ugly</b>
+    <ul>
+     <li><em>Shift</em> <em>Control</em> and <em>Alt</em> modifiers are not sent as keyboard events, the only serve internally to alter the generated scancode. </li>
+    </ul>
+     <ul class="rules"><!-- {{{ -->
+      <li>One of the consequences (&hellip;and there are a bunch of others):
+      <br>You cannot send the <em>Shift</em>, <em>Alt</em> or <em>Control</em> <em>Mouse-Button Event</em>
+      used to adjust a text selection or create a shortcut &hellip;
+      </li>
+     </ul>
+     <!-- }}} -->
+
+    <!-- }}} -->
+<hr>
+    <!-- the other good {{{ -->
+    <img style="float:right;" src="images/emoticons/=).png">
+    <br>
+    <b>The other good</b>
+    <ul style="clear:right;">
+     <li>
+     With all the above, it's a real challenge to get some job done!
+     </li>
+
+    </ul>
+
+    <!-- }}} -->
+
    </div> <!-- }}} -->
 
    <div class="wrap_div" onclick='toggle_div(this, "support");'><img title="collapse" src="images/cursors/left.png">Supported chords</div>
-   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
   </div> <!-- }}} -->
   <!-- Making rules {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "making_rules");'>Making rules<span class="wh3">&hellip;</span></div>
@@ -794,7 +832,7 @@ num   00ll = SCROLL_LOCK
   <div class="fold_title" onclick='toggle_div(this, "twiddler3_road_map");'>Rulling road map<span class="wh3">1</span></div>
   <div id="div_twiddler3_road_map" class="collapsed">
    <img title="sure!" style="float:right;" src="images/emoticons/^^.png">
-   <div class="rules">learning phase benefit &larr; &rarr; <em>memorized at first glance</em></div>
+   <ul class="rules"><li>learning phase benefit &larr; &rarr; <em>memorized at first glance</em></li></ul>
    <p>
    Working with learning phase comfort in mind
    will require some checking to make sure decisions are not made
@@ -804,13 +842,13 @@ num   00ll = SCROLL_LOCK
    could very well become a barrier on the road.
    </p>
 
-   <div class="rules">long term benefit &larr; &rarr; <em>recalled on demand</em></div>
+   <ul class="rules"><li>long term benefit &larr; &rarr; <em>recalled on demand</em></li></ul>
    <p>
-   What could still be helpful to some one who worked everyday for years with some layout?
+   What could still be helpful to someone who worked everyday for years with some layout?
    </p>
    <p>
    Long term memorization may be an issue worth some effort only
-   when it comes to recall the forgotten chord for some scarcely used symbol.
+   when it comes to recall the forgotten chord of some scarcely used symbol.
 
    In that case, some well grounded logic should propose an obvious <em>mnemonic path</em> to the answer.
    The required effectiveness would be only to avoid having to depend on some cheat-sheet!
@@ -867,12 +905,12 @@ num   00ll = SCROLL_LOCK
     If this is the case, some decisions will have enough commonalities
     that they could be used to work out some rules.
     </p>
-    <div class="rules">
+    <ul class="rules">
      Crafting rules<br>
-     Some clues are spread inside each topic.
+     <li>Some <em>clues</em> are spread inside each topic.</li>
      Near the end, we will see if they add up in such a way
      we can turn some of them into rules&hellip;
-    </div>
+    </ul>
     <br style='clear:left;'>
     <div class="rules">
      Private dictionary:<br>
@@ -883,7 +921,7 @@ num   00ll = SCROLL_LOCK
    </div> <!-- }}} -->
 
    <div class="wrap_div" onclick='toggle_div(this, "making_rules");'><img title="collapse" src="images/cursors/left.png">Making rules</div>
-   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
   </div> <!-- }}} -->
   <!-- Some rules {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "some_rules");'>Some rules<span class="wh4">&hellip;</span></div>
@@ -960,7 +998,7 @@ A summary of these combinations for each row &mdash; difficulty going from <em>l
      <div class="clip_div_mod" style="display:inline-block;"><img class="clip_img_LM" src="images/Cheat_TabSpace_3.png"></div>
      <br>
      <i>These <em>layers</em> are to be taken loosely enough to mean that a combination of one or more optional <em>modifier buttons</em>
-     is altering the default <em>O</em> <em>No modifier layer</em> mapping.
+      is altering the default <em>O <i>(No modifier layer)</i></em> mapping.
      </i>
     </p>
 
@@ -1149,7 +1187,7 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
    </p>
   </div> <!-- }}} -->
    <div class="wrap_div" onclick='toggle_div(this, "some_rules");'><img title="collapse" src="images/cursors/left.png">Some rules</div>
-   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
   </div> <!-- }}} -->
   <!-- Applying rules {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "applying_rules");'>Applying rules<span class="wh5">&hellip;</span></div>
@@ -1167,80 +1205,80 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
    <!-- }}} -->
    <!-- O clusters {{{ -->
    <div class="div_map">
-    <div class="clip_map"><img class="clip_map_O1" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_O2" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_O3" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_O4" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_O5" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_O6" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_O7" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_O8" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_O9" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_OA" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_OB" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_O1" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_O2" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_O3" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_O4" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_O5" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_O6" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_O7" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_O8" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_O9" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_OA" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_OB" src="images/Cheat_TabSpace_3.png"></div>
    </div>
    <!-- }}} -->
    <!-- M clusters {{{ -->
    <div class="div_map">
-    <div class="clip_map"><img class="clip_map_M1" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_M2" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_M3" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_M4" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_M5" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_M6" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_M7" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_M8" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_M9" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_MA" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_MB" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_M1" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_M2" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_M3" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_M4" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_M5" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_M6" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_M7" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_M8" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_M9" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_MA" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_MB" src="images/Cheat_TabSpace_3.png"></div>
    </div>
    <!-- }}} -->
    <!-- R clusters {{{ -->
    <div class="div_map">
-    <div class="clip_pad"><img class="clip_map_R1" src="images/Cheat_TabSpace_3.png" onclick='toggle_div(this,"applying_rules_arithmetic");' title="Arithmetic..."></div>
-    <div class="clip_pad"><img class="clip_map_R2" src="images/Cheat_TabSpace_3.png" onclick='toggle_div(this,"applying_rules_arithmetic");' title="Arithmetic..."></div>
-    <div class="clip_map"><img class="clip_map_R3" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_R4" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_R5" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_R6" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_R7" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_R8" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_R9" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_RA" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_RB" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_pad" onclick='expand_div(this,"applying_rules_numbers_operators" );' title="Numbers and Operators..."><img class="clip_map_R1" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_pad" onclick='expand_div(this,"applying_rules_numbers_operators" );' title="Numbers and Operators..."><img class="clip_map_R2" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_pad" onclick='expand_div(this,"applying_rules_tradesigns"        );' title="Trade signs..."          ><img class="clip_map_R3" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_pad" onclick='expand_div(this,"applying_rules_tradesigns"        );' title="Trade signs..."          ><img class="clip_map_R4" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_R5" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_R6" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_R7" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_R8" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_R9" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_RA" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_RB" src="images/Cheat_TabSpace_3.png"></div>
    </div>
    <!-- }}} -->
    <!-- L clusters {{{ -->
    <div class="div_map">
-    <div class="clip_pad"><img class="clip_map_L1" src="images/Cheat_TabSpace_3.png" onclick='toggle_div(this,"applying_rules_signs");' title="Signs..."></div>
-    <div class="clip_pad"><img class="clip_map_L2" src="images/Cheat_TabSpace_3.png" onclick='toggle_div(this,"applying_rules_signs");' title="Signs..."></div>
-    <div class="clip_map"><img class="clip_map_L3" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_L4" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_L5" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_L6" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_L7" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_L8" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_L9" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_LA" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map"><img class="clip_map_LB" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_pad" onclick='expand_div(this,"applying_rules_signs"             );' title="Signs..."                ><img class="clip_map_L1" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_pad" onclick='expand_div(this,"applying_rules_signs"             );' title="Signs..."                ><img class="clip_map_L2" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_L3" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_L4" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_L5" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_L6" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_L7" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_L8" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_L9" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_LA" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_LB" src="images/Cheat_TabSpace_3.png"></div>
    </div>
    <!-- }}} -->
 
-   <!-- applying_rules_arithmetic {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic");'>Arithmetic<span class="wh5">1</span></div>
-   <div id="div_applying_rules_arithmetic" class="collapsed">
-    <div class="rules"><!-- {{{ -->
-     <em>pads proximity</em>
+   <!-- applying_rules_numbers_operators {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "applying_rules_numbers_operators");'>Numbers and Operators<span class="wh5">1</span></div>
+   <div id="div_applying_rules_numbers_operators" class="collapsed">
+    <ul class="rules"><!-- {{{ -->
+     <li><em>pads proximity</em>
      <br>
      In this case, the <em class="fingers">INDEX</em> is pressing 4x4 <em>BACKSPACE MODIFIER</em>
-     <br>for both <em>3x3 numbers</em> and <em>3x3 operators</em>.
-    </div>
+     <br>for both <em>3x3 numbers</em> and <em>3x3 operators</em></li>
+    </ul>
      <!-- }}} -->
 <!-- R1 R2 {{{ -->
 <div align="center">
 <pre style="padding:4px !important; width:190px;"
 >     R1            R2
-  single x9      pair x6
+  single-x9      pair-x6
 <div class="clip_div_pad" style="display:inline-block;"
 ><img class="clip_img_R1" src="images/Cheat_TabSpace_3.png"
 ></div
@@ -1249,52 +1287,54 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
 ><img class="clip_img_R2" src="images/Cheat_TabSpace_3.png"
 ></div
 ></pre>
-    Arithmetic symbols on <em>R2 pair x6</em>
-    <br>put them close to the <em>R1 single x9</em> numberpad.
+    Arithmetic symbols on <em>R2 pair-x6</em>
+    <br>put them close to the <em>R1 single-x9</em> numberpad.
 </div>
 <!-- }}} -->
-    <div class="rules"><!-- {{{ -->
-     <em>uncomfortable modifier</em>
+    <ul class="rules"><!-- {{{ -->
+     <li><em>uncomfortable modifier</em>
      <br>
      This <em class="fingers">INDEX BACKSPACE MODIFIER</em> is not an easy one
-     <br>&hellip; needs some checking to see how it goes &hellip;
-    </div>
+     <br>&hellip; needs some checking to see how it goes &hellip;</li>
+    </ul>
      <!-- }}} -->
 
 <!-- 0 {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic_0");'><em>0</em></div>
-   <div id="div_applying_rules_arithmetic_0" class="collapsed">
-    <em>0</em> is special enough to deserve a special placement.
+   <div class="fold_title" onclick='toggle_div(this, "applying_rules_numbers_operators_0");'><em>0</em></div>
+   <div id="div_applying_rules_numbers_operators_0" class="collapsed">
+    <ul class="rules"><!-- {{{ -->
+     <li><em>0</em> is special enough to deserve a <em>special placement</em></li>
+    </ul> <!-- }}} -->
     <p>
     Although a standard numberpad gives it a larger keycap under <em>1</em> and <em>2</em>,
     the <em>Twiddler ORML encoding</em> cannot accommodate for 2 keys on the same row.
     </p>
     <p>
     The best mapping granted by the
-    <i>chords merit rule</i> of the <a class="expander" href="#div_support_3x3" onclick='expand_div("support_3x3");'>3x3 chord sets<span class="wh2">4</span></a>.
+    <i>chords merit rule</i> of the <a class="expander" href="#div_support_3x3" onclick='expand_div(this,"support_3x3");'>3x3 chord sets<span class="wh2">3</span></a>.
     for this pad is <span class="gr"><em>R2</em> 2B </span>.
     </p>
    </div>
 <!-- }}} -->
 <!-- equal {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic_equal");'><em>=</em></div>
-   <div id="div_applying_rules_arithmetic_equal" class="collapsed">
+   <div class="fold_title" onclick='toggle_div(this, "applying_rules_numbers_operators_equal");'><em>=</em></div>
+   <div id="div_applying_rules_numbers_operators_equal" class="collapsed">
     <p>
     From the 5 remaining chords of <em>R2 pad</em>, we can secure 2 pairs by placing <em>=</em> under <em>0</em>.
     </p>
    </div>
 <!-- }}} -->
 <!-- dot star {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic_dot_star");'><em>.</em> and <em>*</em></div>
-   <div id="div_applying_rules_arithmetic_dot_star" class="collapsed">
+   <div class="fold_title" onclick='toggle_div(this, "applying_rules_numbers_operators_dot_star");'><em>.</em> and <em>*</em></div>
+   <div id="div_applying_rules_numbers_operators_dot_star" class="collapsed">
     <p>
     &hellip;<em>.</em> above <em>*</em> makes one pair of <em>visually related symbols</em>.
     </p>
    </div>
 <!-- }}} -->
 <!-- plus_minus {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "applying_rules_arithmetic_plus_minus");'><em>+</em> and <em>-</em></div>
-   <div id="div_applying_rules_arithmetic_plus_minus" class="collapsed">
+   <div class="fold_title" onclick='toggle_div(this, "applying_rules_numbers_operators_plus_minus");'><em>+</em> and <em>-</em></div>
+   <div id="div_applying_rules_numbers_operators_plus_minus" class="collapsed">
     <p>
     &hellip;<em>+</em> above <em>-</em> makes one pair of <em>functionally related symbols</em>.
     </p>
@@ -1302,21 +1342,41 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
 <!-- }}} -->
 
     </div> <!-- }}} -->
+  <!-- applying_rules_tradesigns {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "applying_rules_tradesigns");'>Trade signs<span class="wh5">2</span></div>
+  <div id="div_applying_rules_tradesigns" class="collapsed">
+   The primary function of these signs is for money makers:
+   <br><em>@</em> <em>%</em> <em>&amp;</em><br>
+   <em>$</em>      <em>#</em>  <em>&euro;</em>
+<!-- {{{ -->
+<pre style="padding:4px !important; width:190px;"
+>    R3         R4
+  single-x9      pair-x6
+<div class="clip_div_pad" style="display:inline-block;"
+><img class="clip_img_R3" src="images/Cheat_TabSpace_3.png"
+></div
+><span style="width:3em; margin-right:2px;"> &nbsp;</span
+><div class="clip_div_pad" style="display:inline-block;"
+><img class="clip_img_R4" src="images/Cheat_TabSpace_3.png"
+></div
+></pre> <!-- }}} -->
+  </div>
+  <!-- }}} -->
   <!-- applying_rules_signs {{{ -->
-  <div class="fold_title" onclick='toggle_div(this, "applying_rules_signs");'>Signs<span class="wh5">2</span></div>
+  <div class="fold_title" onclick='toggle_div(this, "applying_rules_signs");'>Signs<span class="wh5">3</span></div>
   <div id="div_applying_rules_signs" class="collapsed">
    <p>
-   <div class="rules"><em>shapes symmetry</em><!-- {{{ -->
-    <br>&hellip;5 symbol pairs
-   </div><!-- }}} -->
-    <div class="rules"><em>pads proximity</em><!-- {{{ -->
-    <br>&hellip;both pads from <em class='fingers'>INDEX Tab modifier</em>
-   </div><!-- }}} -->
+   <ul class="rules"><li><em>shapes symmetry</em><!-- {{{ -->
+    <br>&hellip;5 symbol pairs</li>
+   </ul><!-- }}} -->
+   <ul class="rules"><li><em>pads proximity</em><!-- {{{ -->
+    <br>&hellip;both pads from <em class='fingers'>INDEX Tab modifier</em></li>
+   </ul><!-- }}} -->
 <div align="center">
    <!-- L1 L2 {{{ -->
 <pre style="padding:4px !important; width:190px;"
 >     L1            L2
-  single x9      pair x6
+  single-x9      pair-x6
 <div class="clip_div_pad" style="display:inline-block;"
 ><img class="clip_img_L1" src="images/Cheat_TabSpace_3.png"
 ></div
@@ -1336,74 +1396,89 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
 
 <hr>
  <ul>
-  <li><em>()</em> <em>{}</em> <em>[]</em> are disposed, from top to bottom, in the same order as on a standard keyboard.  </li>
+  <li><em>()</em> <em>{}</em> <em>[]</em> are disposed, ordered from top to bottom like on a standard keyboard</li>
   <li><em>&lt;</em><em>^</em><em>&gt;</em> will be easily remembered</li>
   <li><em>/</em><em>|</em><em>\</em> also form some distinctive shape</li>
+  <li><em>!</em><em>?</em><em>_</em> <u>Exclamation</u> above <u>Question mark</u> like on a standard keyboard then <u>Under</u>score</li>
  </ul>
 
    </div> <!-- }}} -->
+
    <!-- twiddler3_locks {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_locks");'>Locks<span class="wh5">3</span></div>
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_locks");'>NumLock &mdash; CapsLock &mdash; ScrollLock<span class="wh5">4</span></div>
    <div id="div_twiddler3_locks" class="collapsed">
     <p>
-    TabSpace assignment for <em>NumLock</em>, <em>CapsLock</em> and <em>ScrollLock</em> on pad <em>RO pair x6</em>
-    occupies only 3 slots of the this row.
-    </p>
-
-<pre style="padding:4px 4px 0 1em !important;">
-<em>TabSpace Num</em> <em>O</em> <em>No modifier layer</em>
+    TabSpace assignment for these keys occupies only 3 slots of the this row.
+<pre style="padding:4px 4px 0 1em !important;"><!-- {{{ -->
+<em>TabSpace</em> <em>Num</em> <em>O <i>(No modifier layer)</i></em>
 <div class="clip_h_stripe">
  <img class="clip_img_h1" src="images/Cheat_TabSpace_Num.png">
 </div>
-</pre>
-
+</pre> <!-- }}} -->
+    </p>
+    <p>
     We currently have two good reasons to move those symbols in order to do the following:
+    </p>
     <ol>
-     <li><em>Multi Character Chords</em> is going to be granted the most accessible <em>Num layer</em> chords.</li>
-     <li>Frequently used <em>punctuation accents and quote</em> are organized into <em>O2 pair x6</em>.</li>
+     <li>Reserve the most accessible <em>Num layer</em> chords to some larger symbol category</li>
+     <li>Make good use of a group of <em>3 available chords</em> for the <em>3 locking keys</em></li>
     </ol>
+<!-- {{{ -->
 <pre style="padding:4px !important; width:190px;"
->  Num R2            O2
-  pair x6         pair x6
+>    NumR1         NumR2
+  single-x9      pair-x6
 <div class="clip_div_pad" style="display:inline-block;"
-><img class="clip_img_R2" src="images/Cheat_TabSpace_3_Num.png"
+><img class="clip_img_R1" src="images/Cheat_TabSpace_3_Num.png"
 ></div
 ><span style="width:3em; margin-right:2px;"> &nbsp;</span
 ><div class="clip_div_pad" style="display:inline-block;"
-><img class="clip_img_O2" src="images/Cheat_TabSpace_3.png"
+><img class="clip_img_R2" src="images/Cheat_TabSpace_3_Num.png"
 ></div
-></pre>
+></pre> <!-- }}} -->
 
-    <p>
-    As a first easy decision, considering how Num layer pads are scarcely used at this stage,
-    moving <em>NumLock</em>, <em>ScrollLock</em> and <em>PageLock</em>
-    to lower <em>R2 pair x6</em> seems to be a choice <em class='todo'>temporarily! as good as any</em>.
-    </p>
     </div> <!-- }}} -->
   <!-- todo... {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "twiddler3_todo");'>...todo...</div>
   <div id="div_twiddler3_todo" class="collapsed">
-   Find a good place for:
-   <br><em>&euro;</em> <em>$</em> <em>#</em>
-   <br><em>@</em> <em>%</em> <em>&amp;</em>
+   &hellip;remember to document a todo list
   </div>
   <!-- }}} -->
    <div class="wrap_div" onclick='toggle_div(this, "applying_rules");'><img title="collapse" src="images/cursors/left.png">Applying rules</div>
-   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
   </div> <!-- }}} -->
     <!-- MCC {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc");'>Multi Character Chords <span class="wh6">&hellip;</span></div>
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc");'>TabSpace MCC<span class="wh6">&hellip;</span></div>
     <div id="div_twiddler3_mcc" class="collapsed" style="background-color:#ddf !important;">
-    <!-- twiddler3_mcc_num {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_num");'>TabSpace MCC <span class="wh6">1</span></div>
-    <div id="div_twiddler3_mcc_num" class="collapsed">
-     <p class="rules">Mode switching<br>
-     In this <em>rules use case</em>, involving the <em>Num thumb-modifier</em> can be seen as a <em class='todo'>mode-switching gesture</em>
-     between <em>single keystrokes</em> and <em>Multi Character Chords</em> input.
+
+    <!-- twiddler3_mcc_gesture {{{ -->
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_gesture");'><i>Input mode switching (a rejected option)</i><span class="wh6">1</span></div>
+    <div id="div_twiddler3_mcc_gesture" class="collapsed">
+     <ul class="rules"><!-- {{{ -->
+      <li>Using <em>NUM thumb modifier</em> as a <em class='todo'>mode-switching gesture</em><br>
+      &hellip;this proved to be a bad choice!
+      </li>
+     </ul><!-- }}} -->
+     <p style="font-style:oblique; font-family:'Comic sans ms'">
+     The theory was based on using a <em class='todo'>mode-switching gesture</em>
+     to toggle between the "normal" <em>single keystrokes</em> input mode
+     and the <em>Multi Character Chords</em> mode.
+     This would give us another full set of 4x4 chords for multi character input.
      </p>
+     <p style="font-style:oblique; font-family:'Comic sans ms'">
+     If this would have made clear we were switching between two different input method,
+     using the <em>NUM thumb modifier</em> being so awkward to say the least that
+     it certainly wont improve the input rate.
+     </p>
+
+    </div>
+    <!-- }}} -->
+
+    <!-- twiddler3_mcc_num {{{ -->
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_num");'>TabSpace MCC <span class="wh6">2</span></div>
+    <div id="div_twiddler3_mcc_num" class="collapsed">
 <!-- clip_img_h1 clip_img_h2 {{{ -->
 <pre style="padding:4px 4px 0 1em !important;">
- <em>O</em> The <em>Num</em> <em>No modifier layer</em>
+ <em>O</em> The <em>Num</em> <em>O <i>(No modifier layer)</i></em>
  <div class="clip_h_stripe">
   <img class="clip_img_h1" src="images/Cheat_TabSpace_3_Num.png">
  </div>
@@ -1426,15 +1501,16 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
       </ul>
       </li>
       <li>For instance, how "ing" is obtained by combining "i", "n" and "g"?
-      <br>- "i" and "n" are on the first column of "0 single x9" pad
-      <br>- "g" comes from "M single x9" pad.
+      <br>- "i" and "n" are on the first column of "0 single-x9" pad
+      <br>- "g" comes from "M single-x9" pad.
       </li>
      </ul>
      </p>
     </div>
     <!-- }}} -->
+
     <!-- twiddler3_mcc_hotstrings {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_hotstrings");'>Hotstrings <span class="wh6">2</span></div>
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_hotstrings");'>Hotstrings <span class="wh6">3</span></div>
     <div id="div_twiddler3_mcc_hotstrings" class="collapsed">
      <p>
      Getting multiple keystrokes from a single chord should not be considered a simple
@@ -1470,8 +1546,9 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
      </p>
     </div>
     <!-- }}} -->
+
    <div class="wrap_div" onclick='toggle_div(this, "twiddler3_mcc");'><img title="collapse" src="images/cursors/left.png">Multi Character Chords</div>
-   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
     </div> <!-- }}} -->
   <!-- Cheat Sheets {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "cheat_sheet");'>Collection of Cheat Sheets <span class="wh7">&hellip;</span></div>
@@ -1528,7 +1605,7 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
    </a>
    <!-- }}} -->
    <div class="wrap_div"                      onclick='toggle_div(this, "cheat_sheet");'><img title="collapse" src="images/cursors/left.png">Collection of Cheat Sheets</div>
-   <div class="wrap_div" style="float:right;" onclick='expand_div("top");'              ><img title="all wrapped"      src="images/cursors/top.png"></div>
+   <div class="wrap_div" style="float:right;" onclick='expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png"></div>
 
   </div>
   <!-- }}} -->
