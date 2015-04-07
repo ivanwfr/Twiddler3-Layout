@@ -105,21 +105,26 @@
   while assembling functionally related groups like
   <span class='nowrap'><a class="expander" href="#div_applying_rules_numbers_operators" onclick='expand_div(this,"applying_rules_numbers_operators");'>Numbers and Operators<span class="wh5">1</span></a></span>
   or
-  <a class="expander" href="#div_applying_rules_signs" onclick='expand_div(this,"applying_rules_tradesigns");'>Trade signs<span class="wh5">2</span></a>
+  <a class="expander" href="#div_applying_rules_struct_signs" onclick='expand_div(this,"applying_rules_tradesigns");'  >Trade signs<span class="wh5">2</span></a>
   and visually related ones like
-  <a class="expander" href="#div_applying_rules_signs" onclick='expand_div(this,"applying_rules_signs");'     >Signs        <span class="wh5">3</span></a>
+  <a class="expander" href="#div_applying_rules_struct_signs" onclick='expand_div(this,"applying_rules_struct_signs");'>Signs        <span class="wh5">3</span></a>,
+  <a class="expander" href="#div_applying_rules_quote_punct"  onclick='expand_div(this,"applying_rules_quote_punct");' >Quote &amp; Punctuation<span class="wh5">4</span></a>
   should give us the best possible mnemonic-friendly layout, provided good enough rules have been crafted along the way.
 
   </p> <!-- }}} -->
   <p><!-- ...MCC {{{ -->
-  <a class="expander" href="#div_twiddler3_mcc" onclick='expand_div(this,"twiddler3_mcc");'>Multi Character Chords<span class="wh6">&hellip;</span></a>
+  <a class="expander" href="#div_twiddler3_mcc" onclick='expand_div(this,"twiddler3_mcc");'>Multi Character Chords (MCC)<span class="wh6">&hellip;</span></a>
   goes one step beyond simple one&ndash;to&ndash;one chord&ndash;to&ndash;character mappings,
-  If <a class="expander" href="#div_twiddler3_mcc_num" onclick='expand_div(this,"twiddler3_mcc_num");'>TabSpace MCC<span class="wh6">1</span></a>
+  If
+  <a class="expander" href="#div_tabspace_mcc" onclick='expand_div(this,"tabspace_mcc");'>TabSpace MCC<span class="wh6">1</span></a>
   defines a number of static bindings,
+  we can look for 
+  <a class="expander" href="#div_more_mcc" onclick='expand_div(this,"more_mcc");'>More MCC<span class="wh6">2</span></a>
+  based on recent studies 
   a further step could use something like
   <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img style='margin-top:-.5ex;' src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>
   to handle dynamic
-  <a class="expander" href="#div_twiddler3_mcc_hotstrings" onclick='expand_div(this,"twiddler3_mcc_hotstrings");'>hotstrings<span class="wh6">2</span></a>.
+  <a class="expander" href="#div_twiddler3_mcc_hotstrings" onclick='expand_div(this,"twiddler3_mcc_hotstrings");'>hotstrings<span class="wh6">4</span></a>.
   </p> <!-- }}} -->
   <p><!-- ...cheatsheets {{{ -->
   <a class="expander" href="#div_cheat_sheet" onclick='expand_div(this,"cheat_sheet");'>Cheat Sheets<span class="wh7">&hellip;</span></a>
@@ -1250,11 +1255,11 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
    <!-- }}} -->
    <!-- L clusters {{{ -->
    <div class="div_map">
-    <div class="clip_pad" onclick='expand_div(this,"applying_rules_signs"             );' title="Signs..."                ><img class="clip_map_L1" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_pad" onclick='expand_div(this,"applying_rules_signs"             );' title="Signs..."                ><img class="clip_map_L2" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_pad" onclick='expand_div(this,"applying_rules_struct_signs"      );' title="Signs..."                ><img class="clip_map_L1" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_pad" onclick='expand_div(this,"applying_rules_struct_signs"      );' title="Signs..."                ><img class="clip_map_L2" src="images/Cheat_TabSpace_3.png"></div>
     <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_L3" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_L4" src="images/Cheat_TabSpace_3.png"></div>
-    <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_L5" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_pad" onclick='expand_div(this,"applying_rules_quote_punct"       );' title="quote and punctuation"   ><img class="clip_map_L4" src="images/Cheat_TabSpace_3.png"></div>
+    <div class="clip_pad" onclick='expand_div(this,"applying_rules_quote_punct"       );' title="quote and punctuation"   ><img class="clip_map_L5" src="images/Cheat_TabSpace_3.png"></div>
     <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_L6" src="images/Cheat_TabSpace_3.png"></div>
     <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_L7" src="images/Cheat_TabSpace_3.png"></div>
     <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_L8" src="images/Cheat_TabSpace_3.png"></div>
@@ -1263,7 +1268,6 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
     <div class="clip_map" onclick='expand_div(this,"twiddler3_todo"                   );'                                 ><img class="clip_map_LB" src="images/Cheat_TabSpace_3.png"></div>
    </div>
    <!-- }}} -->
-
    <!-- applying_rules_numbers_operators {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "applying_rules_numbers_operators");'>Numbers and Operators<span class="wh5">1</span></div>
    <div id="div_applying_rules_numbers_operators" class="collapsed">
@@ -1272,6 +1276,13 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
      <br>
      In this case, the <em class="fingers">INDEX</em> is pressing 4x4 <em>BACKSPACE MODIFIER</em>
      <br>for both <em>3x3 numbers</em> and <em>3x3 operators</em></li>
+    </ul>
+     <!-- }}} -->
+    <ul class="rules"><!-- {{{ -->
+     <li><em>uncomfortable modifier</em>
+     <br>
+     This <em class="fingers">INDEX BACKSPACE MODIFIER</em> is not an easy one
+     <br>&hellip; needs some checking to see how it goes &hellip;</li>
     </ul>
      <!-- }}} -->
 <!-- R1 R2 {{{ -->
@@ -1287,17 +1298,14 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
 ><img class="clip_img_R2" src="images/Cheat_TabSpace_3.png"
 ></div
 ></pre>
-    Arithmetic symbols on <em>R2 pair-x6</em>
-    <br>put them close to the <em>R1 single-x9</em> numberpad.
+   <br><i>1st and 2nd column of <em>R</em>
+   <a href="layout_browser.html" target="layout_browser">Twiddler 3 Layout</a>
+   row</i>
 </div>
 <!-- }}} -->
-    <ul class="rules"><!-- {{{ -->
-     <li><em>uncomfortable modifier</em>
-     <br>
-     This <em class="fingers">INDEX BACKSPACE MODIFIER</em> is not an easy one
-     <br>&hellip; needs some checking to see how it goes &hellip;</li>
-    </ul>
-     <!-- }}} -->
+ <hr>
+    Arithmetic symbols on <em>R2 pair-x6</em>
+    put them close to the <em>R1 single-x9</em> numberpad.
 
 <!-- 0 {{{ -->
    <div class="fold_title" onclick='toggle_div(this, "applying_rules_numbers_operators_0");'><em>0</em></div>
@@ -1345,13 +1353,14 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
   <!-- applying_rules_tradesigns {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "applying_rules_tradesigns");'>Trade signs<span class="wh5">2</span></div>
   <div id="div_applying_rules_tradesigns" class="collapsed">
-   The primary function of these signs is for money makers:
-   <br><em>@</em> <em>%</em> <em>&amp;</em><br>
-   <em>$</em>      <em>#</em>  <em>&euro;</em>
+   <ul class="rules"><li><em>standard keyboard ordering</em><!-- {{{ -->
+    <br>&hellip;relying on acquired knowledge</li>
+   </ul><!-- }}} -->
+<div align="center">
 <!-- {{{ -->
 <pre style="padding:4px !important; width:190px;"
 >    R3         R4
-  single-x9      pair-x6
+  pair-x6      pair-x6
 <div class="clip_div_pad" style="display:inline-block;"
 ><img class="clip_img_R3" src="images/Cheat_TabSpace_3.png"
 ></div
@@ -1360,17 +1369,38 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
 ><img class="clip_img_R4" src="images/Cheat_TabSpace_3.png"
 ></div
 ></pre> <!-- }}} -->
+   <br><i>3rd and 4th column of <em>R</em>
+   <a href="layout_browser.html" target="layout_browser">Twiddler 3 Layout</a>
+   row</i>
+</div>
+
+ <hr>
+ The primary function of these signs is for money makers:
+ <ul>
+  <li><em>@</em> <em>%</em> <em>&amp;</em>
+  <br> - from left to right like on a standard keyboard
+  </li>
+  <li><em>&euro;</em> <em>#</em>  <em>$</em>
+  <br> - <em>#</em> to the left of <em>$</em> like on a standard keyboard
+  <br> - <em>&euro;</em> <i>does not really exist yet (as of 2015)</i>
+  <br><i>either in the ASCII table nor in Twiddler 3 firmware</i>
+  </li>
+ </ul>
+
   </div>
   <!-- }}} -->
-  <!-- applying_rules_signs {{{ -->
-  <div class="fold_title" onclick='toggle_div(this, "applying_rules_signs");'>Signs<span class="wh5">3</span></div>
-  <div id="div_applying_rules_signs" class="collapsed">
+  <!-- applying_rules_struct_signs {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "applying_rules_struct_signs");'>Structuring Signs<span class="wh5">3</span></div>
+  <div id="div_applying_rules_struct_signs" class="collapsed">
    <p>
    <ul class="rules"><li><em>shapes symmetry</em><!-- {{{ -->
     <br>&hellip;5 symbol pairs</li>
    </ul><!-- }}} -->
    <ul class="rules"><li><em>pads proximity</em><!-- {{{ -->
     <br>&hellip;both pads from <em class='fingers'>INDEX Tab modifier</em></li>
+   </ul><!-- }}} -->
+   <ul class="rules"><li><em>standard keyboard ordering</em><!-- {{{ -->
+    <br>&hellip;relying on acquired knowledge</li>
    </ul><!-- }}} -->
 <div align="center">
    <!-- L1 L2 {{{ -->
@@ -1386,15 +1416,15 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
 ></div
 ></pre>
    <!-- }}} -->
-   Following our guidelines, most standard signs
-   <br>can be mapped into pads L1 and L2
-   <br><i>(first and second column of the last
+   <br><i>1st and 2nd column of last
    <a href="layout_browser.html" target="layout_browser">Twiddler 3 Layout</a>
-   row)</i>
+   row</i>
    </p>
 </div>
 
 <hr>
+   Following our guidelines, most standard signs
+   can be mapped into pads L1 and L2
  <ul>
   <li><em>()</em> <em>{}</em> <em>[]</em> are disposed, ordered from top to bottom like on a standard keyboard</li>
   <li><em>&lt;</em><em>^</em><em>&gt;</em> will be easily remembered</li>
@@ -1403,9 +1433,56 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
  </ul>
 
    </div> <!-- }}} -->
+  <!-- applying_rules_quote_punct {{{ -->
+  <div class="fold_title" onclick='toggle_div(this, "applying_rules_quote_punct");'>Quote and Punctuation<span class="wh5">4</span></div>
+  <div id="div_applying_rules_quote_punct" class="collapsed">
+   <p>
+   <ul class="rules"><li> better keep <em class="fingers">Major</em> close to <em class="fingers">INDEX</em> in <em>multi-modifier chords</em><!-- {{{ -->
+    <br>&hellip;it's easier when index and major finger are close to each other.
+    i.e. Combining <em>L index modifier</em> with <em>L sub-layer</em> is easier than with <em>M sub-layer</em> ... which is easier than with <em>R sub-layer</em></li>
+   </ul><!-- }}} -->
+   <ul class="rules"><li><em>visually related groups</em><!-- {{{ -->
+    <br>&hellip;L4 for accents
+    <br>&hellip;L5 for punctuation
+    </li>
+   </ul><!-- }}} -->
+<div align="center">
+   <!-- L1 L2 {{{ -->
+<pre style="padding:4px !important; width:190px;"
+>   L4            L5
+  pair-x6        pair-x6
+<div class="clip_div_pad" style="display:inline-block;"
+><img class="clip_img_L4" src="images/Cheat_TabSpace_3.png"
+></div
+><span style="width:3em; margin-right:2px;"> &nbsp;</span
+><div class="clip_div_pad" style="display:inline-block;"
+><img class="clip_img_L5" src="images/Cheat_TabSpace_3.png"
+></div
+></pre>
+   <!-- }}} -->
+   <br><i>4th and 5th column of last <em>L</em>
+   <a href="layout_browser.html" target="layout_browser">Twiddler 3 Layout</a>
+   row</i>
+   </p>
+</div>
 
+ <hr>
+ <ul>
+  <li><em>'</em> <em>"</em> <em>`</em>
+  <br>- <em>apostroph</em> oriented left,
+  <br>- <em>grave</em> right,
+  <br>- <em>double quote</em> in the middle.
+  </li>
+  <li><em>,</em> <em>;</em> <em>:</em>
+  <br>- <em>Column</em> to the right fits with major and pinky vertical alignment,
+  <br>- <em>semicolon</em> and <em>colon</em> goes with more slanted alignments.
+  </li>
+ </ul>
+
+   </div> <!-- }}} -->
+   <i><b>Some weirdos...</b></i>
    <!-- twiddler3_locks {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "twiddler3_locks");'>NumLock &mdash; CapsLock &mdash; ScrollLock<span class="wh5">4</span></div>
+   <div class="fold_title" onclick='toggle_div(this, "twiddler3_locks");'>NumLock &mdash; CapsLock &mdash; ScrollLock</div>
    <div id="div_twiddler3_locks" class="collapsed">
     <p>
     TabSpace assignment for these keys occupies only 3 slots of the this row.
@@ -1447,44 +1524,26 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
    <div class="wrap_div" style="float:right;" onclick='expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
   </div> <!-- }}} -->
     <!-- MCC {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc");'>TabSpace MCC<span class="wh6">&hellip;</span></div>
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc");'>Multi Character Chords<span class="wh6">&hellip;</span></div>
     <div id="div_twiddler3_mcc" class="collapsed" style="background-color:#ddf !important;">
-
-    <!-- twiddler3_mcc_gesture {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_gesture");'><i>Input mode switching (a rejected option)</i><span class="wh6">1</span></div>
-    <div id="div_twiddler3_mcc_gesture" class="collapsed">
      <ul class="rules"><!-- {{{ -->
-      <li>Using <em>NUM thumb modifier</em> as a <em class='todo'>mode-switching gesture</em><br>
-      &hellip;this proved to be a bad choice!
+      <li><em>blending letter chords</em> to produce <em>letter combinations</em> or <em>words</em>
+      <br>&hellip; by smashing the same fingers used to produce the composing <em>sequence of letters</em> in a <em>single stroke</em>
+      <br>&hellip; some useful <a href="https://groups.google.com/forum/?hl=en#!topic/twiddler-3/0pBH2vnrph0" target="AutoHotkey">MCC pointers</a>
       </li>
      </ul><!-- }}} -->
-     <p style="font-style:oblique; font-family:'Comic sans ms'">
-     The theory was based on using a <em class='todo'>mode-switching gesture</em>
-     to toggle between the "normal" <em>single keystrokes</em> input mode
-     and the <em>Multi Character Chords</em> mode.
-     This would give us another full set of 4x4 chords for multi character input.
-     </p>
-     <p style="font-style:oblique; font-family:'Comic sans ms'">
-     If this would have made clear we were switching between two different input method,
-     using the <em>NUM thumb modifier</em> being so awkward to say the least that
-     it certainly wont improve the input rate.
-     </p>
-
-    </div>
-    <!-- }}} -->
-
-    <!-- twiddler3_mcc_num {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_num");'>TabSpace MCC <span class="wh6">2</span></div>
-    <div id="div_twiddler3_mcc_num" class="collapsed">
+    <!-- tabspace_mcc {{{ -->
+    <div class="fold_title" onclick='toggle_div(this, "tabspace_mcc");'>TabSpace MCC <span class="wh6">1</span></div>
+    <div id="div_tabspace_mcc" class="collapsed">
 <!-- clip_img_h1 clip_img_h2 {{{ -->
 <pre style="padding:4px 4px 0 1em !important;">
- <em>O</em> The <em>Num</em> <em>O <i>(No modifier layer)</i></em>
+ <em>O</em> The <em>O <i>(No modifier layer)</i></em>
  <div class="clip_h_stripe">
-  <img class="clip_img_h1" src="images/Cheat_TabSpace_3_Num.png">
+  <img class="clip_img_h1" src="images/Cheat_TabSpace_3.png">
  </div>
- <em>M</em> The <em>Num</em> <em>Middle modifier layer</em> &ndash; <em class="fingers">INDEX SPACE MODFIER</em>
+ <em>M</em> The <em>Middle modifier layer</em> &ndash; <em class="fingers">INDEX SPACE MODFIER</em>
  <div class="clip_h_stripe">
-  <img class="clip_img_h2" src="images/Cheat_TabSpace_3_Num.png">
+  <img class="clip_img_h2" src="images/Cheat_TabSpace_3.png">
  </div>
 </pre>
 <!-- }}} -->
@@ -1505,12 +1564,128 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
       <br>- "g" comes from "M single-x9" pad.
       </li>
      </ul>
+   <img title="hehe" style="float:right;" src="images/emoticons/^^.png">
+     The best way to deal with this lack of perfection is by living with it
+     as long as muscle memory will smoothly take care of ignoring it because logic has nothing to do in the process!
      </p>
     </div>
     <!-- }}} -->
+    <!-- more_mcc {{{ -->
+    <div class="fold_title" onclick='toggle_div(this, "more_mcc");'>More MCC<span class="wh6">2</span></div>
+    <div id="div_more_mcc" class="collapsed">
 
+     <ul class="rules"><!-- {{{ -->
+      <li>looking into available <em>key letter</em> neighbour chords:
+<pre>
+0 = COL6-8 3xPairs:
+I =  <em>ain</em> ith irs
+E =  ena <em>the</em> ers
+O =  ona oth ors
+
+COL9-11 
+I =  <em>ain</em> inh ins   ita ith its   ira irh irs
+E =  ena enh ens   eta <em>the</em> ets   era erh ers
+O =  ona onh ons   ota oth ots   ora orh ors
+</pre>
+      </li>
+     </ul><!-- }}} -->
+
+     <ul class="rules"><!-- {{{ -->
+      <li>
+    <div class="fold_title" onclick='toggle_div(this, "ngrams");'>N-Letter Sequences (N-grams)</div>
+    <div id="div_ngrams" class="collapsed"><!-- {{{ -->
+     <pre>
+1 2grams  3grams  4-grams   5-grams    6-grams     7-grams      8-grams       9-grams   
+e     th     the     tion     ation     ations     present     differen     different
+t     he     and     atio     tions     ration     ational     national     governmen
+a     in     ing     that     which     tional     through     consider     overnment
+o     er     ion     ther     ction     nation     between     position     formation
+i     an     tio     with     other     ection     ication     ifferent     character
+n     re     ent     ment     their     cation     differe     governme     velopment
+s     on     ati     ions     there     lation     ifferen     vernment     developme
+r     at     for     this     ition     though     general     overnmen     evelopmen
+h     en     her     here     ement     presen     because     interest     condition
+l     nd     ter     from     inter     tation     develop     importan     important
+d     ti     hat     ould     ional     should     america     ormation     articular
+c     es     tha     ting     ratio     resent     however     formatio     particula
+u     or     ere     hich     would     genera     eration     relation     represent
+m     te     ate     whic     tiona     dition     nationa     question     individua
+f     of     his     ctio     these     ationa     conside     american     ndividual
+p     ed     con     ence     state     produc     onsider     characte     relations
+g     is     res     have     natio     throug     ference     haracter     political
+w     it     ver     othe     thing     hrough     positio     articula     informati
+y     al     all     ight     under     etween     osition     possible     nformatio
+b     ar     ons     sion     ssion     betwee     ization     children     universit
+v     st     nce     ever     ectio     differ     fferent     elopment     following
+k     to     men     ical     catio     icatio     without     velopmen     experienc
+x     nt     ith     they     latio     people     ernment     developm     stitution
+j     ng     ted     inte     about     iffere     vernmen     evelopme     xperience
+q     se     ers     ough     count     fferen     overnme     conditio     education
+z     ha     pro     ance     ments     struct     governm     ondition     roduction
+      as     thi     were     rough     action     ulation     mportant     niversity
+      ou     wit     tive     ative     person     another     rticular     therefore
+      io     are     over     prese     eneral     importa     particul     nstitutio
+      le     ess     ding     feren     system     interes     epresent     ification
+      ve     not     pres     hough     relati     nterest     represen     establish
+      co     ive     nter     ution     ctions     elation     increase     understan
+      me     was     comp     roduc     ecause     rmation     individu     nderstand
+      de     ect     able     resen     becaus     mportan     ndividua     difficult
+      hi     rea     heir     thoug     before     product     dividual     structure
+      ri     com     thei     press     ession     formati     elations     knowledge
+      ro     eve     ally     first     develo     communi     nformati     struction
+      ic     per     ated     after     evelop     lations     politica     something
+      ne     int     ring     cause     uction     ormatio     olitical     necessary
+      ea     est     ture     where     change     certain     universi     hemselves
+      ra     sta     cont     tatio     follow     increas     function     themselve
+      ce     cti     ents     could     positi     relatio     informat     plication
+      li     ica     cons     efore     govern     special     niversit     anization
+      ch     ist     rati     contr     sition     process     iversity     according
+      ll     ear     thin     hould     merica     against     lication     differenc
+      be     ain     part     shoul     direct     problem     experien     operation
+      ma     one     form     tical     bility     nstitut     structur     ifference
+      si     our     ning     gener     effect     politic     determin     rganizati
+      om     iti     ecti     esent     americ     ination     ollowing     organizat
+      ur     rat     some     great     public     univers     followin     ganizatio
+     </pre>
+    </div> <!-- }}} -->
+</pre>
+      </li>
+     </ul><!-- }}} -->
+
+     <ul>
+     <li><a href="http://norvig.com/mayzner.html"                                                                                  target="mayzner"              ><b>ETAOIN SRHLDCU                         </b></a></li>
+     <li><a href="http://practicalcryptography.com/cryptanalysis/letter-frequencies-various-languages/english-letter-frequencies/" target="crypto"               > English Letter Frequencies               </a></li>
+     <li><a href="http://www.w0uce.net/Common_1_-_2_-3_-_4_and_100_Words_Practice_List.pdf"                                        target="w0uce"                > 1-2-3-4 Words (pdf)                      </a></li>
+     <li><a href="http://www3.nd.edu/~busiforc/handouts/cryptography/cryptography hints.html"                                      target="hints"                > Singles - Digraphs - Trigraphs - Doubles </a></li>
+     <li><a href="http://en.wikipedia.org/wiki/Letter_frequency"                                                                   target="wiki_letter_frequency"> Letter frequency - Wikipedia             </a></li>
+     </ul>
+
+    </div>
+    <!-- }}} -->
+    <!-- twiddler3_mcc_gesture {{{ -->
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_gesture");'><i>Input mode switching (a rejected option)</i><span class="wh6">3</span></div>
+    <div id="div_twiddler3_mcc_gesture" class="collapsed">
+     <ul class="rules"><!-- {{{ -->
+      <li>Using <em>NUM thumb modifier</em> as a <em class='todo'>mode-switching gesture</em><br>
+      &hellip;this proved to be a bad choice!
+      </li>
+     </ul><!-- }}} -->
+     <p style="font-style:oblique; font-family:'Comic sans ms'">
+     The theory was based on using a <em class='todo'>mode-switching gesture</em>
+     to toggle between the "normal" <em>single keystrokes</em> input mode
+     and the <em>Multi Character Chords</em> mode.
+     This would give us another full set of 4x4 chords for multi character input.
+     </p>
+     <p style="font-style:oblique; font-family:'Comic sans ms'">
+     If this would have made clear we were switching between two different input method,
+     using the <em>NUM thumb modifier</em> being so awkward to say the least that
+     it certainly wont improve the input rate.
+     </p>
+
+    </div>
+    <!-- }}} -->
     <!-- twiddler3_mcc_hotstrings {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_hotstrings");'>Hotstrings <span class="wh6">3</span></div>
+    <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_hotstrings");'>Hotstrings <span class="wh6">4</span></div>
     <div id="div_twiddler3_mcc_hotstrings" class="collapsed">
      <p>
      Getting multiple keystrokes from a single chord should not be considered a simple
@@ -1546,7 +1721,6 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
      </p>
     </div>
     <!-- }}} -->
-
    <div class="wrap_div" onclick='toggle_div(this, "twiddler3_mcc");'><img title="collapse" src="images/cursors/left.png">Multi Character Chords</div>
    <div class="wrap_div" style="float:right;" onclick='expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
     </div> <!-- }}} -->
