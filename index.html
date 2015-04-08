@@ -17,7 +17,7 @@
 <![endif]-->
 </head>
 <!-- }}} -->
-<body onload='expand_div("","_support_tuner"); onload_hash();' id="top">
+<body onload='onload_hash();' id="top">
 <div class="wrapper">
  <header><!-- {{{ -->
   <h1>Twiddler3-layout</h1>
@@ -511,6 +511,12 @@ num   00rr = NUM_LOCK
 num   00ll = SCROLL_LOCK
     </pre>
    </div><!-- }}} -->
+
+   <hr>
+   <img title="collapse" src="images/TabSpace Categories.png">
+   <hr>
+   <img title="collapse" src="images/TabSpace-Patterns.png">
+
 
    <div class="wrap_div" onclick='toggle_div(this, "tabspace");'><img title="collapse" src="images/cursors/left.png">Starting from TabSpace</div>
    <div class="wrap_div" style="float:right;" onclick='expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
@@ -1526,17 +1532,16 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
     <!-- MCC {{{ -->
     <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc");'>Multi Character Chords<span class="wh6">&hellip;</span></div>
     <div id="div_twiddler3_mcc" class="collapsed" style="background-color:#ddf !important;">
-     <ul class="rules"><!-- {{{ -->
-      <li><em>blending letter chords</em> to produce <em>letter combinations</em> or <em>words</em>
-      <br>&hellip; by smashing the same fingers used to produce the composing <em>sequence of letters</em> in a <em>single stroke</em>
-      <br>&hellip; some useful <a href="https://groups.google.com/forum/?hl=en#!topic/twiddler-3/0pBH2vnrph0" target="AutoHotkey">MCC pointers</a>
-      </li>
-     </ul><!-- }}} -->
-    <!-- tabspace_mcc {{{ -->
-    <div class="fold_title" onclick='toggle_div(this, "tabspace_mcc");'>TabSpace MCC <span class="wh6">1</span></div>
-    <div id="div_tabspace_mcc" class="collapsed">
-<!-- clip_img_h1 clip_img_h2 {{{ -->
-<pre style="padding:4px 4px 0 1em !important;">
+      <p>
+      MCC works by blending letter chords to produce <em>letter combinations</em> or <em>words</em>
+      by smashing the same fingers used to produce the composing <em>sequence of letters</em> in a <em>single stroke</em>.
+      Look for external reference on <a href="https://groups.google.com/forum/?hl=en#!topic/twiddler-3/0pBH2vnrph0" target="AutoHotkey">Google Groups</a>
+     </p>
+     <!-- tabspace_mcc {{{ -->
+     <div class="fold_title" onclick='toggle_div(this, "tabspace_mcc");'>TabSpace MCC <span class="wh6">1</span></div>
+     <div id="div_tabspace_mcc" class="collapsed">
+      <!-- clip_img_h1 clip_img_h2 {{{ -->
+      <pre style="padding:4px 4px 0 1em !important;">
  <em>O</em> The <em>O <i>(No modifier layer)</i></em>
  <div class="clip_h_stripe">
   <img class="clip_img_h1" src="images/Cheat_TabSpace_3.png">
@@ -1545,69 +1550,51 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
  <div class="clip_h_stripe">
   <img class="clip_img_h2" src="images/Cheat_TabSpace_3.png">
  </div>
-</pre>
-<!-- }}} -->
-     <p>
-     TabSpace letters arrangement takes care of english letter usage frequency.
-     <ul>
-      <li>Most 2 and 3 combined letters are placed over their constitutive letters location
-      but some belong to different layers <i>(modifier-combos)</i>:</li>
-      <li>If combinations such "an", "in", "qu" or "the" are obtained by pressing the letters they contain
-      , it is not the case for "ch", "nd", "of" or "ing" which refer to letters from 2 different modifier combinations.
+      </pre>
+      <!-- }}} -->
+      <p>
+      TabSpace letters arrangement takes care of english letter usage frequency.
       <ul>
-       <li>The good part in this loose rule is that each button of these chords involve the finger used to produce those individual letters.</li>
-       <li>The not so good is that it relies on some unspecified rule that would have to "explain" how the selected modifier combo works to produce the result.</li>
+       <li>Most 2 and 3 combined letters are placed over their constitutive letters location
+       but some belong to different layers <i>(modifier-combos)</i>:</li>
+       <li>If combinations such "an", "in", "qu" or "the" are obtained by pressing the letters they contain
+       , it is not the case for "ch", "nd", "of" or "ing" which refer to letters from 2 different modifier combinations.
+       <ul>
+	<li>The good part in this loose rule is that each button of these chords involve the finger used to produce those individual letters.</li>
+	<li>The not so good is that it relies on some unspecified rule that would have to "explain" how the selected modifier combo works to produce the result.</li>
+       </ul>
+       </li>
+       <li>For instance, how "ing" is obtained by combining "i", "n" and "g"?
+       <br>- "i" and "n" are on the first column of "0 single-x9" pad
+       <br>- "g" comes from "M single-x9" pad.
+       </li>
       </ul>
-      </li>
-      <li>For instance, how "ing" is obtained by combining "i", "n" and "g"?
-      <br>- "i" and "n" are on the first column of "0 single-x9" pad
-      <br>- "g" comes from "M single-x9" pad.
-      </li>
-     </ul>
-   <img title="hehe" style="float:right;" src="images/emoticons/^^.png">
-     The best way to deal with this lack of perfection is by living with it
-     as long as muscle memory will smoothly take care of ignoring it because logic has nothing to do in the process!
-     </p>
-    </div>
-    <!-- }}} -->
+      <img title="hehe" style="float:right;" src="images/emoticons/^^.png">
+      The best way to deal with this lack of perfection is by living with it
+      as long as muscle memory will smoothly take care of ignoring it because logic has nothing to do in the process!
+      </p>
+     </div>
+     <!-- }}} -->
     <!-- more_mcc {{{ -->
     <div class="fold_title" onclick='toggle_div(this, "more_mcc");'>More MCC<span class="wh6">2</span></div>
     <div id="div_more_mcc" class="collapsed">
-
-     <ul class="rules" style="width:100%;"><!-- {{{ -->
-      <li><b>neighbor chords</em>:
-<pre>
- <em>Col 2</em>       <em>Col 3-5</em>            <em>Col 6-8</em>              <em>Col 9-11</em>
-  S+5          Px3               S+2
-  <em>in</em>        <em>in</em> <em>it</em> <em>ri</em>           <em>ain</em>
-             <em>ai</em> <em>hi</em> <em>is</em>
-
-<img title="WIP" style="float:right;" src="images/emoticons/WIP.gif">
-
-0 = COL6-8 3xPairs:
-I =  <em>ain</em> ith irs
-E =  ena <em>the</em> ers
-O =  ona oth ors
-
-COL9-11 
-I =  <em>ain</em> inh ins   ita ith its   ira irh irs
-E =  ena enh ens   eta <em>the</em> ets   era erh ers
-O =  ona onh ons   ota oth ots   ora orh ors
-</pre>
-      </li>
-</ul>
-
-<pre class="rules" style="width:100%;">
-<span class="mcc_key">I</span>
-<div class="clip_h_stripe">
- <img class="clip_img_h1" src="images/Cheat_TabSpace_3.png">
-</div></pre>
-
-     <ul class="rules"><!-- {{{ -->
-      <li>
-    <div class="fold_title" onclick='toggle_div(this, "ngrams");'>N-Letter Sequences (N-grams)</div>
-    <div id="div_ngrams" class="collapsed"><!-- {{{ -->
-     <pre>
+     <!-- mcc_ref {{{ -->
+     <div class="fold_title" onclick='toggle_div(this, "mcc_ref");'>Working references <span class="wh6">2.1</span></div>
+     <div id="div_mcc_ref" class="collapsed">
+      <ul>
+       <li><a href="http://norvig.com/mayzner.html"                                                                                  target="mayzner"              ><b>ETAOIN SRHLDCU                         </b></a></li>
+       <li><a href="http://practicalcryptography.com/cryptanalysis/letter-frequencies-various-languages/english-letter-frequencies/" target="crypto"               > English Letter Frequencies               </a></li>
+       <li><a href="http://www.w0uce.net/Common_1_-_2_-3_-_4_and_100_Words_Practice_List.pdf"                                        target="w0uce"                > 1-2-3-4 Words (pdf)                      </a></li>
+       <li><a href="http://www3.nd.edu/~busiforc/handouts/cryptography/cryptography hints.html"                                      target="hints"                > Singles - Digraphs - Trigraphs - Doubles </a></li>
+       <li><a href="http://en.wikipedia.org/wiki/Letter_frequency"                                                                   target="wiki_letter_frequency"> Letter frequency - Wikipedia             </a></li>
+      </ul>
+     </div>
+     <!-- }}} -->
+     <!-- ngrams {{{ -->
+     <div class="fold_title" onclick='toggle_div(this, "ngrams");'>N-grams <i>(N-Letter Sequences)</i> <span class="wh6">2.2</span></div>
+     <div id="div_ngrams" class="collapsed">
+      <small>&hellip;part of <a href="http://norvig.com/mayzner.html" target="mayzner"><b>ETAOIN SRHLDCU</b></a></small>
+      <pre>
 1 2grams  3grams  4-grams   5-grams    6-grams     7-grams      8-grams       9-grams   
 e     th     the     tion     ation     ations     present     differen     different
 t     he     and     atio     tions     ration     ational     national     governmen
@@ -1659,22 +1646,59 @@ z     ha     pro     ance     ments     struct     governm     ondition     rodu
       si     our     ning     gener     effect     politic     determin     rganizati
       om     iti     ecti     esent     americ     ination     ollowing     organizat
       ur     rat     some     great     public     univers     followin     ganizatio
-     </pre>
-    </div> <!-- }}} -->
-</pre>
-      </li>
-     </ul><!-- }}} -->
+      </pre>
+     </div>
+     <!-- }}} -->
+     <!-- mcc_neighbor_chords {{{ -->
+     <div class="fold_title" onclick='toggle_div(this, "mcc_neighbor_chords");'>Neighbor chords</em> <span class="wh6">2.3</span></div>
+    <div id="div_mcc_neighbor_chords" class="expanded">
+     <ul class="rules" style="width:100%;"><!-- {{{ -->
+      <li>
+      <pre>
+ <em>Col 2</em>       <em>Col 3-5</em>            <em>Col 6-8</em>              <em>Col 9-11</em>
+  S+5          Px3               S+2
+  <em>in</em>        <em>in</em> <em>it</em> <em>ri</em>           <em>ain</em>
+	     <em>ai</em> <em>hi</em> <em>is</em>
 
-     <ul>
-     <li><a href="http://norvig.com/mayzner.html"                                                                                  target="mayzner"              ><b>ETAOIN SRHLDCU                         </b></a></li>
-     <li><a href="http://practicalcryptography.com/cryptanalysis/letter-frequencies-various-languages/english-letter-frequencies/" target="crypto"               > English Letter Frequencies               </a></li>
-     <li><a href="http://www.w0uce.net/Common_1_-_2_-3_-_4_and_100_Words_Practice_List.pdf"                                        target="w0uce"                > 1-2-3-4 Words (pdf)                      </a></li>
-     <li><a href="http://www3.nd.edu/~busiforc/handouts/cryptography/cryptography hints.html"                                      target="hints"                > Singles - Digraphs - Trigraphs - Doubles </a></li>
-     <li><a href="http://en.wikipedia.org/wiki/Letter_frequency"                                                                   target="wiki_letter_frequency"> Letter frequency - Wikipedia             </a></li>
-     </ul>
+<img title="WIP" style="float:right;" src="images/emoticons/WIP.gif">
+
+0 = COL6-8 3xPairs:
+I =  <em>ain</em> ith irs
+E =  ena <em>the</em> ers
+O =  ona oth ors
+
+COL9-11 
+I =  <em>ain</em> inh ins   ita ith its   ira irh irs
+E =  ena enh ens   eta <em>the</em> ets   era erh ers
+O =  ona onh ons   ota oth ots   ora orh ors
+      </pre>
+      </li>
+     </ul> <!-- }}} -->
+    </div>
+    <!-- }}} -->
+    <!-- I {{{ -->
+    <div class="fold_title" onclick='toggle_div(this, "mcc_i");'>I <span class="wh6">2.4</span></div>
+    <div id="div_mcc_i" class="expanded">
+
+     <img
+     src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+     class='mcc_overlay'
+     style="
+     width:15px;
+     height:15px;
+     left:105px;
+     top:38px;
+     "
+     >
+     <pre style="width:100%;">
+<div class="clip_h_stripe">
+ <img class="clip_img_h1" src="images/Cheat_TabSpace_3.png">
+     </div></pre>
 
     </div>
     <!-- }}} -->
+   </div>
+   <!-- }}} -->
     <!-- twiddler3_mcc_gesture {{{ -->
     <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_gesture");'><i>Input mode switching (a rejected option)</i><span class="wh6">3</span></div>
     <div id="div_twiddler3_mcc_gesture" class="collapsed">
@@ -1706,7 +1730,7 @@ z     ha     pro     ance     ments     struct     governm     ondition     rodu
      </p>
      <p>
      In fact, we can already get something similar using a standard keyboard with the help of some hotstring handler like
-  <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>.
+     <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>.
      Why does it seem so natural to expect this kind of feature from this device?
      </p>
      <p>
@@ -1734,9 +1758,9 @@ z     ha     pro     ance     ments     struct     governm     ondition     rodu
      </p>
     </div>
     <!-- }}} -->
-   <div class="wrap_div" onclick='toggle_div(this, "twiddler3_mcc");'><img title="collapse" src="images/cursors/left.png">Multi Character Chords</div>
-   <div class="wrap_div" style="float:right;" onclick='expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
-    </div> <!-- }}} -->
+    <div class="wrap_div" onclick='toggle_div(this, "twiddler3_mcc");'><img title="collapse" src="images/cursors/left.png">Multi Character Chords</div>
+    <div class="wrap_div" style="float:right;" onclick='expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
+   </div> <!-- }}} -->
   <!-- Cheat Sheets {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "cheat_sheet");'>Collection of Cheat Sheets <span class="wh7">&hellip;</span></div>
   <div id="div_cheat_sheet" class="collapsed" style="background-color:#edf !important; text-align:left;">

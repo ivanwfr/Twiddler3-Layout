@@ -214,6 +214,16 @@
     color: #fa2;
     background-color:#00f;
 }
+.mcc_overlay {
+     border:1px red solid;
+     background-color:pink;
+     position:relative;
+     box-shadow: rgba(0, 0, 0, 1.0) 0 0.3em 0.3em;
+     opacity:0.9; filter:alpha(opacity= 90);
+}
+.mcc_overlay:hover {
+     opacity:0.3; filter:alpha(opacity= 30);
+}
 
 /* }}} */
 /* expander {{{ */

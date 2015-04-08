@@ -19,12 +19,9 @@ function toggle_div(el,id) // {{{
 } // }}}
 function onload_hash() // {{{
 {
-//alert("onload_hash(): window.location.hash=["+window.location.hash+"]");
-    var div_id = window.location.hash.substring(1);
-//alert("onload_hash(): div_id=["+div_id+"]");
-if( div_id.startsWith("div_") ) div_id = div_id.substring(4);
-//alert("onload_hash(): div_id=["+div_id+"]");
-    expand_div("",div_id);
+    var id = window.location.hash.substring(1);
+    if( id.startsWith("div_") ) id = id.substring(4);
+    expand_div("", id);
 
 } // }}}
 function expand_div(el,id) // {{{
