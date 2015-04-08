@@ -17,13 +17,25 @@ function toggle_div(el,id) // {{{
     }
 
 } // }}}
+function onload_hash() // {{{
+{
+//alert("onload_hash(): window.location.hash=["+window.location.hash+"]");
+    var div_id = window.location.hash.substring(1);
+//alert("onload_hash(): div_id=["+div_id+"]");
+if( div_id.startsWith("div_") ) div_id = div_id.substring(4);
+//alert("onload_hash(): div_id=["+div_id+"]");
+    expand_div("",div_id);
+
+} // }}}
 function expand_div(el,id) // {{{
 {
+//alert("expand_div("+id+")");
     set_wrap_div_top_visibility(id);
 
     if(id=="top") eraseCookie("expanded");
 
     var div = document.getElementById("div_"+id);
+//alert("div=["+div+"]")
     var nothing_to_expand = (div == null) || ((div != null) && (div.className == "expanded"));
 
     collapse_expanded();
@@ -228,6 +240,7 @@ try {
 // }}}
 function readCookie(cName) // {{{
 {
+//alert("readCookie("+cName+")");
     var value   = "";
 try {
     var nameEQ  = cName + "=";
