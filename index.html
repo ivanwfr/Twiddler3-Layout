@@ -65,14 +65,11 @@
   are stored using an
   <a class="expander" href="#div_support_orml" onclick='expand_div(this,"support_orml");'>ORML encoding<span class="wh2">1</span></a>
   the user can customize with
-  <a class="expander" href="#div_support_tuner" onclick='expand_div(this,"support_tuner");'>TekGear's Twiddler 3 Tuner<span class="wh2">4</span></a>
-  online application.
-
-  shows the full
-  <a class="expander" href="#div_support_4x4" onclick='expand_div(this,"support_4x4");'>4x4 chord sets<span class="wh2">2</span></a>
-
-  broken down into four more convenient
-  <a class="expander" href="#div_support_3x3" onclick='expand_div(this,"support_3x3");'>3x3 chord sets<span class="wh2">3</span></a>.
+  <a class="expander" href="#div_support_tuner" onclick='expand_div(this,"support_tuner");'>TekGear's Twiddler 3 Tuner<span class="wh2">2</span></a>
+  online application working on the
+  <a class="expander" href="#div_support_4x4" onclick='expand_div(this,"support_4x4");'>4x4 chord sets<span class="wh2">3</span></a>
+  we can brake down into four more convenient
+  <a class="expander" href="#div_support_3x3" onclick='expand_div(this,"support_3x3");'>3x3 chord sets<span class="wh2">4</span></a>.
 
   </p> <!-- }}} -->
   <p><!-- ...making_rules {{{ -->
@@ -554,8 +551,124 @@ num   00ll = SCROLL_LOCK
     <!-- }}} -->
 
    </div> <!-- }}} -->
+   <!-- support_tuner {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"support_tuner");'>TekGear Tuner<span class="wh2">2</span></div>
+   <div id="div_support_tuner" class="collapsed">
+
+    <!-- the good {{{ -->
+    <img style="float:right;" src="images/emoticons/=).png">
+    <br>
+    <b>The good</b>
+     with TekGear's <a href="http://twiddler.tekgear.com/tuner" target="tuner">Twiddler 3 tuner<img style='margin-top:-.5ex;' src="http://twiddler.tekgear.com/favicon.ico"></a></b>
+    <ul style="clear:right;">
+     <li>
+     Its sleek looking, worthy of Twiddler 3 design, something worth mentioning when compared to the average standard level of
+     what Apple did not do on the web.
+     <br><small><i>(I'm not an Apple proselyte but it's not far from the truth)</i></small>
+     </li>
+    </ul>
+
+    <!-- }}} -->
+    <hr>
+    <!-- the bad {{{ -->
+    <img style="float:right;" src="images/emoticons/huh.png">
+    <br>
+    <b>The bad</b>
+    <ul style="clear:right;">
+     <li>
+     No <em>X-Ray view option</em> <i>(see-through)</i> so that
+     <em>Device LEFT</em> and <em>User's LEFT</em> coincide
+     </li>
+     <li>
+     Having to activate an obvious
+     <img style="height:18px;" src="images/icons/edit-icon.png">
+     after each
+     <em class="label">Add a new chord</em>
+     </li>
+     <li>
+     Although <em class="label">Key Stroke(s) </em> buttons
+     <em class="button">Insert</em> and <em class="button">Apply</em>
+     display their current <em>enabled</em> or <em>disabled</em> state correctly
+     &mdash; the <em>TEXT INPUT</em> does not.
+     </li>
+     <li>
+     Display order fixed to <em>Bottom&mdash;up created order</em>
+     </li>
+     <li>
+     Not open-source! &hellip; as if there were concerns with exploitation
+     </li>
+     <li>
+     Some hardly readable symbols with font issues:
+     <ul>
+      <li>in the <em class="label">Keystroke</em> <em>TEXT INPUT</em></li>
+      <li>in the left pane <em class="label">Key Stroke(s) column</em></li>
+      <li>Using variable font breaks vertical alignment in
+      left pane <em class="label">Chord column </em></li>
+      <li>Using fancy font for <em class="label">Keystroke text input</em>
+      is not convenient when dealing with tiny symbols like these:
+      <div style="display:inline; font-size:120%; font-family:'Lucida Console', Monaco, monospace;">
+      <em class="label" style="padding:2px;">'</em>
+      <em class="label" style="padding:2px;">"</em>
+      <em class="label" style="padding:2px;">`</em>
+      euro € 
+     </div>
+      </li>
+     </ul>
+     </li>
+     <li>
+     A display of <em>Chord ORML notation</em> should be updated with each button selection while in edit mode
+     instead of after a click on the <em class="button">Apply</em> button.
+     </li>
+     <li>
+     A session timeout that may ditch unsaved changes ... what's the stress ?
+     </li>
+     <li>
+     Some missing <em>Special Keys</em>:
+     <ul>
+      <li><em class="label">&lt;Space&gt;</em> <i>(currently an invisble blank)</i></li>
+      <li><em class="label">&euro;</em></li>
+      <li><em class="label">...scancode support for more...</em></li>
+     </ul>
+     </li>
+
+    </ul>
+
+    <!-- }}} -->
+    <hr>
+    <!-- the ugly {{{ -->
+    <img style="float:right;" src="images/emoticons/huh.png">
+    <img style="float:right;" src="images/emoticons/huh.png">
+    <br>
+    <b>The ugly</b>
+    <ul>
+     <li><em>Shift</em> <em>Control</em> and <em>Alt</em> modifiers are not sent as keyboard events, the only serve internally to alter the generated scancode. </li>
+    </ul>
+     <ul class="rules"><!-- {{{ -->
+      <li>One of the consequences (&hellip;and there are a bunch of others):
+      <br>You cannot send the <em>Shift</em>, <em>Alt</em> or <em>Control</em> <em>Mouse-Button Event</em>
+      used to adjust a text selection or create a shortcut &hellip;
+      </li>
+     </ul>
+     <!-- }}} -->
+
+    <!-- }}} -->
+<hr>
+    <!-- the other good {{{ -->
+    <img style="float:right;" src="images/emoticons/=).png">
+    <br>
+    <b>The other good</b>
+    <ul style="clear:right;">
+     <li>
+     With all the above, it's a real challenge to get some job done!
+     </li>
+
+    </ul>
+
+    <!-- }}} -->
+
+   </div> <!-- }}} -->
    <!-- support_4x4 {{{ -->
-   <div class="fold_title" onclick='toggle_div(this,"support_4x4");'><em>4x4 chord set</em> <span class="wh2">2</span></div>
+   <div class="fold_title" onclick='toggle_div(this,"support_4x4");'><em>4x4 chord set</em> <span class="wh2">3</span></div>
   <div id="div_support_4x4" class="collapsed">
    <em>255 = (4^4 - 1)</em>
    If the tuner supports them all, some are easier to use than others.
@@ -577,7 +690,7 @@ num   00ll = SCROLL_LOCK
 </pre>
   </div> <!-- }}} -->
   <!-- support_3x3 {{{ -->
-  <div class="fold_title" onclick='toggle_div(this,"support_3x3");'><em>3x3 chord set</em> <span class="wh2">3</span></div>
+  <div class="fold_title" onclick='toggle_div(this,"support_3x3");'><em>3x3 chord set</em> <span class="wh2">4</span></div>
   <div id="div_support_3x3" class="collapsed">
    <em>63 = (4^3 - 1)</em>
    Some chords stand out enough to justify a mapping to prominent keystrokes.
@@ -695,122 +808,6 @@ num   00ll = SCROLL_LOCK
 
 </pre> <!-- }}} -->
     </div>
-   </div> <!-- }}} -->
-   <!-- support_tuner {{{ -->
-   <div class="fold_title" onclick='toggle_div(this,"support_tuner");'>TekGear Tuner<span class="wh2">4</span></div>
-   <div id="div_support_tuner" class="collapsed">
-
-    <!-- the good {{{ -->
-    <img style="float:right;" src="images/emoticons/=).png">
-    <br>
-    <b>The good</b>
-     with TekGear's <a href="http://twiddler.tekgear.com/tuner" target="tuner">Twiddler 3 tuner<img style='margin-top:-.5ex;' src="http://twiddler.tekgear.com/favicon.ico"></a></b>
-    <ul style="clear:right;">
-     <li>
-     Its sleek looking, worthy of Twiddler 3 design, something worth mentioning when compared to the average standard level of
-     what Apple did not do on the web.
-     <br><small><i>(I'm not an Apple proselyte but it's not far from the truth)</i></small>
-     </li>
-    </ul>
-
-    <!-- }}} -->
-    <hr>
-    <!-- the bad {{{ -->
-    <img style="float:right;" src="images/emoticons/huh.png">
-    <br>
-    <b>The bad</b>
-    <ul style="clear:right;">
-     <li>
-     No <em>X-Ray view option</em> <i>(see-through)</i> so that
-     <em>Device LEFT</em> and <em>User's LEFT</em> coincide
-     </li>
-     <li>
-     Having to activate an obvious
-     <img style="height:18px;" src="images/icons/edit-icon.png">
-     after each
-     <em class="label">Add a new chord</em>
-     </li>
-     <li>
-     Although <em class="label">Key Stroke(s) </em> buttons
-     <em class="button">Insert</em> and <em class="button">Apply</em>
-     display their current <em>enabled</em> or <em>disabled</em> state correctly
-     &mdash; the <em>TEXT INPUT</em> does not.
-     </li>
-     <li>
-     Display order fixed to <em>Bottom&mdash;up created order</em>
-     </li>
-     <li>
-     Not open-source! &hellip; as if there were concerns with exploitation
-     </li>
-     <li>
-     Some hardly readable symbols with font issues:
-     <ul>
-      <li>in the <em class="label">Keystroke</em> <em>TEXT INPUT</em></li>
-      <li>in the left pane <em class="label">Key Stroke(s) column</em></li>
-      <li>Using variable font breaks vertical alignment in
-      left pane <em class="label">Chord column </em></li>
-      <li>Using fancy font for <em class="label">Keystroke text input</em>
-      is not convenient when dealing with tiny symbols like these:
-      <div style="display:inline; font-size:120%; font-family:'Lucida Console', Monaco, monospace;">
-      <em class="label" style="padding:2px;">'</em>
-      <em class="label" style="padding:2px;">"</em>
-      <em class="label" style="padding:2px;">`</em>
-      euro € 
-     </div>
-      </li>
-     </ul>
-     </li>
-     <li>
-     A display of <em>Chord ORML notation</em> should be updated with each button selection while in edit mode
-     instead of after a click on the <em class="button">Apply</em> button.
-     </li>
-     <li>
-     A session timeout that may ditch unsaved changes ... what's the stress ?
-     </li>
-     <li>
-     Some missing <em>Special Keys</em>:
-     <ul>
-      <li><em class="label">&lt;Space&gt;</em> <i>(currently an invisble blank)</i></li>
-      <li><em class="label">&euro;</em></li>
-      <li><em class="label">...scancode support for more...</em></li>
-     </ul>
-     </li>
-
-    </ul>
-
-    <!-- }}} -->
-    <hr>
-    <!-- the ugly {{{ -->
-    <img style="float:right;" src="images/emoticons/huh.png">
-    <img style="float:right;" src="images/emoticons/huh.png">
-    <br>
-    <b>The ugly</b>
-    <ul>
-     <li><em>Shift</em> <em>Control</em> and <em>Alt</em> modifiers are not sent as keyboard events, the only serve internally to alter the generated scancode. </li>
-    </ul>
-     <ul class="rules"><!-- {{{ -->
-      <li>One of the consequences (&hellip;and there are a bunch of others):
-      <br>You cannot send the <em>Shift</em>, <em>Alt</em> or <em>Control</em> <em>Mouse-Button Event</em>
-      used to adjust a text selection or create a shortcut &hellip;
-      </li>
-     </ul>
-     <!-- }}} -->
-
-    <!-- }}} -->
-<hr>
-    <!-- the other good {{{ -->
-    <img style="float:right;" src="images/emoticons/=).png">
-    <br>
-    <b>The other good</b>
-    <ul style="clear:right;">
-     <li>
-     With all the above, it's a real challenge to get some job done!
-     </li>
-
-    </ul>
-
-    <!-- }}} -->
-
    </div> <!-- }}} -->
 
    <div class="wrap_div" onclick='toggle_div(this, "support");'><img title="collapse" src="images/cursors/left.png">Supported chords</div>
@@ -1325,7 +1322,7 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
     </p>
     <p>
     The best mapping granted by the
-    <i>chords merit rule</i> of the <a class="expander" href="#div_support_3x3" onclick='expand_div(this,"support_3x3");'>3x3 chord sets<span class="wh2">3</span></a>.
+    <i>chords merit rule</i> of the <a class="expander" href="#div_support_3x3" onclick='expand_div(this,"support_3x3");'>3x3 chord sets<span class="wh2">4</span></a>.
     for this pad is <span class="gr"><em>R2</em> 2B </span>.
     </p>
    </div>
@@ -1714,8 +1711,10 @@ O =  ona onh ons   ota oth ots   ora orh ors
      This would give us another full set of 4x4 chords for multi character input.
      </p>
      <p style="font-style:oblique; font-family:'Comic sans ms'">
-     If this would have made clear we were switching between two different input method,
-     using the <em>NUM thumb modifier</em> being so awkward to say the least that
+     If this would have made clear we were switching between two different input methods
+     by using the <em>NUM thumb modifier</em>,
+     moving the thumb from its gripping place
+     appears to be so awkward to say the least that
      it certainly wont improve the input rate.
      </p>
 
