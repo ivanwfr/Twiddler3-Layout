@@ -15,6 +15,15 @@ function toggle_div(el,id) // {{{
 	cache_expanded(div);
 	createCookie("expanded", id, COOKIE_DAYS);
     }
+    else {
+	// collapsing session fold
+	var expanded_cookie = readCookie("expanded");
+	if(expanded_cookie == id) {
+	    eraseCookie("expanded");
+//alert("window.location.pathname=["+window.location.pathname+"]")
+//window.location = window.location.pathname;
+	}
+    }
 
 } // }}}
 function onload_hash() // {{{
@@ -29,7 +38,11 @@ function expand_div(el,id) // {{{
 //alert("expand_div("+id+")");
     set_wrap_div_top_visibility(id);
 
-    if(id=="top") eraseCookie("expanded");
+    if(id=="top") {
+	eraseCookie("expanded");
+	if(window.location != window.location.pathname)
+	    window.location = window.location.pathname;
+    }
 
     var div = document.getElementById("div_"+id);
 //alert("div=["+div+"]")
@@ -62,6 +75,7 @@ function expand_div(el,id) // {{{
 //  if(el) el.style.opacity   = "1.0";
     if(el) el.style.boxShadow = "rgba(  0, 0, 0, 0.3) 0px 0px 20px inset";
 
+    return false; // don't follow expanding anchors
 } // }}}
 
 function set_wrap_div_top_visibility(id) // {{{
@@ -76,6 +90,70 @@ function set_wrap_div_top_visibility(id) // {{{
     var wrap_div_top = document.getElementById("wrap_div_top");
     if(wrap_div_top)
 	wrap_div_top.style.visibility = (id == "top") ? "hidden" : "visible";
+}
+// }}}
+/* OVERLAY POPUP */
+var pop_activate_timeout = null;
+var pop_activate_img     = null;
+var pop_activate_el      = null;
+var pop_activate_ratio   = null;
+function pop_activate(el) //{{{
+{
+    pop_activate_el	 = el;
+    pop_activate_img     = get_child_tagName(pop_activate_el,"IMG");
+    pop_activate_timeout = setTimeout(pop_activate_CB, 500);
+
+    //pop_activate_rescale();
+}
+function pop_activate_rescale() //{{{
+{
+    if(!pop_activate_el) return;
+
+    var top = document.getElementById("top");
+    var pop_activate_ratio = 0.9 * top.clientWidth / pop_activate_el.clientWidth;
+    pop_activate_el.style.transform = "scale("+pop_activate_ratio+","+pop_activate_ratio+")";
+}
+function pop_deactivate(el)
+{
+    if(pop_activate_timeout) clearTimeout(pop_activate_timeout);
+    pop_activate_timeout = null;
+
+    if(el) {
+	if(el == pop_activate_el)
+	    pop_activate_el.style.transform = "scale(1,1)";
+    }
+    pop_activate_el      = null;
+    pop_activate_ratio   = null;
+    pop_activate_img     = null;
+}
+function pop_activate_CB()
+{
+    if(!pop_activate_img) return;
+
+    if(!pop_activate_ratio) pop_activate_rescale();
+
+    pop_activate_img.className
+	= (pop_activate_img.className == "mcc_overlay_active")
+	? "mcc_overlay"
+	: "mcc_overlay_active"
+	;
+    pop_activate_timeout = setTimeout(pop_activate_CB, 500);
+} //}}}
+
+function get_child_tagName(parent, tagName) // {{{
+{
+    if(! parent.children) return null;
+
+    var child = null;
+    for(var i= 0; i < parent.children.length; ++i) {
+	if(parent.children[i].tagName == tagName)
+	    child = parent.children[i];
+	else
+	    child = get_child_tagName(parent.children[i], tagName);
+	if(child)
+	    return child;
+    }
+    return null;
 }
 // }}}
 
@@ -256,11 +334,13 @@ try {
     }
 } catch(ex) {}
 
+//if(value) alert("readCookie("+cName+") return ["+value+"]");
     return value;
 }
 // }}}
 function eraseCookie(cName)// {{{
 {
+//alert("eraseCookie("+cName+")");
     createCookie(cName, "", -1);
 
 }
@@ -794,12 +874,13 @@ window.onload = addListeners;
 
 function addListeners() //{{{
 {
+    window.addEventListener("orientationchange", orientationchange  , false);
+
     MO_el = document.getElementById(MO_id); if(!MO_el) return;
 
     MO_el .addEventListener("mousedown", mouseDown , false);
     window.addEventListener("mouseup"  , mouseUp   , false);
 
-    window.addEventListener("orientationchange", orientationchange  , false);
     MO_el.addEventListener("touchstart", touchstart, false);
     MO_el.addEventListener("touchend"  , touchend  , false);
 
@@ -813,6 +894,9 @@ function orientationchange() //{{{
 } //}}}
 function updateOrientation() //{{{
 {
+    // sync animation
+    pop_activate_ratio = null;
+
     if(!MO_el) return;
 
     MO_cp = getPosition(MO_el);
@@ -828,6 +912,8 @@ function updateOrientation() //{{{
 
 function touchstart(e) //{{{
 {
+    if(!MO_el) return;
+
     MO_cp = getPosition(MO_el);
     sx    = parseInt(e.changedTouches[0].clientX);
     sy    = parseInt(e.changedTouches[0].clientY);
@@ -836,6 +922,8 @@ function touchstart(e) //{{{
 } //}}}
 function touchmove(e) //{{{
 {
+    if(!MO_el) return;
+
     dx               = parseInt(e.changedTouches[0].clientX) - sx;
     dy               = parseInt(e.changedTouches[0].clientY) - sy;
     var x = (MO_cp.x + dx);
@@ -848,12 +936,17 @@ function touchmove(e) //{{{
 } //}}}
 function touchend(e) //{{{
 {
+    if(!MO_el) return;
+
     MO_el.removeEventListener("touchmove", touchmove, false);
     e.preventDefault();
+
 } //}}}
 
 function mouseDown(e) //{{{
 {
+    if(!MO_el) return;
+
     MO_cp = getClickPosition(e);
     MO_el.style.position = "absolute";
     window.addEventListener("mousemove", divMove, true);
@@ -864,6 +957,8 @@ function mouseUp() //{{{
 } //}}}
 function divMove(e) //{{{
 {
+    if(!MO_el) return;
+
     var x = e.clientX - MO_cp.x ;
     var y = e.clientY - MO_cp.y ;
     MO_el.style.left  = x+"px";

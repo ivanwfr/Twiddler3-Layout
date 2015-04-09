@@ -169,6 +169,42 @@
 /* }}} */
 
 /* NAVIGATION */
+/* expander {{{ */
+.expander span {
+    border-radius : 1em; -moz-border-radius :1em; -webkit-border-radius:1em;
+    font-size     : 12px;
+    font-weight   : bold;
+    padding       : 0 2px 0 2px;
+    vertical-align: super;
+}
+.fold_title span {
+    border-radius : 1em; -moz-border-radius :1em; -webkit-border-radius:1em;
+    float:right;
+    font-size     : 12px;
+    padding       : 0 2px 0 2px;
+}
+
+.wh1 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+.wh2 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+.wh3 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+.wh4 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+.wh5 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+.wh6 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+.wh7 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+.wh8 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+
+.wh1  { color: #FA0; background-color:#B33; border:0px solid #666; padding:0 3px 0 3px !important; }
+.wh2  { color: #FF0; background-color:#F33; border:0px solid #666; padding:0 3px 0 3px !important; }
+.wh3  { color: #00F; background-color:#FA0; border:0px solid #666; padding:0 3px 0 3px !important; }
+.wh4  { color: #F00; background-color:#FF0; border:0px solid #666; padding:0 3px 0 3px !important; }
+.wh5  { color: #00F; background-color:#0F0; border:0px solid #666; padding:0 3px 0 3px !important; }
+.wh6  { color: #0F0; background-color:#00F; border:0px solid #666; padding:0 3px 0 3px !important; }
+.wh7  { color: #FF0; background-color:#F0F; border:0px solid #666; padding:0 3px 0 3px !important; }
+.wh8  { color: #FF0; background-color:#AAA; border:0px solid #666; padding:0 3px 0 3px !important; }
+
+.fingers {  color:#400 !important; background-color:#aaffaa !important; border:2px red dotted !important; }
+
+/* }}} */
 /* rules {{{ */
 .rules {
     -moz-border-bottom-left-radius     : 0;
@@ -214,52 +250,42 @@
     color: #fa2;
     background-color:#00f;
 }
-.mcc_overlay {
-     border:1px red solid;
-     background-color:pink;
-     position:relative;
-     box-shadow: rgba(0, 0, 0, 1.0) 0 0.3em 0.3em;
-     opacity:0.9; filter:alpha(opacity= 90);
+/* }}} */
+/* overlay {{{ */
+.popdown_div {
+/*
+    width:100%;
+    height:100%;
+*/
 }
-.mcc_overlay:hover {
+/*
+.popdown_div:hover {
+    -ms-transform: scale(1.5,1.5);	// IE 9
+    -webkit-transform: scale(1.5,1.5);  // Safari
+    transform: scale(1.5,1.5);
+}
+*/
+.mcc_overlay {
+    background-color:pink;
+    border:1px red solid;
+    box-shadow: rgba(0, 0, 0, 1.0) 0 0.3em 0.3em;
+    opacity:0.9; filter:alpha(opacity= 50);
+    position:absolute;
+    src:"data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
+    width:15px; height:15px;
+}
+.mcc_overlay_active {
+    background-color:purple;
+    border:1px green solid;
+    box-shadow: rgba(0, 0, 0, 1.0) 0 0.3em 0.3em;
+    opacity:0.9; filter:alpha(opacity= 90);
+    position:absolute;
+    src:"data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
+    width:15px; height:15px;
+}
+.mcc_overlay_active:hover {
      opacity:0.3; filter:alpha(opacity= 30);
 }
-
-/* }}} */
-/* expander {{{ */
-.expander span {
-    border-radius : 1em; -moz-border-radius :1em; -webkit-border-radius:1em;
-    font-size     : 12px;
-    font-weight   : bold;
-    padding       : 0 2px 0 2px;
-    vertical-align: super;
-}
-.fold_title span {
-    border-radius : 1em; -moz-border-radius :1em; -webkit-border-radius:1em;
-    float:right;
-    font-size     : 12px;
-    padding       : 0 2px 0 2px;
-}
-
-.wh1 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
-.wh2 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
-.wh3 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
-.wh4 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
-.wh5 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
-.wh6 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
-.wh7 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
-.wh8 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
-
-.wh1  { color: #FA0; background-color:#B33; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh2  { color: #FF0; background-color:#F33; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh3  { color: #00F; background-color:#FA0; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh4  { color: #F00; background-color:#FF0; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh5  { color: #00F; background-color:#0F0; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh6  { color: #0F0; background-color:#00F; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh7  { color: #FF0; background-color:#F0F; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh8  { color: #FF0; background-color:#AAA; border:0px solid #666; padding:0 3px 0 3px !important; }
-
-.fingers {  color:#400 !important; background-color:#aaffaa !important; border:2px red dotted !important; }
 
 /* }}} */
 
@@ -372,17 +398,17 @@
 
 /* }}} */
 /* h and v img stripes {{{ */
-.clip_h_hm     { overflow:hidden;     width: 44px;     height: 15px; }
-.clip_h_stripe { overflow:hidden;     width:512px;     height: 55px; }
+.clip_h_hm     { overflow:hidden;     width: 50px;     height: 15px; }
+.clip_h_stripe { overflow:hidden;     width:512px;     height: 55px; margin:0; padding:0 !important; }
 .clip_v_stripe { overflow:hidden;     width: 45px;     height:248px; }
 
 .clip_v_stripe { display:inline-block; margin-right:2px; }
 .clip_v_sep    { display:inline-block; width:2px; }
 
-.clip_img_h1   {                  max-width:512px; margin-left: -10px; margin-top:-45px; }
-.clip_img_h2   {                  max-width:512px; margin-left: -10px; margin-top:-107px; }
-.clip_img_h3   {                  max-width:512px; margin-left: -10px; margin-top:-169px; }
-.clip_img_h4   {                  max-width:512px; margin-left: -10px; margin-top:-232px; }
+.clip_img_h1   {                  max-width:512px; margin-left:     0; margin-top:-29px; }
+.clip_img_h2   {                  max-width:512px; margin-left:     0; margin-top:-91px; }
+.clip_img_h3   {                  max-width:512px; margin-left:     0; margin-top:-160px; }
+.clip_img_h4   {                  max-width:512px; margin-left:     0; margin-top:-223px; }
 
 .clip_img_v1   {                  max-width:512px; margin-left:  -3px; margin-top:-28px; }
 
