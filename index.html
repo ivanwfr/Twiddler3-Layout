@@ -18,6 +18,7 @@
 </head>
 <!-- }}} -->
 <body onload='onload_hash();' id="top">
+<div id="div_log" ondblclick='log();'><pre id="pre_log" title="double click to clear">LOG</pre></div>
 <div class="wrapper">
  <header><!-- {{{ -->
   <h1>Twiddler3-layout</h1>
@@ -1641,12 +1642,26 @@ O =  ona onh ons   ota oth ots   ora orh ors
     <!-- }}} -->
     <!-- mcc_i {{{ -->
     <div class="fold_title" onclick='toggle_div(this, "mcc_i");'>I <span class="wh6">2.4</span></div>
-    <div id="div_mcc_i" class="collapsed">
+    <div id="div_mcc_i" class="collapsed" style="cursor:pointer;" onclick='mcc_animate("mcc_animate_div_i");'>
+
      <img title="I words" style="float:left; margin-left:-48px;" src="images/icons/cogs.png">
-     <div class="popdown_div" onmouseover='pop_activate(this);' onmouseout='pop_deactivate(this);'>
-      <img class='mcc_overlay' style="left:105px; top:17px;">
-      <pre style="width:100%;"><div class="clip_h_stripe"><img class="clip_img_h1" src="images/Cheat_TabSpace_3.png"></div></pre>
+
+     <div id="mcc_animate_div_i" data-mcc="in it ri ai hi is">
+
+      <div id="mcc_i" style="left:111px; top:19px;" class="mcc_overlay"> <img style="margin-left:-107px; margin-top:-45px;" src="images/Cheat_TabSpace_3.png"></div>
+      <div id="mcc_n" style="left:111px; top:31px;" class="mcc_overlay"> <img style="margin-left:-107px; margin-top:-57px;" src="images/Cheat_TabSpace_3.png"></div>
+      <div id="mcc_a" style="left:111px; top:43px;" class="mcc_overlay"> <img style="margin-left:-107px; margin-top:-69px;" src="images/Cheat_TabSpace_3.png"></div>
+
+      <div id="mcc_t" style="left:123px; top:31px;" class="mcc_overlay"> <img style="margin-left:-119px; margin-top:-57px;" src="images/Cheat_TabSpace_3.png"></div>
+      <div id="mcc_h" style="left:123px; top:43px;" class="mcc_overlay"> <img style="margin-left:-119px; margin-top:-69px;" src="images/Cheat_TabSpace_3.png"></div>
+
+      <div id="mcc_r" style="left:135px; top:31px;" class="mcc_overlay"> <img style="margin-left:-131px; margin-top:-57px;" src="images/Cheat_TabSpace_3.png"></div>
+      <div id="mcc_s" style="left:135px; top:43px;" class="mcc_overlay"> <img style="margin-left:-131px; margin-top:-69px;" src="images/Cheat_TabSpace_3.png"></div>
+
+      <pre style="width:100%;"><div class="clip_h_stripe"><img id="img_mcc_i" class="clip_img_h1" src="images/Cheat_TabSpace_3.png"></div></pre>
+
      </div>
+
     </div>
     <!-- }}} -->
    </div>
@@ -1787,8 +1802,19 @@ O =  ona onh ons   ota oth ots   ora orh ors
  <!-- }}} -->
 </div>
 <footer><!-- {{{ -->
- <p>Project maintained by                   <a href="https://github.com/ivanwfr"     target="_blank">ivanwfr</a></p>
- <p>Hosted on <a href="https://pages.github.com/" target="_githubpages">GitHub Pages</a> &ndash; Theme by <a href="https://github.com/orderedlist" target="_blank">orderedlist</a></p>
+ <p>
+ Project
+ <span onclick='logging = logging ? false : true; log();' style='cursor:pointer;' title="script logging on/off">maintained</span>
+ by
+ <a href="https://github.com/ivanwfr"     target="_blank">ivanwfr</a>
+ </p>
+
+ <p>
+ Hosted on <a href="https://pages.github.com/" target="_githubpages">GitHub Pages</a>
+ &ndash; Theme by
+ <a href="https://github.com/orderedlist" target="_blank">orderedlist</a>
+ </p>
+
 </footer>
 <div id="bottom_div">&nbsp;</div>
 <!--[if !IE]><script>fixScale(document);</script><![endif]-->
