@@ -158,7 +158,29 @@ function get_child_tagName(parent, tagName) // {{{
     return null;
 }
 // }}}
+function get_next_child_tagName(parent, current, tagName) // {{{
+{
+    if(!current) return get_child_tagName(parent, tagName);
 
+    log("get_child_tagName("+parent.id+", "+current.id+", "+tagName+")");
+
+    parent = current.parentElement;
+    if(!parent.children) return null;
+    //log("...parent=["+parent.id+"]");
+
+    for(var i= 0; i < parent.children.length-1; ++i) {
+	var child = parent.children[i];
+	if(child.tagName != tagName   ) continue;   // look for same tagName
+	//log("...#"+i+"=["+child.id+"]");
+	if(child.id      != current.id) continue;   // look for current child
+	child = parent.children[i+1];		    // .......take next child
+	if(child.tagName != tagName   ) continue;   // .....with same tagName
+	log("...["+child.id+"]");
+	return child;				    // return next sibling
+    }
+    return null;
+}
+// }}}
 function getPosition(el) { //{{{
     var xPosition = 0;
     var yPosition = 0;
@@ -170,7 +192,6 @@ function getPosition(el) { //{{{
     }
     return { x: xPosition, y: yPosition };
 } //}}}
-
 function get_current_img() // {{{
 {
     var crnt = 0;
@@ -190,87 +211,120 @@ function get_current_img() // {{{
 
 /* ANIMATION */
 //{{{
-var mcc_animate_timeout = null;
+
 var mcc_animate_div     = null;
 var mcc_animate_overlay = null;
 var mcc_animate_ratio   = null;
+var mcc_animate_timeout = null;
 
-function mcc_animate(id)
+function mcc_animate(id)// {{{
 {
-if(mcc_animate_overlay) log("\nmcc_animate(<b>"+id+"</b>)");
-    if(!id && mcc_animate_overlay)  mcc_animate_stop();
+    if(mcc_animate_div) log("\nmcc_animate(<b>"+id+"</b>)");
+    if(!id && mcc_animate_div)  mcc_animate_stop();
     mcc_animate_div		    = document.getElementById(id);
     if(!mcc_animate_div)	    return;
 
     if(mcc_animate_timeout)	    mcc_animate_stop();
     else			    mcc_animate_start();
+
 }
-
-function mcc_animate_start()
+// }}}
+function mcc_animate_start()// {{{
 {
-log("&gt;&gt; mcc_animate_start()");
+    log("&gt;&gt; mcc_animate_start()");
 
-var data_mcc = mcc_animate_div.getAttribute("data-mcc");
-log(mcc_animate_div.id+" data_mcc=["+data_mcc+"]")
+    var data_mcc = mcc_animate_div.getAttribute("data-mcc");
+    log(mcc_animate_div.id+" data_mcc=["+data_mcc+"]");
 
-    mcc_animate_overlay = get_child_tagName(mcc_animate_div,"DIV");
-    mcc_animate_toggle();
+    mcc_animate_step();
     mcc_animate_timeout = setTimeout(mcc_animate_CB, 500);
+
 }
-
-function mcc_animate_stop()
+// }}}
+function mcc_animate_stop()// {{{
 {
-log("|| mcc_animate_stop()");
+    log("|| mcc_animate_stop()");
 
-    if(!mcc_animate_overlay) return;
+    if(!mcc_animate_div) return;
 
-    mcc_animate_off();
-
-    // TODO make these 2 lines atomic
+    // stop animation timer
+    // TODO make these 2 lines atomic to avoid auto refresh
     if(mcc_animate_timeout) clearTimeout(mcc_animate_timeout);
     mcc_animate_timeout = null;
+    // TODO
+
+    // reset all elements style
+    mcc_animate_reset();
+
     mcc_animate_div.style.transform = "scale(1,1)";
     mcc_animate_div     = null;
-    mcc_animate_ratio   = null;
     mcc_animate_overlay = null;
-}
+    mcc_animate_ratio   = null;
 
-function mcc_animate_CB()
+} // }}}
+function mcc_animate_CB()// {{{
 {
-    if(!mcc_animate_timeout) return;		    // thread mutex
-    mcc_animate_toggle();
+    if(!mcc_animate_timeout) return;		    // thread mutex (kindof)
+    mcc_animate_step();
     mcc_animate_timeout = setTimeout(mcc_animate_CB, 500);
-}
 
-function mcc_animate_toggle()
+} // }}}
+function mcc_animate_step()// {{{
 {
     if(!mcc_animate_ratio) mcc_animate_magnify();   // thread shared volatile
-    if(!mcc_animate_overlay) return;
-    if( has_className(mcc_animate_overlay,"mcc_overlay_on") )
-	mcc_animate_off(); // XXX mcc_animate_off();
-    else
-	mcc_animate_on();
-}
+    if(!mcc_animate_div) return;
+/*
+    // current on/off
+    if(mcc_animate_overlay) {
+	if( has_className(mcc_animate_overlay,"mcc_overlay_on") )
+	    mcc_animate_off(mcc_animate_overlay);
+	else
+	    mcc_animate_on(mcc_animate_overlay);
+    }
+*/
+    // next on/off
+    mcc_animate_overlay = get_next_child_tagName(mcc_animate_div, mcc_animate_overlay, "DIV");
+    if(mcc_animate_overlay) {
+	if( has_className(mcc_animate_overlay,"mcc_overlay_on") )
+	    mcc_animate_off(mcc_animate_overlay);
+	else
+	    mcc_animate_on(mcc_animate_overlay);
+    }
 
-function mcc_animate_on()
+} // }}}
+function mcc_animate_on(el)// {{{
 {
-    add_className(mcc_animate_overlay,"mcc_overlay_on");
-}
+    add_className(el,"mcc_overlay_on");
 
-function mcc_animate_off()
+} // }}}
+function mcc_animate_off(el)// {{{
 {
-    del_className(mcc_animate_overlay,"mcc_overlay_on");
-}
+    del_className(el,"mcc_overlay_on");
 
-function mcc_animate_magnify()
+} // }}}
+function mcc_animate_reset()// {{{
 {
-log("   mcc_animate_magnify");
+log("mcc_animate_reset():");
+    if(!mcc_animate_div) return;
+
+    mcc_animate_overlay = null; // pick first
+    do {
+	mcc_animate_overlay = get_next_child_tagName(mcc_animate_div, mcc_animate_overlay, "DIV");
+	if(mcc_animate_overlay)
+	    mcc_animate_off(mcc_animate_overlay);
+    } while(mcc_animate_overlay);
+
+} // }}}
+function mcc_animate_magnify()// {{{
+{
+    log("   mcc_animate_magnify");
     if(!mcc_animate_div) return;
     var top = document.getElementById("top");
     mcc_animate_ratio = 0.9 * top.clientWidth / mcc_animate_div.clientWidth;
     mcc_animate_div.style.transform = "scale("+mcc_animate_ratio+","+mcc_animate_ratio+")";
-log("   mcc_animate_magnify("+top.clientWidth+")");
-}
+    log("   mcc_animate_magnify("+top.clientWidth+")");
+
+} // }}}
 
 //}}}
 
@@ -987,6 +1041,7 @@ window.onload = addListeners;
 function addListeners() //{{{
 {
     window.addEventListener("orientationchange", orientationchange  , false);
+    window.addEventListener("resize"           , windowsizechange   , false);
 
     MO_el = document.getElementById(MO_id); if(!MO_el) return;
 
@@ -1000,12 +1055,19 @@ function addListeners() //{{{
 
 function orientationchange() //{{{
 {
-    if(!MO_el) return;
+log("orientationchange:");
+    setTimeout(updateWindowGeometry, 200); // wait for new window geometry
 
-    setTimeout(updateOrientation, 200); // wait for new window geometry
 } //}}}
-function updateOrientation() //{{{
+function windowsizechange() //{{{
 {
+log("windowsizechange:");
+    setTimeout(updateWindowGeometry, 200); // wait for new window geometry
+
+} //}}}
+function updateWindowGeometry() //{{{
+{
+log("updateWindowGeometry:");
     // sync animation
     mcc_animate_ratio = null;
 

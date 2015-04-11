@@ -272,10 +272,12 @@
     overflow:hidden;
     position:absolute;
     width: 10px; height:10px;
+    visibility:hidden;
 }
 .mcc_overlay_on {
     background-color:purple;
     border:1px green solid;
+    visibility:visible;
 }
 .mcc_overlay img {
     position:absolute;
