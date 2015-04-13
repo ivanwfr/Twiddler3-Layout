@@ -261,7 +261,7 @@ function mcc_animate_start()// {{{
     }
 
     mcc_animate_step();
-    mcc_animate_timeout = setTimeout(mcc_animate_CB, 1000);
+    mcc_animate_timeout = setTimeout(mcc_animate_CB, 1250);
 
 }
 // }}}
@@ -290,7 +290,7 @@ function mcc_animate_CB()// {{{
 {
     if(!mcc_animate_timeout) return;		    // thread mutex (kindof)
     mcc_animate_step();
-    mcc_animate_timeout = setTimeout(mcc_animate_CB, 1000);
+    mcc_animate_timeout = setTimeout(mcc_animate_CB, 1250);
 
 } // }}}
 function mcc_animate_step()// {{{
@@ -327,7 +327,7 @@ function mcc_animate_dislpay_word(word_index)// {{{
     for(var i=0; i<word.length; ++i) {
 	mcc_animate_letters += word[i];
     }
-    if(mcc_animate_letters) setTimeout(mcc_animate_letter_CB, 100);
+    if(mcc_animate_letters) setTimeout(mcc_animate_letter_CB, 250);
 
 } // }}}
 function mcc_animate_letter_CB()// {{{
@@ -342,7 +342,7 @@ function mcc_animate_letter_CB()// {{{
 
     // more letters
     mcc_animate_letters = mcc_animate_letters.substring(1);
-    if(mcc_animate_letters) setTimeout(mcc_animate_letter_CB, 100);
+    if(mcc_animate_letters) setTimeout(mcc_animate_letter_CB, 250);
 
 } // }}}
 function mcc_animate_on(el)// {{{
