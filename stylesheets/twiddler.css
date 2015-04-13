@@ -265,25 +265,45 @@
     src:"data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
 */
 .mcc_overlay {
-    background-color:pink;
-    border:1px red solid;
+    //background-color:pink;
+    border:1px white solid;
     box-shadow: rgba(0, 0, 0, 1.0) 0 2px 2px;
     max-width:512px;
     overflow:hidden;
     position:absolute;
-    width: 10px; height:10px;
+    width: 11px; height:11px;
     visibility:hidden;
 }
+@keyframes mcc_overlay_on {
+    from { background-color:pink;   }
+    to   { background-color:purple; }
+}
+@-webkit-keyframes mcc_overlay_on {
+    from { opacity:0.1; filter:alpha(opacity= 10); }
+    to   { opacity:1.0; filter:alpha(opacity=100); }
+}
+
 .mcc_overlay_on {
-    background-color:purple;
-    border:1px green solid;
+    //  background-color:purple;
+    // border:1px green solid;
     visibility:visible;
+    -webkit-animation-duration: 250ms;		/* Chrome, Safari, Opera */
+    -webkit-animation-name    : mcc_overlay_on; /* Chrome, Safari, Opera */
+    animation-duration        : 250ms;
+    animation-name            : mcc_overlay_on;
+
 }
 .mcc_overlay img {
     position:absolute;
     max-width:512px;
 }
 #img_mcc_i {
+    opacity:0.2; filter:alpha(opacity= 20);
+}
+#img_mcc_e {
+    opacity:0.2; filter:alpha(opacity= 20);
+}
+#img_mcc_o {
     opacity:0.2; filter:alpha(opacity= 20);
 }
 

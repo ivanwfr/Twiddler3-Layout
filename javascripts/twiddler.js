@@ -158,11 +158,22 @@ function get_child_tagName(parent, tagName) // {{{
     return null;
 }
 // }}}
+function get_child_id(parent, id) //{{{
+{
+    for(var i= 0; i < parent.children.length-1; ++i) {
+	var child = parent.children[i];
+	if(child.id == id) {
+	    log("get_child_id("+parent.id+", "+id+") return ["+child.id+"]");
+	    return child;
+	}
+    }
+    log("get_child_id("+parent.id+", "+id+") return null");
+    return null;
+}
+//}}}
 function get_next_child_tagName(parent, current, tagName) // {{{
 {
     if(!current) return get_child_tagName(parent, tagName);
-
-    log("get_child_tagName("+parent.id+", "+current.id+", "+tagName+")");
 
     parent = current.parentElement;
     if(!parent.children) return null;
@@ -175,9 +186,10 @@ function get_next_child_tagName(parent, current, tagName) // {{{
 	if(child.id      != current.id) continue;   // look for current child
 	child = parent.children[i+1];		    // .......take next child
 	if(child.tagName != tagName   ) continue;   // .....with same tagName
-	log("...["+child.id+"]");
+//	log("get_child_tagName("+parent.id+", "+current.id+", "+tagName+") return ["+child.id+"]");
 	return child;				    // return next sibling
     }
+//  log("get_child_tagName("+parent.id+", "+current.id+", "+tagName+") return null");
     return null;
 }
 // }}}
@@ -216,16 +228,24 @@ var mcc_animate_div     = null;
 var mcc_animate_overlay = null;
 var mcc_animate_ratio   = null;
 var mcc_animate_timeout = null;
+var mcc_animate_words   = null;
+var mcc_animate_letters = null;
+var mcc_animate_word_num;
 
 function mcc_animate(id)// {{{
 {
-    if(mcc_animate_div) log("\nmcc_animate(<b>"+id+"</b>)");
-    if(!id && mcc_animate_div)  mcc_animate_stop();
-    mcc_animate_div		    = document.getElementById(id);
-    if(!mcc_animate_div)	    return;
+    if(mcc_animate_div) {
+	log("\nmcc_animate(<b>"+id+"</b>)");
+	var same_div = (id == mcc_animate_div.id);
+	if(mcc_animate_div)  mcc_animate_stop();
+	if(same_div)		return;
+    }
 
-    if(mcc_animate_timeout)	    mcc_animate_stop();
-    else			    mcc_animate_start();
+    if(!id)			return;
+
+    mcc_animate_div		= document.getElementById(id);
+    if(!mcc_animate_div)	return;
+    mcc_animate_start();
 
 }
 // }}}
@@ -234,10 +254,14 @@ function mcc_animate_start()// {{{
     log("&gt;&gt; mcc_animate_start()");
 
     var data_mcc = mcc_animate_div.getAttribute("data-mcc");
-    log(mcc_animate_div.id+" data_mcc=["+data_mcc+"]");
+    if(data_mcc) {
+	mcc_animate_words = data_mcc.split(" ");
+	log(mcc_animate_div.id+" "+mcc_animate_words.length+" words ["+data_mcc+"]");
+	mcc_animate_word_num = 0;
+    }
 
     mcc_animate_step();
-    mcc_animate_timeout = setTimeout(mcc_animate_CB, 500);
+    mcc_animate_timeout = setTimeout(mcc_animate_CB, 1000);
 
 }
 // }}}
@@ -266,34 +290,64 @@ function mcc_animate_CB()// {{{
 {
     if(!mcc_animate_timeout) return;		    // thread mutex (kindof)
     mcc_animate_step();
-    mcc_animate_timeout = setTimeout(mcc_animate_CB, 500);
+    mcc_animate_timeout = setTimeout(mcc_animate_CB, 1000);
 
 } // }}}
 function mcc_animate_step()// {{{
 {
+    log(".. mcc_animate_step()");
+
     if(!mcc_animate_ratio) mcc_animate_magnify();   // thread shared volatile
     if(!mcc_animate_div) return;
-/*
-    // current on/off
-    if(mcc_animate_overlay) {
-	if( has_className(mcc_animate_overlay,"mcc_overlay_on") )
-	    mcc_animate_off(mcc_animate_overlay);
-	else
-	    mcc_animate_on(mcc_animate_overlay);
+
+    if(mcc_animate_words) {
+	mcc_animate_dislpay_word(mcc_animate_word_num);
+	mcc_animate_word_num =  (mcc_animate_word_num+1) % mcc_animate_words.length;
     }
-*/
-    // next on/off
-    mcc_animate_overlay = get_next_child_tagName(mcc_animate_div, mcc_animate_overlay, "DIV");
-    if(mcc_animate_overlay) {
-	if( has_className(mcc_animate_overlay,"mcc_overlay_on") )
-	    mcc_animate_off(mcc_animate_overlay);
-	else
-	    mcc_animate_on(mcc_animate_overlay);
+
+} // }}}
+function mcc_animate_dislpay_word(word_index)// {{{
+{
+    log(".. mcc_animate_dislpay_word("+word_index+")");
+    if(!mcc_animate_words) return;
+    var word = trim(mcc_animate_words[word_index]);
+    if(!word) return;
+
+    var el = document.getElementById(mcc_animate_div.id+"_caption");
+    if(!el) return;
+
+//  var msg = "step #"+word_index+" ["+word+"]";
+    var msg = word;
+    log("mcc_animate_dislpay_word("+word_index+"):"+msg);
+    el.innerHTML = msg;
+
+    mcc_animate_reset();
+
+    mcc_animate_letters = "";
+    for(var i=0; i<word.length; ++i) {
+	mcc_animate_letters += word[i];
     }
+    if(mcc_animate_letters) setTimeout(mcc_animate_letter_CB, 100);
+
+} // }}}
+function mcc_animate_letter_CB()// {{{
+{
+    // next letter
+    if(!mcc_animate_letters) return;
+    var letter = mcc_animate_letters.substring(0,1);
+    if(!letter) return;
+    log("mcc_animate_letter_CB("+letter+"):");
+    var el = get_child_id(mcc_animate_div, "mcc_"+letter);
+    if(el) add_className(el,"mcc_overlay_on");
+
+    // more letters
+    mcc_animate_letters = mcc_animate_letters.substring(1);
+    if(mcc_animate_letters) setTimeout(mcc_animate_letter_CB, 100);
 
 } // }}}
 function mcc_animate_on(el)// {{{
 {
+log("mcc_animate_on("+el.id+"):");
     add_className(el,"mcc_overlay_on");
 
 } // }}}
