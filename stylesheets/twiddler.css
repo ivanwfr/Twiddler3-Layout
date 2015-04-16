@@ -144,6 +144,11 @@
 
 /* }}} */
 
+.extra_2grams {
+    color:red !important;
+    background-color:yellow !important;
+}
+
 /* CARDS */
 /* pre_card {{{ */
 .pre_card {

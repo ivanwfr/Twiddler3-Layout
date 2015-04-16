@@ -112,7 +112,7 @@
   and visually related ones like
   <a class="expander" href="#div_applying_rules_struct_signs" onclick='return expand_div(this,"applying_rules_struct_signs");'>Signs<span class="wh5">3</span></a>,
   <a class="expander" href="#div_applying_rules_quote_punct"  onclick='return expand_div(this,"applying_rules_quote_punct");' >Quote &amp; Punctuation<span class="wh5">4</span></a>
-  should give us the best possible mnemonic-friendly layout, provided good enough rules have been crafted along the way.
+  should give us the best possible mnemonics-friendly layout, provided good enough rules have been crafted along the way.
 
   </p> <!-- }}} -->
   <p><!-- ...MCC {{{ -->
@@ -247,8 +247,7 @@
 0     0r00 = "i"
 0     00r0 = "n"
 0     000r = "a"
-
-0     0r0r = "ai"
+0     0r0r = "<em class="extra_2grams">ai</em>"
 0     0r0m = "hi"
 0     0r0l = "is"
 0     0rr0 = "in"
@@ -260,21 +259,21 @@
 0     0mr0 = "en"
 0     0mm0 = "te"
 0     0ml0 = "er"
-0     0l0r = "oa"
-0     0l0m = "ho"
-0     0l0l = "so"
+0     0l0r = "<em class="extra_2grams">oa</em>"
+0     0l0m = "<em class="extra_2grams">ho</em>"
+0     0l0l = "<em class="extra_2grams">so</em>"
 0     0lr0 = "on"
 0     0lm0 = "to"
 0     0ll0 = "or"
 0     00rr = "an"
-0     00rm = "hn"
-0     00rl = "ns"
+0     00rm = "<em class="extra_2grams">hn</em>"
+0     00rl = "<em class="extra_2grams">ns</em>"
 0     00mr = "at"
 0     00mm = "th"
 0     00ml = "st"
 0     00lr = "ar"
-0     00lm = "hr"
-0     00ll = "rs"
+0     00lm = "<em class="extra_2grams">hr</em>"
+0     00ll = "<em class="extra_2grams">rs</em>"
     </pre>
    </div><!-- }}} -->
    <!-- tabspace.4 {{{ -->
@@ -1587,11 +1586,11 @@ y     al     all     ight     under     etween     osition     possible     nfor
 b     <em>ar</em>     <span class="nb">ons</span>     sion     ssion     betwee     ization     children     universit
 v     <em>st</em>     nce     ever     ectio     differ     fferent     elopment     following
 k     <em>to</em>     men     ical     catio     icatio     without     velopmen     experienc
-x     nt     <span class="nb">ith</span>     they     latio     people     ernment     developm     stitution
+x     nt   &rarr; <span class="nb" style="">ith</span>     they     latio     people     ernment     developm     stitution
 j     ng     ted     inte     about     iffere     vernmen     evelopme     xperience
 q     se     <span class="nb">ers</span>     ough     count     fferen     overnme     conditio     education
 z     ha     pro     ance     ments     struct     governm     ondition     roduction
-      as     <span class="nb">thi</span>     were     rough     action     ulation     mportant     niversity
+      as   &rarr; <span class="nb">thi</span>     were     rough     action     ulation     mportant     niversity
       ou     wit     tive     ative     person     another     rticular     therefore
       io     <span class="nb">are</span>     over     prese     eneral     importa     particul     nstitutio
       le     ess     ding     feren     system     interes     epresent     ification
@@ -1627,24 +1626,24 @@ z     ha     pro     ance     ments     struct     governm     ondition     rodu
 <pre style="float:left; width:7em; text-align:center; margin:1ex;">
 <em>Col 2</em>
 Px6
-<em><u>i</u>n</em> <em>t<u>e</u></em> <em><u>o</u>r</em>
-<em><u>a</u>n</em> <em>t<u>h</u></em> <em>r<u>s</u></em>
+<em>in</em> <em>te</em> <em>or</em>
+<em>an</em> <em>th</em> <em>rs</em>
 </pre>
 
 <pre style="float:left; width:7em; text-align:left; margin:1ex;">
 <em>Col 3-5</em>
   P+5
  <em class="fingers">I</em>
- <em><u>i</u>n</em> <em><u>i</u>t</em> <em>r<u>i</u></em>
- <em>a<u>i</u></em> <em>h<u>i</u></em> <em><u>i</u>s</em>
+ <em>in</em> <em>it</em> <em>ri</em>
+ <em class="extra_2grams">ai</em> <em>hi</em> <em>is</em>
 
      <em class="fingers">E</em>
- <em><u>e</u>n</em> <em>t<u>e</u></em> <em><u>e</u>r</em>
- <em><u>e</u>a</em> <em>h<u>e</u></em> <em><u>e</u>s</em>
+ <em>en</em> <em>te</em> <em>er</em>
+ <em>ea</em> <em>he</em> <em>es</em>
 
 	 <em class="fingers">O</em>
- <em><u>o</u>n</em> <em>t<u>o</u></em> <em><u>o</u>r</em>
- <em><u>o</u>a</em> <em>h<u>o</u></em> <em><u>o</u>s</em>
+ <em>on</em> <em>to</em> <em>or</em>
+ <em class="extra_2grams">oa</em> <em class="extra_2grams">ho</em> <em class="extra_2grams">so</em>
 </pre>
 
 <pre style="float:left; width:4em; text-align:left; margin:1ex;">
@@ -1654,35 +1653,46 @@ Px6
 
 </pre>
 
-<pre style="float:left; width:15em; text-align:left; margin:1ex;">
+<pre style="float:left; width:15em; text-align:center; margin:1ex;">
 <em>Col 9-11</em>
 P+6
 <em class="fingers">N</em>         <em class="fingers">T</em>          <em class="fingers">R</em>
-<em>a<u>n</u></em><em>h<u>n</u></em><em><u>n</u>s</em> <em>a<u>t</u></em><em><u>t</u>h</em><em>s<u>t</u></em> <em>a<u>r</u></em><em>h<u>r</u></em><em><u>r</u>s</em>
+<em>an</em><em class="extra_2grams">hn</em><em class="extra_2grams">ns</em> <em>at</em><em>th</em><em>st</em> <em>ar</em><em class="extra_2grams">hr</em><em class="extra_2grams">rs</em>
 </pre>
 
-<hr style="clear:left;">
-<pre>
+<pre style="clear:left;"><input
+type="text"
+size="3"
+onmouseover='this.focus();'
+onkeydown ='mcc_key(event,this);'
+style="
+background-color:black;
+border:0;
+color:#dd4;
+font-size:300%;
+margin-right:1em;
+text-align:center;
+width:3em;
+font-family:monospace;
+">
 <img title="WIP" style="float:right;" src="images/emoticons/WIP.png">
+<em>Col 6-8</em> T+2
+<i>&hellip;most are unused in TabSpace 2.1</i> but 8 are <span class="nb">3grams</span>:
 
-COL6-8 T+2 <i>(most are unused in TabSpace 2.1)</i>
-... 8 are <span class="nb">3grams</span>:
 i =  <em>ain</em> inh ins   <span class="nb">ati</span> <span class="nb">thi</span> <span class="nb">ist</span>   ira irh irs
 e =  ena enh ens   eta <em>the</em> <span class="nb">est</span>   <span class="nb">are</span> <span class="nb">her</span> <span class="nb">ers</span>
 o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
 
-<u>Note:</u>
-<i>
-TabSpace <em>ai</em> bigram not in 2grams
-TabSpace <em>hn</em> bigram not in 2grams
-TabSpace <em>ho</em> bigram not in 2grams
-TabSpace <em>hr</em> bigram not in 2grams
-TabSpace <em>ns</em> bigram not in 2grams
-TabSpace <em>oa</em> bigram not in 2grams
-TabSpace <em>os</em> bigram not in 2grams
-TabSpace <em>rs</em> bigram not in 2grams
-</i>
+&hellip;and we have to make a choice between <span class="nb">ith</span> and <span class="nb">thi</span>
 
+<i>
+<b>TabSpace bigrams not in <span class="nb">2grams</span>:</b>
+ <em class="extra_2grams">ai</em>
+ <em class="extra_2grams">hn</em> <em class="extra_2grams">ho</em> <em class="extra_2grams">hr</em>
+ <em class="extra_2grams">ns</em>
+ <em class="extra_2grams">oa</em> <em class="extra_2grams">so</em>
+ <em class="extra_2grams">rs</em>
+</i>
 </pre>
 
       </li>

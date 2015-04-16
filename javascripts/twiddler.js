@@ -465,6 +465,13 @@ function fold_onclick(num, url) { // {{{
 
 /* KEYBOARD */
 //{{{
+function mcc_key(e, el) { //{{{
+    var charCode = (e.keyCode) ? e.keyCode : e.which;
+    if(charCode ==   27)
+	el.value = "";
+    else if(el.value.length > 2)
+	el.value = "";
+} // }}}
 var KEY_TIC = 0;
 function fold_keydown(e, el) { //{{{
     // :!start explorer "http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes"
