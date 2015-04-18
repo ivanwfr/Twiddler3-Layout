@@ -465,13 +465,23 @@ function fold_onclick(num, url) { // {{{
 
 /* KEYBOARD */
 //{{{
+var mcc_key_timeout = null;
+var mcc_key_el	    = null;
 function mcc_key(e, el) { //{{{
-    var charCode = (e.keyCode) ? e.keyCode : e.which;
-    if(charCode ==   27)
-	el.value = "";
-    else if(el.value.length > 2)
-	el.value = "";
+//  var charCode = (e.keyCode) ? e.keyCode : e.which;
+//  if(charCode == 27)      el.value = "";
+//  if(el.value.length > 2) el.value = "";
+
+    fold_keydown(e, el);
+
+    // delayed clear
+    if(mcc_key_timeout) clearTimeout(mcc_key_timeout);
+    mcc_key_el = el;
+    mcc_key_timeout = setTimeout(mcc_key_CB, 500);
 } // }}}
+function mcc_key_CB() { //{{{
+    if(mcc_key_el) mcc_key_el.value = ""
+} //}}}
 var KEY_TIC = 0;
 function fold_keydown(e, el) { //{{{
     // :!start explorer "http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes"
@@ -912,6 +922,7 @@ function fold_keydown(e, el) { //{{{
 	//}}}
     }
     //}}}
+    return value;
 } // }}}
 function fold_keypress(e,el) { //{{{
 //    var el = document.getElementById("fold_pane1");
