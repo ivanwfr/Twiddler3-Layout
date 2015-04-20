@@ -491,7 +491,7 @@ function mcc_key(e, el) { //{{{
     // display timings + key
     if(!mcc_key_el_hist) mcc_key_el_hist = document.getElementById("mcc_key_input_hist");
     if( mcc_key_el_hist) {
-	var char_html = "<span class='mcc_hist_char'>"+value+"</span>";
+	var char_html = "<em class='mcc_hist_char'>"+value+"</em>";
 	if(!mcc_prev_time) {
 	    mcc_key_el_hist.innerHTML  = char_html;
 	}
@@ -506,9 +506,12 @@ function mcc_key(e, el) { //{{{
 	    else if(ms < 150)	time_class= "wh5";
 	    else if(ms < 200)	time_class= "wh6";
 	    else if(ms < 250)	time_class= "wh7";
-	    else if(ms < 300)	time_class= "wh8";
+	    else if(ms < 300)	time_class= "wh7";
+	    else		time_class= "oo";
 
-	    var time_html = "<span class='"+time_class+"'>"+ms+"ms</span>";
+	    var time_html = (ms > 500)
+		? "<br>"
+		: "<span class='"+time_class+"'>"+ms+"ms</span>";
 	    mcc_key_el_hist.innerHTML += " "+time_html+" "+char_html;
 	}
     }

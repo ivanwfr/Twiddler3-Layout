@@ -292,6 +292,7 @@
 }
 .mcc_hist_char {
     font-weight:bold;
+    font-size:150% !important;
 }
 
 .rotated_90 {
