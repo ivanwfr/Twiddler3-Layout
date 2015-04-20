@@ -1661,8 +1661,18 @@ P+6
 <em>an</em><em class="extra_2grams">hn</em><em class="extra_2grams">ns</em> <em>at</em><em>th</em><em>st</em> <em>ar</em><em class="extra_2grams">hr</em><em class="extra_2grams">rs</em>
 </pre>
 
-<pre style="clear:left;"><input
+<div style="
+ display:inline;
+ width:100%;
+ ">
+<div style="
+width:85%;
+ float:left;
+">
+<!-- mcc_key_input {{{ -->
+<input
 type="text"
+id='mcc_key_input'
 size="3"
 onmouseover='this.focus();'
 onkeydown ='mcc_key(event,this);'
@@ -1671,10 +1681,48 @@ background-color:black;
 border:0;
 color:#dd4;
 font-family:monospace;
-font-size:300%;
-text-align:center;
+font-size:400%;
+text-align:left;
 width:100%;
+float:left;
 ">
+<!-- }}} -->
+<!-- mcc_key_input_hist {{{ -->
+<div
+id='mcc_key_input_hist'
+style="
+background-color:black !important;
+border:1px red dotted  !important;
+color:#4dd;
+font-family:monospace;
+font-size:100%;
+text-align:left;
+width:100%;
+clear:left;
+-moz-user-select:-moz-none; -ms-user-select:none; -webkit-user-select :none;
+">
+<i>Escape to clear</i>
+</div>
+<!-- }}} -->
+</div>
+<!-- mcc_key_delay {{{ -->
+<div style="
+text-align:right;
+float:right;
+"
+title="clear timer"
+id="buttons_parent_div"
+>
+Clear timer<br>
+<input style="width:100%;" value="500ms" type="button" onclick="mcc_key_set_delay(this, 500);"><br>
+<input style="width:100%;" value="1s"    type="button" onclick="mcc_key_set_delay(this,1000);"><br>
+<input style="width:100%;" value="2s"    type="button" onclick="mcc_key_set_delay(this,2000);"><br>
+<input style="width:100%;" value="OFF"   type="button" onclick="mcc_key_set_delay(this,   0);"><br>
+</div>
+<!-- }}} -->
+</div>
+
+<pre style="clear:both;">
 <img title="WIP" style="float:right;" src="images/emoticons/WIP.png">
 <em>Col 6-8</em> T+2
 <i>&hellip;most are unused in TabSpace 2.1</i> but 8 are <span class="nb">3grams</span>:

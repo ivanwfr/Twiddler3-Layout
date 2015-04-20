@@ -177,19 +177,18 @@ function get_next_child_tagName(parent, current, tagName) // {{{
 
     parent = current.parentElement;
     if(!parent.children) return null;
-    //log("...parent=["+parent.id+"]");
 
+    var past_current = false;
     for(var i= 0; i < parent.children.length-1; ++i) {
 	var child = parent.children[i];
-	if(child.tagName != tagName   ) continue;   // look for same tagName
-	//log("...#"+i+"=["+child.id+"]");
-	if(child.id      != current.id) continue;   // look for current child
-	child = parent.children[i+1];		    // .......take next child
-	if(child.tagName != tagName   ) continue;   // .....with same tagName
-//	log("get_child_tagName("+parent.id+", "+current.id+", "+tagName+") return ["+child.id+"]");
-	return child;				    // return next sibling
+	if(!past_current) {
+	    if(child == current)	    past_current = true;    // look for current child
+	} else {
+	    if(child.tagName != tagName)    continue;		    // with same tagName
+	    else			    return child;	    // return next sibling
+	}
     }
-//  log("get_child_tagName("+parent.id+", "+current.id+", "+tagName+") return null");
+
     return null;
 }
 // }}}
@@ -465,22 +464,86 @@ function fold_onclick(num, url) { // {{{
 
 /* KEYBOARD */
 //{{{
-var mcc_key_timeout = null;
 var mcc_key_el	    = null;
+var mcc_key_el_hist = null;
+var mcc_key_timeout = null;
+var mcc_prev_time   = 0;
+var mcc_this_time   = 0;
+var mcc_key_delay   = 500;
 function mcc_key(e, el) { //{{{
-//  var charCode = (e.keyCode) ? e.keyCode : e.which;
-//  if(charCode == 27)      el.value = "";
-//  if(el.value.length > 2) el.value = "";
 
-    fold_keydown(e, el);
+    // clear (by user)
+    var charCode = (e.keyCode) ? e.keyCode : e.which;
+    if(charCode == 27) { mcc_key_clear(); return; }
 
-    // delayed clear
+    // timer
+    mcc_this_time = new Date().getTime();
+
+    // key
+    value = fold_keydown(e, el);
+
+    // retrigger clear timeout
     if(mcc_key_timeout) clearTimeout(mcc_key_timeout);
     mcc_key_el = el;
-    mcc_key_timeout = setTimeout(mcc_key_CB, 500);
+    if(mcc_key_delay)
+	mcc_key_timeout = setTimeout(mcc_key_clear_CB, mcc_key_delay);
+
+    // display timings + key
+    if(!mcc_key_el_hist) mcc_key_el_hist = document.getElementById("mcc_key_input_hist");
+    if( mcc_key_el_hist) {
+	var char_html = "<span class='mcc_hist_char'>"+value+"</span>";
+	if(!mcc_prev_time) {
+	    mcc_key_el_hist.innerHTML  = char_html;
+	}
+	else {
+	    time_class                    = "mcc_hist_time";
+
+	    var ms        = (mcc_this_time - mcc_prev_time);
+	    if     (ms <  50)	time_class= "wh1";
+	    else if(ms <  75)	time_class= "wh2";
+	    else if(ms < 100)	time_class= "wh3";
+	    else if(ms < 125)	time_class= "wh4";
+	    else if(ms < 150)	time_class= "wh5";
+	    else if(ms < 200)	time_class= "wh6";
+	    else if(ms < 250)	time_class= "wh7";
+	    else if(ms < 300)	time_class= "wh8";
+
+	    var time_html = "<span class='"+time_class+"'>"+ms+"ms</span>";
+	    mcc_key_el_hist.innerHTML += " "+time_html+" "+char_html;
+	}
+    }
+
+    // wait for next input
+    mcc_prev_time = mcc_this_time;
+
 } // }}}
-function mcc_key_CB() { //{{{
-    if(mcc_key_el) mcc_key_el.value = ""
+function mcc_key_clear_CB() { //{{{
+    if(mcc_key_el     ) mcc_key_el.value          = "";
+    mcc_prev_time = 0;
+} //}}}
+function mcc_key_clear() { //{{{
+    if(mcc_key_el     ) mcc_key_el.value          = "";
+    if(mcc_key_el_hist) mcc_key_el_hist.innerHTML = "";
+    mcc_prev_time = 0;
+} //}}}
+function mcc_key_set_delay(el, ms) { //{{{
+    mcc_key_delay = ms;
+    if(mcc_key_el     ) mcc_key_el.value          = "";
+    if(mcc_key_el_hist) mcc_key_el_hist.innerHTML = "";
+    mcc_prev_time = 0;
+
+    var button = null; // pick first delay-button
+    do {
+	button = get_next_child_tagName(el.parentElement, button, "INPUT");
+	if(!button) break;
+	if(button == el)    button.style.border= "1px red dotted";
+	else		    button.style.border= "0";
+    } while(button);
+
+    // mcc_key_el + mcc_key_el_hist
+    if(mcc_key_el_hist) mcc_key_el_hist.innerHTML = "<i>Escape to clear</i>";
+    if(mcc_key_el) mcc_key_el.focus();
+
 } //}}}
 var KEY_TIC = 0;
 function fold_keydown(e, el) { //{{{
@@ -824,15 +887,15 @@ function fold_keydown(e, el) { //{{{
     }
     //}}}
     //}}}
+    // KEY-VALUE {{{
+    if(v==" ") v = "<SPACE>";
+    v = v.replace(/&/g,"&amp;"); // ...must be first!
+    v = v.replace(/</g, "&lt;");
+    v = v.replace(/>/g, "&gt;");
+
+    //}}}
     // TRANSCRIPT {{{
     if(transcript) {
-	// KEY-VALUE {{{
-	if(v==" ") v = "<SPACE>";
-	v = v.replace(/&/g,"&amp;"); // ...must be first!
-	v = v.replace(/</g, "&lt;");
-	v = v.replace(/>/g, "&gt;");
-
-	//}}}
 	// KEY-STROKE  {{{
 	var k;
 	if     (controlled_stroke != "") k = controlled_stroke;
@@ -922,7 +985,7 @@ function fold_keydown(e, el) { //{{{
 	//}}}
     }
     //}}}
-    return value;
+    return v;
 } // }}}
 function fold_keypress(e,el) { //{{{
 //    var el = document.getElementById("fold_pane1");
@@ -1041,8 +1104,8 @@ function show_img(num) // {{{
 } // }}}
 function keypress(e) // {{{
 {
-    var keycode = (e.keyCode) ? e.keyCode : e.which;
-    var c       = String.fromCharCode(keycode);
+    var charCode = (e.keyCode) ? e.keyCode : e.which;
+    var c       = String.fromCharCode(charCode);
 
     if(     c == 'a') browse_img(-1);
     else if(c == 'd') browse_img( 1);
