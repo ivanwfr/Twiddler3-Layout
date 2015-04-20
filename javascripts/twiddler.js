@@ -540,7 +540,7 @@ function mcc_key_set_delay(el, ms) { //{{{
 	else		    button.style.border= "0";
     } while(button);
 
-    // mcc_key_el + mcc_key_el_hist
+    // mcc_key_el and mcc_key_el_hist
     if(mcc_key_el_hist) mcc_key_el_hist.innerHTML = "<i>Escape to clear</i>";
     if(mcc_key_el) mcc_key_el.focus();
 
