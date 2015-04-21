@@ -60,7 +60,7 @@
   this is a thorough description of a complementary survey.
   <br>
   <span style="float:right;">
-   &hellip;and here are some <a class="expander" href="#div_references" onclick='return expand_div(this,"references");'><i>useful links<span class="wh8">&hellip;</span></i></a>
+   &hellip;and here are some <a class="expander" href="#div_references" onclick='return expand_div(this,"references");'><i>useful links<span class="wh9">&hellip;</span></i></a>
   </span>
   <br style="clear right;">
 
@@ -132,6 +132,10 @@
   <p><!-- ...cheatsheets {{{ -->
   <a class="expander" href="#div_cheat_sheet" onclick='return expand_div(this,"cheat_sheet");'>Cheat Sheets<span class="wh7">&hellip;</span></a>
   should make enough sense to account for the usefulness of this study.
+  </p> <!-- }}} -->
+  <p><!-- ...mcc_input {{{ -->
+  <a class="expander" href="#div_mcc_input" onclick='return expand_div(this,"mcc_input");'>Chord input field<span class="wh8">&hellip;</span></a>
+  may be used to check your current chord set.
   </p> <!-- }}} -->
   <p><!-- ...contributions {{{ -->
   <b>Contributions are welcome&hellip;</b>
@@ -247,7 +251,7 @@
 0     0r00 = "i"
 0     00r0 = "n"
 0     000r = "a"
-0     0r0r = "<em class="extra_2grams">ai</em>"
+0     0r0r = "<em class="extra_ngrams">ai</em>"
 0     0r0m = "hi"
 0     0r0l = "is"
 0     0rr0 = "in"
@@ -259,21 +263,21 @@
 0     0mr0 = "en"
 0     0mm0 = "te"
 0     0ml0 = "er"
-0     0l0r = "<em class="extra_2grams">oa</em>"
-0     0l0m = "<em class="extra_2grams">ho</em>"
-0     0l0l = "<em class="extra_2grams">so</em>"
+0     0l0r = "<em class="extra_ngrams">oa</em>"
+0     0l0m = "<em class="extra_ngrams">ho</em>"
+0     0l0l = "<em class="extra_ngrams">so</em>"
 0     0lr0 = "on"
 0     0lm0 = "to"
 0     0ll0 = "or"
 0     00rr = "an"
-0     00rm = "<em class="extra_2grams">hn</em>"
-0     00rl = "<em class="extra_2grams">ns</em>"
+0     00rm = "<em class="extra_ngrams">hn</em>"
+0     00rl = "<em class="extra_ngrams">ns</em>"
 0     00mr = "at"
 0     00mm = "th"
 0     00ml = "st"
 0     00lr = "ar"
-0     00lm = "<em class="extra_2grams">hr</em>"
-0     00ll = "<em class="extra_2grams">rs</em>"
+0     00lm = "<em class="extra_ngrams">hr</em>"
+0     00ll = "<em class="extra_ngrams">rs</em>"
     </pre>
    </div><!-- }}} -->
    <!-- tabspace.4 {{{ -->
@@ -1562,63 +1566,69 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
      <div class="fold_title" onclick='toggle_div(this, "ngrams");'>N-grams <i>(N-Letter Sequences)</i><span class="wh6">2.2</span></div>
      <div id="div_ngrams" class="collapsed">
       <small>&hellip;part of <a href="http://norvig.com/mayzner.html" target="mayzner"><b>ETAOIN SRHLDCU</b></a></small>
-      <pre>
+      <hr>
+<ul>
+ <li><span class="nb">extra ngrams</span> (complements to TabSpace)</li>
+ <li><span class="oo">overruled</span> (opted for a better choice)</li>
+ <li><span class="ll">same row</span> (not supported)</li>
+</ul>
+<pre>
 1 2grams  3grams  4-grams   5-grams    6-grams     7-grams      8-grams       9-grams   
 e     <em>th</em>     <em>the</em>     tion     ation     ations     present     differen     different
-t     <em>he</em>     and     atio     tions     ration     ational     national     governmen
-a     <em>in</em>     ing     that     which     tional     through     consider     overnment
-o     <em>er</em>     ion     ther     ction     nation     between     position     formation
-i     <em>an</em>     tio     with     other     ection     ication     ifferent     character
-n     re     ent     ment     their     cation     differe     governme     velopment
+t     <em>he</em>     <em>and</em>     atio     tions     ration     ational     national     governmen
+a     <em>in</em>     <em>ing</em>     that     which     tional     through     consider     overnment
+o     <em>er</em><sup>1</sup>    <span class="ll">ion</span>     ther     ction     nation     between     position     formation
+i     <em>an</em>     <span class="ll">tio</span>     with     other     ection     ication     ifferent     character
+n     <span class="oo">re</span><sup>1</sup>    <span class="ll">ent</span>     ment     their     cation     differe     governme     velopment
 s     <em>on</em>     <span class="nb">ati</span>     ions     there     lation     ifferen     vernment     developme
-r     <em>at</em>     for     this     ition     though     general     overnmen     evelopmen
-h     <em>en</em>     <span class="nb">her</span>     here     ement     presen     because     interest     condition
-l     nd     ter     from     inter     tation     develop     importan     important
-d     ti     hat     ould     ional     should     america     ormation     articular
-c     <em>es</em>     tha     ting     ratio     resent     however     formatio     particula
-u     <em>or</em>     ere     hich     would     genera     eration     relation     represent
-m     <em>te</em>     ate     whic     tiona     dition     nationa     question     individua
-f     of     his     ctio     these     ationa     conside     american     ndividual
-p     ed     con     ence     state     produc     onsider     characte     relations
-g     <em>is</em>     res     have     natio     throug     ference     haracter     political
-w     <em>it</em>     ver     othe     thing     hrough     positio     articula     informati
+r     <em>at</em>     <span class="ll">for</span>     this     ition     though     general     overnmen     evelopmen
+h     <em>en</em><sup>5</sup>    <span class="nb">her</span>     here     ement     presen     because     interest     condition
+l     nd     <span class="ll">ter</span>     from     inter     tation     develop     importan     important
+d     <span class="nb">ti</span><sup>2</sup>    <span class="nb">hat</span>     ould     ional     should     america     ormation     articular
+c     <em>es</em><sup>3</sup>    <span class="ll">tha</span>     ting     ratio     resent     however     formatio     particula
+u     <em>or</em><sup>4</sup>    <span class="ll">ere</span>     hich     would     genera     eration     relation     represent
+m     <em>te</em>     <span class="nb">ate</span>     whic     tiona     dition     nationa     question     individua
+f     <em>of</em>     <span class="ll">his</span>     ctio     these     ationa     conside     american     ndividual
+p     ed     <span class="ll">con</span>     ence     state     produc     onsider     characte     relations
+g     <em>is</em><sup>6</sup>    <span class="nb">res</span><sup>1</sup>    have     natio     throug     ference     haracter     political
+w     <span class="oo">it</span><sup>2</sup>    ver     othe     thing     hrough     positio     articula     informati
 y     al     all     ight     under     etween     osition     possible     nformatio
-b     <em>ar</em>     <span class="nb">ons</span>     sion     ssion     betwee     ization     children     universit
-v     <em>st</em>     nce     ever     ectio     differ     fferent     elopment     following
+b     <em>ar</em><sup>7</sup>    <span class="nb">ons</span>     sion     ssion     betwee     ization     children     universit
+v     <em>st</em>     <span class="ll">nce</span>     ever     ectio     differ     fferent     elopment     following
 k     <em>to</em>     men     ical     catio     icatio     without     velopmen     experienc
-x     nt   &rarr; <span class="nb" style="">ith</span>     they     latio     people     ernment     developm     stitution
-j     ng     ted     inte     about     iffere     vernmen     evelopme     xperience
-q     se     <span class="nb">ers</span>     ough     count     fferen     overnme     conditio     education
-z     ha     pro     ance     ments     struct     governm     ondition     roduction
-      as   &rarr; <span class="nb">thi</span>     were     rough     action     ulation     mportant     niversity
-      ou     wit     tive     ative     person     another     rticular     therefore
-      io     <span class="nb">are</span>     over     prese     eneral     importa     particul     nstitutio
+x     <span class="ll">nt</span>     <span class="nb" style="">ith</span><sup>2</sup>    they     latio     people     ernment     developm     stitution
+j     ng     ted      inte     about     iffere     vernmen     evelopme     xperience
+q     <span class="oo">se</span><sup>3</sup>    <span class="oo">ers</span><sup>1</sup>    ough     count     fferen     overnme     conditio     education
+z     <span class="ll">ha</span>     pro     ance     ments     struct     governm     ondition     roduction
+      <span class="ll">as</span>     <span class="oo">thi</span><sup>2</sup>    were     rough     action     ulation     mportant     niversity
+      ou     wit      tive     ative     person     another     rticular     therefore
+      <span class="ll">io</span>     <span class="nb">are</span><sup>3</sup>    over     prese     eneral     importa     particul     nstitutio
       le     ess     ding     feren     system     interes     epresent     ification
-      ve     not     pres     hough     relati     nterest     represen     establish
+      ve     <span class="ll">not</span>     pres     hough     relati     nterest     represen     establish
       co     ive     nter     ution     ctions     elation     increase     understan
       me     was     comp     roduc     ecause     rmation     individu     nderstand
       de     ect     able     resen     becaus     mportan     ndividua     difficult
-      <em>hi</em>     rea     heir     thoug     before     product     dividual     structure
+      <em>hi</em>     <span class="oo">rea</span><sup>3</sup>    heir     thoug     before     product     dividual     structure
       <em>ri</em>     com     thei     press     ession     formati     elations     knowledge
-      ro     eve     ally     first     develo     communi     nformati     struction
+      <span class="oo">ro</span><sup>4</sup>    eve     ally     first     develo     communi     nformati     struction
       ic     per     ated     after     evelop     lations     politica     something
-      ne     int     ring     cause     uction     ormatio     olitical     necessary
+      <span class="oo">ne</span><sup>5</sup>    <span class="ll">int</span>     ring     cause     uction     ormatio     olitical     necessary
       <em>ea</em>     <span class="nb">est</span>     ture     where     change     certain     universi     hemselves
-      ra     sta     cont     tatio     follow     increas     function     themselve
+      <span class="oo">ra</span><sup>7</sup>    <span class="ll">sta</span>     cont     tatio     follow     increas     function     themselve
       ce     cti     ents     could     positi     relatio     informat     plication
       li     ica     cons     efore     govern     special     niversit     anization
       ch     <span class="nb">ist</span>     rati     contr     sition     process     iversity     according
-      ll     ear     thin     hould     merica     against     lication     differenc
+      ll     <span class="ll">ear</span>     thin     hould     merica     against     lication     differenc
       be     <em>ain</em>     part     shoul     direct     problem     experien     operation
-      ma     one     form     tical     bility     nstitut     structur     ifference
-      si     our     ning     gener     effect     politic     determin     rganizati
+      ma     <span class="ll">one</span>     form     tical     bility     nstitut     structur     ifference
+      <span class="oo">si</span><sup>6</sup>    our     ning     gener     effect     politic     determin     rganizati
       om     iti     ecti     esent     americ     ination     ollowing     organizat
-      ur     rat     some     great     public     univers     followin     ganizatio
+      ur     <span class="ll">rat</span>     some     great     public     univers     followin     ganizatio
       </pre>
      </div>
      <!-- }}} -->
      <!-- mcc_neighbor_chords {{{ -->
-     <div class="fold_title" onclick='toggle_div(this, "mcc_neighbor_chords");'>Neighbor chords</em><span class="wh6">2.3</span></div>
+     <div style="clear:both;" class="fold_title" onclick='toggle_div(this, "mcc_neighbor_chords");'>Neighbor chords</em><span class="wh6">2.3</span></div>
     <div id="div_mcc_neighbor_chords" class="expanded">
      <ul class="rules" style="width:100%;"><!-- {{{ -->
       <li>
@@ -1634,8 +1644,8 @@ Px6
 <em>Col 3-5</em>
   P+5
  <em class="fingers">I</em>
- <em>in</em> <em>it</em> <em>ri</em>
- <em class="extra_2grams">ai</em> <em>hi</em> <em>is</em>
+ <em>in</em> <em style="border:2px red dotted !important;">it</em> <em>ri</em>
+ <em class="extra_ngrams">ai</em> <em>hi</em> <em>is</em>
 
      <em class="fingers">E</em>
  <em>en</em> <em>te</em> <em>er</em>
@@ -1643,7 +1653,7 @@ Px6
 
 	 <em class="fingers">O</em>
  <em>on</em> <em>to</em> <em>or</em>
- <em class="extra_2grams">oa</em> <em class="extra_2grams">ho</em> <em class="extra_2grams">so</em>
+ <em class="extra_ngrams">oa</em> <em class="extra_ngrams">ho</em> <em class="extra_ngrams">so</em>
 </pre>
 
 <pre style="float:left; width:4em; text-align:left; margin:1ex;">
@@ -1657,89 +1667,32 @@ Px6
 <em>Col 9-11</em>
 P+6
 <em class="fingers">N</em>         <em class="fingers">T</em>          <em class="fingers">R</em>
-<em>an</em><em class="extra_2grams">hn</em><em class="extra_2grams">ns</em> <em>at</em><em>th</em><em>st</em> <em>ar</em><em class="extra_2grams">hr</em><em class="extra_2grams">rs</em>
+<em>an</em><em class="extra_ngrams">hn</em><em class="extra_ngrams">ns</em> <em>at</em><em>th</em><em>st</em> <em>ar</em><em class="extra_ngrams">hr</em><em class="extra_ngrams">rs</em>
 </pre>
-
-<div style="
- display:inline;
- width:100%;
- ">
-<div style="
-width:85%;
- float:left;
-">
-<!-- mcc_key_input {{{ -->
-<input
-type="text"
-id='mcc_key_input'
-size="3"
-onmouseover='this.focus();'
-onkeydown ='mcc_key(event,this);'
-style="
-background-color:black;
-border:0;
-color:#dd4;
-font-family:monospace;
-font-size:400%;
-text-align:left;
-width:100%;
-float:left;
-">
-<!-- }}} -->
-<!-- mcc_key_input_hist {{{ -->
-<div
-id='mcc_key_input_hist'
-style="
-background-color:black !important;
-border:1px red dotted  !important;
-color:#4dd;
-font-family:monospace;
-font-size:100%;
-text-align:left;
-width:100%;
-clear:left;
--moz-user-select:-moz-none; -ms-user-select:none; -webkit-user-select :none;
-">
-<i>Escape to clear</i>
-</div>
-<!-- }}} -->
-</div>
-<!-- mcc_key_delay {{{ -->
-<div style="
-text-align:right;
-float:right;
-"
-title="clear timer"
-id="buttons_parent_div"
->
-Clear timer<br>
-<input style="width:100%;" value="500ms" type="button" onclick="mcc_key_set_delay(this, 500);"><br>
-<input style="width:100%;" value="1s"    type="button" onclick="mcc_key_set_delay(this,1000);"><br>
-<input style="width:100%;" value="2s"    type="button" onclick="mcc_key_set_delay(this,2000);"><br>
-<input style="width:100%;" value="OFF"   type="button" onclick="mcc_key_set_delay(this,   0);"><br>
-</div>
-<!-- }}} -->
-</div>
-
 <pre style="clear:both;">
+<em>Col 3-5</em> P+5
+<i class="todo">&hellip;wrong TabSpace choice between <em>ti</em> and <span class="nb">ti</span></i>
 <img title="WIP" style="float:right;" src="images/emoticons/WIP.png">
 <em>Col 6-8</em> T+2
 <i>&hellip;most are unused in TabSpace 2.1</i> but 8 are <span class="nb">3grams</span>:
-
 i =  <em>ain</em> inh ins   <span class="nb">ati</span> <span class="nb">thi</span> <span class="nb">ist</span>   ira irh irs
-e =  ena enh ens   eta <em>the</em> <span class="nb">est</span>   <span class="nb">are</span> <span class="nb">her</span> <span class="nb">ers</span>
+e =  ena enh ens   <span class="nb">ate</span> <em>the</em> <span class="nb">est</span>   <span class="nb">are</span> <span class="nb">her</span> <span class="nb">res</span>
 o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
+<i class="todo">&hellip;we have to make a choice between <span class="nb">ith</span> and <span class="nb">thi</span></i>
 
-&hellip;and we have to make a choice between <span class="nb">ith</span> and <span class="nb">thi</span>
+<hr>
+<i><b>TabSpace bigrams not in <span class="nb">2grams</span>:</b>
+ <em class="extra_ngrams">ai</em>
+ <em class="extra_ngrams">hn</em> <em class="extra_ngrams">ho</em> <em class="extra_ngrams">hr</em>
+ <em class="extra_ngrams">ns</em>
+ <em class="extra_ngrams">oa</em> <em class="extra_ngrams">so</em>
+ <em class="extra_ngrams">rs</em>
+ <em class="extra_ngrams">rs</em></i>
 
-<i>
-<b>TabSpace bigrams not in <span class="nb">2grams</span>:</b>
- <em class="extra_2grams">ai</em>
- <em class="extra_2grams">hn</em> <em class="extra_2grams">ho</em> <em class="extra_2grams">hr</em>
- <em class="extra_2grams">ns</em>
- <em class="extra_2grams">oa</em> <em class="extra_2grams">so</em>
- <em class="extra_2grams">rs</em>
-</i>
+<hr>
+<i><b>TabSpace trigrams not in <span class="nb">3grams</span>:</b>
+ <em class="extra_ngrams">ong</em></i>
+
 </pre>
 
       </li>
@@ -1946,8 +1899,76 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
 
   </div>
   <!-- }}} -->
+     <!-- Chord input field {{{ -->
+     <div class="fold_title" onclick='toggle_div(this, "mcc_input");'>Chord input field<span class="wh8">&hellip;</span></div>
+     <div id="div_mcc_input" class="collapsed">
+      <!-- mcc-input{{{ -->
+       <div style="
+	display:inline-block;
+	width:85%;
+	">
+	<!-- mcc_key_input {{{ -->
+	<input
+	type="text"
+	id='mcc_key_input'
+	size="3"
+	onmouseover='this.focus();'
+	onkeydown ='mcc_key(event,this);'
+	style="
+	background-color:black;
+	border:0;
+	color:#dd4;
+	font-family:monospace;
+	font-size:400%;
+	text-align:left;
+	width:100%;
+	">
+	<!-- }}} -->
+	<hr>
+	<!-- mcc_key_input_hist {{{ -->
+	<div
+	 id='mcc_key_input_hist'
+	 style="
+	 background-color:black !important;
+	 color:#4dd;
+	 font-family:monospace;
+	 font-size:100%;
+	 text-align:left;
+	 width:100%;
+	 clear:left;
+	 -moz-user-select:-moz-none; -ms-user-select:none; -webkit-user-select :none;
+	 ">
+	 <i>Escape to clear</i>
+	</div>
+	<!-- }}} -->
+       </div>
+       <!-- mcc_key_delay {{{ -->
+       <div style="
+	display:inline-block;
+	vertical-align:top;
+	text-align:center;
+	padding:5px;
+	border-radius : 1em; -moz-border-radius :1em; -webkit-border-radius:1em;
+	box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset;
+	background-color:#ddd;
+	text-shadow      : 1px 1px 3px #666;
+	"
+	title="clear timer"
+	id="buttons_parent_div"
+	>
+	Clear<br>
+	<input style="width:100%;" value="500ms" type="button" onclick="mcc_key_set_delay(this, 500);"><br>
+	<input style="width:100%;" value="1s"    type="button" onclick="mcc_key_set_delay(this,1000);"><br>
+	<input style="width:100%;" value="2s"    type="button" onclick="mcc_key_set_delay(this,2000);"><br>
+	<input style="width:100%;" value="OFF"   type="button" onclick="mcc_key_set_delay(this,   0);"><br>
+       </div>
+       <!-- }}} -->
+
+      <!-- }}} -->
+     </div>
+     <!-- }}} -->
   <!-- External references {{{ -->
-  <div class="fold_title" onclick='toggle_div(this, "references");'>Some useful links<span class="wh8">&hellip;</span></div>
+  <div class="fold_title" onclick='toggle_div(this, "references");'>Some useful links<span class="wh9">&hellip;</span></div>
   <div id="div_references" class="collapsed" style="background-color:#eef !important; text-align:left;">
    <!-- links {{{ -->
    <b>Tek Gear:</b>

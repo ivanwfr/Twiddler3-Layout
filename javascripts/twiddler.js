@@ -474,7 +474,7 @@ function mcc_key(e, el) { //{{{
 
     // clear (by user)
     var charCode = (e.keyCode) ? e.keyCode : e.which;
-    if(charCode == 27) { mcc_key_clear(); return; }
+    if(charCode == 27) { mcc_key_set_delay(el, mcc_key_delay); return; }
 
     // timer
     mcc_this_time = new Date().getTime();
@@ -524,11 +524,11 @@ function mcc_key_clear_CB() { //{{{
     if(mcc_key_el     ) mcc_key_el.value          = "";
     mcc_prev_time = 0;
 } //}}}
-function mcc_key_clear() { //{{{
-    if(mcc_key_el     ) mcc_key_el.value          = "";
-    if(mcc_key_el_hist) mcc_key_el_hist.innerHTML = "";
-    mcc_prev_time = 0;
-} //}}}
+//function mcc_key_clear() { //{{{
+//    if(mcc_key_el     ) mcc_key_el.value          = "";
+//    if(mcc_key_el_hist) mcc_key_el_hist.innerHTML = "";
+//    mcc_prev_time = 0;
+//} //}}}
 function mcc_key_set_delay(el, ms) { //{{{
     mcc_key_delay = ms;
     if(mcc_key_el     ) mcc_key_el.value          = "";

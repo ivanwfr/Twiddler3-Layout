@@ -144,10 +144,14 @@
 
 /* }}} */
 
-.extra_2grams {
+.extra_ngrams {
     color:red !important;
     background-color:yellow !important;
 }
+#div_ngrams span { padding:1px 3px 1px 3px; margin-left:-3px; }
+#div_ngrams em   { padding:1px 3px 1px 3px; margin-left:-3px; }
+#div_mcc_neighbor_chords span { padding:1px 3px 1px 3px; margin-left:-3px; }
+#div_mcc_neighbor_chords em   { padding:1px 3px 1px 3px; margin-left:-3px; }
 
 /* CARDS */
 /* pre_card {{{ */
@@ -197,6 +201,7 @@
 .wh6 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
 .wh7 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
 .wh8 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+.wh9 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
 
 .wh1  { color: #FA0; background-color:#B33; border:0px solid #666; padding:0 3px 0 3px !important; }
 .wh2  { color: #FF0; background-color:#F33; border:0px solid #666; padding:0 3px 0 3px !important; }
@@ -206,6 +211,7 @@
 .wh6  { color: #0F0; background-color:#00F; border:0px solid #666; padding:0 3px 0 3px !important; }
 .wh7  { color: #FF0; background-color:#F0F; border:0px solid #666; padding:0 3px 0 3px !important; }
 .wh8  { color: #FF0; background-color:#AAA; border:0px solid #666; padding:0 3px 0 3px !important; }
+.wh9  { color: #222; background-color:#FFF; border:0px solid #666; padding:0 3px 0 3px !important; }
 
 .fingers {  color:#400 !important; background-color:#aaffaa !important; border:2px red dotted !important; }
 
