@@ -1,3 +1,27 @@
+/* COLOR CODED */
+/* {{{ */
+.cc1 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+.cc2 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+.cc3 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+.cc4 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+.cc5 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+.cc6 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+.cc7 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+.cc8 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+.cc9 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
+
+.cc1  { color: #FA0; background-color:#B33; border:0px solid #666; padding:0 3px 0 3px !important; }
+.cc2  { color: #FF0; background-color:#F33; border:0px solid #666; padding:0 3px 0 3px !important; }
+.cc3  { color: #00F; background-color:#FA0; border:0px solid #666; padding:0 3px 0 3px !important; }
+.cc4  { color: #F00; background-color:#FF0; border:0px solid #666; padding:0 3px 0 3px !important; }
+.cc5  { color: #00F; background-color:#0F0; border:0px solid #666; padding:0 3px 0 3px !important; }
+.cc6  { color: #0F0; background-color:#00F; border:0px solid #666; padding:0 3px 0 3px !important; }
+.cc7  { color: #FF0; background-color:#F0F; border:0px solid #666; padding:0 3px 0 3px !important; }
+.cc8  { color: #FF0; background-color:#AAA; border:0px solid #666; padding:0 3px 0 3px !important; }
+.cc9  { color: #222; background-color:#FFF; border:0px solid #666; padding:0 3px 0 3px !important; }
+
+/* }}} */
+
 /* MODIFIERS */
 /* FONT {{{ */
 
@@ -27,7 +51,7 @@
 /* COLORS {{{ */
 .expanded .expanded { background: #DEDEDE; }
 
- em {  color:#444 !important; background-color:#fafafa !important; border:1px solid #aaa !important; }
+ em {  color:#444; background-color:#fafafa; border:1px solid #aaa; }
 
 .todo { color:red; }
 
@@ -144,6 +168,8 @@
 
 /* }}} */
 
+/* NGRAMS */
+/* {{{ */
 .extra_ngrams {
     color:red !important;
     background-color:yellow !important;
@@ -152,6 +178,25 @@
 #div_ngrams em   { padding:1px 3px 1px 3px; margin-left:-3px; }
 #div_mcc_neighbor_chords span { padding:1px 3px 1px 3px; margin-left:-3px; }
 #div_mcc_neighbor_chords em   { padding:1px 3px 1px 3px; margin-left:-3px; }
+
+/* }}} */
+
+/* LETTERS BROWSER */
+/* {{{ */
+#div_letter_browser em       { cursor:pointer; }
+#div_letter_browser em       { padding:3px !important; }
+#div_letter_browser em       { font-family: 'Lucida Console', Monaco, monospace; }
+#div_letter_browser em:hover { box-shadow: rgba(0, 0, 0, 0.9) 0 2px 3px; }
+#div_letter_browser .row1    { color: #FA0; background-color:#B33; }
+#div_letter_browser .row2    { color: #FF0; background-color:#F33; }
+#div_letter_browser .row3    { color: #00F; background-color:#FA0; }
+#div_letter_browser .letter_browser_on           {
+    border:2px black solid !important;
+}
+#div_letter_browser span     {  color:#FFF; background-color:#00F; }
+#div_letter_browser span     { margin:0 2px 0 2px !important; }
+
+/* }}} */
 
 /* CARDS */
 /* pre_card {{{ */
@@ -192,26 +237,6 @@
     font-size     : 12px;
     padding       : 0 2px 0 2px;
 }
-
-.wh1 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
-.wh2 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
-.wh3 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
-.wh4 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
-.wh5 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
-.wh6 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
-.wh7 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
-.wh8 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
-.wh9 { box-shadow: rgba(0, 0, 0, 0.3) 0 0.3em 0.3em inset; }
-
-.wh1  { color: #FA0; background-color:#B33; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh2  { color: #FF0; background-color:#F33; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh3  { color: #00F; background-color:#FA0; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh4  { color: #F00; background-color:#FF0; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh5  { color: #00F; background-color:#0F0; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh6  { color: #0F0; background-color:#00F; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh7  { color: #FF0; background-color:#F0F; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh8  { color: #FF0; background-color:#AAA; border:0px solid #666; padding:0 3px 0 3px !important; }
-.wh9  { color: #222; background-color:#FFF; border:0px solid #666; padding:0 3px 0 3px !important; }
 
 .fingers {  color:#400 !important; background-color:#aaffaa !important; border:2px red dotted !important; }
 

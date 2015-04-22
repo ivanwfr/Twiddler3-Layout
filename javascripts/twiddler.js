@@ -220,6 +220,170 @@ function get_current_img() // {{{
 
 //}}}
 
+/* LETTERS BROWSER */
+//{{{
+// letter_browse_data {{{
+var letter_browse_options  = "";
+var letter_browse_selected = "";
+var letter_browse_data = ""
++"th     the     tion     ation\n"
++"he     and     atio     tions\n"
++"in     ing     that     which\n"
++"er     ion     ther     ction\n"
++"an     tio     with     other\n"
++"re     ent     ment     their\n"
++"on     ati     ions     there\n"
++"at     for     this     ition\n"
++"en     her     here     ement\n"
++"nd     ter     from     inter\n"
++"ti     hat     ould     ional\n"
++"es     tha     ting     ratio\n"
++"or     ere     hich     would\n"
++"te     ate     whic     tiona\n"
++"of     his     ctio     these\n"
++"ed     con     ence     state\n"
++"is     res     have     natio\n"
++"it     ver     othe     thing\n"
++"al     all     ight     under\n"
++"ar     ons     sion     ssion\n"
++"st     nce     ever     ectio\n"
++"to     men     ical     catio\n"
++"nt     ith     they     latio\n"
++"ng     ted     inte     about\n"
++"se     ers     ough     count\n"
++"ha     pro     ance     ments\n"
++"as     thi     were     rough\n"
++"ou     wit     tive     ative\n"
++"io     are     over     prese\n"
++"le     ess     ding     feren\n"
++"ve     not     pres     hough\n"
++"co     ive     nter     ution\n"
++"me     was     comp     roduc\n"
++"de     ect     able     resen\n"
++"hi     rea     heir     thoug\n"
++"ri     com     thei     press\n"
++"ro     eve     ally     first\n"
++"ic     per     ated     after\n"
++"ne     int     ring     cause\n"
++"ea     est     ture     where\n"
++"ra     sta     cont     tatio\n"
++"ce     cti     ents     could\n"
++"li     ica     cons     efore\n"
++"ch     ist     rati     contr\n"
++"ll     ear     thin     hould\n"
++"be     ain     part     shoul\n"
++"ma     one     form     tical\n"
++"si     our     ning     gener\n"
++"om     iti     ecti     esent\n"
++"ur     rat     some     great\n"
+;
+
+//}}}
+function letter_browse(button) //{{{
+{
+    // commands / options {{{
+    if(button.tagName == "INPUT") {
+	// reset selection
+	if(button.name == "reset") {
+	    letter_browse_reset();
+	}
+	else {
+	    letter_browse_options = button.value;
+	    var o = button.value;
+/*
+	    var o_is_selected = (letter_browse_options.indexOf(o) >= 0);
+	    if( o_is_selected)   letter_browse_options = letter_browse_options.replace(o,"");
+	    else		 letter_browse_options = letter_browse_options       + o;
+
+	    // w excludes o
+	    var w_is_selected = (letter_browse_options.indexOf("w") >= 0);
+	    if( w_is_selected)   letter_browse_options = letter_browse_options.replace("o","");
+
+	    // o excludes w
+	    var o_is_selected = (letter_browse_options.indexOf("o") >= 0);
+	    if( o_is_selected)   letter_browse_options = letter_browse_options.replace("w","");
+	    // check option buttons
+	    var b = null; // pick first
+	    do {
+		b = get_next_child_tagName(button.parentElement, b, "INPUT");
+		if(b) b.checked = (letter_browse_options.indexOf(b.value) >= 0);
+	    } while(b);
+*/
+	}
+    } //}}}
+    // letters {{{
+    else {
+	var l = button.innerHTML;
+	if(!l) return;
+
+	// toggle letter selection
+	var l_is_selected = (letter_browse_selected.indexOf(l) >= 0);
+	if(l_is_selected)    letter_browse_selected = letter_browse_selected.replace(l,"");
+	else		     letter_browse_selected = letter_browse_selected + l;
+
+	// toggle button state
+	if(l_is_selected)   del_className(button,"letter_browser_on");
+	else		    add_className(button,"letter_browser_on");
+    } //}}}
+    // nothing selected {{{
+    var el = document.getElementById("pre_letter_browser");
+    if(!el) return;
+
+    if(letter_browse_selected == "") {
+	log("letter_browse(): nothing selected");
+	el.innerHTML = letter_browse_data;
+	return;
+    }
+    //}}}
+    // regex for selected letters {{{
+    var pattern = letter_browse_selected;
+    if(letter_browse_options.indexOf("o") < 0)	// not ordered
+    {
+	pattern = pattern.replace(/(.)/g,"$1|");
+	pattern = pattern.substring(0,pattern.length-1);
+    }
+    var highlight   = '<SPAN>$1</SPAN>';    // uppercase matters!
+
+    if(letter_browse_options.indexOf("w") >= 0)	// as word
+    {
+    pattern = "("+pattern+")";
+//	highlight   = '<SPAN>'+letter_browse_selected+'</SPAN>';    // uppercase matters!
+	var p = pattern;
+	for(var i=1; i<letter_browse_selected.length; ++i)
+	    pattern += p;
+    }
+    pattern = "("+pattern+")";
+
+    //}}}
+    // highlight selected letters {{{
+
+    var re = new RegExp(pattern, "gm");
+    el.innerHTML = ""
+	+ "<em style='float:right; clear:right; font-size:150%;'>"+pattern.substring(1,pattern.length-1)+"</em>"
+	+ letter_browse_data.replace(re, highlight)
+	;
+//	+ "<em style='float:right; clear:right;                '>"+letter_browse_options+"</em>"
+
+    //}}}
+} //}}}
+function letter_browse_reset()// {{{
+{
+log("letter_browse_reset():");
+
+    letter_browse_selected = "";
+
+    var div_letter_browser = document.getElementById("div_letter_browser");
+    if(!div_letter_browser) return;
+
+    var em = null; // pick first
+    do {
+	em = get_next_child_tagName(div_letter_browser, em, "EM");
+	if(em)   del_className(em,"letter_browser_on");
+    } while(em);
+
+} // }}}
+//}}}
+
 /* ANIMATION */
 //{{{
 var MCC_ANIMATE_WORD_TIMOUT	= 2000;
@@ -233,7 +397,7 @@ var mcc_animate_words		= null;
 var mcc_animate_letters		= null;
 var mcc_animate_word_num;
 
-function mcc_animate(id)// {{{
+function mcc_animate(id) // {{{
 {
     if(mcc_animate_div) {
 	log("\nmcc_animate(<b>"+id+"</b>)");
@@ -380,7 +544,6 @@ function mcc_animate_magnify()// {{{
     log("   mcc_animate_magnify("+top.clientWidth+")");
 
 } // }}}
-
 //}}}
 
 // CLASS
@@ -499,14 +662,14 @@ function mcc_key(e, el) { //{{{
 	    time_class                    = "mcc_hist_time";
 
 	    var ms        = (mcc_this_time - mcc_prev_time);
-	    if     (ms <  50)	time_class= "wh1";
-	    else if(ms <  75)	time_class= "wh2";
-	    else if(ms < 100)	time_class= "wh3";
-	    else if(ms < 125)	time_class= "wh4";
-	    else if(ms < 150)	time_class= "wh5";
-	    else if(ms < 200)	time_class= "wh6";
-	    else if(ms < 250)	time_class= "wh7";
-	    else if(ms < 300)	time_class= "wh7";
+	    if     (ms <  50)	time_class= "cc1";
+	    else if(ms <  75)	time_class= "cc2";
+	    else if(ms < 100)	time_class= "cc3";
+	    else if(ms < 125)	time_class= "cc4";
+	    else if(ms < 150)	time_class= "cc5";
+	    else if(ms < 200)	time_class= "cc6";
+	    else if(ms < 250)	time_class= "cc7";
+	    else if(ms < 300)	time_class= "cc7";
 	    else		time_class= "oo";
 
 	    var time_html = (ms > 500)
