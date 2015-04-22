@@ -183,17 +183,21 @@
 
 /* LETTERS BROWSER */
 /* {{{ */
+#div_letter_browser div      { -moz-user-select:-moz-none; -ms-user-select:none; -webkit-user-select :none; }
 #div_letter_browser em       { cursor:pointer; }
-#div_letter_browser em       { padding:3px !important; }
+#div_letter_browser em       { padding-left:3px !important; }
+#div_letter_browser em       { padding-right:3px !important; }
+#div_letter_browser em       { border:3px solid transparent; }
 #div_letter_browser em       { font-family: 'Lucida Console', Monaco, monospace; }
 #div_letter_browser em:hover { box-shadow: rgba(0, 0, 0, 0.9) 0 2px 3px; }
 #div_letter_browser .row1    { color: #FA0; background-color:#B33; }
 #div_letter_browser .row2    { color: #FF0; background-color:#F33; }
 #div_letter_browser .row3    { color: #00F; background-color:#FA0; }
-#div_letter_browser .letter_browser_on           {
-    border:2px black solid !important;
+#div_letter_browser .letter_browser_on {
+    border:3px #ff0 solid !important;
+    box-shadow:rgba(0, 0, 0, 0.9) 0 2px 3px;
 }
-#div_letter_browser span     {  color:#FFF; background-color:#00F; }
+#div_letter_browser span     { color:#000; background-color:#ff0;  box-shadow:rgba(0, 0, 0, 0.9) 0 2px 3px; border-radius: 2px; }
 #div_letter_browser span     { margin:0 2px 0 2px !important; }
 
 /* }}} */

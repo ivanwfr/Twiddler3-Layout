@@ -1630,14 +1630,14 @@ z     <span class="ll">ha</span>     pro     ance     ments     struct     gover
      <!-- letter_browser {{{ -->
      <div class="fold_title" onclick='toggle_div(this, "letter_browser");'>Letters browser<span class="cc6">2.2</span></div>
      <div id="div_letter_browser" class="collapsed">
-
-      <div style="float:right;">
-       <span onclick='logging = logging ? false : true; log();' style='cursor:pointer;' title="script logging on/off">logging</span><br>
-       <input value=""      name="option" id="option_a" onchange='letter_browse(this);' type="radio" checked></input><label for="option_a">selected</label><br>
-       <input value="w"     name="option" id="option_w" onchange='letter_browse(this);' type="radio"        ></input><label for="option_w">adjacent</label><br>
-       <input value="o"     name="option" id="option_o" onchange='letter_browse(this);' type="radio"        ></input><label for="option_o">sequence</label><br>
-      </div>
-
+      <div style="float:left;"><!-- reset - options {{{ -->
+       <input name="reset"  value="reset"             type="button"  onclick='letter_browse(this);'        ></input>
+       <input name="option" value=""   id="option_a"  type="radio"  onchange='letter_browse(this);'        ></input><label for="option_a">all</label>
+       <input name="option" value="w"  id="option_w"  type="radio"  onchange='letter_browse(this);' checked></input><label for="option_w">adjacent</label>
+       <input name="option" value="o"  id="option_o"  type="radio"  onchange='letter_browse(this);'        ></input><label for="option_o">sequence</label>
+       <!--input name="log"    value="log"               type="button"  onclick='logging = logging ? false : true; log();' ></input-->
+      </div> <!-- }}} -->
+      <div style="float:left; clear:left; margin:1em; clear:left;"><!-- ieo ntr ahs {{{ -->
       <em class="row1" onclick='letter_browse(this);'>i</em>
       <em class="row1" onclick='letter_browse(this);'>e</em>
       <em class="row1" onclick='letter_browse(this);'>o</em>
@@ -1649,12 +1649,40 @@ z     <span class="ll">ha</span>     pro     ance     ments     struct     gover
       <em class="row3" onclick='letter_browse(this);'>a</em>
       <em class="row3" onclick='letter_browse(this);'>h</em>
       <em class="row3" onclick='letter_browse(this);'>s</em>
+      </div>
 
-      <input value="reset" name="reset"                onclick='letter_browse(this);' type="button"        ></input>
+      <!-- }}} -->
+      <div style="float:left; margin:1em;"><!-- cdu flw gmy {{{ -->
+      <em class="row1" onclick='letter_browse(this);'>c</em>
+      <em class="row1" onclick='letter_browse(this);'>d</em>
+      <em class="row1" onclick='letter_browse(this);'>u</em>
+      <br>
+      <em class="row2" onclick='letter_browse(this);'>f</em>
+      <em class="row2" onclick='letter_browse(this);'>l</em>
+      <em class="row2" onclick='letter_browse(this);'>w</em>
+      <br>
+      <em class="row3" onclick='letter_browse(this);'>g</em>
+      <em class="row3" onclick='letter_browse(this);'>m</em>
+      <em class="row3" onclick='letter_browse(this);'>y</em>
+      </div>
 
-      <hr style="clear:both;">
+      <!-- }}} -->
+      <div style="float:left; margin:1em;"><!-- bpv jkx {{{ -->
+      <em class="row1" onclick='letter_browse(this);'>b</em>
+      <em class="row1" onclick='letter_browse(this);'>p</em>
+      <em class="row1" onclick='letter_browse(this);'>v</em>
+      <br>
+      <em class="row2" onclick='letter_browse(this);'>j</em>
+      <em class="row2" onclick='letter_browse(this);'>k</em>
+      <em class="row2" onclick='letter_browse(this);'>x</em>
+      <br>
+      <em class="row2" onclick='letter_browse(this);'>~</em>
+      <em class="row2" onclick='letter_browse(this);'>q</em>
+      <em class="row2" onclick='letter_browse(this);'>z</em>
+      </div>
 
-      <pre id="pre_letter_browser"></pre>
+      <!-- }}} -->
+      <pre id="pre_letter_browser" style="clear:left;"></pre>
      </div>
      <!-- }}} -->
      <!-- mcc_neighbor_chords {{{ -->
@@ -1871,7 +1899,7 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
     <div class="wrap_div" style="float:right;" onclick='return expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
    </div> <!-- }}} -->
   <!-- Cheat Sheets {{{ -->
-  <div class="fold_title" onclick='toggle_div(this, "cheat_sheet");'>Collection of Cheat Sheets<span class="cc7">&hellip;</span></div>
+  <div class="fold_title" onclick='toggle_div(this, "cheat_sheet");'>Cheat Sheets<span class="cc7">&hellip;</span></div>
   <div id="div_cheat_sheet" class="collapsed" style="background-color:#edf !important; text-align:left;">
 
    <p>
@@ -1924,7 +1952,7 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
     <img id="img8" style="width:80%; margin:1ex 0 2px 1ex;" src="images/Cheat_MessagEase.png">
    </a>
    <!-- }}} -->
-   <div class="wrap_div"                      onclick='toggle_div(this, "cheat_sheet");'><img title="collapse" src="images/cursors/left.png">Collection of Cheat Sheets</div>
+   <div class="wrap_div"                      onclick='toggle_div(this, "cheat_sheet");'><img title="collapse" src="images/cursors/left.png">Cheat Sheets</div>
    <div class="wrap_div" style="float:right;" onclick='return expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png"></div>
 
   </div>
@@ -2046,7 +2074,7 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
    </div>
    <!-- }}} -->
    <!-- }}} -->
-   <div class="wrap_div"                      onclick='toggle_div(this, "references");'><img title="collapse"    src="images/cursors/left.png">Collection of Cheat Sheets</div>
+   <div class="wrap_div"                      onclick='toggle_div(this, "references");'><img title="collapse"    src="images/cursors/left.png">Cheat Sheets</div>
    <div class="wrap_div" style="float:right;" onclick='return expand_div(this,"top");' ><img title="all wrapped" src="images/cursors/top.png"></div>
   </div>
   <!-- }}} -->

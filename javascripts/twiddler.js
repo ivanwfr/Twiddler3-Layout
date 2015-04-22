@@ -179,7 +179,7 @@ function get_next_child_tagName(parent, current, tagName) // {{{
     if(!parent.children) return null;
 
     var past_current = false;
-    for(var i= 0; i < parent.children.length-1; ++i) {
+    for(var i= 0; i < parent.children.length; ++i) {
 	var child = parent.children[i];
 	if(!past_current) {
 	    if(child == current)	    past_current = true;    // look for current child
@@ -223,7 +223,7 @@ function get_current_img() // {{{
 /* LETTERS BROWSER */
 //{{{
 // letter_browse_data {{{
-var letter_browse_options  = "";
+var letter_browse_options  = "w";
 var letter_browse_selected = "";
 var letter_browse_data = ""
 +"th     the     tion     ation\n"
@@ -359,7 +359,7 @@ function letter_browse(button) //{{{
 
     var re = new RegExp(pattern, "gm");
     el.innerHTML = ""
-	+ "<em style='float:right; clear:right; font-size:150%;'>"+pattern.substring(1,pattern.length-1)+"</em>"
+	+ "<em style='float:right; clear:right; font-size:150%;'>"+pattern.substring(1,pattern.length-1)+"</em><br style='clear:both;'>"
 	+ letter_browse_data.replace(re, highlight)
 	;
 //	+ "<em style='float:right; clear:right;                '>"+letter_browse_options+"</em>"
@@ -375,11 +375,19 @@ log("letter_browse_reset():");
     var div_letter_browser = document.getElementById("div_letter_browser");
     if(!div_letter_browser) return;
 
-    var em = null; // pick first
+    var div = null; // pick first sub div
     do {
-	em = get_next_child_tagName(div_letter_browser, em, "EM");
-	if(em)   del_className(em,"letter_browser_on");
-    } while(em);
+	div = get_next_child_tagName(div_letter_browser, div, "DIV");
+	if(!div) break;
+
+	var em = null; // pick first em
+	do {
+	    em = get_next_child_tagName(div, em, "EM");
+	    if(em)   del_className(em,"letter_browser_on");
+	} while(em);
+
+    } while(div);
+
 
 } // }}}
 //}}}
