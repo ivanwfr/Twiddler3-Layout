@@ -310,7 +310,7 @@ footer {
     margin: 0 auto;
     padding: 2px 0 0;
     color: #ccc;
-    overflow: hidden;
+    height:2em;
 }
 footer a {
     color: #fff;
