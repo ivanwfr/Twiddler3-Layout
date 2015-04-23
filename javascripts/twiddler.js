@@ -703,6 +703,8 @@ function mcc_key(e, el) { //{{{
 	    else if(ms < 300)	time_class= "cc7";
 	    else		time_class= "oo";
 
+	    if(ms > 500) mcc_key_el.value = "";
+
 	    var time_html = (ms > 500)
 		? "<br>"
 		: "<span class='"+time_class+"'>"+ms+"ms</span>";
