@@ -183,7 +183,9 @@
 
 /* LETTERS BROWSER */
 /* {{{ */
+/*
 #div_letter_browser div      { -moz-user-select:-moz-none; -ms-user-select:none; -webkit-user-select :none; }
+*/
 #div_letter_browser em       { cursor:pointer; }
 #div_letter_browser em       { padding-left:3px !important; }
 #div_letter_browser em       { padding-right:3px !important; }
@@ -199,6 +201,7 @@
 }
 #div_letter_browser span     { color:#000; background-color:#ff0;  box-shadow:rgba(0, 0, 0, 0.9) 0 2px 3px; border-radius: 2px; }
 #div_letter_browser span     { margin:0 2px 0 2px !important; }
+#lb_opt_r:focus { border: 3px blue dotted; }
 
 /* }}} */
 

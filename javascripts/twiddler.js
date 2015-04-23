@@ -284,10 +284,47 @@ var letter_browse_data = ""
 ;
 
 //}}}
+function letter_browse_focus(e,el) { //{{{
+
+    fold_stopEventPropagation(e, el);
+
+    // clear (by user)
+    var charCode = (e.keyCode) ? e.keyCode : e.which;
+    if(charCode == 27) { letter_browse(null); return; } // Escape
+    if(charCode == 32) { letter_browse(null); return; } // Space
+
+    // key
+    var l = String.fromCharCode(charCode).toLowerCase();
+log("letter_browse_focus(): l=["+l+"]");
+
+    // identify button f(key)
+    var div_letter_browser = document.getElementById("div_letter_browser");
+    if(!div_letter_browser) return;
+
+    var div = null; // pick first sub div
+    do {
+	div = get_next_child_tagName(div_letter_browser, div, "DIV");
+	if(!div) break;
+
+	var em = null; // pick first em
+	do {
+	    em = get_next_child_tagName(div, em, "EM");
+	    if(!em) break;
+	    if(em.innerHTML == l)
+		letter_browse(em); // toggle button
+	} while(em);
+
+    } while(div);
+
+} // }}}
 function letter_browse(button) //{{{
 {
     // commands / options {{{
-    if(button.tagName == "INPUT") {
+    if(!button) {
+	    letter_browse_reset();
+
+    }
+    else if((button.tagName == "INPUT")) {
 	// reset selection
 	if(button.name == "reset") {
 	    letter_browse_reset();
@@ -295,25 +332,6 @@ function letter_browse(button) //{{{
 	else {
 	    letter_browse_options = button.value;
 	    var o = button.value;
-/*
-	    var o_is_selected = (letter_browse_options.indexOf(o) >= 0);
-	    if( o_is_selected)   letter_browse_options = letter_browse_options.replace(o,"");
-	    else		 letter_browse_options = letter_browse_options       + o;
-
-	    // w excludes o
-	    var w_is_selected = (letter_browse_options.indexOf("w") >= 0);
-	    if( w_is_selected)   letter_browse_options = letter_browse_options.replace("o","");
-
-	    // o excludes w
-	    var o_is_selected = (letter_browse_options.indexOf("o") >= 0);
-	    if( o_is_selected)   letter_browse_options = letter_browse_options.replace("w","");
-	    // check option buttons
-	    var b = null; // pick first
-	    do {
-		b = get_next_child_tagName(button.parentElement, b, "INPUT");
-		if(b) b.checked = (letter_browse_options.indexOf(b.value) >= 0);
-	    } while(b);
-*/
 	}
     } //}}}
     // letters {{{

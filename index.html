@@ -1893,13 +1893,17 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
  <!-- }}} -->
  <!-- letter_browser {{{ -->
  <div class="fold_title" onclick='toggle_div(this, "letter_browser");'>Letters browser<span class="cc8">&hellip;</span></div>
- <div id="div_letter_browser" class="collapsed">
+ <div id="div_letter_browser" class="collapsed"
+  onmouseover='document.getElementById("lb_opt_r").focus();'
+  onkeydown  ='letter_browse_focus(event,this);'
+  >
   <div style="float:left;"><!-- reset - options {{{ -->
-   <input name="reset"  value="reset"             type="button"  onclick='letter_browse(this);'        ></input>
-   <input name="option" value=""   id="option_a"  type="radio"  onchange='letter_browse(this);'        ></input><label for="option_a">all</label>
-   <input name="option" value="w"  id="option_w"  type="radio"  onchange='letter_browse(this);' checked></input><label for="option_w">adjacent</label>
-   <input name="option" value="o"  id="option_o"  type="radio"  onchange='letter_browse(this);'        ></input><label for="option_o">sequence</label>
-   <!--input name="log"    value="log"               type="button"  onclick='logging = logging ? false : true; log();' ></input-->
+   <input name="log"    value="log"                 type="button" onclick='logging = logging ? false : true; log();' ></input>
+   <input name="reset"  value="input from keyboard (Space to reset)" id="lb_opt_r" type="button" onclick='letter_browse(this);' title="input from keyboard (Space to reset)"></input>
+  
+   <input name="option" value=""      id="lb_opt_a" type="radio"  onchange='letter_browse(this);'        ></input><label for="lb_opt_a">all</label>
+   <input name="option" value="w"     id="lb_opt_w" type="radio"  onchange='letter_browse(this);' checked></input><label for="lb_opt_w">adjacent</label>
+   <input name="option" value="o"     id="lb_opt_o" type="radio"  onchange='letter_browse(this);'        ></input><label for="lb_opt_o">sequence</label>
   </div> <!-- }}} -->
   <div style="float:left; clear:left; margin:1em; clear:left;"><!-- ieo ntr ahs {{{ -->
    <em class="row1" onclick='letter_browse(this);'>i</em>
@@ -1947,6 +1951,7 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
 
   <!-- }}} -->
   <pre id="pre_letter_browser" style="clear:left;"></pre>
+
  </div>
  <!-- }}} -->
  <!-- keyboard_input {{{ -->
@@ -2002,7 +2007,7 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
    background-color:#ddd;
    text-shadow      : 1px 1px 3px #666;
    "
-   title="Use Escape -or- Clear timer"
+   title="Use Escape or a Clear-timer"
    id="buttons_parent_div"
    >
    Clear<br>
