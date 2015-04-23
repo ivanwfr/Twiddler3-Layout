@@ -63,7 +63,7 @@ function expand_div(el,id) // {{{
     mcc_animate();
     set_wrap_div_top_visibility(id);
 
-    if(id=="top") {
+    if((id=="top") || (id=="bot")) {
 	eraseCookie("expanded");
 	if(window.location != window.location.pathname)
 	    window.location = window.location.pathname;
@@ -105,15 +105,20 @@ function expand_div(el,id) // {{{
 function set_wrap_div_top_visibility(id) // {{{
 {
     // ignore missing targets
-    if(id != "top") {
+    if((id!="top") && (id!="bot")) {
 	var div = document.getElementById("div_"+id);
 	if(!div) return;
     }
 
-    // hide top most wrap_div when done
+    // hide top and bottom wrap_div when they are the one clicked
+    // show them when some other are expanding something
+    var top_and_bot_visibility = ((id=="top") || (id=="bot")) ? "hidden" : "visible";
+
     var wrap_div_top = document.getElementById("wrap_div_top");
-    if(wrap_div_top)
-	wrap_div_top.style.visibility = (id == "top") ? "hidden" : "visible";
+    if(wrap_div_top) wrap_div_top.style.visibility = top_and_bot_visibility;
+
+    var wrap_div_bot = document.getElementById("wrap_div_bot");
+    if(wrap_div_bot) wrap_div_bot.style.visibility = top_and_bot_visibility;
 }
 // }}}
 var ExpandedArray = new Array();
@@ -546,10 +551,10 @@ function mcc_animate_magnify()// {{{
 {
     log("   mcc_animate_magnify");
     if(!mcc_animate_div) return;
-    var top = document.getElementById("top");
-    mcc_animate_ratio = 0.9 * top.clientWidth / mcc_animate_div.clientWidth;
+    var body = document.getElementById("body");
+    mcc_animate_ratio = 0.9 * body.clientWidth / mcc_animate_div.clientWidth;
     mcc_animate_div.style.transform = "scale("+mcc_animate_ratio+","+mcc_animate_ratio+")";
-    log("   mcc_animate_magnify("+top.clientWidth+")");
+    log("   mcc_animate_magnify("+body.clientWidth+")");
 
 } // }}}
 //}}}
@@ -640,7 +645,7 @@ var mcc_key_el_hist = null;
 var mcc_key_timeout = null;
 var mcc_prev_time   = 0;
 var mcc_this_time   = 0;
-var mcc_key_delay   = 500;
+var mcc_key_delay   = 0;
 function mcc_key(e, el) { //{{{
 
     // clear (by user)

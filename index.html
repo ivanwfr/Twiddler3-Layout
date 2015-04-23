@@ -17,7 +17,7 @@
 <![endif]-->
 </head>
 <!-- }}} -->
-<body onload='onload_hash();' id="top">
+<body onload='onload_hash();' id="body">
 <div id="div_log" ondblclick='log();'><pre id="pre_log" title="double click to clear">LOG</pre></div>
 <div class="wrapper">
  <header><!-- {{{ -->
@@ -128,16 +128,21 @@
   to handle dynamic
   <a class="expander" href="#div_twiddler3_mcc_hotstrings" onclick='return expand_div(this,"twiddler3_mcc_hotstrings");'>hotstrings<span class="cc6">3</span></a>.
   </p> <!-- }}} -->
-   <b>Some interactive tools:</b><!-- ...tools (cheat_sheets keyboard_input keyboard_input) {{{ -->
-  <ul style="padding-left:1em;">
-   <li><a class="expander" href="#div_cheat_sheets" onclick='return expand_div(this,"cheat_sheets");'>Cheat Sheets<span class="cc7">&hellip;</span></a>
-   should make enough sense to account for the usefulness of this study.
-   </li>
-   <li><a class="expander" href="#div_letter_browser" onclick='return expand_div(this,"letter_browser");'>Letters browser<span class="cc7">&hellip;</span></a>
-   shows where our MCCs manage with english letter usage frequencies</li>
-   <li><a class="expander" href="#div_keyboard_input" onclick='return expand_div(this,"keyboard_input");'>Chord input field<span class="cc7">&hellip;</span></a>
-   may be used to check your current chord set</li>
-  </ul> <!-- }}} -->
+  <p><!-- ...cheat_sheets  cheat_sheets keyboard_input keyboard_input {{{ -->
+  <b>Some interactive tools</b>
+  <br>
+  <a class="expander" href="#div_cheat_sheets" onclick='return expand_div(this,"cheat_sheets");'>Cheat Sheets<span class="cc7">&hellip;</span></a>
+  should make enough sense to account for the usefulness of this study.
+  <br>
+  <a class="expander" href="#div_mcc_animate" onclick='return expand_div(this,"mcc_animate");'>MCC animation<span class="cc7">&hellip;</span></a>
+  shows button sequences for each <em class="fingers">INDEX modifier</em>
+  <br>
+  <a class="expander" href="#div_letter_browser" onclick='return expand_div(this,"letter_browser");'>Letters browser<span class="cc7">&hellip;</span></a>
+  shows where our MCCs manage with english letter usage frequencies
+  <br>
+  <a class="expander" href="#div_keyboard_input" onclick='return expand_div(this,"keyboard_input");'>Test input-field<span class="cc7">&hellip;</span></a>
+  may be used to check your current chord set
+  </p> <!-- }}} -->
   <!-- ...contributions {{{ -->
   <b>And, of course, contributions are welcome&hellip;</b>
   <span class="fav_icon_span">
@@ -1945,7 +1950,7 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
  </div>
  <!-- }}} -->
  <!-- keyboard_input {{{ -->
- <div class="fold_title" onclick='toggle_div(this, "keyboard_input");'>Chord input field<span class="cc8">&hellip;</span></div>
+ <div class="fold_title" onclick='toggle_div(this, "keyboard_input");'>Test input-field<span class="cc8">&hellip;</span></div>
  <div id="div_keyboard_input" class="collapsed">
   <div style="
    display:inline-block;
@@ -1997,7 +2002,7 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
    background-color:#ddd;
    text-shadow      : 1px 1px 3px #666;
    "
-   title="clear timer"
+   title="Use Escape -or- Clear timer"
    id="buttons_parent_div"
    >
    Clear<br>
@@ -2062,9 +2067,9 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
  <!-- }}} -->
  <!-- }}} -->
  <div class="wrap_div"                      onclick='toggle_div(this, "references");'><img title="collapse"    src="images/cursors/left.png">Some useful links</div>
- <div class="wrap_div" style="float:right;" onclick='return expand_div(this,"top");' ><img title="all wrapped" src="images/cursors/top.png"></div>
 </div>
 <!-- }}} -->
+  <div class="wrap_div" id="wrap_div_bot" style="float:right; visibility:hidden;" onclick='return expand_div(this,"bot");'><img title="all wrapped" src="images/cursors/top.png">                            </div>
  </section>
  <!-- email {{{ -->
  <div style=' text-align:center; color:#000; margin:0; pading:0;'>
