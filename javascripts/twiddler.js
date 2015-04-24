@@ -16,7 +16,15 @@ function log(msg)
 	el.style.visibility = "hidden";
     }
 }
+function log_toggle()
+{
+    logging = logging ? false : true; log();
+    var value = logging ? "logging" : "not logging";
+    createCookie("logging", value, COOKIE_DAYS);
 
+    var el = document.getElementById("log_toggle_el_id");
+    if(el) el.style.backgroundColor = logging ? "red" : "initial";
+}
 //}}}
 
 /* EXPAND-COLLAPSE */
@@ -32,7 +40,6 @@ function toggle_div(el,id) // {{{
     if( !div ) return;
     div.className = (div.className == "expanded") ? "collapsed" : "expanded";
 
-//  if(el) el.style.opacity   = (div.className == "expanded") ? "1.0" : "0.5";
     if(el) el.style.boxShadow = "rgba(  0, 0, 0, 0.3) 0px 0px 20px inset";
 
     if(div.className == "expanded") {
@@ -44,8 +51,6 @@ function toggle_div(el,id) // {{{
 	var expanded_cookie = readCookie("expanded");
 	if(expanded_cookie == id) {
 	    eraseCookie("expanded");
-//alert("window.location.pathname=["+window.location.pathname+"]")
-//window.location = window.location.pathname;
 	}
     }
 
@@ -56,10 +61,13 @@ function onload_hash() // {{{
     if( id.startsWith("div_") ) id = id.substring(4);
     expand_div("", id);
 
+    if(readCookie("logging") == "logging")
+	log_toggle();
+    if(logging) log("logging set by cookie in onload_hash()");
+
 } // }}}
 function expand_div(el,id) // {{{
 {
-//alert("expand_div("+id+")");
     mcc_animate();
     set_wrap_div_top_visibility(id);
 
@@ -70,7 +78,6 @@ function expand_div(el,id) // {{{
     }
 
     var div = document.getElementById("div_"+id);
-//alert("div=["+div+"]")
     var nothing_to_expand = (div == null) || ((div != null) && (div.className == "expanded"));
 
     collapse_expanded();
@@ -89,16 +96,30 @@ function expand_div(el,id) // {{{
     }
 
     // expand parent chain
-    while(div != null) {
-	if(div.className == "collapsed") {
-	    div.className = "expanded";
-	    cache_expanded(div);
+    var parent_div = div;
+    while(parent_div != null) {
+	if(parent_div.className == "collapsed") {
+	    parent_div.className = "expanded";
+	    cache_expanded(parent_div);
 	}
-	div = div.parentNode;
+	parent_div = parent_div.parentNode;
     }
 
-//  if(el) el.style.opacity   = "1.0";
     if(el) el.style.boxShadow = "rgba(  0, 0, 0, 0.3) 0px 0px 20px inset";
+
+    // scrollTo target div
+    var wh = window.innerHeight;
+    var div_pos = getPosition(div);
+    log("expand_div("+id+")\n"
+    +".......wh=["+       wh+"]\n"
+    +"div_pos.x=["+div_pos.x+"]\n"
+    +"div_pos.y=["+div_pos.y+"]\n"
+    );
+
+    var x = 0;
+    var y = div_pos.y - 32;
+    log("...scrollTo("+x+","+y+")");
+    window.scrollBy(x, y);
 
     return false; // don't follow expanding anchors
 } // }}}
@@ -284,7 +305,8 @@ var letter_browse_data = ""
 ;
 
 //}}}
-function letter_browse_focus(e,el) { //{{{
+function letter_browse_focus_dispatch(e,el) { //{{{
+//log("letter_browse_focus_dispatch():");
 
     fold_stopEventPropagation(e, el);
 
@@ -295,7 +317,6 @@ function letter_browse_focus(e,el) { //{{{
 
     // key
     var l = String.fromCharCode(charCode).toLowerCase();
-log("letter_browse_focus(): l=["+l+"]");
 
     // identify button f(key)
     var div_letter_browser = document.getElementById("div_letter_browser");
@@ -310,21 +331,26 @@ log("letter_browse_focus(): l=["+l+"]");
 	do {
 	    em = get_next_child_tagName(div, em, "EM");
 	    if(!em) break;
-	    if(em.innerHTML == l)
-		letter_browse(em); // toggle button
+	    if(em.innerHTML == l) {
+		letter_browse(em);  // toggle button
+		return;		    // done
+	    }
 	} while(em);
 
     } while(div);
+
+    log("letter_browse_focus_dispatch():\n...["+l+"] symbol not handled");
 
 } // }}}
 function letter_browse(button) //{{{
 {
     // commands / options {{{
     if(!button) {
-	    letter_browse_reset();
+	letter_browse_reset();
 
     }
     else if((button.tagName == "INPUT")) {
+	log("letter_browse("+button.id+"):");
 	// reset selection
 	if(button.name == "reset") {
 	    letter_browse_reset();
@@ -337,6 +363,7 @@ function letter_browse(button) //{{{
     // letters {{{
     else {
 	var l = button.innerHTML;
+	log("letter_browse("+l+"):");
 	if(!l) return;
 
 	// toggle letter selection
@@ -353,7 +380,7 @@ function letter_browse(button) //{{{
     if(!el) return;
 
     if(letter_browse_selected == "") {
-	log("letter_browse(): nothing selected");
+	if(button) log("letter_browse(): nothing selected");
 	el.innerHTML = letter_browse_data;
 	return;
     }
