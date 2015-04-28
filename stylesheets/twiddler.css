@@ -201,7 +201,10 @@
 }
 #div_letter_browser span     { color:#000; background-color:#ff0;  box-shadow:rgba(0, 0, 0, 0.9) 0 2px 3px; border-radius: 2px; }
 #div_letter_browser span     { margin:0 2px 0 2px !important; }
-#lb_opt_r:focus { border: 3px blue dotted; }
+
+input:focus     { border: 4px #ddf solid !important; }
+
+.magnified { margin-top:-20em; }
 
 /* }}} */
 

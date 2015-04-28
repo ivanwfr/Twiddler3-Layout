@@ -121,6 +121,10 @@ function expand_div(el,id) // {{{
     log("...scrollTo("+x+","+y+")");
     window.scrollBy(x, y);
 
+    // look for a focus target
+    var focus_target = get_child_tagName(div, "INPUT");
+    if(focus_target) focus_target.focus();
+
     return false; // don't follow expanding anchors
 } // }}}
 function set_wrap_div_top_visibility(id) // {{{
@@ -322,6 +326,10 @@ function letter_browse_focus_dispatch(e,el) { //{{{
     var div_letter_browser = document.getElementById("div_letter_browser");
     if(!div_letter_browser) return;
 
+    // clear unhandled
+    var err_letter_browser = document.getElementById("err_letter_browser");
+    if( err_letter_browser )	err_letter_browser.innerHTML = "";
+
     var div = null; // pick first sub div
     do {
 	div = get_next_child_tagName(div_letter_browser, div, "DIV");
@@ -340,6 +348,9 @@ function letter_browse_focus_dispatch(e,el) { //{{{
     } while(div);
 
     log("letter_browse_focus_dispatch():\n...["+l+"] symbol not handled");
+
+    // show unhandled
+    if( err_letter_browser )	err_letter_browser.innerHTML = l;
 
 } // }}}
 function letter_browse(button) //{{{
@@ -376,29 +387,28 @@ function letter_browse(button) //{{{
 	else		    add_className(button,"letter_browser_on");
     } //}}}
     // nothing selected {{{
-    var el = document.getElementById("pre_letter_browser");
-    if(!el) return;
+    var pre_letter_browser = document.getElementById("pre_letter_browser");
+    if(!pre_letter_browser) return;
 
     if(letter_browse_selected == "") {
 	if(button) log("letter_browse(): nothing selected");
-	el.innerHTML = letter_browse_data;
+	pre_letter_browser.innerHTML = letter_browse_data;
 	return;
     }
     //}}}
     // regex for selected letters {{{
-    var pattern = letter_browse_selected;
-    if(letter_browse_options.indexOf("o") < 0)	// not ordered
+    var pattern	    = letter_browse_selected;	// take the whole set
+    if(letter_browse_options.indexOf("o") < 0)	// ...not ordered
     {
-	pattern = pattern.replace(/(.)/g,"$1|");
-	pattern = pattern.substring(0,pattern.length-1);
+	pattern	    = pattern.replace(/(.)/g,"$1|");
+	pattern	    = pattern.substring(0,pattern.length-1);
     }
-    var highlight   = '<SPAN>$1</SPAN>';    // uppercase matters!
+    var highlight   = '<SPAN>$1</SPAN>';	// (uppercase matters!)
 
-    if(letter_browse_options.indexOf("w") >= 0)	// as word
+    if(letter_browse_options.indexOf("w") >= 0)	// ...as word
     {
-    pattern = "("+pattern+")";
-//	highlight   = '<SPAN>'+letter_browse_selected+'</SPAN>';    // uppercase matters!
-	var p = pattern;
+	pattern	    = "("+pattern+")";
+	var p	    = pattern;
 	for(var i=1; i<letter_browse_selected.length; ++i)
 	    pattern += p;
     }
@@ -408,8 +418,9 @@ function letter_browse(button) //{{{
     // highlight selected letters {{{
 
     var re = new RegExp(pattern, "gm");
-    el.innerHTML = ""
-	+ "<em style='float:right; clear:right; font-size:150%;'>"+pattern.substring(1,pattern.length-1)+"</em><br style='clear:both;'>"
+    pre_letter_browser.innerHTML    = ""
+	+ "<em style='float:right; clear:right; font-size:150%;'>"+pattern.substring(1,pattern.length-1)+"</em>"
+	+ "<br style='clear:both;'>"
 	+ letter_browse_data.replace(re, highlight)
 	;
 //	+ "<em style='float:right; clear:right;                '>"+letter_browse_options+"</em>"
@@ -504,6 +515,7 @@ function mcc_animate_stop()// {{{
     mcc_animate_reset();
 
     mcc_animate_div.style.transform = "scale(1,1)";
+    del_className(mcc_animate_div,"magnified");
     mcc_animate_div     = null;
     mcc_animate_overlay = null;
     mcc_animate_ratio   = null;
@@ -597,8 +609,9 @@ function mcc_animate_magnify()// {{{
     log("   mcc_animate_magnify");
     if(!mcc_animate_div) return;
     var body = document.getElementById("body");
-    mcc_animate_ratio = 0.9 * body.clientWidth / mcc_animate_div.clientWidth;
+    mcc_animate_ratio = 0.5 * body.clientWidth / mcc_animate_div.clientWidth;
     mcc_animate_div.style.transform = "scale("+mcc_animate_ratio+","+mcc_animate_ratio+")";
+    add_className(mcc_animate_div,"magnified");
     log("   mcc_animate_magnify("+body.clientWidth+")");
 
 } // }}}
