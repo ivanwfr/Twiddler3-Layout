@@ -57,13 +57,16 @@ function toggle_div(el,id) // {{{
 } // }}}
 function onload_hash() // {{{
 {
+    if(readCookie("logging") == "logging")
+	log_toggle();
+    if(logging) log("logging set by cookie in onload_hash()");
+
     var id = window.location.hash.substring(1);
     if( id.startsWith("div_") ) id = id.substring(4);
     expand_div("", id);
 
-    if(readCookie("logging") == "logging")
-	log_toggle();
-    if(logging) log("logging set by cookie in onload_hash()");
+    // initialize objects
+    letter_browse(null);
 
 } // }}}
 function expand_div(el,id) // {{{
@@ -123,7 +126,10 @@ function expand_div(el,id) // {{{
 
     // look for a focus target
     var focus_target = get_child_tagName(div, "INPUT");
-    if(focus_target) focus_target.focus();
+    if(focus_target) {
+	log("...focus_target=["+focus_target.id+"]");
+	focus_target.focus();
+    }
 
     return false; // don't follow expanding anchors
 } // }}}
@@ -353,27 +359,27 @@ function letter_browse_focus_dispatch(e,el) { //{{{
     if( err_letter_browser )	err_letter_browser.innerHTML = l;
 
 } // }}}
-function letter_browse(button) //{{{
+function letter_browse(input_el) //{{{
 {
     // commands / options {{{
-    if(!button) {
+    if(!input_el) {
 	letter_browse_reset();
 
     }
-    else if((button.tagName == "INPUT")) {
-	log("letter_browse("+button.id+"):");
+    else if((input_el.tagName == "INPUT")) {
+	log("letter_browse("+input_el.id+"):");
 	// reset selection
-	if(button.name == "reset") {
+	if(input_el.name == "reset") {
 	    letter_browse_reset();
 	}
 	else {
-	    letter_browse_options = button.value;
-	    var o = button.value;
+	    letter_browse_options = input_el.value;
+	    var o = input_el.value;
 	}
     } //}}}
     // letters {{{
     else {
-	var l = button.innerHTML;
+	var l = input_el.innerHTML;
 	log("letter_browse("+l+"):");
 	if(!l) return;
 
@@ -382,16 +388,16 @@ function letter_browse(button) //{{{
 	if(l_is_selected)    letter_browse_selected = letter_browse_selected.replace(l,"");
 	else		     letter_browse_selected = letter_browse_selected + l;
 
-	// toggle button state
-	if(l_is_selected)   del_className(button,"letter_browser_on");
-	else		    add_className(button,"letter_browser_on");
+	// toggle input_el state
+	if(l_is_selected)   del_className(input_el,"letter_browser_on");
+	else		    add_className(input_el,"letter_browser_on");
     } //}}}
     // nothing selected {{{
     var pre_letter_browser = document.getElementById("pre_letter_browser");
     if(!pre_letter_browser) return;
 
     if(letter_browse_selected == "") {
-	if(button) log("letter_browse(): nothing selected");
+	if(input_el) log("letter_browse(): nothing selected");
 	pre_letter_browser.innerHTML = letter_browse_data;
 	return;
     }
