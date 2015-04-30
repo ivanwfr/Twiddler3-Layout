@@ -1,31 +1,18 @@
-/* LOG */
-//{{{
-
-var logging = false;
-function log(msg)
+/* LOAD */
+function onload_hash() // {{{
 {
-    var el = document.getElementById("pre_log");
-    if(!el) return;
-    if(logging) {
-	el.style.visibility = "visible";
-	if(!msg)
-	    el.innerHTML    = "LOG";
-	else
-	    el.innerHTML    = (el.innerHTML) ? el.innerHTML+"\n"+msg : msg;
-    } else {
-	el.style.visibility = "hidden";
-    }
-}
-function log_toggle()
-{
-    logging = logging ? false : true; log();
-    var value = logging ? "logging" : "not logging";
-    createCookie("logging", value, COOKIE_DAYS);
+    if(readCookie("logging") == "logging")
+	log_toggle();
+    if(logging) log("logging set by cookie in onload_hash()");
 
-    var el = document.getElementById("log_toggle_el_id");
-    if(el) el.style.backgroundColor = logging ? "red" : "initial";
-}
-//}}}
+    var id = window.location.hash.substring(1);
+    if( id.startsWith("div_") ) id = id.substring(4);
+    expand_div("", id);
+
+    // initialize objects
+    letter_browse(null);
+
+} // }}}
 
 /* EXPAND-COLLAPSE */
 //{{{
@@ -53,20 +40,6 @@ function toggle_div(el,id) // {{{
 	    eraseCookie("expanded");
 	}
     }
-
-} // }}}
-function onload_hash() // {{{
-{
-    if(readCookie("logging") == "logging")
-	log_toggle();
-    if(logging) log("logging set by cookie in onload_hash()");
-
-    var id = window.location.hash.substring(1);
-    if( id.startsWith("div_") ) id = id.substring(4);
-    expand_div("", id);
-
-    // initialize objects
-    letter_browse(null);
 
 } // }}}
 function expand_div(el,id) // {{{
@@ -113,7 +86,7 @@ function expand_div(el,id) // {{{
     // scrollTo target div
     var wh = window.innerHeight;
     var div_pos = getPosition(div);
-    log("expand_div("+id+")\n"
+    log("\nexpand_div("+id+")\n"
     +".......wh=["+       wh+"]\n"
     +"div_pos.x=["+div_pos.x+"]\n"
     +"div_pos.y=["+div_pos.y+"]\n"
@@ -199,11 +172,11 @@ function get_child_id(parent, id) //{{{
     for(var i= 0; i < parent.children.length-1; ++i) {
 	var child = parent.children[i];
 	if(child.id == id) {
-	    log("get_child_id("+parent.id+", "+id+") return ["+child.id+"]");
+//log("get_child_id("+parent.id+", "+id+") return ["+child.id+"]");
 	    return child;
 	}
     }
-    log("get_child_id("+parent.id+", "+id+") return null");
+//log("get_child_id("+parent.id+", "+id+") return null");
     return null;
 }
 //}}}
@@ -461,21 +434,21 @@ log("letter_browse_reset():");
 
 /* ANIMATION */
 //{{{
-var MCC_ANIMATE_WORD_TIMOUT	= 2000;
 var MCC_ANIMATE_LETTER_TIMOUT	= 500;
 
-var mcc_animate_div		= null;
-var mcc_animate_overlay		= null;
-var mcc_animate_ratio		= null;
-var mcc_animate_timeout		= null;
-var mcc_animate_words		= null;
-var mcc_animate_letters		= null;
-var mcc_animate_word_num;
+var mcc_animate_div	    = null;
+var mcc_animate_timeOut	    = null;
+var mcc_animate_letters	    = null;
+var mcc_animate_ratio	    = null;
+var mcc_animate_word_num    = 0;
+var mcc_animate_words	    = null;
 
 function mcc_animate(id) // {{{
 {
+//log("\nmcc_animate(["+id+"])");
+
+    // stop
     if(mcc_animate_div) {
-	log("\nmcc_animate(<b>"+id+"</b>)");
 	var same_div = (id == mcc_animate_div.id);
 	if(mcc_animate_div)  mcc_animate_stop();
 	if(same_div)		return;
@@ -485,142 +458,134 @@ function mcc_animate(id) // {{{
 
     mcc_animate_div		= document.getElementById(id);
     if(!mcc_animate_div)	return;
+
+    // start
     mcc_animate_start();
 
 }
 // }}}
 function mcc_animate_start()// {{{
 {
-    log("&gt;&gt; mcc_animate_start()");
+log("\nmcc_animate_start() ["+mcc_animate_div.id+"]");
 
     var data_mcc = mcc_animate_div.getAttribute("data-mcc");
     if(data_mcc) {
 	mcc_animate_words = data_mcc.split(" ");
-	log(mcc_animate_div.id+" "+mcc_animate_words.length+" words ["+data_mcc+"]");
-	mcc_animate_word_num = 0;
+log("   "+mcc_animate_words.length+" words ["+data_mcc+"]");
     }
 
-    mcc_animate_step();
-    mcc_animate_timeout = setTimeout(mcc_animate_CB, MCC_ANIMATE_WORD_TIMOUT);
+    mcc_animate_word_num = 0;
+    mcc_animate_display_word();
 
 }
 // }}}
 function mcc_animate_stop()// {{{
 {
-    log("|| mcc_animate_stop()");
+log("mcc_animate_stop() ["+mcc_animate_div.id+"]\n");
 
+    // no active animation
     if(!mcc_animate_div) return;
 
-    // stop animation timer
-    // TODO make these 2 lines atomic to avoid auto refresh
-    if(mcc_animate_timeout) clearTimeout(mcc_animate_timeout);
-    mcc_animate_timeout = null;
-    // TODO
+    // stop animation
+    if(mcc_animate_timeOut) { clearTimeout(mcc_animate_timeOut); mcc_animate_timeOut = null; }
 
-    // reset all elements style
+    // hide animatoin overlay elements
     mcc_animate_reset();
 
+    // undisplay magnified animation
     mcc_animate_div.style.transform = "scale(1,1)";
     del_className(mcc_animate_div,"magnified");
+
     mcc_animate_div     = null;
-    mcc_animate_overlay = null;
     mcc_animate_ratio   = null;
+    mcc_animate_words	= null;
 
 } // }}}
-function mcc_animate_CB()// {{{
+
+function mcc_animate_display_word()// {{{
 {
-    if(!mcc_animate_timeout) return;		    // thread mutex (kindof)
-    mcc_animate_step();
-    mcc_animate_timeout = setTimeout(mcc_animate_CB, MCC_ANIMATE_WORD_TIMOUT);
-
-} // }}}
-function mcc_animate_step()// {{{
-{
-    log(".. mcc_animate_step()");
-
-    if(!mcc_animate_ratio) mcc_animate_magnify();   // thread shared volatile
-    if(!mcc_animate_div) return;
-
-    if(mcc_animate_words) {
-	mcc_animate_dislpay_word(mcc_animate_word_num);
-	mcc_animate_word_num =  (mcc_animate_word_num+1) % mcc_animate_words.length;
-    }
-
-} // }}}
-function mcc_animate_dislpay_word(word_index)// {{{
-{
-    log(".. mcc_animate_dislpay_word("+word_index+")");
     if(!mcc_animate_words) return;
-    var word = trim(mcc_animate_words[word_index]);
+    var word = trim(mcc_animate_words[mcc_animate_word_num]);
     if(!word) return;
+    log("   .mcc_animate_display_word("+mcc_animate_word_num+"): ["+mcc_animate_words[mcc_animate_word_num]+"]");
 
-    var el = document.getElementById(mcc_animate_div.id+"_caption");
-    if(!el) return;
-
-//  var msg = "step #"+word_index+" ["+word+"]";
-    var msg = word;
-    log("mcc_animate_dislpay_word("+word_index+"):"+msg);
-    el.innerHTML = msg;
-
-    mcc_animate_reset();
-
+    // animate first letter
     mcc_animate_letters = "";
     for(var i=0; i<word.length; ++i) {
 	mcc_animate_letters += word[i];
     }
-    if(mcc_animate_letters) setTimeout(mcc_animate_letter_CB, MCC_ANIMATE_LETTER_TIMOUT);
+    if(mcc_animate_letters) {
+//	var timeout = (mcc_animate_word_num == 0) ? MCC_ANIMATE_LETTER_TIMOUT : 2 * MCC_ANIMATE_LETTER_TIMOUT;
+	mcc_animate_timeOut = setTimeout(mcc_animate_letter_CB, 2 * MCC_ANIMATE_LETTER_TIMOUT);
+    }
 
 } // }}}
 function mcc_animate_letter_CB()// {{{
 {
-    // next letter
-    if(!mcc_animate_letters) return;
-    var letter = mcc_animate_letters.substring(0,1);
-    if(!letter) return;
-    log("mcc_animate_letter_CB("+letter+"):");
-    var el = get_child_id(mcc_animate_div, "mcc_"+letter);
-    if(el) add_className(el,"mcc_overlay_on");
 
-    // more letters
-    mcc_animate_letters = mcc_animate_letters.substring(1);
-    if(mcc_animate_letters) setTimeout(mcc_animate_letter_CB, MCC_ANIMATE_LETTER_TIMOUT);
-
-} // }}}
-function mcc_animate_on(el)// {{{
-{
-log("mcc_animate_on("+el.id+"):");
-    add_className(el,"mcc_overlay_on");
-
-} // }}}
-function mcc_animate_off(el)// {{{
-{
-    del_className(el,"mcc_overlay_on");
-
-} // }}}
-function mcc_animate_reset()// {{{
-{
-log("mcc_animate_reset():");
+    // magnify
+    if(!mcc_animate_ratio) mcc_animate_magnify();   // thread shared volatile
     if(!mcc_animate_div) return;
 
-    mcc_animate_overlay = null; // pick first
+    // next letter
+    if(mcc_animate_letters) {
+
+	// hide previous word overlay elements f(first word letter)
+	if(mcc_animate_letters.length == mcc_animate_words[mcc_animate_word_num].length) {
+	    mcc_animate_reset();
+	    var el = document.getElementById(mcc_animate_div.id+"_caption");
+	    if(el)
+		el.innerHTML = mcc_animate_words[mcc_animate_word_num];
+	}
+
+	// first word letter
+	var letter = mcc_animate_letters.substring(0,1);
+
+	// remainding letters
+	mcc_animate_letters = mcc_animate_letters.substring(1);
+	log("   ..mcc_animate_letter_CB("+letter+"):");
+
+	// highlight letter overlay
+	var     el = get_child_id(mcc_animate_div, "mcc_"+letter);
+	if(!el) el = get_child_id(mcc_animate_div, "mcc_"+mcc_animate_words[mcc_animate_word_num]);
+	if(el) add_className(el,"mcc_overlay_on");
+
+	// delay next letter
+	mcc_animate_timeOut = setTimeout(mcc_animate_letter_CB, MCC_ANIMATE_LETTER_TIMOUT);
+    }
+    // next word
+    else if(mcc_animate_words) {
+	mcc_animate_word_num = (mcc_animate_word_num+1) % mcc_animate_words.length;
+	mcc_animate_display_word();
+    }
+
+} // }}}
+
+function mcc_animate_reset()// {{{
+{
+//log("   ..mcc_animate_reset():");
+    // hide overlay elements
+    if(!mcc_animate_div) return;
+
+    var el = null; // pick first
     do {
-	mcc_animate_overlay = get_next_child_tagName(mcc_animate_div, mcc_animate_overlay, "DIV");
-	if(mcc_animate_overlay)
-	    mcc_animate_off(mcc_animate_overlay);
-    } while(mcc_animate_overlay);
+	el = get_next_child_tagName(mcc_animate_div, el, "DIV");
+	if(el) del_className(el,"mcc_overlay_on");
+    } while(el);
 
 } // }}}
 function mcc_animate_magnify()// {{{
 {
-    log("   mcc_animate_magnify");
+log("***mcc_animate_magnify");
     if(!mcc_animate_div) return;
     var body = document.getElementById("body");
     mcc_animate_ratio = 0.5 * body.clientWidth / mcc_animate_div.clientWidth;
     mcc_animate_div.style.transform = "scale("+mcc_animate_ratio+","+mcc_animate_ratio+")";
     add_className(mcc_animate_div,"magnified");
-    log("   mcc_animate_magnify("+body.clientWidth+")");
+log("***...body.clientWidth=["+body.clientWidth+"]");
 
 } // }}}
+
 //}}}
 
 // CLASS
@@ -1249,60 +1214,6 @@ function fold_keyup(e,el) { //{{{
 } // }}}
 //}}}
 
-/* COOKIES */
-//{{{
-function createCookie(cName, value, days)// {{{
-{
-try {
-    if(days) {
-        var date    = new Date();
-
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-
-        var expires = "; expires=" + date.toGMTString();
-    }
-    else {
-        var expires = "";
-    }
-    document.cookie = cName + "=" + value + expires + "; path=/";
-} catch(ex) {}
-
-}
-// }}}
-function readCookie(cName) // {{{
-{
-//alert("readCookie("+cName+")");
-    var value   = "";
-try {
-    var nameEQ  = cName + "=";
-    var ca      = document.cookie.split(';');
-    for(var i= 0; i < ca.length; ++i)
-    {
-        var s   = ca[ i ];
-
-        while(s.charAt(0) == ' ')
-            s = s.substring(1, s.length);
-
-        if(s.indexOf(nameEQ) == 0) {
-            value = s.substring(nameEQ.length, s.length);
-            //break;
-        }
-    }
-} catch(ex) {}
-
-//if(value) alert("readCookie("+cName+") return ["+value+"]");
-    return value;
-}
-// }}}
-function eraseCookie(cName)// {{{
-{
-//alert("eraseCookie("+cName+")");
-    createCookie(cName, "", -1);
-
-}
-// }}}
-//}}}
-
 /* LAYOUT */
 //{{{
 var IMG_MAX = 8;
@@ -1404,6 +1315,95 @@ function switch_layout() // {{{
     if(el) el.innerHTML = switch_layout_num;
 
 } // }}}
+
+//}}}
+
+/* LOG */
+//{{{
+var logging = false;
+function log(msg)
+{
+    var el = document.getElementById("pre_log");
+    if(!el) return;
+    if(logging) {
+	el.style.visibility = "visible";
+	if(!msg)
+	    el.innerHTML    = "LOG";
+	else {
+	    msg = msg.replace(/&/g,"&amp;"); // ...must be first!
+	    msg = msg.replace(/</g, "&lt;");
+	    msg = msg.replace(/>/g, "&gt;");
+	    msg = msg.replace(/\[/g, "<em>");
+	    msg = msg.replace(/\]/g, "</em>");
+	    el.innerHTML    = (el.innerHTML) ? el.innerHTML+"\n"+msg : msg;
+	}
+    } else {
+	el.style.visibility = "hidden";
+    }
+}
+
+function log_toggle()
+{
+    logging = logging ? false : true; log();
+    var value = logging ? "logging" : "not logging";
+    createCookie("logging", value, COOKIE_DAYS);
+
+    var el = document.getElementById("log_toggle_el_id");
+    if(el) el.style.backgroundColor = logging ? "red" : "initial";
+}
+
+//}}}
+
+/* COOKIES */
+//{{{
+function createCookie(cName, value, days)
+{
+    try {
+	if(days) {
+	    var date    = new Date();
+
+	    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+
+	    var expires = "; expires=" + date.toGMTString();
+	}
+	else {
+	    var expires = "";
+	}
+	document.cookie = cName + "=" + value + expires + "; path=/";
+    } catch(ex) {}
+
+}
+
+function readCookie(cName)
+{
+    //alert("readCookie("+cName+")");
+    var value   = "";
+    try {
+	var nameEQ  = cName + "=";
+	var ca      = document.cookie.split(';');
+	for(var i= 0; i < ca.length; ++i)
+	{
+	    var s   = ca[ i ];
+
+	    while(s.charAt(0) == ' ')
+		s = s.substring(1, s.length);
+
+	    if(s.indexOf(nameEQ) == 0) {
+		value = s.substring(nameEQ.length, s.length);
+		//break;
+	    }
+	}
+    } catch(ex) {}
+    //if(value) alert("readCookie("+cName+") return ["+value+"]");
+    return value;
+}
+
+function eraseCookie(cName)
+{
+//alert("eraseCookie("+cName+")");
+    createCookie(cName, "", -1);
+
+}
 
 //}}}
 
