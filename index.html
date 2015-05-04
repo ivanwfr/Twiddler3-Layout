@@ -1678,7 +1678,9 @@ P+6
     </pre>
     <pre style="clear:both;">
 <em>Col 3-5</em> P+5
-<i class="todo">&hellip;wrong TabSpace choice between <em>ti</em> and <span class="nb">ti</span></i>
+<i class="todo">&hellip;alternate TabSpace choice between <em>ti</em> and <span class="nb">ti</span></i>
+<small>&hellip;going against pure statisctics by choosing the "it" word
+looks like a good idea.</small>
 <img title="WIP" style="float:right;" src="images/emoticons/WIP.png">
 <em>Col 6-8</em> T+2
 <i>&hellip;most are unused in TabSpace 2.1</i> but 8 are <span class="nb">3grams</span>:
@@ -1984,13 +1986,13 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
   onmouseover='document.getElementById("lb_cmd_reset").focus();'
   onkeydown  ='letter_browse_focus_dispatch(event,this);'
   >
-  <div style="float:left;"><!-- reset - options {{{ -->
+  <div style="float:left;" title="Tab through || Select by #"><!-- reset - options {{{ -->
    <!--input name="log"    value="log"                 type="button" onclick='log_toggle();' title="script logging on/off"></input-->
    <input name="reset"  value="input from keyboard (Space to reset)" id="lb_cmd_reset" type="button" onclick='letter_browse(this);' title="input from keyboard (Space to reset)"></input>
   
-   <input name="option" value=""      id="lb_cmd_a" type="radio"  onchange='letter_browse(this);'        ></input><label for="lb_cmd_a">all</label>
-   <input name="option" value="w"     id="lb_cmd_w" type="radio"  onchange='letter_browse(this);' checked></input><label for="lb_cmd_w">adjacent</label>
-   <input name="option" value="o"     id="lb_cmd_o" type="radio"  onchange='letter_browse(this);'        ></input><label for="lb_cmd_o">sequence</label>
+   <input name="option" value=""      id="lb_cmd_a" type="radio"  onchange='letter_browse(this);'        ></input><label for="lb_cmd_a">all       <sup>1</sup></label>
+   <input name="option" value="g"     id="lb_cmd_g" type="radio"  onchange='letter_browse(this);' checked></input><label for="lb_cmd_g">groups    <sup>2</sup></label>
+   <input name="option" value="s"     id="lb_cmd_s" type="radio"  onchange='letter_browse(this);'        ></input><label for="lb_cmd_s">sequences <sup>3</sup></label>
   </div> <!-- }}} -->
   <div style="float:left; clear:left; margin:1em; clear:left;"><!-- ieo ntr ahs {{{ -->
    <em class="row1" onclick='letter_browse(this);'>i</em>

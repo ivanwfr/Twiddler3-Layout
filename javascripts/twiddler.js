@@ -232,59 +232,34 @@ function get_current_img() // {{{
 /* LETTERS BROWSER */
 //{{{
 // letter_browse_data {{{
-var letter_browse_options  = "w";
+var letter_browse_options  = "g";
 var letter_browse_selected = "";
 var letter_browse_data = ""
-+"th     the     tion     ation\n"
-+"he     and     atio     tions\n"
-+"in     ing     that     which\n"
-+"er     ion     ther     ction\n"
-+"an     tio     with     other\n"
-+"re     ent     ment     their\n"
-+"on     ati     ions     there\n"
-+"at     for     this     ition\n"
-+"en     her     here     ement\n"
-+"nd     ter     from     inter\n"
-+"ti     hat     ould     ional\n"
-+"es     tha     ting     ratio\n"
-+"or     ere     hich     would\n"
-+"te     ate     whic     tiona\n"
-+"of     his     ctio     these\n"
-+"ed     con     ence     state\n"
-+"is     res     have     natio\n"
-+"it     ver     othe     thing\n"
-+"al     all     ight     under\n"
-+"ar     ons     sion     ssion\n"
-+"st     nce     ever     ectio\n"
-+"to     men     ical     catio\n"
-+"nt     ith     they     latio\n"
-+"ng     ted     inte     about\n"
-+"se     ers     ough     count\n"
-+"ha     pro     ance     ments\n"
-+"as     thi     were     rough\n"
-+"ou     wit     tive     ative\n"
-+"io     are     over     prese\n"
-+"le     ess     ding     feren\n"
-+"ve     not     pres     hough\n"
-+"co     ive     nter     ution\n"
-+"me     was     comp     roduc\n"
-+"de     ect     able     resen\n"
-+"hi     rea     heir     thoug\n"
-+"ri     com     thei     press\n"
-+"ro     eve     ally     first\n"
-+"ic     per     ated     after\n"
-+"ne     int     ring     cause\n"
-+"ea     est     ture     where\n"
-+"ra     sta     cont     tatio\n"
-+"ce     cti     ents     could\n"
-+"li     ica     cons     efore\n"
-+"ch     ist     rati     contr\n"
-+"ll     ear     thin     hould\n"
-+"be     ain     part     shoul\n"
-+"ma     one     form     tical\n"
-+"si     our     ning     gener\n"
-+"om     iti     ecti     esent\n"
-+"ur     rat     some     great\n"
++"<em>th</em>  ha     <em>the</em>  pro     tion  ance     ation  ments\n"
++"<em>he</em>  as     <em>and</em>  thi     atio  were     tions  rough\n"
++"<em>in</em>  ou     <em>ing</em>  wit     that  tive     which  ative\n"
++"<em>er</em>  io     ion  <em class='nb'>are</em>     ther  over     ction  prese\n"
++"<em>an</em>  le     tio  ess     with  ding     other  feren\n"
++"re  ve     ent  not     ment  pres     their  hough\n"
++"<em>on</em>  co     <em class='nb'>ati</em>  ive     ions  nter     there  ution\n"
++"<em>at</em>  me     for  was     this  comp     ition  roduc\n"
++"<em>en</em>  de     <em class='nb'>her</em>  ect     here  able     ement  resen\n"
++"nd  <em>hi</em>     ter  rea     from  heir     inter  thoug\n"
++"ti  <em>ri</em>     <em class='nb'>hat</em>  com     ould  thei     ional  press\n"
++"<em>es</em>  ro     tha  eve     ting  ally     ratio  first\n"
++"<em>or</em>  ic     ere  per     hich  ated     would  after\n"
++"<em>te</em>  ne     <em class='nb'>ate</em>  int     whic  ring     tiona  cause\n"
++"<em>of</em>  <em>ea</em>     his  <em class='nb'>est</em>     ctio  ture     these  where\n"
++"ed  ra     con  sta     ence  cont     state  tatio\n"
++"<em>is</em>  ce     <em class='nb'>res</em>  cti     have  ents     natio  could\n"
++"<em>it</em>  li     ver  ica     othe  cons     thing  efore\n"
++"al  ch     all  <em class='nb'>ist</em>     ight  rati     under  contr\n"
++"<em>ar</em>  ll     <em class='nb'>ons</em>  ear     sion  thin     ssion  hould\n"
++"<em>st</em>  be     nce  <em>ain</em>     ever  part     ectio  shoul\n"
++"<em>to</em>  ma     men  one     ical  form     catio  tical\n"
++"nt  si     <em class='nb'>ith</em>  our     they  ning     latio  gener\n"
++"ng  om     ted  iti     inte  ecti     about  esent\n"
++"se  ur     ers  rat     ough  some     count  great\n"
 ;
 
 //}}}
@@ -293,10 +268,14 @@ function letter_browse_focus_dispatch(e,el) { //{{{
 
     fold_stopEventPropagation(e, el);
 
-    // clear (by user)
+    // clear
     var charCode = (e.keyCode) ? e.keyCode : e.which;
-    if(charCode == 27) { letter_browse(null); return; } // Escape
-    if(charCode == 32) { letter_browse(null); return; } // Space
+    if( charCode == 27) { letter_browse(null); return; } // escape
+    if( charCode == 32) { letter_browse(null); return; } // space
+
+    // options
+    if( charCode ==  9)                    { letter_nxtopt();              return; } // tab
+    if((charCode > 48) && (charCode < 58)) { letter_numopt(charCode - 48); return; } // digit
 
     // key
     var l = String.fromCharCode(charCode).toLowerCase();
@@ -330,6 +309,96 @@ function letter_browse_focus_dispatch(e,el) { //{{{
 
     // show unhandled
     if( err_letter_browser )	err_letter_browser.innerHTML = l;
+
+} // }}}
+function letter_nxtopt() { //{{{
+log("letter_nxtopt():");
+
+    // identify next radio f(currently checked) {{{
+    var div_letter_browser = document.getElementById("div_letter_browser");
+    if(!div_letter_browser) return;
+
+    var radio_first = null;
+    var radio_next  = null;
+    var radio       = null; // pick first sub input
+    do {
+	// look for next radio
+	radio = get_next_child_tagName(div_letter_browser, radio, "INPUT");
+	if(!radio) break;
+	log("...["+radio.id+"].type=["+radio.type+"]");
+	if(radio.type != "radio") continue;
+
+	// first as default
+	if(!radio_first) radio_first = radio;
+
+	// pick next unchecked
+	log("...["+radio.id+"].checked=["+radio.checked+"]");
+	if(radio.checked) {
+	    radio_next = get_next_child_tagName(div_letter_browser, radio, "INPUT");
+	    if(radio_next) {
+		if(radio_next.type != "radio") radio_next = null;
+	    }
+	}
+
+    } while(radio && !radio_next);
+
+    // defaut to first
+    if(!radio_next)
+	radio_next = radio_first;
+
+    //}}}
+
+    // check next
+    if(radio_next) {
+	radio_next.checked = true;
+	log("===["+radio_next.id+"].checked=["+radio_next.checked+"]");
+    }
+
+    // check next
+    if(radio_next) letter_browse(radio_next);
+
+} // }}}
+function letter_numopt(numopt) { //{{{
+log("letter_numopt("+numopt+"):");
+
+    // identify next radio f(currently checked) {{{
+    var div_letter_browser = document.getElementById("div_letter_browser");
+    if(!div_letter_browser) return;
+
+    var radio_num   = 0;
+    var radio_first = null;
+    var radio_next  = null;
+    var radio       = null; // pick first sub input
+    do {
+	// look for next radio
+	radio = get_next_child_tagName(div_letter_browser, radio, "INPUT");
+	if(!radio) break;
+	log("...["+radio.id+"].type=["+radio.type+"]");
+	if(radio.type != "radio") continue;
+
+	// first as default
+	if(!radio_first) radio_first = radio;
+
+	// pick numopt
+	if(++radio_num == numopt)
+	    radio_next = radio;
+
+    } while(radio && !radio_next);
+
+    // defaut to first
+    if(!radio_next)
+	radio_next = radio_first;
+
+    //}}}
+
+    // check next
+    if(radio_next) {
+	radio_next.checked = true;
+	log("===["+radio_next.id+"].checked=["+radio_next.checked+"]");
+    }
+
+    // check next
+    if(radio_next) letter_browse(radio_next);
 
 } // }}}
 function letter_browse(input_el) //{{{
@@ -377,14 +446,14 @@ function letter_browse(input_el) //{{{
     //}}}
     // regex for selected letters {{{
     var pattern	    = letter_browse_selected;	// take the whole set
-    if(letter_browse_options.indexOf("o") < 0)	// ...not ordered
+    if(letter_browse_options.indexOf("s") < 0)	// ...sequence
     {
 	pattern	    = pattern.replace(/(.)/g,"$1|");
 	pattern	    = pattern.substring(0,pattern.length-1);
     }
     var highlight   = '<SPAN>$1</SPAN>';	// (uppercase matters!)
 
-    if(letter_browse_options.indexOf("w") >= 0)	// ...as word
+    if(letter_browse_options.indexOf("g") >= 0)	// ...as word
     {
 	pattern	    = "("+pattern+")";
 	var p	    = pattern;
@@ -398,7 +467,7 @@ function letter_browse(input_el) //{{{
 
     var re = new RegExp(pattern, "gm");
     pre_letter_browser.innerHTML    = ""
-	+ "<em style='float:right; clear:right; font-size:150%;'>"+pattern.substring(1,pattern.length-1)+"</em>"
+	+ "<em id='regex' style='float:right; clear:right; font-size:150%;'>"+pattern.substring(1,pattern.length-1)+"</em>"
 	+ "<br style='clear:both;'>"
 	+ letter_browse_data.replace(re, highlight)
 	;
@@ -428,6 +497,9 @@ log("letter_browse_reset():");
 
     } while(div);
 
+    // clear unhandled
+    var err_letter_browser = document.getElementById("err_letter_browser");
+    if( err_letter_browser )	err_letter_browser.innerHTML = "";
 
 } // }}}
 //}}}
