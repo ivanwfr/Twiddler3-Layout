@@ -186,11 +186,13 @@
 /*
 #div_letter_browser div      { -moz-user-select:-moz-none; -ms-user-select:none; -webkit-user-select :none; }
 */
-#div_letter_browser em       { cursor:pointer; }
-#div_letter_browser em       { padding-left:3px !important; }
-#div_letter_browser em       { padding-right:3px !important; }
-#div_letter_browser em       { border:3px solid transparent; }
-#div_letter_browser em       { font-family: 'Lucida Console', Monaco, monospace; }
+#div_letter_browser     .nb      {  color:#FFF; background-color:#00F; }
+#div_letter_browser     em       { background-color:#888; }
+#div_letter_browser>div>em       { cursor:pointer; }
+#div_letter_browser>div>em       { padding-left:3px !important; }
+#div_letter_browser>div>em       { padding-right:3px !important; }
+#div_letter_browser>div>em       { border:3px solid transparent; }
+#div_letter_browser>div>em       { font-family: 'Lucida Console', Monaco, monospace; }
 #div_letter_browser em:hover { box-shadow: rgba(0, 0, 0, 0.9) 0 2px 3px; }
 #div_letter_browser .row1    { color: #FA0; background-color:#B33; }
 #div_letter_browser .row2    { color: #FF0; background-color:#F33; }
@@ -202,8 +204,15 @@
 #div_letter_browser span     { color:#000; background-color:#ff0;  box-shadow:rgba(0, 0, 0, 0.9) 0 2px 3px; border-radius: 2px; }
 #div_letter_browser span     { margin:0 2px 0 2px !important; }
 
-input           { border: 4px #eee solid !important; }
-input:focus     { border: 4px #ddf solid !important; }
+input           { border: 6px #eee solid; }
+input:focus {
+    outline             : 0;
+    border              : 6px solid transparent;
+    -webkit-border-image: url(../images/stripes.gif) 30 round; /* Safari 3.1-5 */
+    -o-border-image     : url(../images/stripes.gif) 30 round; /* Opera 11-12.1 */
+    border-image        : url(../images/stripes.gif) 30 round;
+
+}
 
 .magnified { margin-top:-20em; }
 
