@@ -186,7 +186,7 @@
 /*
 #div_letter_browser div      { -moz-user-select:-moz-none; -ms-user-select:none; -webkit-user-select :none; }
 */
-#div_letter_browser     .nb      {  color:#FFF; background-color:#00F; }
+#div_letter_browser     .NB      {  color:#FFF; background-color:#00F; }
 #div_letter_browser     em       { background-color:#888; }
 #div_letter_browser>div>em       { cursor:pointer; }
 #div_letter_browser>div>em       { padding-left:3px !important; }

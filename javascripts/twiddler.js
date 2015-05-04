@@ -235,29 +235,29 @@ function get_current_img() // {{{
 var letter_browse_options  = "g";
 var letter_browse_selected = "";
 var letter_browse_data = ""
-+"<em>th</em>  ha     <em>the</em>  pro     tion  ance     ation  ments\n"
-+"<em>he</em>  as     <em>and</em>  thi     atio  were     tions  rough\n"
-+"<em>in</em>  ou     <em>ing</em>  wit     that  tive     which  ative\n"
-+"<em>er</em>  io     ion  <em class='nb'>are</em>     ther  over     ction  prese\n"
-+"<em>an</em>  le     tio  ess     with  ding     other  feren\n"
++"<EM>th</EM>  ha     <EM>the</EM>  pro     tion  ance     ation  ments\n"
++"<EM>he</EM>  as     <EM>and</EM>  thi     atio  were     tions  rough\n"
++"<EM>in</EM>  ou     <EM>ing</EM>  wit     that  tive     which  ative\n"
++"<EM>er</EM>  io     ion  <EM CLASS='NB'>are</EM>     ther  over     ction  prese\n"
++"<EM>an</EM>  le     tio  ess     with  ding     other  feren\n"
 +"re  ve     ent  not     ment  pres     their  hough\n"
-+"<em>on</em>  co     <em class='nb'>ati</em>  ive     ions  nter     there  ution\n"
-+"<em>at</em>  me     for  was     this  comp     ition  roduc\n"
-+"<em>en</em>  de     <em class='nb'>her</em>  ect     here  able     ement  resen\n"
-+"nd  <em>hi</em>     ter  rea     from  heir     inter  thoug\n"
-+"ti  <em>ri</em>     <em class='nb'>hat</em>  com     ould  thei     ional  press\n"
-+"<em>es</em>  ro     tha  eve     ting  ally     ratio  first\n"
-+"<em>or</em>  ic     ere  per     hich  ated     would  after\n"
-+"<em>te</em>  ne     <em class='nb'>ate</em>  int     whic  ring     tiona  cause\n"
-+"<em>of</em>  <em>ea</em>     his  <em class='nb'>est</em>     ctio  ture     these  where\n"
++"<EM>on</EM>  co     <EM CLASS='NB'>ati</EM>  ive     ions  nter     there  ution\n"
++"<EM>at</EM>  me     for  was     this  comp     ition  roduc\n"
++"<EM>en</EM>  de     <EM CLASS='NB'>her</EM>  ect     here  able     ement  resen\n"
++"nd  <EM>hi</EM>     ter  rea     from  heir     inter  thoug\n"
++"ti  <EM>ri</EM>     <EM CLASS='NB'>hat</EM>  com     ould  thei     ional  press\n"
++"<EM>es</EM>  ro     tha  eve     ting  ally     ratio  first\n"
++"<EM>or</EM>  ic     ere  per     hich  ated     would  after\n"
++"<EM>te</EM>  ne     <EM CLASS='NB'>ate</EM>  int     whic  ring     tiona  cause\n"
++"<EM>of</EM>  <EM>ea</EM>     his  <EM CLASS='NB'>est</EM>     ctio  ture     these  where\n"
 +"ed  ra     con  sta     ence  cont     state  tatio\n"
-+"<em>is</em>  ce     <em class='nb'>res</em>  cti     have  ents     natio  could\n"
-+"<em>it</em>  li     ver  ica     othe  cons     thing  efore\n"
-+"al  ch     all  <em class='nb'>ist</em>     ight  rati     under  contr\n"
-+"<em>ar</em>  ll     <em class='nb'>ons</em>  ear     sion  thin     ssion  hould\n"
-+"<em>st</em>  be     nce  <em>ain</em>     ever  part     ectio  shoul\n"
-+"<em>to</em>  ma     men  one     ical  form     catio  tical\n"
-+"nt  si     <em class='nb'>ith</em>  our     they  ning     latio  gener\n"
++"<EM>is</EM>  ce     <EM CLASS='NB'>res</EM>  cti     have  ents     natio  could\n"
++"<EM>it</EM>  li     ver  ica     othe  cons     thing  efore\n"
++"al  ch     all  <EM CLASS='NB'>ist</EM>     ight  rati     under  contr\n"
++"<EM>ar</EM>  ll     <EM CLASS='NB'>ons</EM>  ear     sion  thin     ssion  hould\n"
++"<EM>st</EM>  be     nce  <EM>ain</EM>     ever  part     ectio  shoul\n"
++"<EM>to</EM>  ma     men  one     ical  form     catio  tical\n"
++"nt  si     <EM CLASS='NB'>ith</EM>  our     they  ning     latio  gener\n"
 +"ng  om     ted  iti     inte  ecti     about  esent\n"
 +"se  ur     ers  rat     ough  some     count  great\n"
 ;
@@ -440,7 +440,10 @@ function letter_browse(input_el) //{{{
 
     if(letter_browse_selected == "") {
 	if(input_el) log("letter_browse(): nothing selected");
-	pre_letter_browser.innerHTML = letter_browse_data;
+	pre_letter_browser.innerHTML = ""
+	+ "<em id='regex' style='float:right; clear:right; font-size:150%;'>&nbsp;</em>"
+	+ "<br style='clear:both;'>"
+	+ letter_browse_data
 	return;
     }
     //}}}
