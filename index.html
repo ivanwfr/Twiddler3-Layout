@@ -121,8 +121,8 @@
   If
   <a class="expander" href="#div_tabspace_mcc" onclick='return expand_div(this,"tabspace_mcc");'>TabSpace MCC<span class="cc6">1</span></a>
   defines a number of static bindings,
-  we can look for 
-  <a class="expander" href="#div_more_mcc" onclick='return expand_div(this,"more_mcc");'>More MCC<span class="cc6">2</span></a>
+  we can look for more MCC working further on
+  <a class="expander" href="#div_more_mcc" onclick='return expand_div(this,"ngrams");'>ngrams<span class="cc6">2</span></a>
   based on recent studies 
   a further step could use something like
   <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img style='margin-top:-.5ex;' src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>
@@ -1519,7 +1519,9 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
   <p>
   MCC works by blending letter chords to produce <em>letter combinations</em> or <em>words</em>
   by smashing the same fingers used to produce the composing <em>sequence of letters</em> in a <em>single stroke</em>.
+<!--
   Look for external reference on <a href="https://groups.google.com/forum/?hl=en#!topic/twiddler-3/0pBH2vnrph0" target="AutoHotkey">Google Groups</a>
+-->
   </p>
   <!-- tabspace_mcc {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "tabspace_mcc");'>TabSpace MCC<span class="cc6">1</span></div>
@@ -1552,27 +1554,39 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
    The best way to deal with this lack of perfection is by living with it
    as long as muscle memory will smoothly take care of ignoring it because logic has nothing to do in the process!
    </p>
+ <!-- twiddler3_mcc_gesture {{{ -->
+ <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_gesture");'><i>Input mode switching (a rejected option)</i><span class="cc6">1.1</span></div>
+ <div id="div_twiddler3_mcc_gesture" class="collapsed">
+  <ul class="rules"><!-- {{{ -->
+   <li>Using <em>NUM thumb modifier</em> as a <em class='todo'>mode-switching gesture</em><br>
+   &hellip;this proved to be a bad choice!
+   </li>
+  </ul><!-- }}} -->
+  <p style="font-style:oblique; font-family:'Comic sans ms'">
+  The theory was based on using a <em class='todo'>mode-switching gesture</em>
+  to toggle between the "normal" <em>single keystrokes</em> input mode
+  and the <em>Multi Character Chords</em> mode.
+  This would give us another full set of 4x4 chords for multi character input.
+  </p>
+  <p style="font-style:oblique; font-family:'Comic sans ms'">
+  If this would have made clear we were switching between two different input methods
+  by using the <em>NUM thumb modifier</em>,
+  moving the thumb from its gripping place
+  appears to be so awkward to say the least that
+  it certainly wont improve the input rate.
+  </p>
+
+ </div>
+ <!-- }}} -->
   </div>
   <!-- }}} -->
-  <!-- more_mcc {{{ -->
-  <div class="fold_title" onclick='toggle_div(this, "more_mcc");'>More MCC<span class="cc6">2</span></div>
-  <div id="div_more_mcc" class="collapsed" style="background:inherit;">
-   <!-- mcc_ref {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "mcc_ref");'>Working references<span class="cc6">2.1</span></div>
-   <div id="div_mcc_ref" class="collapsed">
-    <ul>
-     <li><a href="http://norvig.com/mayzner.html"                                                                                  target="mayzner"              ><b>ETAOIN SRHLDCU                         </b></a></li>
-     <li><a href="http://practicalcryptography.com/cryptanalysis/letter-frequencies-various-languages/english-letter-frequencies/" target="crypto"               > English Letter Frequencies               </a></li>
-     <li><a href="http://www.w0uce.net/Common_1_-_2_-3_-_4_and_100_Words_Practice_List.pdf"                                        target="w0uce"                > 1-2-3-4 Words (pdf)                      </a></li>
-     <li><a href="http://www3.nd.edu/~busiforc/handouts/cryptography/cryptography hints.html"                                      target="hints"                > Singles - Digraphs - Trigraphs - Doubles </a></li>
-     <li><a href="http://en.wikipedia.org/wiki/Letter_frequency"                                                                   target="wiki_letter_frequency"> Letter frequency - Wikipedia             </a></li>
-    </ul>
-   </div>
-   <!-- }}} -->
    <!-- ngrams {{{ -->
-   <div class="fold_title" onclick='toggle_div(this, "ngrams");'>N-grams <i>(N-Letter Sequences)</i><span class="cc6">2.2</span></div>
+   <div class="fold_title" onclick='toggle_div(this, "ngrams");'>N-grams<span class="cc6">2</span></div>
    <div id="div_ngrams" class="collapsed">
-    <small>&hellip;part of <a href="http://norvig.com/mayzner.html" target="mayzner"><b>ETAOIN SRHLDCU</b></a></small>
+    <small>
+    These <i>(N-Letter Sequences)</i> come from
+     <a href="http://norvig.com/mayzner.html" target="mayzner"><b>ETAOIN SRHLDCU</b></a>
+    </small>
     <hr>
     <ul>
      <li><span class="nb">extra ngrams</span> (complements to TabSpace)</li>
@@ -1635,7 +1649,7 @@ z     <span class="ll">ha</span>     pro     ance     ments     struct     gover
    </div>
    <!-- }}} -->
    <!-- mcc_neighbor_chords {{{ -->
-   <div style="clear:both;" class="fold_title" onclick='toggle_div(this, "mcc_neighbor_chords");'>Neighbor chords</em><span class="cc6">2.3</span></div>
+   <div style="clear:both;" class="fold_title" onclick='toggle_div(this, "mcc_neighbor_chords");'>Chord collections</em><span class="cc6">3</span></div>
   <div id="div_mcc_neighbor_chords" class="collapsed">
    <ul class="rules" style="width:100%;"><!-- {{{ -->
     <li>
@@ -1658,7 +1672,7 @@ Px6
  <em>en</em> <em>te</em> <em>er</em>
  <em>ea</em> <em>he</em> <em>es</em>
 
-	 <em class="fingers">O</em>
+         <em class="fingers">O</em>
  <em>on</em> <em>to</em> <em>or</em>
  <em class="extra_ngrams">oa</em> <em class="extra_ngrams">ho</em> <em class="extra_ngrams">so</em>
     </pre>
@@ -1676,66 +1690,65 @@ P+6
 <em class="fingers">N</em>         <em class="fingers">T</em>          <em class="fingers">R</em>
 <em>an</em><em class="extra_ngrams">hn</em><em class="extra_ngrams">ns</em> <em>at</em><em>th</em><em>st</em> <em>ar</em><em class="extra_ngrams">hr</em><em class="extra_ngrams">rs</em>
     </pre>
-    <pre style="clear:both;">
-<em>Col 3-5</em> P+5
-<i class="todo">&hellip;alternate TabSpace choice between <em>ti</em> and <span class="nb">ti</span></i>
-<small>&hellip;going against pure statisctics by choosing the "it" word
-looks like a good idea.</small>
+<pre style="clear:both;">
 <img title="WIP" style="float:right;" src="images/emoticons/WIP.png">
-<em>Col 6-8</em> T+2
+<b>Some worthy swaps?</b><!-- {{{ -->
+
+ <i>We can add a reversed version of 5 defined ngrams
+ by adding an additional <em class="fingers">M</em> modifier to their chords.</i>
+
+<pre class="rules">
+ <b>Supporting mnemonics:</b>
+ As original ngrams combine letters in a top-down order,
+ getting the bottom-up order by adding the top <em class="fingers">M</em> modifier
+ to complete these chords makes sense.
+
+<i>*** <em>ra</em> being an exception has been sneakily
+ swapped with <em>ar</em> to comply with the rule.</i>
+</pre>
+
+  <em>top first</em> &amp; <em>bot first</em>
+  ROM   <em>it</em> &amp; <em   class="NB">ti</em  >  <em class="fingers">M</em> RMO
+  ROL   <em>is</em> &amp; <em   class="NB">si</em  >  <em class="fingers">M</em> ROL
+
+  MLO   <em>er</em> &amp; <em   class="NB">re</em  >  <em class="fingers">M</em> MLO
+  MOL   <em>es</em> &amp; <em   class="NB">se</em  >  <em class="fingers">M</em> MOL
+
+  OLR   <em   class="NB">ra</em> &amp; <em>ar</em  >  <em class="fingers">M</em> OLR
+
+  MRO   <em>en</em> &amp; <span class="ng">ne</span>    <span class="ng">MMRO used for <em>nd</em></span>
+  LLO   <em>or</em> &amp; <span class="ng">ro</span>    <span class="ng">MLLO used for <em>v</em></span>
+<!-- }}} -->
+<hr><em>Col 3-5</em> P+5<!-- {{{ -->
+<i class="todo">&hellip;alternate TabSpace choice between <em>ti</em> and <span class="nb">ti</span></i>
+<small>&hellip;going against raw statisctics by choosing the "it" word
+looks like a good idea.</small> <!-- }}} -->
+<hr><em>Col 6-8</em> T+2<!-- {{{ -->
 <i>&hellip;most are unused in TabSpace 2.1</i> but 8 are <span class="nb">3grams</span>:
-i =  <em>ain</em> inh ins   <span class="nb">ati</span> <span class="nb">thi</span> <span class="nb">ist</span>   ira irh irs
+i =  <em>ain</em> inh ins   <span class="nb">ati</span> <span class="nb">ith</span> <span class="nb">ist</span>   ira irh irs
 e =  ena enh ens   <span class="nb">ate</span> <em>the</em> <span class="nb">est</span>   <span class="nb">are</span> <span class="nb">her</span> <span class="nb">res</span>
 o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
 <i class="todo">&hellip;we have to make a choice between <span class="nb">ith</span> and <span class="nb">thi</span></i>
-
-<hr>
-<i><b>TabSpace bigrams not in <span class="nb">2grams</span>:</b>
+<!-- }}} -->
+<hr><i><b>TabSpace bigrams not in <span class="nb">2grams</span>:</b><!-- {{{ -->
  <em class="extra_ngrams">ai</em>
  <em class="extra_ngrams">hn</em> <em class="extra_ngrams">ho</em> <em class="extra_ngrams">hr</em>
  <em class="extra_ngrams">ns</em>
  <em class="extra_ngrams">oa</em> <em class="extra_ngrams">so</em>
  <em class="extra_ngrams">rs</em>
  <em class="extra_ngrams">rs</em></i>
-
-<hr>
-<i><b>TabSpace trigrams not in <span class="nb">3grams</span>:</b>
+<!-- }}} -->
+<hr><i><b>TabSpace trigrams not in <span class="nb">3grams</span>:</b><!-- {{{ -->
  <em class="extra_ngrams">ong</em></i>
-
-    </pre>
+<!-- }}} -->
+</pre>
 
     </li>
    </ul> <!-- }}} -->
   </div>
   <!-- }}} -->
- </div>
- <!-- }}} -->
- <!-- twiddler3_mcc_gesture {{{ -->
- <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_gesture");'><i>Input mode switching (a rejected option)</i><span class="cc6">2.4</span></div>
- <div id="div_twiddler3_mcc_gesture" class="collapsed">
-  <ul class="rules"><!-- {{{ -->
-   <li>Using <em>NUM thumb modifier</em> as a <em class='todo'>mode-switching gesture</em><br>
-   &hellip;this proved to be a bad choice!
-   </li>
-  </ul><!-- }}} -->
-  <p style="font-style:oblique; font-family:'Comic sans ms'">
-  The theory was based on using a <em class='todo'>mode-switching gesture</em>
-  to toggle between the "normal" <em>single keystrokes</em> input mode
-  and the <em>Multi Character Chords</em> mode.
-  This would give us another full set of 4x4 chords for multi character input.
-  </p>
-  <p style="font-style:oblique; font-family:'Comic sans ms'">
-  If this would have made clear we were switching between two different input methods
-  by using the <em>NUM thumb modifier</em>,
-  moving the thumb from its gripping place
-  appears to be so awkward to say the least that
-  it certainly wont improve the input rate.
-  </p>
-
- </div>
- <!-- }}} -->
  <!-- twiddler3_mcc_hotstrings {{{ -->
- <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_hotstrings");'>Hotstrings<span class="cc6">3</span></div>
+ <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc_hotstrings");'>Hotstrings<span class="cc6">4</span></div>
  <div id="div_twiddler3_mcc_hotstrings" class="collapsed">
   <p>
   Getting multiple keystrokes from a single chord should not be considered a simple
@@ -1771,6 +1784,18 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
   </p>
  </div>
  <!-- }}} -->
+   <!-- mcc_ref {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "mcc_ref");'>Documentation<span class="cc6">5</span></div>
+   <div id="div_mcc_ref" class="collapsed">
+    <ul>
+     <li><a href="http://norvig.com/mayzner.html"                                                                                  target="mayzner"              ><b>ETAOIN SRHLDCU                         </b></a></li>
+     <li><a href="http://practicalcryptography.com/cryptanalysis/letter-frequencies-various-languages/english-letter-frequencies/" target="crypto"               > English Letter Frequencies               </a></li>
+     <li><a href="http://www.w0uce.net/Common_1_-_2_-3_-_4_and_100_Words_Practice_List.pdf"                                        target="w0uce"                > 1-2-3-4 Words (pdf)                      </a></li>
+     <li><a href="http://www3.nd.edu/~busiforc/handouts/cryptography/cryptography hints.html"                                      target="hints"                > Singles - Digraphs - Trigraphs - Doubles </a></li>
+     <li><a href="http://en.wikipedia.org/wiki/Letter_frequency"                                                                   target="wiki_letter_frequency"> Letter frequency - Wikipedia             </a></li>
+    </ul>
+   </div>
+   <!-- }}} -->
  <div class="wrap_div" onclick='toggle_div(this, "twiddler3_mcc");'><img title="collapse" src="images/cursors/left.png">Multi Character Chords</div>
  <div class="wrap_div" style="float:right;" onclick='return expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
 </div> <!-- }}} -->
@@ -1990,9 +2015,9 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
    <!--input name="log"    value="log"                 type="button" onclick='log_toggle();' title="script logging on/off"></input-->
    <input name="reset"  value="input from keyboard (Space to reset)" id="lb_cmd_reset" type="button" onclick='letter_browse(this);' title="input from keyboard (Space to reset)"></input>
   
-   <input name="option" value=""      id="lb_cmd_a" type="radio"  onchange='letter_browse(this);'        ></input><label for="lb_cmd_a">all       <sup>1</sup></label>
-   <input name="option" value="g"     id="lb_cmd_g" type="radio"  onchange='letter_browse(this);' checked></input><label for="lb_cmd_g">groups    <sup>2</sup></label>
-   <input name="option" value="s"     id="lb_cmd_s" type="radio"  onchange='letter_browse(this);'        ></input><label for="lb_cmd_s">sequences <sup>3</sup></label>
+   <input name="option" value="s"     id="lb_cmd_s" type="radio"  onchange='letter_browse(this);' checked></input><label for="lb_cmd_s">sequences <sup>1</sup></label>
+   <input name="option" value="g"     id="lb_cmd_g" type="radio"  onchange='letter_browse(this);'        ></input><label for="lb_cmd_g">groups    <sup>2</sup></label>
+   <input name="option" value=""      id="lb_cmd_a" type="radio"  onchange='letter_browse(this);'        ></input><label for="lb_cmd_a">all       <sup>3</sup></label>
   </div> <!-- }}} -->
   <div style="float:left; clear:left; margin:1em; clear:left;"><!-- ieo ntr ahs {{{ -->
    <em class="row1" onclick='letter_browse(this);'>i</em>
@@ -2049,7 +2074,9 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
  <!-- }}} -->
  <!-- keyboard_input {{{ -->
  <div class="fold_title" onclick='toggle_div(this, "keyboard_input");'>Test input-field<span class="cc7">&hellip;</span></div>
- <div id="div_keyboard_input" class="collapsed">
+ <div id="div_keyboard_input" class="collapsed"
+  onmouseover='document.getElementById("mcc_key_input").focus();'
+  >
   <div style="
    display:inline-block;
    width:85%;
@@ -2059,11 +2086,9 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
    type="text"
    id='mcc_key_input'
    size="3"
-   onmouseover='this.focus();'
    onkeydown ='mcc_key(event,this);'
    style="
    background-color:black;
-   border:0;
    color:#dd4;
    font-family:monospace;
    font-size:400%;

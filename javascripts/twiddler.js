@@ -232,7 +232,7 @@ function get_current_img() // {{{
 /* LETTERS BROWSER */
 //{{{
 // letter_browse_data {{{
-var letter_browse_options  = "g";
+var letter_browse_options  = "s";   // sequences
 var letter_browse_selected = "";
 var letter_browse_data = ""
 +"<EM>th</EM>  ha     <EM>the</EM>  pro     tion  ance     ation  ments\n"
@@ -244,7 +244,7 @@ var letter_browse_data = ""
 +"<EM>on</EM>  co     <EM CLASS='NB'>ati</EM>  ive     ions  nter     there  ution\n"
 +"<EM>at</EM>  me     for  was     this  comp     ition  roduc\n"
 +"<EM>en</EM>  de     <EM CLASS='NB'>her</EM>  ect     here  able     ement  resen\n"
-+"nd  <EM>hi</EM>     ter  rea     from  heir     inter  thoug\n"
++"<EM>nd</EM>  <EM>hi</EM>     ter  rea     from  heir     inter  thoug\n"
 +"ti  <EM>ri</EM>     hat  com     ould  thei     ional  press\n"
 +"<EM>es</EM>  ro     tha  eve     ting  ally     ratio  first\n"
 +"<EM>or</EM>  ic     ere  per     hich  ated     would  after\n"
@@ -403,6 +403,10 @@ log("letter_numopt("+numopt+"):");
 } // }}}
 function letter_browse(input_el) //{{{
 {
+    // focus in first browser button
+    var el = document.getElementById("lb_cmd_reset");
+    if(el) el.focus();
+
     // commands / options {{{
     if(!input_el) {
 	letter_browse_reset();
@@ -441,7 +445,7 @@ function letter_browse(input_el) //{{{
     if(letter_browse_selected == "") {
 	if(input_el) log("letter_browse(): nothing selected");
 	pre_letter_browser.innerHTML = ""
-	+ "<em id='regex' style='float:right; clear:right; font-size:150%;'>&nbsp;</em>"
+	+ "<em id='regex' style='float:left; font-size:150%;'>&nbsp;</em>"
 	+ "<br style='clear:both;'>"
 	+ letter_browse_data
 	return;
@@ -470,11 +474,10 @@ function letter_browse(input_el) //{{{
 
     var re = new RegExp(pattern, "gm");
     pre_letter_browser.innerHTML    = ""
-	+ "<em id='regex' style='float:right; clear:right; font-size:150%;'>"+pattern.substring(1,pattern.length-1)+"</em>"
+	+ "<em id='regex' style='float:left; font-size:150%;'>"+pattern.substring(1,pattern.length-1)+"</em>"
 	+ "<br style='clear:both;'>"
 	+ letter_browse_data.replace(re, highlight)
 	;
-//	+ "<em style='float:right; clear:right;                '>"+letter_browse_options+"</em>"
 
     //}}}
 } //}}}
@@ -804,7 +807,7 @@ function mcc_key(e, el) { //{{{
 
 } // }}}
 function mcc_key_clear_CB() { //{{{
-    if(mcc_key_el     ) mcc_key_el.value          = "";
+    if(mcc_key_el) mcc_key_el.value = "";
     mcc_prev_time = 0;
 } //}}}
 //function mcc_key_clear() { //{{{
@@ -822,13 +825,18 @@ function mcc_key_set_delay(el, ms) { //{{{
     do {
 	button = get_next_child_tagName(el.parentElement, button, "INPUT");
 	if(!button) break;
-	if(button == el)    button.style.border= "1px red dotted";
-	else		    button.style.border= "0";
+	if(button.type == "button") {
+	    if(button == el)	button.style.border= "1px red dotted";
+	    else		button.style.border= "0";
+	}
     } while(button);
 
     // mcc_key_el and mcc_key_el_hist
     if(mcc_key_el_hist) mcc_key_el_hist.innerHTML = "<i>Escape to clear</i>";
-    if(mcc_key_el) mcc_key_el.focus();
+
+    // focus in text input field
+    if(!mcc_key_el) mcc_key_el = document.getElementById("mcc_key_input");
+    if( mcc_key_el) mcc_key_el.focus();
 
 } //}}}
 var KEY_TIC = 0;
