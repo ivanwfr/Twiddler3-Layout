@@ -122,7 +122,7 @@
   <a class="expander" href="#div_tabspace_mcc" onclick='return expand_div(this,"tabspace_mcc");'>TabSpace MCC<span class="cc6">1</span></a>
   defines a number of static bindings,
   we can look for more MCC by working on
-  <a class="expander" href="#div_more_mcc" onclick='return expand_div(this,"ngrams");'>ngrams<span class="cc6">2</span></a>
+  <a class="expander" href="#div_ngrams" onclick='return expand_div(this,"ngrams");'>ngrams<span class="cc6">2</span></a>
   based on recent studies and a further step could also use something like
   <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img style='margin-top:-.5ex;' src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>
   to handle dynamic
@@ -137,7 +137,7 @@
   <a class="expander" href="#div_mcc_animate" onclick='return expand_div(this,"mcc_animate");'>MCC animation<span class="cc7">&hellip;</span></a>
   shows button sequences for each <em class="fingers">INDEX modifier</em>
   <br>
-  <a class="expander" href="#div_letter_browser" onclick='return expand_div(this,"letter_browser");'>Letters browser<span class="cc7">&hellip;</span></a>
+  <a class="expander" href="#div_ngrams_browser" onclick='return expand_div(this,"ngrams_browser");'>Ngrams browser<span class="cc7">&hellip;</span></a>
   shows where our MCCs manage with english letter usage frequencies
   <br>
   <a class="expander" href="#div_keyboard_input" onclick='return expand_div(this,"keyboard_input");'>Test input-field<span class="cc7">&hellip;</span></a>
@@ -256,34 +256,36 @@
 0     0r00 = "i"
 0     00r0 = "n"
 0     000r = "a"
-0     0r0r = "<em class="extra_ngrams">ai</em>"
-0     0r0m = "hi"
-0     0r0l = "is"
-0     0rr0 = "in"
-0     0rm0 = "it"
-0     0rl0 = "ri"
-0     0m0r = "ea"
-0     0m0m = "he"
-0     0m0l = "es"
-0     0mr0 = "en"
-0     0mm0 = "te"
-0     0ml0 = "er"
-0     0l0r = "<em class="extra_ngrams">oa</em>"
-0     0l0m = "<em class="extra_ngrams">ho</em>"
-0     0l0l = "<em class="extra_ngrams">so</em>"
-0     0lr0 = "on"
-0     0lm0 = "to"
-0     0ll0 = "or"
-0     00rr = "an"
-0     00rm = "<em class="extra_ngrams">hn</em>"
-0     00rl = "<em class="extra_ngrams">ns</em>"
-0     00mr = "at"
-0     00mm = "th"
-0     00ml = "st"
-0     00lr = "ar"
-0     00lm = "<em class="extra_ngrams">hr</em>"
-0     00ll = "<em class="extra_ngrams">rs</em>"
-    </pre>
+0     0r0r = <em class="not_in_ngrams">ai</em>
+0     0r0m = <em>hi</em>
+0     0r0l = <em>is</em> <em class="NB">si</em> = mr0l
+0     0rr0 = <em>in</em>
+0     0rm0 = <em>it</em> <em class="NB">ti</em> = mrm0
+0     0rl0 = <em class="NB">ir</em> <em>ri</em> = mrl0
+0     0m0r = <em>ea</em>
+0     0m0m = <em>he</em>
+0     0m0l = <em>es</em> <em class="NB">se</em> = mm0l
+0     0mr0 = <em>en</em>
+0     0mm0 = <em>te</em>
+0     0ml0 = <em>er</em> <em class="NB">re</em> = mml0
+0     0l0r = <em class="not_in_ngrams">oa</em>
+0     0l0m = <em class="not_in_ngrams">ho</em>
+0     0l0l = <em class="not_in_ngrams">so</em>
+0     0lr0 = <em>on</em>
+0     0lm0 = <em>to</em>
+0     0ll0 = <em>or</em>
+0     00rr = <em>an</em>
+0     00rm = <em class="not_in_ngrams">hn</em>
+0     00rl = <em class="not_in_ngrams">ns</em>
+0     00mr = <em>at</em>
+0     00mm = <em>th</em>
+0     00ml = <em class="NB">ts</em> <em>st</em> = m0ml
+0     00lr = <em class="NB">ra</em> <em>ar</em> = m0lr
+0     00lm = <em class="not_in_ngrams">hr</em>
+0     00ll = <em class="not_in_ngrams">rs</em>
+
+<small><span class="not_in_ngrams">those</span> are not recognized as <a class="expander" href="#div_ngrams" target="ngrams">ngrams<span class="cc6">2</span></a></small>
+<small><span class="NB">those</span> are mirror ngrams added to TabSpace3 <a class="expander" href="#div_mcc_neighbor_chords" target="chords">Chord collections<span class="cc6">3</span></a></small></pre>
    </div><!-- }}} -->
    <!-- tabspace.4 {{{ -->
    <div class="fold_title" onclick='toggle_div(this,"tabspace.4");'>Other letters with index on spacebar &ndash; <em>2L strings</em></div>
@@ -313,12 +315,12 @@
 0     mm0m = "q"
 0     ml0l = "z"
 
-0     mlr0 = "of"
-0     mmr0 = "nd"
-0     mr0m = "ch"
-0     ml0m = "qu"
-0     m0lm = "wh"
-    </pre>
+0     mlr0 = <em>of</em>
+0     mmr0 = <em>nd</em>
+0     mr0m = <em>ch</em>
+0     ml0m = <em class="not_in_ngrams">qu</em>
+0     m0lm = <em>wh</em>
+<small><span class="not_in_ngrams">those</span> are not recognized as <a class="expander" href="#div_ngrams" target="ngrams">ngrams<span class="cc6">2</span></a></small></pre>
    </div><!-- }}} -->
    <!-- tabspace.5 {{{ -->
    <div class="fold_title" onclick='toggle_div(this,"tabspace.5");'>Three-letter combinations &ndash; <em>3L strings</em></div>
@@ -328,13 +330,13 @@
 # that they are produced simply by pressing all of their letters
 # simulateously.
 
-0     0mmm = "the"
-0     0rrr = "ain"
-0     0mlr = "are"
-0     mrrr = "ing"
-0     mmrr = "and"
-0     mlrr = "ong"
-    </pre>
+0     0mmm = <em>the</em>
+0     0rrr = <em>ain</em>
+0     0mlr = <em>are</em>
+0     mrrr = <em>ing</em>
+0     mmrr = <em>and</em>
+0     mlrr = <em class="not_in_ngrams">ong</em>
+<small><span class="not_in_ngrams">those</span> are not recognized as <a class="expander" href="#div_ngrams" target="ngrams">ngrams<span class="cc6">2</span></a></small></pre>
    </div><!-- }}} -->
    <!-- tabspace.6 {{{ -->
    <div class="fold_title" onclick='toggle_div(this,"tabspace.6");'>Numberpad</div>
@@ -522,12 +524,20 @@ num   00rr = NUM_LOCK
 num   00ll = SCROLL_LOCK
     </pre>
    </div><!-- }}} -->
+   <!-- tabspace.16 {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.16");'>Illustration: TabSpace Categories</div>
+   <div id="div_tabspace.16" class="collapsed">
 
-   <hr>
-   <img title="collapse" src="images/TabSpace Categories.png">
-   <hr>
-   <img title="collapse" src="images/TabSpace-Patterns.png">
+   <img src="images/TabSpace Categories.png">
 
+   </div><!-- }}} -->
+   <!-- tabspace.17 {{{ -->
+   <div class="fold_title" onclick='toggle_div(this,"tabspace.17");'>Illustration: TabSpace Patterns</div>
+   <div id="div_tabspace.17" class="collapsed">
+
+   <img src="images/TabSpace-Patterns.png">
+
+   </div><!-- }}} -->
 
    <div class="wrap_div" onclick='toggle_div(this, "tabspace");'><img title="collapse" src="images/cursors/left.png">Starting from TabSpace</div>
    <div class="wrap_div" style="float:right;" onclick='return expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
@@ -1513,7 +1523,7 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
   <div class="wrap_div" style="float:right;" onclick='return expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
  </div> <!-- }}} -->
  <!-- cc6 - twiddler3_mcc {{{ -->
- <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc");'>Multi Character Chords<span class="cc6">&hellip;</span></div>
+ <div class="fold_title" onclick='toggle_div(this, "twiddler3_mcc");'>Multi Character Chords (MCC)<span class="cc6">&hellip;</span></div>
  <div id="div_twiddler3_mcc" class="collapsed" style="background-color:#ddf !important;">
   <p>
   MCC works by blending letter chords to produce <em>letter combinations</em> or <em>words</em>
@@ -1564,7 +1574,7 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
   <p style="font-style:oblique; font-family:'Comic sans ms'">
   The theory was based on using a <em class='todo'>mode-switching gesture</em>
   to toggle between the "normal" <em>single keystrokes</em> input mode
-  and the <em>Multi Character Chords</em> mode.
+  and the <em>Multi Character Chords (MCC)</em> mode.
   This would give us another full set of 4x4 chords for multi character input.
   </p>
   <p style="font-style:oblique; font-family:'Comic sans ms'">
@@ -1665,7 +1675,7 @@ Px6
   P+5
  <em class="fingers">I</em>
  <em>in</em> <span class="oo">it</span> <em>ri</em>
- <em class="extra_ngrams">ai</em> <em>hi</em> <em>is</em>
+ <em class="not_in_ngrams">ai</em> <em>hi</em> <em>is</em>
 
      <em class="fingers">E</em>
  <em>en</em> <em>te</em> <em>er</em>
@@ -1673,7 +1683,7 @@ Px6
 
          <em class="fingers">O</em>
  <em>on</em> <em>to</em> <em>or</em>
- <em class="extra_ngrams">oa</em> <em class="extra_ngrams">ho</em> <em class="extra_ngrams">so</em>
+ <em class="not_in_ngrams">oa</em> <em class="not_in_ngrams">ho</em> <em class="not_in_ngrams">so</em>
     </pre>
 
     <pre style="float:left; width:4em; text-align:left; margin:1ex;">
@@ -1687,13 +1697,12 @@ Px6
 <em>Col 9-11</em>
 P+6
 <em class="fingers">N</em>         <em class="fingers">T</em>          <em class="fingers">R</em>
-<em>an</em><em class="extra_ngrams">hn</em><em class="extra_ngrams">ns</em> <em>at</em><em>th</em><em>st</em> <em>ar</em><em class="extra_ngrams">hr</em><em class="extra_ngrams">rs</em>
+<em>an</em><em class="not_in_ngrams">hn</em><em class="not_in_ngrams">ns</em> <em>at</em><em>th</em><em>st</em> <em>ar</em><em class="not_in_ngrams">hr</em><em class="not_in_ngrams">rs</em>
     </pre>
 <pre style="clear:both;">
-<img title="WIP" style="float:right;" src="images/emoticons/WIP.png">
 <b>Some worthy swaps?</b><!-- {{{ -->
 
- <i>We can add a reversed version of 5 defined ngrams
+ <i>We can add a reversed version of 7 defined ngrams
  by adding an additional <em class="fingers">M</em> modifier to their chords.</i>
 
 <pre class="rules">
@@ -1701,23 +1710,24 @@ P+6
  As original ngrams combine letters in a top-down order,
  getting the bottom-up order by adding the top <em class="fingers">M</em> modifier
  to complete these chords makes sense.
-
-<i>*** <em>ra</em> being an exception has been sneakily
- swapped with <em>ar</em> to comply with the rule.</i>
+<img style="float:right;" src="images/emoticons/grin.png">
+ <i><em>ra</em> <em>ir</em> and <em>ts</em> being exceptions, their chord has been sneakily
+ swapped with their mirror's to make this rule be true.</i>
 </pre>
-
-  <em>top first</em> &amp; <em>bot first</em>
-  <em class="fingers">O</em>RMO   <em>it</em> &amp; <em   class="NB">ti</em  >  <em class="fingers">M</em>RMO
-  <em class="fingers">O</em>ROL   <em>is</em> &amp; <em   class="NB">si</em  >  <em class="fingers">M</em>ROL
-
-  <em class="fingers">O</em>MLO   <em>er</em> &amp; <em   class="NB">re</em  >  <em class="fingers">M</em>MLO
-  <em class="fingers">O</em>MOL   <em>es</em> &amp; <em   class="NB">se</em  >  <em class="fingers">M</em>MOL
-
-  <em class="fingers">O</em>OLR   <em   class="NB">ra</em> &amp; <em>ar</em  >  <em class="fingers">M</em>OLR
-
-  <em class="fingers">O</em>MRO   <em>en</em> &amp; <span class="ng">ne</span>    <span class="ng">MMRO used for <em>nd</em></span>
-  <em class="fingers">O</em>LLO   <em>or</em> &amp; <span class="ng">ro</span>    <span class="ng">MLLO used for <em>v</em></span>
-<!-- }}} -->
+<img title="WIP" style="float:right;" src="images/emoticons/WIP.png">
+  <em>top first</em>  &larr;&rarr;  <em>bot first</em>
+   <u>O</u>RMO <em>it</em>  &larr;&rarr;  <em   class="NB">ti</em> <u>M</u>RMO
+   <u>O</u>ROL <em>is</em>  &larr;&rarr;  <em   class="NB">si</em> <u>M</u>ROL
+   <u>O</u>MLO <em>er</em>  &larr;&rarr;  <em   class="NB">re</em> <u>M</u>MLO
+   <u>O</u>MOL <em>es</em>  &larr;&rarr;  <em   class="NB">se</em> <u>M</u>MOL
+   <u>O</u>OML <em   class="NB">ts</em>  &larr;&rarr;  <em>st</em> <u>M</u>OML
+   <u>O</u>RLO <em   class="NB">ir</em>  &larr;&rarr;  <em>ri</em> <u>M</u>RLO
+   <u>O</u>OLR <em   class="NB">ra</em>  &larr;&rarr;  <em>ar</em> <u>M</u>OLR
+<!--
+/\(\<it\>\)\|\(\<is\>\)\|\(\<er\>\)\|\(\<es\>\)\|\(\<st\>\)\|\(\<ri\>\)\|\(\<ar\>\)
+/\(\<st\>\)\|\(\<ri\>\)\|\(\<ar\>\)
+}}}
+-->
 <hr><em>Col 3-5</em> P+5<!-- {{{ -->
 <i class="todo">&hellip;alternate TabSpace choice between <em>ti</em> and <span class="nb">ti</span></i>
 <small>&hellip;going against raw statisctics by choosing the "it" word
@@ -1729,16 +1739,15 @@ e =  ena enh ens   <span class="nb">ate</span> <em>the</em> <span class="nb">est
 o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
 <i class="todo">&hellip;we have to make a choice between <span class="nb">ith</span> and <span class="nb">thi</span></i>
 <!-- }}} -->
-<hr><i><b>TabSpace bigrams not in <span class="nb">2grams</span>:</b><!-- {{{ -->
- <em class="extra_ngrams">ai</em>
- <em class="extra_ngrams">hn</em> <em class="extra_ngrams">ho</em> <em class="extra_ngrams">hr</em>
- <em class="extra_ngrams">ns</em>
- <em class="extra_ngrams">oa</em> <em class="extra_ngrams">so</em>
- <em class="extra_ngrams">rs</em>
- <em class="extra_ngrams">rs</em></i>
+<hr><i><b>TabSpace bigrams not in <span class="nb">2grams</span>:</b></i><!-- {{{ -->
+ <em class="not_in_ngrams">ai</em>
+ <em class="not_in_ngrams">hn</em> <em class="not_in_ngrams">ho</em> <em class="not_in_ngrams">hr</em>
+ <em class="not_in_ngrams">ns</em>
+ <em class="not_in_ngrams">oa</em> <em class="not_in_ngrams">so</em>
+ <em class="not_in_ngrams">rs</em>
 <!-- }}} -->
-<hr><i><b>TabSpace trigrams not in <span class="nb">3grams</span>:</b><!-- {{{ -->
- <em class="extra_ngrams">ong</em></i>
+<hr><i><b>TabSpace trigrams not in <span class="nb">3grams</span>:</b></i><!-- {{{ -->
+ <em class="not_in_ngrams">ong</em>
 <!-- }}} -->
 </pre>
 
@@ -1795,10 +1804,10 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
     </ul>
    </div>
    <!-- }}} -->
- <div class="wrap_div" onclick='toggle_div(this, "twiddler3_mcc");'><img title="collapse" src="images/cursors/left.png">Multi Character Chords</div>
+ <div class="wrap_div" onclick='toggle_div(this, "twiddler3_mcc");'><img title="collapse" src="images/cursors/left.png">Multi Character Chords (MCC)</div>
  <div class="wrap_div" style="float:right;" onclick='return expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
 </div> <!-- }}} -->
-<!-- cc7 - cheat_sheets mcc_animate letter_browser keyboard_input {{{ -->
+<!-- cc7 - cheat_sheets mcc_animate ngrams_browser keyboard_input {{{ -->
 <div style="height:1em;"></div>
 <!-- cheat_sheets {{{ -->
 <div class="fold_title" onclick='toggle_div(this, "cheat_sheets");'>Cheat Sheets<span class="cc7">&hellip;</span></div>
@@ -2004,9 +2013,9 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
   </table>
  </div>
  <!-- }}} -->
- <!-- letter_browser {{{ -->
- <div class="fold_title" onclick='toggle_div(this, "letter_browser");'>Letters browser<span class="cc7">&hellip;</span></div>
- <div id="div_letter_browser" class="collapsed"
+ <!-- ngrams_browser {{{ -->
+ <div class="fold_title" onclick='toggle_div(this, "ngrams_browser");'>Ngrams browser<span class="cc7">&hellip;</span></div>
+ <div id="div_ngrams_browser" class="collapsed"
   onmouseover='document.getElementById("lb_cmd_reset").focus();'
   onkeydown  ='letter_browse_focus_dispatch(event,this);'
   >
@@ -2063,11 +2072,11 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
   </div>
 
   <!-- }}} -->
-  <div id="err_letter_browser"
+  <div id="err_ngrams_browser"
    style="float:right; border:white 2px solid; border-radius: 2em; color:red; font-size:200%;"
    title="n.a."
    ></div>
-  <pre id="pre_letter_browser" style="clear:left;"></pre>
+  <pre id="pre_ngrams_browser" style="clear:left;"></pre>
 
  </div>
  <!-- }}} -->
@@ -2170,7 +2179,7 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
    <li><a href="http://twiddler.tekgear.com/tuner/publicshare.xhtml?file_id=Twiddler3_TabSpace_1418749449689_5" target="tekgear_cfg"   ><span style="font-size:150%; text-shadow:2px 2px 2px #aaf;">Tek Gear official Twiddler 3 TabSpace layout</span></a></li>
    <li><a href="https://github.com/cswetenham/tabspace2.1"                                                      target="tabspace2.1"   >Chris Swetenham <b>Tabspace2.1</b> on GitHub</a> </li>
    <li><a href="https://github.com/AlexBravo/Twiddler"                                                          target="alexbravo"     >Alex Bravo Twiddler files on GitHub</a></li>
-   <li><a href="http://twiddler.tekgear.com/tuner/publicshare.xhtml?file_id=TabSpace3_1430856338530_92"         target="twiddler3_cfg" >My own Twiddler3 custom config (150505)</a>
+   <li><a href="http://twiddler.tekgear.com/tuner/publicshare.xhtml?file_id=TabSpace3_1430856338530_92"         target="twiddler3_cfg" >My own Twiddler3 custom config (150506)</a>
    <br>- <i>reflecting the current state of this ongoing survey</i>
    <br>- <i>(shared from twiddler.tekgear.com tuner)</i>
    </li>

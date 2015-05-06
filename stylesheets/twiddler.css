@@ -170,7 +170,7 @@
 
 /* NGRAMS */
 /* {{{ */
-.extra_ngrams {
+.not_in_ngrams {
     color:red !important;
     background-color:yellow !important;
 }
@@ -184,25 +184,25 @@
 /* LETTERS BROWSER */
 /* {{{ */
 /*
-#div_letter_browser div      { -moz-user-select:-moz-none; -ms-user-select:none; -webkit-user-select :none; }
+#div_ngrams_browser div      { -moz-user-select:-moz-none; -ms-user-select:none; -webkit-user-select :none; }
 */
                         .NB      { color:#FFF !important; background-color:#00F !important; }
-#div_letter_browser     em       { color:#FFF; background-color:#555; }
-#div_letter_browser>div>em       { cursor:pointer; }
-#div_letter_browser>div>em       { padding-left:3px !important; }
-#div_letter_browser>div>em       { padding-right:3px !important; }
-#div_letter_browser>div>em       { border:3px solid transparent; }
-#div_letter_browser>div>em       { font-family: 'Lucida Console', Monaco, monospace; }
-#div_letter_browser em:hover { box-shadow: rgba(0, 0, 0, 0.9) 0 2px 3px; }
-#div_letter_browser .row1    { color: #FA0; background-color:#B33; }
-#div_letter_browser .row2    { color: #FF0; background-color:#F33; }
-#div_letter_browser .row3    { color: #00F; background-color:#FA0; }
-#div_letter_browser .letter_browser_on {
+#div_ngrams_browser     em       { color:#FFF; background-color:#555; }
+#div_ngrams_browser>div>em       { cursor:pointer; }
+#div_ngrams_browser>div>em       { padding-left:3px !important; }
+#div_ngrams_browser>div>em       { padding-right:3px !important; }
+#div_ngrams_browser>div>em       { border:3px solid transparent; }
+#div_ngrams_browser>div>em       { font-family: 'Lucida Console', Monaco, monospace; }
+#div_ngrams_browser em:hover { box-shadow: rgba(0, 0, 0, 0.9) 0 2px 3px; }
+#div_ngrams_browser .row1    { color: #FA0; background-color:#B33; }
+#div_ngrams_browser .row2    { color: #FF0; background-color:#F33; }
+#div_ngrams_browser .row3    { color: #00F; background-color:#FA0; }
+#div_ngrams_browser .ngrams_browser_on {
     border:3px #ff0 solid !important;
     box-shadow:rgba(0, 0, 0, 0.9) 0 2px 3px;
 }
-#div_letter_browser span     { color:#000; background-color:#ff0;  box-shadow:rgba(0, 0, 0, 0.9) 0 2px 3px; border-radius: 2px; }
-#div_letter_browser span     { margin:0 2px 0 2px !important; }
+#div_ngrams_browser span     { color:#000; background-color:#ff0;  box-shadow:rgba(0, 0, 0, 0.9) 0 2px 3px; border-radius: 2px; }
+#div_ngrams_browser span     { margin:0 2px 0 2px !important; }
 
 input           { border: 6px #eee solid; }
 input:focus {

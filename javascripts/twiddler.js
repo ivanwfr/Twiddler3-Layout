@@ -281,16 +281,16 @@ function letter_browse_focus_dispatch(e,el) { //{{{
     var l = String.fromCharCode(charCode).toLowerCase();
 
     // identify button f(key)
-    var div_letter_browser = document.getElementById("div_letter_browser");
-    if(!div_letter_browser) return;
+    var div_ngrams_browser = document.getElementById("div_ngrams_browser");
+    if(!div_ngrams_browser) return;
 
     // clear unhandled
-    var err_letter_browser = document.getElementById("err_letter_browser");
-    if( err_letter_browser )	err_letter_browser.innerHTML = "";
+    var err_ngrams_browser = document.getElementById("err_ngrams_browser");
+    if( err_ngrams_browser )	err_ngrams_browser.innerHTML = "";
 
     var div = null; // pick first sub div
     do {
-	div = get_next_child_tagName(div_letter_browser, div, "DIV");
+	div = get_next_child_tagName(div_ngrams_browser, div, "DIV");
 	if(!div) break;
 
 	var em = null; // pick first em
@@ -308,22 +308,22 @@ function letter_browse_focus_dispatch(e,el) { //{{{
     log("letter_browse_focus_dispatch():\n...["+l+"] symbol not handled");
 
     // show unhandled
-    if( err_letter_browser )	err_letter_browser.innerHTML = l;
+    if( err_ngrams_browser )	err_ngrams_browser.innerHTML = l;
 
 } // }}}
 function letter_nxtopt() { //{{{
 log("letter_nxtopt():");
 
     // identify next radio f(currently checked) {{{
-    var div_letter_browser = document.getElementById("div_letter_browser");
-    if(!div_letter_browser) return;
+    var div_ngrams_browser = document.getElementById("div_ngrams_browser");
+    if(!div_ngrams_browser) return;
 
     var radio_first = null;
     var radio_next  = null;
     var radio       = null; // pick first sub input
     do {
 	// look for next radio
-	radio = get_next_child_tagName(div_letter_browser, radio, "INPUT");
+	radio = get_next_child_tagName(div_ngrams_browser, radio, "INPUT");
 	if(!radio) break;
 	log("...["+radio.id+"].type=["+radio.type+"]");
 	if(radio.type != "radio") continue;
@@ -334,7 +334,7 @@ log("letter_nxtopt():");
 	// pick next unchecked
 	log("...["+radio.id+"].checked=["+radio.checked+"]");
 	if(radio.checked) {
-	    radio_next = get_next_child_tagName(div_letter_browser, radio, "INPUT");
+	    radio_next = get_next_child_tagName(div_ngrams_browser, radio, "INPUT");
 	    if(radio_next) {
 		if(radio_next.type != "radio") radio_next = null;
 	    }
@@ -362,8 +362,8 @@ function letter_numopt(numopt) { //{{{
 log("letter_numopt("+numopt+"):");
 
     // identify next radio f(currently checked) {{{
-    var div_letter_browser = document.getElementById("div_letter_browser");
-    if(!div_letter_browser) return;
+    var div_ngrams_browser = document.getElementById("div_ngrams_browser");
+    if(!div_ngrams_browser) return;
 
     var radio_num   = 0;
     var radio_first = null;
@@ -371,7 +371,7 @@ log("letter_numopt("+numopt+"):");
     var radio       = null; // pick first sub input
     do {
 	// look for next radio
-	radio = get_next_child_tagName(div_letter_browser, radio, "INPUT");
+	radio = get_next_child_tagName(div_ngrams_browser, radio, "INPUT");
 	if(!radio) break;
 	log("...["+radio.id+"].type=["+radio.type+"]");
 	if(radio.type != "radio") continue;
@@ -435,16 +435,16 @@ function letter_browse(input_el) //{{{
 	else		     letter_browse_selected = letter_browse_selected + l;
 
 	// toggle input_el state
-	if(l_is_selected)   del_className(input_el,"letter_browser_on");
-	else		    add_className(input_el,"letter_browser_on");
+	if(l_is_selected)   del_className(input_el,"ngrams_browser_on");
+	else		    add_className(input_el,"ngrams_browser_on");
     } //}}}
     // nothing selected {{{
-    var pre_letter_browser = document.getElementById("pre_letter_browser");
-    if(!pre_letter_browser) return;
+    var pre_ngrams_browser = document.getElementById("pre_ngrams_browser");
+    if(!pre_ngrams_browser) return;
 
     if(letter_browse_selected == "") {
 	if(input_el) log("letter_browse(): nothing selected");
-	pre_letter_browser.innerHTML = ""
+	pre_ngrams_browser.innerHTML = ""
 	+ "<em id='regex' style='float:left; font-size:150%;'>&nbsp;</em>"
 	+ "<br style='clear:both;'>"
 	+ letter_browse_data
@@ -473,7 +473,7 @@ function letter_browse(input_el) //{{{
     // highlight selected letters {{{
 
     var re = new RegExp(pattern, "gm");
-    pre_letter_browser.innerHTML    = ""
+    pre_ngrams_browser.innerHTML    = ""
 	+ "<em id='regex' style='float:left; font-size:150%;'>"+pattern.substring(1,pattern.length-1)+"</em>"
 	+ "<br style='clear:both;'>"
 	+ letter_browse_data.replace(re, highlight)
@@ -487,25 +487,25 @@ log("letter_browse_reset():");
 
     letter_browse_selected = "";
 
-    var div_letter_browser = document.getElementById("div_letter_browser");
-    if(!div_letter_browser) return;
+    var div_ngrams_browser = document.getElementById("div_ngrams_browser");
+    if(!div_ngrams_browser) return;
 
     var div = null; // pick first sub div
     do {
-	div = get_next_child_tagName(div_letter_browser, div, "DIV");
+	div = get_next_child_tagName(div_ngrams_browser, div, "DIV");
 	if(!div) break;
 
 	var em = null; // pick first em
 	do {
 	    em = get_next_child_tagName(div, em, "EM");
-	    if(em)   del_className(em,"letter_browser_on");
+	    if(em)   del_className(em,"ngrams_browser_on");
 	} while(em);
 
     } while(div);
 
     // clear unhandled
-    var err_letter_browser = document.getElementById("err_letter_browser");
-    if( err_letter_browser )	err_letter_browser.innerHTML = "";
+    var err_ngrams_browser = document.getElementById("err_ngrams_browser");
+    if( err_ngrams_browser )	err_ngrams_browser.innerHTML = "";
 
 } // }}}
 //}}}
