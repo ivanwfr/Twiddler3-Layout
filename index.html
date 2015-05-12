@@ -142,7 +142,11 @@
   <br>
   <a class="expander" href="#div_keyboard_input" onclick='return expand_div(this,"keyboard_input");'>Test input-field<span class="cc7">&hellip;</span></a>
   may be used to check your current chords set
-  </p> <!-- }}} -->
+  <br>
+  <a class="expander" href="#div_tcc" onclick='return expand_div(this,"tcc");'>TwiddlerCfgConverter<span class="cc7">&hellip;</span></a>
+  configuration converter by Marko Marjamaa
+  </p>
+  <!-- }}} -->
   <!-- ...contributions {{{ -->
   <b>And, of course, contributions are welcome&hellip;</b>
   <span class="fav_icon_span">
@@ -1516,7 +1520,13 @@ in terms or <em>rows</em>, <em>columns</em> and <em>pads</em>.</pre>
   <!-- todo... {{{ -->
   <div class="fold_title" onclick='toggle_div(this, "twiddler3_todo");'>...todo...</div>
   <div id="div_twiddler3_todo" class="collapsed">
-   &hellip;remember to document a todo list
+   <ol>
+   <li>Add a glowing style to current cookie-expanded div</li>
+   <li>Complement MCC animations</li>
+   <li>MCC highlighter: textfield to capture user-ngrams into a cookie</li>
+   <li>MCC highlighter: textfield to copy-paste text for ngrams highlighting</li>
+   <li>&hellip;</li>
+   </ol>
   </div>
   <!-- }}} -->
   <div class="wrap_div" onclick='toggle_div(this, "applying_rules");'><img title="collapse" src="images/cursors/left.png">Applying rules</div>
@@ -2146,6 +2156,192 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
   <!-- }}} -->
  </div>
  <!-- }}} -->
+   <!-- TwiddlerCfgConverter {{{ -->
+   <div class="fold_title" onclick='toggle_div(this, "tcc");'>TwiddlerCfgConverter<span class="cc7">&hellip;</span></div>
+   <div id="div_tcc" class="collapsed">
+   <a href="https://github.com/MarkoMarjamaa/TwiddlerCfgConverter"target="TCC.1">Marko Marjamaa <b>TwiddlerCfgConverter</b> on GitHub</a>
+   <p>
+   Here is the text version extracted from my 
+   <a href="http://twiddler.tekgear.com/tuner/publicshare.xhtml?file_id=TabSpace3_1430856338530_92"         target="twiddler3_cfg" >My own Twiddler3 custom config (150506)</a>
+   <br>
+   by the folloowing batch file:
+   cfg_to_txt.bat
+<pre class="rules" style="font-size:75%;">
+powershell -file TCC\TwiddlerCfg2Text.ps1 TabSpace3.cfg TabSpace3.txt TCC\US.hid.txt
+pause
+exit
+</pre>
+   </p>
+
+<pre>
+#ConfigFormatVersion : 4
+#ChordMapOffset : 16
+#MouseChordMapOffset : 632
+#StringTableOffset : 671
+#MouseModeTime : 1500
+#MouseJumpTime : 383
+#NormalMouseStartingSpeed : 3
+#MouseJumpModeStartingSpeed : 6
+#MouseAccelerationFactor : 10
+#DelayOnKeyRepeat : 100
+#Options : 5
+   O ORLO 000C,0015 ir
+   O OOML 0017,0016 ts
+   O MOLR 0004,0015 ar
+   O MMOL 0016,0008 se
+   O MROL 0016,000C si
+   O MRMO 0017,000C ti
+   O MMLO 0015,0008 re
+   O OMLL 0015,0008,0016 res
+   O OMLM 000B,0008,0015 her
+   O OMLR 0004,0015,0008 are
+   O OMML 0008,0016,0017 est
+   O OMMR 0004,0017,0008 ate
+   O ORML 000C,0016,0017 ist
+   O ORMM 000C,0017,000B ith
+   O ORMR 0004,0017,000C ati
+   O OLRL 0012,0011,0016 ons
+   O MOLM 001A,000B wh
+   O OOLM 000B,0015 hr
+   O OOLR 0015,0004 ra
+   O MOML 0016,0017 st
+   O OOMR 0004,0017 at
+   O OORL 0011,0016 ns
+   O OORM 000B,0011 hn
+   O RMOR 0008,0018,0015,0012 euro
+   O LMOL 0035 &lt;NULL&gt;
+   O RMOL 2021 $
+   O RMOM 2020 #
+   O MLRR 0012,0011,000A ong
+   O MMRR 0004,0011,0007 and
+   O MRRR 000C,0011,000A ing
+   O OMMM 0017,000B,0008 the
+   O ORRR 0004,000C,0011 ain
+   O MLOM 0014,0018 qu
+   O MLRO 0012,0009 of
+   O MMRO 0011,0007 nd
+   O MROM 0006,000B ch
+   O OLOL 0016,0012 so
+   O OLOM 000B,0012 ho
+   O OLOR 0012,0004 oa
+   O OLMO 0017,0012 to
+   O OLRO 0012,0011 on
+   O OMOL 0008,0016 es
+   O OMOM 000B,0008 he
+   O OMOR 0008,0004 ea
+   O OMLO 0008,0015 er
+   O OMRO 0008,0011 en
+   O OROL 000C,0016 is
+   O OROM 000B,000C hi
+   O OROR 0004,000C ai
+   O MRLO 0015,000C ri
+   O ORMO 000C,0017 it
+   O OOLL 0015,0016 rs
+   O OOMM 0017,000B th
+   O OORR 0004,0011 an
+   O OLLO 0012,0015 or
+   O OMMO 0017,0008 te
+   O ORRO 000C,0011 in
+   N ROLL 0047 &lt;ScrollLock&gt;
+   N ROMM 0039 &lt;CAPS LOCK&gt;
+   N RORR 0053 &lt;NULL&gt;
+   N RLLO 0045 &lt;F12&gt;
+   N RMMO 0044 &lt;F11&gt;
+   N RRRO 0043 &lt;F10&gt;
+   N RLOO 0042 &lt;F9&gt;
+   N RMOO 0041 &lt;F8&gt;
+   N RROO 0040 &lt;F7&gt;
+   N ROLO 003F &lt;F6&gt;
+   N ROMO 003E &lt;F5&gt;
+   N RORO 003D &lt;F4&gt;
+   N ROOL 003C &lt;F3&gt;
+   N ROOM 003B &lt;F2&gt;
+   N ROOR 003A &lt;F1&gt;
+   N OOOL 004E &lt;PageDown&gt;
+   N OOOM 0051 &lt;DownArrow&gt;
+   N OOOR 004D &lt;End&gt;
+   N OOLO 004F &lt;RightArrow&gt;
+   N OORO 0050 &lt;LeftArrow&gt;
+   N OLOO 004B &lt;PageUp&gt;
+   N OMOO 0052 &lt;UpArrow&gt;
+   N OROO 004A &lt;Home&gt;
+   N LOOO 0029 &lt;Escape&gt;
+   N MOOO 0049 &lt;Insert&gt;
+   N ROOO 004C &lt;Delete&gt;
+   O LLLL 0029 &lt;Escape&gt;
+   O RROL 2024 &amp;
+   O RROM 2022 %
+   O RROR 201F @
+   O OLLL 0028 &lt;Enter&gt;
+   O LLOL 0033 ;
+   O LMOM 2034 "
+   O LMOR 0034 ‘
+   O LLOR 0036 ,
+   O LLOM 2033 :
+   O MOOM 0010 m
+   O LOLL 0031 \
+   O LOMM 2031 |
+   O LORR 0038 /
+   O LLLO 2037 &gt;
+   O LMMO 2023 ^
+   O LRRO 2036 &lt;
+   O LOOL 0030 ]
+   O LOOM 202D _
+   O LOOR 002F [
+   O LOLO 2030 }
+   O LOMO 2038 ?
+   O LORO 202F {
+   O LLOO 2027 )
+   O LMOO 201E !
+   O LROO 2026 (
+   O ROLL 002D -
+   O ROMM 2025 *
+   O RORR 002E =
+   O RLLO 202E +
+   O RMMO 0037 .
+   O RRRO 0027 0
+   O RLOO 0026 9
+   O RMOO 0025 8
+   O RROO 0024 7
+   O ROLO 0023 6
+   O ROMO 0022 5
+   O RORO 0021 4
+   O ROOL 0020 3
+   O ROOM 001F 2
+   O ROOR 001E 1
+   O MLOL 001D z
+   O MMOM 0014 q
+   O MROR 2035 &lt;NULL&gt;
+   O MOLL 001B x
+   O MOMM 000E k
+   O MORR 000D j
+   O MLLO 0019 v
+   O MMMO 0013 p
+   O MRRO 0005 b
+   O MOOL 001C y
+   O MOOR 000A g
+   O MOLO 001A w
+   O MOMO 000F l
+   O MORO 0009 f
+   O MLOO 0018 u
+   O MMOO 0007 d
+   O MROO 0006 c
+   O OOOL 0016 s
+   O OOOM 000B h
+   O OOOR 0004 a
+   O OOLO 0015 r
+   O OOMO 0017 t
+   O OORO 0011 n
+   O OLOO 0012 o
+   O OMOO 0008 e
+   O OROO 000C i
+   O LOOO 002B &lt;Tab&gt;
+   O MOOO 002C &lt;Space&gt;
+   O ROOO 003A &lt;Back Space&gt;
+</pre>
+
+   </div>
+   <!-- }}} -->
 <!-- }}} -->
 <!-- cc9 - references {{{ -->
 <div style="height:1em;"></div>
