@@ -123,10 +123,11 @@
   defines a number of static bindings,
   we can look for more MCC by working on
   <a class="expander" href="#div_ngrams" onclick='return expand_div(this,"ngrams");'>ngrams<span class="cc6">2</span></a>
-  based on recent studies and a further step could also use something like
-  <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img style='margin-top:-.5ex;' src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>
-  to handle dynamic
-  <a class="expander" href="#div_twiddler3_mcc_hotstrings" onclick='return expand_div(this,"twiddler3_mcc_hotstrings");'>hotstrings<span class="cc6">3</span></a>.
+  based on recent studies
+  and a further step to handle dynamic
+  <a class="expander" href="#div_twiddler3_mcc_hotstrings" onclick='return expand_div(this,"twiddler3_mcc_hotstrings");'>hotstrings<span class="cc6">3</span></a> <i>(aka word expansion)</i>
+  could use something like
+  <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img style='vertical-align:-1ex;' src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>.
   </p> <!-- }}} -->
   <p><!-- ...cheat_sheets  cheat_sheets keyboard_input keyboard_input {{{ -->
   <b>Some interactive tools</b>
@@ -138,10 +139,10 @@
   shows button sequences for each <em class="fingers">INDEX modifier</em>
   <br>
   <a class="expander" href="#div_ngrams_browser" onclick='return expand_div(this,"ngrams_browser");'>Ngrams browser<span class="cc7">&hellip;</span></a>
-  shows where our MCCs manage with english letter usage frequencies
+  shows how our MCCs manage with english letter usage frequencies
   <br>
   <a class="expander" href="#div_keyboard_input" onclick='return expand_div(this,"keyboard_input");'>Test input-field<span class="cc7">&hellip;</span></a>
-  may be used to check your current chords set
+  may be used to check out your current chords
   <br>
   <a class="expander" href="#div_tcc" onclick='return expand_div(this,"tcc");'>TwiddlerCfgConverter<span class="cc7">&hellip;</span></a>
   configuration converter by Marko Marjamaa
@@ -598,10 +599,10 @@ num   00ll = SCROLL_LOCK
 
    <!-- }}} -->
    <hr>
-   <!-- the bad {{{ -->
+   <!-- the could-be-better {{{ -->
    <img style="float:right;" src="images/emoticons/huh.png">
    <br>
-   <b>The bad</b>
+   <b>The could-be-better</b>
    <ul style="clear:right;">
     <li>
     No <em>X-Ray view option</em> <i>(see-through)</i> so that
@@ -643,19 +644,34 @@ num   00ll = SCROLL_LOCK
      </li>
     </ul>
     </li>
+
     <li>
-    A display of <em>ORML notation</em> should be updated with each button selection while in edit mode
-    instead of after a click on the <em class="button">Apply</em> button.
+    Button selection in <em class="label">FRONT: view</em>:
+    <ul>
+     <li>
+     While in editing a chord,
+     the current <em>ORML notation</em> should be displayed somewhere close
+     with each selection
+     instead of after a click on the <em class="button">Apply</em> button.
+     <li>
+     Selecting a button should deselect others on the same row &mdash; as long as using more than one is not supported.
+     </li>
+    </ul>
     </li>
+
     <li>
     A session timeout that may ditch unsaved changes ... what's the stress ?
+    </li>
+
     </li>
     <li>
     Some missing <em>Special Keys</em>:
     <ul>
      <li><em class="label">&lt;Space&gt;</em> <i>(currently an invisble blank)</i></li>
-     <li><em class="label">&euro;</em></li>
-     <li><em class="label">...scancode support for more...</em></li>
+     <li><em class="label">&euro;</em> <i>(well maybe... when it gets into some standard character set)</i></li>
+     <li>And more importantly <em class="label">scancode <i>(keycode)</i></em> support for more 
+     <a href="http://www.freebsddiary.org/APC/usb_hid_usages.php" target="usb_hid">USB usage table</a>
+     entries such as <em>Mute</em>, <em>Volume Up</em>, <em>Volume Down</em>, <em>&hellip;</em></li>
     </ul>
     </li>
 
@@ -669,7 +685,8 @@ num   00ll = SCROLL_LOCK
    <b>The other good</b>
    <ul style="clear:right;">
     <li>
-    With all the above, it's a real challenge to get some job done!
+    With all the above, it's a real challenge to grasp all aspects of the customization process!<br>
+    Every single step brings a new domain of investigation and experimentation, some new ground yet to be explored.
     </li>
 
    </ul>
@@ -1774,7 +1791,7 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
   </p>
   <p>
   In fact, we can already get something similar using a standard keyboard with the help of some hotstring handler like
-  <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>.
+  <a href="http://en.wikipedia.org/wiki/AutoHotkey" target="AutoHotkey">AutoHotkey<img style='vertical-align:-1ex;' src="https://josm.openstreetmap.de/pluginicon/wikipedia.jar/images/dialogs/wikipedia.png"></a>.
   Why does it seem so natural to expect this kind of feature from this device?
   </p>
   <p>
@@ -1800,6 +1817,10 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
   while expanding the collection of <em>2L strings</em> and <em>3L strings</em>
   hotstrings defined by TabSpace.
   </p>
+  <p>
+  Here is more on 
+  <a href="http://ahkscript.org/docs/Hotstrings.htm" target="Hotstrings">Hotstrings and Auto-replace<img style='vertical-align:-1ex; height:24px;' src="http://ahkscript.org/favicon.ico"></a>.
+  </p>
  </div>
  <!-- }}} -->
    <!-- mcc_ref {{{ -->
@@ -1817,7 +1838,7 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
  <div class="wrap_div" onclick='toggle_div(this, "twiddler3_mcc");'><img title="collapse" src="images/cursors/left.png">Multi Character Chords (MCC)</div>
  <div class="wrap_div" style="float:right;" onclick='return expand_div(this,"top");'              ><img title="all wrapped"      src="images/cursors/top.png">                            </div>
 </div> <!-- }}} -->
-<!-- cc7 - cheat_sheets mcc_animate ngrams_browser keyboard_input {{{ -->
+<!-- cc7 - cheat_sheets mcc_animate ngrams_browser keyboard_input tcc {{{ -->
 <div style="height:1em;"></div>
 <!-- cheat_sheets {{{ -->
 <div class="fold_title" onclick='toggle_div(this, "cheat_sheets");'>Cheat Sheets<span class="cc7">&hellip;</span></div>
@@ -2161,7 +2182,7 @@ o =  ona onh <span class="nb">ons</span>   ota oth ots   ora orh ors
    <div id="div_tcc" class="collapsed">
    <a href="https://github.com/MarkoMarjamaa/TwiddlerCfgConverter"target="TCC.1">Marko Marjamaa <b>TwiddlerCfgConverter</b> on GitHub</a>
    <p>
-   Here is the text version extracted from my 
+   Here is the text version extracted from
    <a href="http://twiddler.tekgear.com/tuner/publicshare.xhtml?file_id=TabSpace3_1430856338530_92"         target="twiddler3_cfg" >My own Twiddler3 custom config (150506)</a>
    <br>
    by the folloowing batch file:
@@ -2340,6 +2361,9 @@ exit
    O ROOO 003A &lt;Back Space&gt;
 </pre>
 
+ <br>
+ <div class="wrap_div"                      onclick='toggle_div(this, "tcc");'><img title="collapse" src="images/cursors/left.png">TwiddlerCfgConverter</div>
+ <div class="wrap_div" style="float:right;" onclick='return expand_div(this,"top");'   ><img title="all wrapped"      src="images/cursors/top.png"></div>
    </div>
    <!-- }}} -->
 <!-- }}} -->
@@ -2351,12 +2375,12 @@ exit
  <b>Tek Gear:</b>
  <div><!-- {{{ -->
   <ul>
+   <li><a href="https://twitter.com/TekGear"         target="twitter" >TekGear on Twitter       </a> </li>
+   <li><a href="https://www.facebook.com/TekGearInc" target="facebook">TekGearInc on facebook   </a> </li>
    <li><a href="http://twiddler.tekgear.com/"        target="tekgear" >Twiddler 3 Site          </a> </li>
    <li><a href="http://twiddler.tekgear.com/doc/"    target="tekgear" >Twiddler 3 Documentation </a> </li>
    <li><a href="http://twiddler.tekgear.com/tuner/"  target="tekgear" >Twiddler 3 Tuner         </a> </li>
    <li><a href="http://twiddler.tekgear.com/tutor/"  target="tekgear" >Twiddler 3 Tutor         </a> </li>
-   <li><a href="https://twitter.com/TekGear"         target="twitter" >TekGear on Twitter       </a> </li>
-   <li><a href="https://www.facebook.com/TekGearInc" target="facebook">TekGearInc on facebook   </a> </li>
   </ul>
  </div> <!-- }}} -->
  <b>Web:</b>
@@ -2365,6 +2389,7 @@ exit
    <li><a href="https://plus.google.com/communities/116868056278493024480" target="google_plus"  >Google+ Wearable Computing Community</a> </li>
    <li><a href="http://keybr.com"                                          target="keybr"        > keybr.com Typing Tutor</a> </li>
    <li><a href="https://groups.google.com/forum/#!forum/keybr"             target="google_group" >keybr.com <span style="line-height:17px;font-size:13px">Google Groups</span></a> </li>
+   <li><a href="http://ahkscript.org/docs/Hotstrings.htm"                                                                        target="_blank">AutoHotkey - Hotstrings and Auto-replace</a> </li>
   </ul>
  </div>
  <!-- }}} -->
@@ -2375,6 +2400,7 @@ exit
    <li><a href="http://twiddler.tekgear.com/tuner/publicshare.xhtml?file_id=Twiddler3_TabSpace_1418749449689_5" target="tekgear_cfg"   ><span style="font-size:150%; text-shadow:2px 2px 2px #aaf;">Tek Gear official Twiddler 3 TabSpace layout</span></a></li>
    <li><a href="https://github.com/cswetenham/tabspace2.1"                                                      target="tabspace2.1"   >Chris Swetenham <b>Tabspace2.1</b> on GitHub</a> </li>
    <li><a href="https://github.com/AlexBravo/Twiddler"                                                          target="alexbravo"     >Alex Bravo Twiddler files on GitHub</a></li>
+   <li><a href="https://github.com/MarkoMarjamaa/TwiddlerCfgConverter"target="TCC.1">Marko Marjamaa <b>TwiddlerCfgConverter</b> on GitHub</a></li>
    <li><a href="http://twiddler.tekgear.com/tuner/publicshare.xhtml?file_id=TabSpace3_1430856338530_92"         target="twiddler3_cfg" >My own Twiddler3 custom config (150506)</a>
    <br>- <i>reflecting the current state of this ongoing survey</i>
    <br>- <i>(shared from twiddler.tekgear.com tuner)</i>
