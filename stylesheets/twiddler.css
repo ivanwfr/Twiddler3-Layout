@@ -389,6 +389,89 @@ input:focus {
 
 /* }}} */
 
+/* ANIMATION */
+/* spinner {{{ */
+.spinner {
+    display:none;
+    float:right;
+    margin-right:2em;
+    border-radius:1em;
+    border: 0 !important;
+    background-color:#fff !important;
+    color:#fff !important;
+    height:3em;
+}
+/* }}} */
+/* spinning {{{ */
+.spinning {
+    display:inline-block !important;
+    animation: dash 2s ease infinite,rotate 2s linear infinite;
+}
+/* }}} */
+/* spin_wheel {{{ */
+.spin_wheel {
+/*
+    animation: spin 1s infinite steps(8);
+    display: inline-block;
+*/
+    display: none;
+    position: relative;
+    width: 5em;
+    height: 5em;
+    margin: 0 .5em;
+    
+    text-indent: 999em;
+    overflow: hidden;
+}
+.spin_wheel:before,
+.spin_wheel:after,
+.spin_wheel > div:before,
+.spin_wheel > div:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 2.25em; /* (container width - part width)/2  */
+    width: .5em;
+    height: 1.5em;
+    border-radius: .2em;
+    background: #eee;
+    box-shadow: 0 3.5em #eee; /* container height - part height */
+    transform-origin: 50% 2.5em; /* container height / 2 */
+}
+.spin_wheel:before	{ background: #555; }
+.spin_wheel:after	{ transform: rotate(-45deg); background: #777; }
+.spin_wheel > div:before{ transform: rotate(-90deg); background: #999; }
+.spin_wheel > div:after	{ transform: rotate(-135deg); background: #bbb; }
+
+/* }}} */
+/* animation keyframes [dash rotate spin] {{{ */
+
+@keyframes rotate {
+      0% {transform: rotate(  0deg); }
+    100% {transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    to { transform: rotate(1turn); }
+}
+
+@keyframes dash {
+    0% {
+	stroke-dasharray: 1,95;
+	stroke-dashoffset: 0;
+    }
+    50% {
+	stroke-dasharray: 85,95;
+	stroke-dashoffset: -25;
+    }
+    100% {
+	stroke-dasharray: 85,95;
+	stroke-dashoffset: -93;
+    }
+}
+
+/* }}} */
+
 /* IMAGES */
 /* img pads {{{ */
 

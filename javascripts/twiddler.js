@@ -442,13 +442,22 @@ function letter_browse(input_el) //{{{
     var pre_ngrams_browser = document.getElementById("pre_ngrams_browser");
     if(!pre_ngrams_browser) return;
 
+//  var spinner = document.getElementById("spinner_img");
+//  var spinner = document.getElementById("spinner_em");
+//  var spinner = document.getElementById("spinner_div1");
+    var spinner = document.getElementById("spinner");
+
     if(letter_browse_selected == "") {
+	if( spinner)  del_className(spinner,"spinning");
 	if(input_el) log("letter_browse(): nothing selected");
 	pre_ngrams_browser.innerHTML = ""
 	+ "<em id='regex' style='float:left; font-size:150%;'>&nbsp;</em>"
 	+ "<br style='clear:both;'>"
 	+ letter_browse_data
 	return;
+    }
+    else {
+	if( spinner)  add_className(spinner,"spinning");
     }
     //}}}
     // regex for selected letters {{{
