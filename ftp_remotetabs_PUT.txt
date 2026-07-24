@@ -1,0 +1,20 @@
+open ftp.remotetabs.com
+user remotetayp
+Wovh0117
+type binary
+hash
+
+lcd C:/LOCAL/GAMES/IVANWFR/INPUT/TWIDDLER/GitHub/Twiddler3-Layout
+!pwd
+
+cd  /www/dev/twiddler
+mput                             *.html
+
+cd  /www/dev/twiddler/javascript
+mput                  javascript/*.js
+
+cd  /www/dev/twiddler/stylesheet
+mput                  stylesheet/*.css
+
+quit
+

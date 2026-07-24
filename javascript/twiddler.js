@@ -212,6 +212,13 @@ function getPosition(el) { //{{{
     }
     return { x: xPosition, y: yPosition };
 } //}}}
+function get_targetXY_to_mouseXY(e) //{{{
+{
+    var targetPosition = getPosition(e.currentTarget);
+    var xPosition      = e.clientX - targetPosition.x;
+    var yPosition      = e.clientY - targetPosition.y;
+    return { x: xPosition, y: yPosition };
+} //}}}
 function get_current_img() // {{{
 {
     var crnt = 0;
@@ -1169,6 +1176,7 @@ function fold_keydown(e, el) { //{{{
 	}
 	el.value = "";
 	v="";
+        log_clear();
     }
     //}}}
     //---- append [auto-clear] {{{
@@ -1266,6 +1274,7 @@ function fold_keydown(e, el) { //{{{
 
 	//}}}
 	// TRANSCRIPT {{{
+        charCode = charCode+"<br><small>0x"+charCode.toString(16)+"</small>";
 	transcript.innerHTML    = ""
 	    +"<div>"
 	    + "<table>"
@@ -1284,7 +1293,7 @@ function fold_keydown(e, el) { //{{{
 	    +"</div>" 
 	    ;
 
-	    log_screen_info();
+	  //log_screen_info("<em>"+v+"</em>");
 	//}}}
     }
     //}}}
@@ -1499,145 +1508,3 @@ function eraseCookie(cName)
 
 //}}}
 
-/* EVENTS */
-//{{{
-var MO_id="transcript2";
-var MO_el=null;
-var LG_el=null;
-var MO_cp;
-
-var dx = 0;
-var dy = 0;
-var sx = 0;
-var sy = 0;
-
-window.onload = addListeners;
-
-function addListeners() //{{{
-{
-    window.addEventListener("orientationchange", orientationchange  , false);
-    window.addEventListener("resize"           , windowsizechange   , false);
-
-    MO_el = document.getElementById(MO_id); if(!MO_el) return;
-
-    MO_el .addEventListener("mousedown", mouseDown , false);
-    window.addEventListener("mouseup"  , mouseUp   , false);
-
-    MO_el.addEventListener("touchstart", touchstart, false);
-    MO_el.addEventListener("touchend"  , touchend  , false);
-
-} //}}}
-
-function orientationchange() //{{{
-{
-log("orientationchange:");
-    setTimeout(updateWindowGeometry, 200); // wait for new window geometry
-
-} //}}}
-function windowsizechange() //{{{
-{
-log("windowsizechange:");
-    setTimeout(updateWindowGeometry, 200); // wait for new window geometry
-
-} //}}}
-function updateWindowGeometry() //{{{
-{
-log("updateWindowGeometry:");
-    // sync animation
-    mcc_animate_ratio = null;
-
-    if(!MO_el) return;
-
-    MO_cp = getPosition(MO_el);
-
-    var MARGIN = 30;
-    var x_max = screen.width  - MO_el.clientWidth  - MARGIN;
-    var y_max = screen.height - MO_el.clientHeight - MARGIN;
-
-    if(MO_cp.x > x_max) MO_el.style.left = x_max+"px";
-    if(MO_cp.y > y_max) MO_el.style.top  = y_max+"px";
-
-} //}}}
-
-function touchstart(e) //{{{
-{
-    if(!MO_el) return;
-
-    MO_cp = getPosition(MO_el);
-    sx    = parseInt(e.changedTouches[0].clientX);
-    sy    = parseInt(e.changedTouches[0].clientY);
-    MO_el.addEventListener("touchmove" , touchmove , false);
-    e.preventDefault();
-} //}}}
-function touchmove(e) //{{{
-{
-    if(!MO_el) return;
-
-    dx               = parseInt(e.changedTouches[0].clientX) - sx;
-    dy               = parseInt(e.changedTouches[0].clientY) - sy;
-    var x = (MO_cp.x + dx);
-    var y = (MO_cp.y + dy);
-    MO_el.style.left = x +"px";
-    MO_el.style.top  = y +"px";
-    e.preventDefault();
-
-    log_screen_info();
-} //}}}
-function touchend(e) //{{{
-{
-    if(!MO_el) return;
-
-    MO_el.removeEventListener("touchmove", touchmove, false);
-    e.preventDefault();
-
-} //}}}
-
-function mouseDown(e) //{{{
-{
-    if(!MO_el) return;
-
-    MO_cp = getClickPosition(e);
-    MO_el.style.position = "absolute";
-    window.addEventListener("mousemove", divMove, true);
-} //}}}
-function mouseUp() //{{{
-{
-    window.removeEventListener("mousemove", divMove, true);
-} //}}}
-function divMove(e) //{{{
-{
-    if(!MO_el) return;
-
-    var x = e.clientX - MO_cp.x ;
-    var y = e.clientY - MO_cp.y ;
-    MO_el.style.left  = x+"px";
-    MO_el.style.top   = y+"px";
-
-    log_screen_info();
-} //}}}
-
-function getClickPosition(e) //{{{
-{
-    var parentPosition = getPosition(e.currentTarget);
-    var xPosition      = e.clientX - parentPosition.x;
-    var yPosition      = e.clientY - parentPosition.y;
-    return { x: xPosition, y: yPosition };
-} //}}}
-function log_screen_info() //{{{
-{
-    var el = document.getElementById("browser_info");
-    if(el) {
-
-	var ti = (MO_el) ?  MO_el.style.left +" "+ MO_el.style.top : "";
-
-	var be = document.getElementById("body");
-	var bi = be.clientWidth+"x"+body.clientHeight;
-
-	var si = screen.width+"x"+screen.height;
-	var color    = (screen.width > screen.height) ? "#002" : "#020";
-
-	el.innerHTML = "<div style='padding:1px; background-color:"+color+";'>"+ti+" &nbsp; "+bi+" &nbsp; "+si+"</div>";
-    }
-} //}}}
-
-//}}}

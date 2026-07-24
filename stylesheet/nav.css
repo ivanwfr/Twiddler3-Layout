@@ -1,0 +1,39 @@
+
+/* CSS NAV */
+
+body { padding:0; }
+
+#navi       { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
+#navi       { position:absolute; top:1ex; left:0; text-align:center; width:100%; }
+#navi       { opacity:0.50; filter:alpha(opacity = 0.5); }
+#navi:hover { opacity:1.00; filter:alpha(opacity = 1.0); }
+#navi:hover { color:red; font-weight:bold; font-size:150%; }
+#navi       { cursor:help; }
+#navi       { z-index:1; }
+
+#swpL { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
+#swpR { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
+
+#swpL { position:absolute; top:0; left :0; width:50%; height:100%; float: left; text-align: left; }
+#swpR { position:absolute; top:0; right:0; width:50%; height:100%; float:right; text-align:right; }
+
+#swpL { background-color:red;   }
+#swpR { background-color:green; }
+
+#swpL { opacity:0.01; filter:alpha(opacity = 1); }
+#swpR { opacity:0.01; filter:alpha(opacity = 1); }
+
+.swpL { cursor:url("../images/cursors/left.png" ), auto; }
+.swpR { cursor:url("../images/cursors/right.png"), auto; }
+.endC { cursor:url("../images/cursors/end.png"  ), auto; }
+
+#curL { position:absolute; top:0; left :0; width:32px; height:32px; float: left; text-align: left; }
+#curR { position:absolute; top:0; right:0; width:32px; height:32px; float:right; text-align:right; }
+#curL { background-position:left  top; background-attachment:fixed; background-repeat:no-repeat; }
+#curR { background-position:right top; background-attachment:fixed; background-repeat:no-repeat; }
+
+.curL { background-image:url("../images/cursors/left.png" ); }
+.curR { background-image:url("../images/cursors/right.png"); }
+.endC { background-image:url("../images/cursors/end.png"  ); }
+
+/* }}} */

@@ -5,57 +5,22 @@
  <meta http-equiv="X-UA-Compatible" content="chrome=1">
  <title>Twiddler3-layout Browser</title>
 
- <link rel="stylesheet" href="stylesheets/styles.css">
- <link rel="stylesheet" href="stylesheets/twiddler.css">
- <script src="javascripts/twiddler.js"></script>
+ <link rel="stylesheet" href="stylesheet/styles.css">
+ <link rel="stylesheet" href="stylesheet/twiddler.css">
+ <link rel="stylesheet" href="stylesheet/nav.css">
+ <script src="javascript/twiddler.js"></script>
+ <script src="javascript/transcript.js"></script>
  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
- <!-- CSS NAV {{{ -->
- <style>
-
-  body { padding:0; }
-
-  #navi       { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
-  #navi       { position:absolute; top:1ex; left:0; text-align:center; width:100%; }
-  #navi       { opacity:0.50; filter:alpha(opacity = 0.5); }
-  #navi:hover { opacity:1.00; filter:alpha(opacity = 1.0); }
-  #navi:hover { color:red; font-weight:bold; font-size:150%; }
-  #navi       { cursor:help; }
-  #navi       { z-index:1; }
-
-  #swpL { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
-  #swpR { -ms-user-select:none; -webkit-user-select:none; -moz-user-select:-moz-none; }
-
-  #swpL { position:absolute; top:0; left :0; width:50%; height:100%; float: left; text-align: left; }
-  #swpR { position:absolute; top:0; right:0; width:50%; height:100%; float:right; text-align:right; }
-
-  #swpL { background-color:red;   }
-  #swpR { background-color:green; }
-
-  #swpL { opacity:0.01; filter:alpha(opacity = 1); }
-  #swpR { opacity:0.01; filter:alpha(opacity = 1); }
-
-  .swpL { cursor:url("images/cursors/left.png" ), auto; }
-  .swpR { cursor:url("images/cursors/right.png"), auto; }
-  .endC { cursor:url("images/cursors/end.png"  ), auto; }
-
-  #curL { position:absolute; top:0; left :0; width:32px; height:32px; float: left; text-align: left; }
-  #curR { position:absolute; top:0; right:0; width:32px; height:32px; float:right; text-align:right; }
-  #curL { background-position:left  top; background-attachment:fixed; background-repeat:no-repeat; }
-  #curR { background-position:right top; background-attachment:fixed; background-repeat:no-repeat; }
-
-  .curL { background-image:url("images/cursors/left.png" ); }
-  .curR { background-image:url("images/cursors/right.png"); }
-  .endC { background-image:url("images/cursors/end.png"  ); }
-
- </style>
- <!-- }}} -->
  </head>
  <!-- }}} -->
  <body id="body"
- onload     ='show_img(4); fold_onclick(2,"");'
+ onload     ='show_img(4); fold_onclick(2,""); addListeners();'
  onkeypress ='keypress(event);'
  onresize   ='log_screen_info();'
  >
+<!-- _TAG ● TIMESTAMP {{{-->
+ <em style="position:fixed; top:1em; right:10em; font-size:80%; opacity: 0.2;" title="layout_browser.html _TAG"=>(260725:00h:05)</em>
+<!--}}}-->
  <!-- BROWSE {{{ -->
   <div id="navi" title="SET & TOGGLE-BACK-TO target ... (pretty sure you can figure out how it works)" onclick="switch_layout();">
    &rarr; <span id="span_switch_layout_num"></span> &larr;
@@ -91,8 +56,8 @@
   <div  id="fold_div1" onclick='fold_onclick(1,"");'>
    <img id="fold_grip1" class="fold_grip"   src="images/icons/gripper.png"/>
    <div id="fold_pane1">
-    <img style="width:715px; height:488px;" src="http://www.asciitable.com/index/asciifull.gif"/>
-    <img style="width:573px; height:335px;" src="http://www.asciitable.com/index/extend.gif"/>
+    <img style="width:715px; height:488px;" src="https://www.asciitable.com/index/asciifull.gif"/>
+    <img style="width:573px; height:335px;" src="https://www.asciitable.com/index/extend.gif"/>
   </div>
   </div>
   <!-- }}} -->
@@ -109,6 +74,22 @@
   <!-- TEXT INPUT {{{ -->
   <div    id="fold_div2">
    <img   id="fold_grip2" class="fold_grip" src="images/icons/gripper.png" draggable="false" onclick='fold_onclick(2,"");'/>
+   <img   id="fold_grip3" class="fold_grip" src="images/icons/gripper.png" draggable="false" onclick='toggle_fixed_static("fold_pane2");' title="Toggle sticky or fixed"/>
+   <br>
+<!-- input position fixed or static ● keep in viewport while zooming on tablet {{{-->
+<script>
+let toggle_fixed_static = function(id) {
+    let     el = document.getElementById(id); // fold_pane2
+    el.classList.toggle("sticky");
+//console.log(el);
+//          el.style.position
+//      = ( el.style.position != "sticky")
+//           ?                   "sticky"
+//           :                    "fixed";
+//console.log(el.style.position);
+};
+</script>
+<!--}}}-->
    <input id="fold_pane2" type="text"                                                        onclick='//fold_onclick(2,"");'
    onkeydown ='fold_keydown (event,this); return false;'
    onkeypress='fold_keypress(event,this); return false;'
