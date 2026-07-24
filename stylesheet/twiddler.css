@@ -793,21 +793,36 @@ input:focus {
 /* }}} */
 /* FOLD2 {{{ */
     #fold_div2 {
-        z-index          : 3;
-	position         : fixed;
 	bottom           : 4em;
 	left             : 1.0em;
 	width            : 90%;
     }
-
-    #fold_grip4        { outline: 3px dashed green; z-index : 3; left:25%; background-color: black;  font-size: 200%; }
-    #fold_pane2.to_top { outline: 3px dashed green;              position: fixed; top: 1em !important; }
-    #fold_grip4.to_top {                                         position: fixed; top: 3em !important; }
-
     #fold_div2 * {
 	vertical-align   : middle;
     }
+
+    #fold_grip4        {
+        z-index          : 4;
+        position         : fixed;
+        outline          : 3px dashed green;
+        left             : 25%;
+        background-color : transparent;
+        color            : black;
+        font-size        : 200%;
+    }
+    #fold_grip4::before {        content: '▲'; color: black !important; }
+
+    #fold_pane2.to_top  { outline: 3px dashed   red; top: 1em !important; }
+    #fold_grip4.to_top  { outline: 3px dashed   red; top: 1em !important; margin-top:  2em; }
+    #fold_grip4.to_top::before { content: '▼'; }
+
+    #fold_pane2.to_mid  { outline: 3px dashed green; top: 50% !important; }
+    #fold_grip4.to_mid  { outline: 3px dashed green; top: 50% !important; margin-top: -2em; }
+    #fold_grip4.to_mid::before { content: '▲'; }
+
     #fold_pane2 {
+        z-index          : 3;
+	position         : fixed;
 	background-color : lightgray;
 	border-radius    : 25px;
 	display          : none;

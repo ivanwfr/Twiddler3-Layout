@@ -1,9 +1,10 @@
 <!doctype html>
 <html>
  <head><!-- {{{ -->
- <meta charset="utf-8">
- <meta http-equiv="X-UA-Compatible" content="chrome=1">
  <title>Twiddler3-layout Browser</title>
+ <meta charset="utf-8">
+ <meta id='meta_http_equiv'    http-equiv='content-type'  content='text/html' charset='utf-8'>
+ <meta name="color-scheme" content="light only">
 
  <link rel="stylesheet" href="stylesheet/styles.css">
  <link rel="stylesheet" href="stylesheet/twiddler.css">
@@ -19,7 +20,7 @@
  onresize   ='log_screen_info();'
  >
 <!-- _TAG ● TIMESTAMP {{{-->
- <em style="position:fixed; top:1em; right:10em; font-size:80%; opacity: 0.2;" title="layout_browser.html _TAG"=>(260725:00h:53)</em>
+ <em style="position:fixed; top:1em; right:10em; font-size:80%; opacity: 0.2;" title="layout_browser.html _TAG"=>(260725:01h:45)</em>
 <!--}}}-->
  <!-- BROWSE {{{ -->
   <div id="navi" title="SET & TOGGLE-BACK-TO target ... (pretty sure you can figure out how it works)" onclick="switch_layout();">
@@ -74,13 +75,27 @@
   <!-- TEXT INPUT {{{ -->
   <div    id="fold_div2">
    <img   id="fold_grip2" class="fold_grip" src="images/icons/gripper.png" draggable="false" onclick='fold_onclick(2,"");'/>
-   <em    id="fold_grip4" class="fold_grip" onclick='toggle_fixed_static("fold_pane2");' title="move input to top or bottom">▲▼</em>
+   <em    id="fold_grip4" class="fold_grip" onclick='toggle_to_top_mid_bot("fold_pane2");' title="move input to top or bottom"></em>
    <br>
 <!-- input position fixed or static ● keep in viewport while zooming on tablet {{{-->
 <script>
-let toggle_fixed_static = function(id) {
-    fold_pane2.classList.toggle("to_top");
-    fold_grip4.classList.toggle("to_top");
+let toggle_to_top_mid_bot = function() {
+
+    let className
+        = fold_grip4.classList.contains("to_mid") ? "to_top"
+        : fold_grip4.classList.contains("to_top") ? "to_bot"
+        :                                           "to_mid"; 
+
+    fold_pane2.classList.remove("to_top");
+    fold_pane2.classList.remove("to_mid");
+    fold_pane2.classList.remove("to_bot");
+
+    fold_grip4.classList.remove("to_top");
+    fold_grip4.classList.remove("to_mid");
+    fold_grip4.classList.remove("to_bot");
+
+    fold_grip4.classList.add   (className);
+    fold_pane2.classList.add   (className);
 };
 </script>
 <!--}}}-->
