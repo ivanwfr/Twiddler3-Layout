@@ -793,15 +793,17 @@ input:focus {
 /* }}} */
 /* FOLD2 {{{ */
     #fold_div2 {
+        z-index          : 3;
 	position         : fixed;
 	bottom           : 4em;
 	left             : 1.0em;
 	width            : 90%;
     }
-    #fold_pane2.sticky {
-        position: sticky;
-        outline : 3px dashed magenta !important;
-    }
+
+    #fold_grip4        { outline: 3px dashed green; z-index : 3; left:25%; background-color: black;  font-size: 200%; }
+    #fold_pane2.to_top { outline: 3px dashed green;              position: fixed; top: 1em !important; }
+    #fold_grip4.to_top {                                         position: fixed; top: 3em !important; }
+
     #fold_div2 * {
 	vertical-align   : middle;
     }
@@ -833,13 +835,10 @@ input:focus {
     #fold_div3 {
 	position : fixed;
 	top      : 1px;
-	left     : 4em;
+	right    : 25%;
 	z-index  : 2;
     }
 /* }}} */
-#fold_grip3 {
-    background-color: magenta;
-}
 /* FOLD SHOW HIDE DIM {{{ */
     .fold_show {
 	border           : 0;

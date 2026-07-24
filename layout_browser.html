@@ -19,7 +19,7 @@
  onresize   ='log_screen_info();'
  >
 <!-- _TAG ● TIMESTAMP {{{-->
- <em style="position:fixed; top:1em; right:10em; font-size:80%; opacity: 0.2;" title="layout_browser.html _TAG"=>(260725:00h:05)</em>
+ <em style="position:fixed; top:1em; right:10em; font-size:80%; opacity: 0.2;" title="layout_browser.html _TAG"=>(260725:00h:53)</em>
 <!--}}}-->
  <!-- BROWSE {{{ -->
   <div id="navi" title="SET & TOGGLE-BACK-TO target ... (pretty sure you can figure out how it works)" onclick="switch_layout();">
@@ -74,19 +74,13 @@
   <!-- TEXT INPUT {{{ -->
   <div    id="fold_div2">
    <img   id="fold_grip2" class="fold_grip" src="images/icons/gripper.png" draggable="false" onclick='fold_onclick(2,"");'/>
-   <img   id="fold_grip3" class="fold_grip" src="images/icons/gripper.png" draggable="false" onclick='toggle_fixed_static("fold_pane2");' title="Toggle sticky or fixed"/>
+   <em    id="fold_grip4" class="fold_grip" onclick='toggle_fixed_static("fold_pane2");' title="move input to top or bottom">▲▼</em>
    <br>
 <!-- input position fixed or static ● keep in viewport while zooming on tablet {{{-->
 <script>
 let toggle_fixed_static = function(id) {
-    let     el = document.getElementById(id); // fold_pane2
-    el.classList.toggle("sticky");
-//console.log(el);
-//          el.style.position
-//      = ( el.style.position != "sticky")
-//           ?                   "sticky"
-//           :                    "fixed";
-//console.log(el.style.position);
+    fold_pane2.classList.toggle("to_top");
+    fold_grip4.classList.toggle("to_top");
 };
 </script>
 <!--}}}-->
