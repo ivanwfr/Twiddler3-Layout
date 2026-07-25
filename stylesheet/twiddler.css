@@ -801,29 +801,10 @@ input:focus {
 	vertical-align   : middle;
     }
 
-    #fold_grip4        {
-        z-index          : 4;
-        position         : fixed;
-        outline          : 3px dashed green;
-        left             : 25%;
-        background-color : transparent;
-        color            : black;
-        font-size        : 200%;
-    }
-    #fold_grip4::before {        content: '▲'; color: black !important; }
-
-    #fold_pane2.to_top  { outline: 3px dashed   red; top: 1em !important; }
-    #fold_grip4.to_top  { outline: 3px dashed   red; top: 1em !important; margin-top:  2em; }
-    #fold_grip4.to_top::before { content: '▼'; }
-
-    #fold_pane2.to_mid  { outline: 3px dashed green; top: 50% !important; }
-    #fold_grip4.to_mid  { outline: 3px dashed green; top: 50% !important; margin-top: -2em; }
-    #fold_grip4.to_mid::before { content: '▲'; }
-
     #fold_pane2 {
         z-index          : 3;
-	position         : fixed;
-	background-color : lightgray;
+        position         : fixed;
+        background-color : lightgray;
 	border-radius    : 25px;
 	display          : none;
 	font-family      : 'Lucida Console', Monaco, monospace;
@@ -835,6 +816,37 @@ input:focus {
 	filter           : alpha(opacity =  60);
 	opacity          :                0.60;
     }
+
+    #fold_grip4        {
+        z-index          : 4;
+        position         : fixed;
+        outline          : 3px dashed green;
+        left             : 25%;
+        background-color : #F004;
+        color            : black;
+        font-size        : 200%;
+        text-align       : center;
+    }
+
+    #fold_grip4.to_top::before { content: '▼'; }
+    #fold_grip4.to_mid::before { content: '▲'; }
+    #fold_grip4::before        { content: '▲'; }
+
+    #fold_pane2.to_top  { outline: 3px dashed   red;   bottom: unset; top: 1em !important; }
+    #fold_grip4.to_top  { outline: 3px dashed   red;   bottom: unset; top: 1em !important; margin-top:  2em; }
+
+    #fold_pane2.to_mid  { outline: 3px dashed green;   bottom: unset; top: 50% !important; }
+    #fold_grip4.to_mid  { outline: 3px dashed green;   bottom: unset; top: 50% !important; margin-top: -2em; }
+
+    #fold_pane2         { bottom: 1em; }
+    #fold_grip4         { bottom: 1em; margin-bottom: 2em; }
+
+
+
+
+
+
+
     #fold_pane2:focus {
 	background-color : #100   !important;
 	color            : orange !important;
