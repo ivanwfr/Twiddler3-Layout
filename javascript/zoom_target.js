@@ -1,12 +1,12 @@
 // ┌───────────────────────────────────────────────────────────────────────────┐
-// | SCRIPTS/zoom_target.js                               _TAG (260727:02h:34) ●
+// | SCRIPTS/zoom_target.js                               _TAG (260728:00h:26) ●
 // ├───────────────────────────────────────────────────────────────────────────┤
 // │                              STYLE/details.css STYLE/kb.css STYLE/ecc.css │
 // │                              $AHK/DOC/HIDCONTROL/SCRIPTS/zoom_target.js   │
 // └───────────────────────────────────────────────────────────────────────────┘
 /* jshint esversion: 9, laxbreak:true, laxcomma:true, boss:true {{{*/
 
-/* globals console, setTimeout, clearTimeout, performance */
+/* globals console, setTimeout, clearTimeout, performance, navigator */
 /* globals js_store */
 /* globals js_xpath */
 
@@ -17,6 +17,7 @@ let zoom_target_js = (function() {
 "use strict";
 const SCRIPT_ID = "zoom_target_js";
 let log_this = false;
+let tag_this =  true;
 let log_debug= false;
 
 //{{{
@@ -54,6 +55,8 @@ if(log_this) console.log(SCRIPT_ID+" onload");
 
     // ● RESTORE LAST SESSION OPENED DETAILS STATE
     setTimeout(load_zoom_target, 2500);
+
+    check_behavior_TOUCH_ELSE_DESKTOP();
 
     zoom_target_js.set_zoom_target();
 };
@@ -99,6 +102,106 @@ let load_zoom_target = function()
 
     let el = js_xpath.get_nodeXPath_target( zoom_target_xpath );
     if( el ) set_zoom_target({ target: el });
+};
+/*}}}*/
+/*○ check_behavior_TOUCH_ELSE_DESKTOP {{{*/
+//{{{
+let behavior_TOUCH_ELSE_DESKTOP;
+
+//}}}
+let check_behavior_TOUCH_ELSE_DESKTOP = function()
+{
+    // ┌─────────────────────────────────────────────────────────┐
+    // │ MUST RELOAD WHEN USING Devtools [Toggle Device Toolbar] │
+    // └─────────────────────────────────────────────────────────┘
+    let appVersion = navigator.appVersion.toLowerCase();
+//console.log("appVersion=["+appVersion+"]");
+
+    behavior_TOUCH_ELSE_DESKTOP
+        =  !appVersion.includes("windows")
+        && !appVersion.includes("hp"     )
+        && !appVersion.includes("mac"    )
+        && !appVersion.includes("sunos"  );
+//{{{
+if(tag_this) {
+    if( behavior_TOUCH_ELSE_DESKTOP )
+        console.log("%c "+SCRIPT_ID+" behavior %c TOUCH "  , bg0,bg6);
+    else
+        console.log("%c "+SCRIPT_ID+" behavior %c DESKTOP ", bg0,bg3);
+}
+//}}}
+
+    if( behavior_TOUCH_ELSE_DESKTOP )
+    {
+        let el;
+            el = document.getElementById("touch_shiftKey_em");
+        if( el ) el.style.display      = "inline-block";
+
+            el = document.getElementById("touch_ctrlKey_em");
+        if( el ) el.style.display      = "inline-block";
+    }
+};
+/*}}}*/
+/*● toggle_touch_shiftKey {{{*/
+//{{{
+let touch_shiftKey_state;
+//}}}
+let toggle_touch_shiftKey = function(e)
+{
+    /* USER CLICK */
+    if(e && e.target)
+    {
+        // tri-state
+        if     (e.target.classList.contains("locked")) { e.target.classList.remove("locked"); e.target.classList.remove("active"); touch_shiftKey_state = false }
+        else if(touch_shiftKey_state                 )   e.target.classList.add   ("locked");
+        else    touch_shiftKey_state                 =   e.target.classList.toggle("active");
+    }
+    else {
+        let e_target  =  document.getElementById("touch_shiftKey_em");
+        if( e_target && !e_target.classList.contains("locked"))
+            touch_shiftKey_state    = e_target.classList.toggle   ("active");
+    }
+
+    if(e && e.cancelable) {
+        if( e.stopPropagation          ) e.stopPropagation         (); /* capturing and bubbling phases */
+        if( e.stopImmediatePropagation ) e.stopImmediatePropagation(); /* other listeners of the same event */
+        if( e.preventDefault           ) e.preventDefault          (); /* browser agent default .. (checkbox toggle) */
+    }
+
+//{{{
+if(tag_this) console.log("%c touch_shiftKey_state %c "+touch_shiftKey_state, bg0, (touch_shiftKey_state ? bg4:bg8));
+//}}}
+};
+/*}}}*/
+/*● toggle_touch_ctrlKey {{{*/
+//{{{
+let touch_ctrlKey_state;
+//}}}
+let toggle_touch_ctrlKey = function(e)
+{
+    /* USER CLICK */
+    if(e && e.target)
+    {
+        // tri-state
+        if     (e.target.classList.contains("locked")) { e.target.classList.remove("locked"); e.target.classList.remove("active"); touch_ctrlKey_state = false }
+        else if(touch_ctrlKey_state                  )   e.target.classList.add   ("locked");
+        else    touch_ctrlKey_state                  =   e.target.classList.toggle("active");
+    }
+    else {
+        let e_target  =  document.getElementById("touch_ctrlKey_em");
+        if( e_target && !e_target.classList.contains("locked"))
+            touch_ctrlKey_state     = e_target.classList.toggle   ("active");
+    }
+
+    if(e && e.cancelable) {
+        if( e.stopPropagation          ) e.stopPropagation         (); /* capturing and bubbling phases */
+        if( e.stopImmediatePropagation ) e.stopImmediatePropagation(); /* other listeners of the same event */
+        if( e.preventDefault           ) e.preventDefault          (); /* browser agent default .. (checkbox toggle) */
+    }
+
+//{{{
+if(tag_this) console.log("%c touch_ctrlKey_state %c "+touch_ctrlKey_state, bg0, (touch_ctrlKey_state ? bg4:bg8));
+//}}}
 };
 /*}}}*/
 
@@ -214,21 +317,18 @@ if(log_this) console.log("%c ● set_zoom_target: NONE", bg8);
     /*}}}*/
     /* ● ADD EVENT LISTENERS {{{*/
     if(!zoom_target.classList.contains("default_zoom_target")) {
-        zoom_target.addEventListener("pointerdown", zt_ondown       );  // already persistent
-        zoom_target.addEventListener("touchstart" , zt_ondown       );
-        zoom_target.addEventListener("click"      , zt_onclick      );  // already persistent
+        if( behavior_TOUCH_ELSE_DESKTOP )
+            zoom_target.addEventListener("touchstart" , zt_ondown       );
+        else
+            zoom_target.addEventListener("pointerdown", zt_ondown       );  // already persistent
+        zoom_target    .addEventListener("click"      , zt_onclick      );  // already persistent
 
         // set random container opacity ● do not wait for a first click to pin
         zoom_target.classList.add("freezed");
     }
-//  zoom_target    .addEventListener("mouseover", zt_onmouseover  );
-    zoom_target    .addEventListener("mouseout" , zt_onmouseout   );
-    zoom_target    .addEventListener("wheel"    , zt_onmousewheel );
-
-//zoom_target    .addEventListener('touchstart', handle_touchstart, { passive: false });
-//zoom_target    .addEventListener('touchend'  , handle_touchend  , { passive: false });
-//zoom_target    .addEventListener('touchmove' , handle_touchmove , { passive: false });
-
+//  zoom_target        .addEventListener("mouseover"  , zt_onmouseover  );
+    zoom_target        .addEventListener("mouseout"   , zt_onmouseout   );
+    zoom_target        .addEventListener("wheel"      , zt_onmousewheel );
     /*}}}*/
     /* ● RESTORE LAST SAVED ZOOM ATTRIBUTES {{{*/
     if(   (zoom_target.default_position != "fixed")
@@ -404,7 +504,7 @@ if(log_this) console.log("_ release_zoom_target("+(e ? e.target.tagName : "")+")
     }
 //  zoom_target    .removeEventListener("mouseover"  , zt_onmouseover  );
     zoom_target    .removeEventListener("mouseout"   , zt_onmouseout   );
-    zoom_target    .removeEventListener("mousewheel" , zt_onmousewheel );
+    zoom_target    .removeEventListener("wheel"      , zt_onmousewheel );
 
     /* ● CLEAR ZOOMING TRANSCIENT STATE */
     if(zoom_target.classList.contains("zoom_target"))
@@ -500,7 +600,9 @@ if(log_this) {                            let msg;                              
     if     (    reselecting_current_target) { msg =    "reselecting_current_target"; l_x = bg3; }
     else if( selecting_default_zoom_target) { msg = "selecting_default_zoom_target"; l_x = bg4; }
     else                                    { msg =                "next_container"; l_x = bg5; }
-    console.log("%c SELECTING %c"+ msg, bg5, l_x);
+//{{{
+if(tag_this) console.log("%c SELECTING %c"+ msg, bg5, l_x);
+//}}}
 }
 //}}}
 
@@ -559,11 +661,13 @@ let scroll_container = (function() {
 
 let save = function( el )
 {
-console.log("scroll_container.save:");
+if(log_this) console.log("scroll_container.save:");
     do {
         if(  el.scrollTop ) {
              el.saved_scrollTop = el.scrollTop;
-console.log("scroll_container.save:\t"+ js_xpath.get_nodeXPath(el) +" "+ el.saved_scrollTop);
+//{{{
+if(tag_this) console.log("scroll_container.save:\t"+ js_xpath.get_nodeXPath(el) +" "+ el.saved_scrollTop);
+//}}}
         }
         el = el.parentElement;
     }
@@ -576,10 +680,12 @@ console.log("scroll_container.save:\t"+ js_xpath.get_nodeXPath(el) +" "+ el.save
 
 let restore = function(el)
 {
-console.log("scroll_container.restore:");
+if(log_this) console.log("scroll_container.restore:");
     if( el          && el.saved_scrollTop) {
         el.scrollTo(0, el.saved_scrollTop);
-console.log("scroll_container.restore:\t"+ js_xpath.get_nodeXPath(el) +" "+ el.saved_scrollTop);
+//{{{
+if(tag_this) console.log("scroll_container.restore:\t"+ js_xpath.get_nodeXPath(el) +" "+ el.saved_scrollTop);
+//}}}
         delete         el.saved_scrollTop ;
     }
 }
@@ -752,7 +858,6 @@ const ZOOM_TARGET_STYLE = `
         border-radius   : 0.5em;
     }
     .set_zoom_target_em   {  cursor: zoom-in; }
-/*  .set_zoom_target_em+* { display: inline-block; } */
 
     .default_zoom_target.zoom_target {
         position            : fixed;
@@ -806,16 +911,21 @@ let init_default_listeners = function()
 if(log_this) console.log("%c ● init_default_listeners", bg2);
 
     /* [PAGE] ● [HOVER ENTER LEAVE] ● [DRAG START END] */
-    document.addEventListener("pointermove", onpointermove );
-    document.addEventListener("touchmove"  , onpointermove , { passive: false });
-    document.addEventListener("pointerup"  , onpointerup   );
-    document.addEventListener("touchend"   , onpointerup   );
-
+    if( behavior_TOUCH_ELSE_DESKTOP ) {
+        document.addEventListener("touchmove"  , onpointermove , CAPTURE_TRUE_PASSIVE_FALSE);
+        document.addEventListener("touchend"   , onpointerup   , CAPTURE_TRUE_PASSIVE_FALSE);
+    }
+    else {
+        document.addEventListener("pointermove", onpointermove );
+        document.addEventListener("pointerup"  , onpointerup   );
+    }
     /* [DEFAULT TARGETS] */
     document.querySelectorAll(".default_zoom_target").forEach((img) => {
-        img.addEventListener   ("pointerdown", zt_ondown );
-        img.addEventListener   ("touchstart" , zt_ondown );
-        img.addEventListener   ("click"      , zt_onclick);
+        if( behavior_TOUCH_ELSE_DESKTOP )
+            img.addEventListener ("touchstart" , zt_ondown     );
+        else
+            img.addEventListener ("pointerdown", zt_ondown     );
+        img    .addEventListener ("click"      , zt_onclick    );
     });
 };
 /*}}}*/
@@ -851,59 +961,94 @@ let zt_onmousewheel = function(e)
     if(e.cancelable && e.preventDefault ) e.preventDefault();
     if(e.cancelable && e.preventDefault ) e.preventDefault();
 
-    // ┌────────────────────┐
-    // │ TRANSFORM ORIGIN   │
-    // └────────────────────┘
-//  if( pointerMoved       && !e.shiftKey) set_transformOrigin( e );
-    if((e.type == "wheel") && !e.shiftKey) set_transformOrigin( e );
+    // ┌────────────────────────────────────────┐
+    // │ SET TRANSFORM ORIGIN TO WHEEL EVENT XY │
+    // └────────────────────────────────────────┘
+    if     ((e.type == "wheel") && !e.shiftKey) set_transformOrigin(        e.x ,         e.y);
+    else if( e.touches &&  touch_ctrlKey_state) set_transformOrigin(onDown_XY.x , onDown_XY.y); // SCALE
 
-if(log_this) console.clear();
-if(log_this) console.log("WHEEL:\n"
-                        +"● pointerMoved\t:"+ pointerMoved +"\n"
-                        +"● e.type      \t:"+ e.type       +"\n"
-                        +"● e.shiftKey  \t:"+ e.shiftKey   +"\n"
-                        );
+    // ┌───────────────┬───────┬────────────────┐
+    // │ DESKTOP EVENT │ WHEEL │ SHIFT-MOVE     │
+    // └───────────────┴───────┴────────────────┘
+    /* SHIFT CLIP   ● [wheel size]  ● [pointer move] {{{*/
+    if( e.shiftKey )
+    {
+        let   x = e.x;
+        let   y = e.y;
+        let    dx = e.deltaX;
+        let    dy = e.deltaY;
 
-    // ┌────────────────────┐
-    // │ WHEEL              │
-    // └────────────────────┘
-    if(   (                    e.type == "wheel"         )
-       ||                      e.shiftKey
-//     || !clipping_or_scaling_e_type
-//     || (clipping_or_scaling_e_type == "wheel clipping")
-//     || (clipping_or_scaling_e_type == "wheel scaling" )
-//     || (                    e.type != "touchmove"     )
-    ) {
-        if( e.shiftKey ) {
-console.log("%c WHEEL CLIP  %c"+ e.type , bg1, bg0);
-            set_clipPath(e.x, e.y, e.deltaX, e.deltaY); // wheel delta
-            clipping_or_scaling_e_type = e.type+" clipping";
-        }
-        else {
-console.log("%c WHEEL SCALE %c"+ e.type , bg2, bg0);
-            let delta = (Math.abs(e.deltaX) > Math.abs(e.deltaY)) ? e.deltaX : e.deltaY;
-            set_scale((delta < 0) ? 1.05 : 0.95);
-            clipping_or_scaling_e_type = e.type+" scaling";
-        }
-        return;
+//{{{
+if(tag_this) console.log("%c WHEEL CLIP("+x+" "+y+"      "+dx+" "+dy+")  %c"+ e.type , bg1, bg0);
+//}}}
+
+        set_clipPath(x, y, dx, dy); // wheel delta
+        clipping_or_scaling_e_type = e.type+" clipping";
     }
- if(e.shiftKey) return
-    // ┌────────────────────┐
-    // │ NO WHEEL ACTION    │ //FIXME receiving both pointerMoved and touchTime !
-    // └────────────────────┘
-    if(   !clipping_or_scaling_e_type
-       || (clipping_or_scaling_e_type == e.type +" clipping")
-       || (clipping_or_scaling_e_type == e.type +" scaling" )
-    ) {
-        zt_onmousewheel_touch(e);
+    /*}}}*/
+    /* TOUCH CLIP   ● touches       ●  touch_shiftKey_state {{{*/
+    else if(e.touches && touch_shiftKey_state)
+    {
+        let   x =                        onDown_XY.x;
+        let   y =                        onDown_XY.y;
+        let    dx = e.touches[0].clientX - onDown_XY.x;
+        let    dy = e.touches[0].clientY - onDown_XY.y;
+
+//{{{
+if(tag_this) console.log("%c TOUCH CLIP("+x+" "+y+"      "+dx+" "+dy+")  %c"+ e.type , bg3, bg0);
+//}}}
+
+        set_clipPath(x, y, dx, dy); // wheel delta
+        clipping_or_scaling_e_type = e.type+" clipping";
+
+//set_onDown_XY_after_coolDown(e);
     }
+    /*}}}*/
+    /* WHEEL SCALE  ● wheel         ● !e.shiftKey {{{*/
+    else if((e.type == "wheel") && !e.shiftKey)
+    {
+
+        let deltaY = e.deltaY;
+        let factor = (deltaY < 0) ? 1.05 : 0.95;
+
+//{{{
+if(tag_this) console.log("%c WHEEL SCALE("+deltaY+"%c"+factor+") %c"+ e.type , bg4, (factor > 1) ? bg9:bg8, bg0);
+//}}}
+
+        set_scale( factor );
+        clipping_or_scaling_e_type = e.type+" scaling";
+
+    } /*}}}*/
+    /* TOUCH SCALE  ● touches       ●  touch_ctrlKey_state {{{*/
+    else if(e.touches && touch_ctrlKey_state) {
+
+        let deltaY = e.touches[0].clientY - onDown_XY.y;
+        let factor = (deltaY < 0) ? 1.05 : 0.95;
+
+//{{{
+if(tag_this) console.log("%c TOUCH SCALE("+deltaY+"%c"+factor+") %c"+ e.type , bg5, (factor > 1) ? bg9:bg8, bg0);
+//}}}
+
+        set_scale( factor );
+        clipping_or_scaling_e_type = e.type+" scaling";
+
+//set_onDown_XY_after_coolDown(e);
+    } /*}}}*/
+    // ┌───────────────┬────────────────────┐
+    // │ TOUCH-SCREEN  │ NO WHEEL ACTION    │
+    // └───────────────┴────────────────────┘
+//  if(   !clipping_or_scaling_e_type
+//     || (clipping_or_scaling_e_type == e.type +" clipping")
+//     || (clipping_or_scaling_e_type == e.type +" scaling" )
+//  ) {
+//      zt_onmousewheel_touch(e);
+//  }
 
 };
 /*}}}*/
 /*  zt_onmousewheel_touch {{{*/
 let zt_onmousewheel_touch = function(e)
 {
-    // moved enough
     let e_x = (e.touches) ? e.touches[0].clientX : e.x;
     let e_y = (e.touches) ? e.touches[0].clientY : e.y;
     let  dx = e_x - onDown_XY.x;
@@ -911,41 +1056,54 @@ let zt_onmousewheel_touch = function(e)
     let abx = Math.abs( dx );
     let aby = Math.abs( dy );
 
-//  if(!clipping && !scaling && ((abx < MOVE_MIN) && (aby < MOVE_MIN)))
-//      return;
+    if(!clipping && !scaling) {
+        clipping  =  (abx >= aby);
+        scaling   = !clipping;
+    }
+
+    if(     clipping )
+    {
 //{{{
-//  if((!clipping && !scaling)) {
-        if(!clipping && !scaling)
-        {
-            clipping =  (abx >= aby);
-            scaling  = !clipping;
-        }
-
-        if(     clipping )
-        {
-console.log("%c clipping %c"+ e.type , bg3, bg0);
-
-            set_clipPath(onDown_XY.x, onDown_XY.y, dx, dy);
-            clipping_or_scaling_e_type = e.type+" clipping";
-//          onDown_XY.x = e_x;
-//          onDown_XY.y = e_y;
-            return;
-        }
-        if(     scaling )
-        {
-            let factor = (dy < 0) ? 1.05 : 0.95;
-
-            set_scale( factor );
-            clipping_or_scaling_e_type = e.type+" scaling";
-
-//nsole.log("%c scaling e_x e_y [ "+e_x+" "+e_y+" ] %c"+ e.type+"%c"+factor, bg4, bg0, (factor > 1) ? bg5:bg6);
-console.log("%c scaling %c"+ e.type+"%c"+factor, bg4, bg0, (factor > 1) ? bg5:bg6);
-//          onDown_XY.x = e_x;
-//          onDown_XY.y = e_y;
-            return;
-        }
-//  }
+if(tag_this) console.log("%c clipping %c"+ e.type , bg3, bg0);
 //}}}
+
+        set_clipPath(onDown_XY.x, onDown_XY.y, dx, dy);
+        clipping_or_scaling_e_type = e.type+" clipping";
+set_onDown_XY_after_coolDown(e);
+        return;
+    }
+    if(     scaling )
+    {
+        let factor = (dy < 0) ? 1.05 : 0.95;
+
+        set_scale( factor );
+        clipping_or_scaling_e_type = e.type+" scaling";
+
+//{{{
+if(tag_this) console.log("%c scaling %c"+ e.type+"%c"+factor, bg4, bg0, (factor > 1) ? bg5:bg6);
+//}}}
+set_onDown_XY_after_coolDown(e);
+        return;
+    }
+};
+/*}}}*/
+/*_ set_onDown_XY_after_coolDown {{{*/
+//{{{
+const UPDATE_ONDOWN_XY_COOLDOWN_DELAY = 16;
+
+let   set_onDown_XY_after_coolDown_timer;
+//}}}
+let set_onDown_XY_after_coolDown = function(e)
+{
+    let e_x = (e.touches) ? e.touches[0].clientX : e.x;
+    let e_y = (e.touches) ? e.touches[0].clientY : e.y;
+
+    if(set_onDown_XY_after_coolDown_timer) clearTimeout( set_onDown_XY_after_coolDown_timer );
+       set_onDown_XY_after_coolDown_timer =  setTimeout(() => {
+           onDown_XY.x = e_x;
+           onDown_XY.y = e_y;
+           set_onDown_XY_after_coolDown_timer = null;
+       }, UPDATE_ONDOWN_XY_COOLDOWN_DELAY);
 };
 /*}}}*/
 /*  zt_onclick {{{*/
@@ -1084,7 +1242,10 @@ if(log_this) console.log("zt_ondown");
     if( e.touches )
         touchTime   = Date.now();
 
-    if(!e.shiftKey) set_transformOrigin( e );
+    let e_shiftKey =      e.shiftKey
+        || (e.touches && (e.touches.length == 2))
+        ||                  touch_shiftKey_state;
+
     // ┌───────────────────────────────────────────────────────────────────────┐
     // │ freeze any sticky zoom_target click handler                           │
     // └───────────────────────────────────────────────────────────────────────┘
@@ -1111,16 +1272,23 @@ if(log_this) console.log("onpointermove ● onDown_XY=["+ (onDown_XY && (onDown_
     // ┌────────────────┐
     // │ clipPath or... │
     // └────────────────┘
-    if( e.shiftKey )
+    let e_shiftKey =      e.shiftKey
+        || (e.touches && (e.touches.length == 2))
+        ||                  touch_shiftKey_state;
+
+    let e_ctrlKey  =      e.ctrlKey
+        ||                  touch_ctrlKey_state;
+
+    if(e_shiftKey || e_ctrlKey)
     {
         zt_onmousewheel( e );
         return;
     }
-    if(touchTime && (Date.now() - touchTime > 1000))
-    {
-        zt_onmousewheel( e );
-        return;
-    }
+//  if(touchTime && (Date.now() - touchTime > 1000))
+//  {
+//      zt_onmousewheel( e );
+//      return;
+//  }
 
     // ┌────────────────┐
     // │ ...translate   │
@@ -1148,6 +1316,14 @@ let onpointerup = function(e)
 
 if(log_this) console_clr("POINTERUP")
 if(log_this) console.log("onpointerup");
+
+    /* reset one-time-used modifiers */
+    if(   (e.target.id != "touch_ctrlKey_em" )
+       && (e.target.id != "touch_shiftKey_em")
+    ) {
+        if(touch_shiftKey_state) toggle_touch_shiftKey();
+        if(touch_ctrlKey_state ) toggle_touch_ctrlKey ();
+    }
 
     isMouseDown = false;
 
@@ -1194,26 +1370,27 @@ let get_scale = function()
 /*}}}*/
 
 /*  set_transformOrigin {{{*/
-let set_transformOrigin = function(e,x,y)
+//{{{
+let last_transformOrigin;
+//}}}
+let set_transformOrigin = function(x,y)
 {
+    /* spamming onDown_XY unchanged value ? {{{*/
+    if(    last_transformOrigin
+       && (last_transformOrigin.x == x)
+       && (last_transformOrigin.y == y)) return;
+
+    last_transformOrigin     = { x , y };
+    /*}}}*/
+
     /* current to */
    let      to = get_transformOrigin();
 
     /* adjust transformOrigin */
-//{{{
     let  rect = zoom_target.getBoundingClientRect();
-//}}}
-//{{{
-//    let  rect = { x: zoom_target.offsetLeft
-//        ,         y: zoom_target.offsetTop
-//        ,     width: zoom_target.offsetWidth
-//        ,    height: zoom_target.offsetHeight };
-//}}}
     let scale = get_scale();
-    let   e_x = x ? x : (e.touches) ? e.touches[0].clientX : e.x;
-    let   e_y = y ? x : (e.touches) ? e.touches[0].clientY : e.y;
-    let    dx = parseInt((e_x - rect.x) / scale);
-    let    dy = parseInt((e_y - rect.y) / scale);
+    let    dx = parseInt((  x - rect.x) / scale);
+    let    dy = parseInt((  y - rect.y) / scale);
     zoom_target.style.transformOrigin = `${dx}px ${dy}px`;
 
     /* to delta */
@@ -1269,11 +1446,6 @@ let get_translate     = function()
 /*}}}*/
 
 /*  set_clipPath {{{*/
-//{{{
-const CLIP_PATH_STEP = 12;
-const CLIP_WIDTH_MIN = 10 * CLIP_PATH_STEP;
-
-//}}}
 let set_clipPath = function(e_x,e_y,dx,dy)
 {
     // [bounding]       ● ZOOMED RECTANGLE {{{
@@ -1358,6 +1530,7 @@ let set_cp_w = function(dx,dy)
     /* SET */
     if(dx || dy)
     {
+        let clip_path_step = get_clip_path_step();
         /* OFFSET SIZE */
         let  rect = { x: zoom_target.offsetLeft
             ,         y: zoom_target.offsetTop
@@ -1366,20 +1539,22 @@ let set_cp_w = function(dx,dy)
 
         /* TOO SMALL */
         let small_side = Math.min(rect.width, rect.height);
-        if( small_side < (CLIP_WIDTH_MIN + 2*CLIP_PATH_STEP)) {
-            cp_w = 0;
+        if( small_side < (CLIP_WIDTH_MIN + 2*clip_path_step)) {
+            cp_w       = 0;
         }
         /* ADJUST CLIP */
         else {
-            let delta    = (Math.abs(dx) > Math.abs(dy)) ? dx : dy;
-            cp_w        += (delta < 0) ? CLIP_PATH_STEP : -CLIP_PATH_STEP;
+            let delta  = (Math.abs(dx) > Math.abs(dy)) ? dx : dy;
+            cp_w      += (delta < 0) ? clip_path_step : -clip_path_step;
 
-            if( cp_w < CLIP_PATH_STEP) {
-                cp_w = 0;
+            if( cp_w   < clip_path_step) {
+                cp_w   = 0;
             }
             else {
-                let clip_max = parseInt((small_side - CLIP_WIDTH_MIN) / 2); // max we can crop
-                cp_w = Math.min(cp_w, clip_max);
+                let clip_max
+                       = parseInt((small_side - CLIP_WIDTH_MIN) / 2); // max we can crop
+                cp_w
+                       = Math.min(cp_w, clip_max);
             }
         }
     }
@@ -1400,6 +1575,23 @@ let get_clipPath_urdl = function()
         l = parseInt( matches[4] );
     }
     return { u , r , d , l };
+};
+/*}}}*/
+/*_ get_clip_path_step {{{*/
+//{{{
+const CLIP_DESKTOP_STEP = 12;
+const CLIP_ANDROID_STEP =  2;
+const CLIP_WIDTH_MIN    = 10 * CLIP_DESKTOP_STEP;
+
+//}}}
+let get_clip_path_step = function()
+{
+    if(behavior_TOUCH_ELSE_DESKTOP == undefined)
+        check_behavior_TOUCH_ELSE_DESKTOP();
+
+    return behavior_TOUCH_ELSE_DESKTOP
+        ?      CLIP_ANDROID_STEP
+        :      CLIP_DESKTOP_STEP;
 };
 /*}}}*/
 
@@ -1666,6 +1858,9 @@ return { name : SCRIPT_ID
         , log_zoom_target
     // DEBUG
     , bring_into_view
+    , set_clipPath
+    , toggle_touch_shiftKey
+    , toggle_touch_ctrlKey
 };
 
 /*}}}*/

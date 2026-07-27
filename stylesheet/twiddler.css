@@ -26,6 +26,11 @@
 /* }}} */
 
 /* MODIFIERS */
+#touch_shiftKey_em        { /*content: "○"  ;*/ opacity: 0.5; background-color: #0004; }
+#touch_shiftKey_em.active { /*content: "✌" ;*/ opacity: 1.0; background-color: #FFF4; }
+#touch_ctrlKey_em         { /*content: "○"  ;*/ opacity: 0.5; background-color: #0004; }
+#touch_ctrlKey_em.active  { /*content: "🖐" ;*/ opacity: 1.0; background-color: #FFF4; }
+EM.locked::after          { content: "✔"; display: inline-block; translate: -0.5em 0.5em; }
 /* FONT {{{ */
 
  em { white-space:nowrap; }

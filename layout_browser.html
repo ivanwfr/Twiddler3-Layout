@@ -23,7 +23,7 @@
  >
 <!-- _TAG ● TIMESTAMP {{{-->
  <em style="position:fixed; top:1em; right:10em; z-index: 100; opacity: 0.2;" onmouseover='this.style.opacity="1";'
-     title="layout_browser.html _TAG">(260727:11h:05)</em>
+     title="layout_browser.html _TAG">(260728:00h:36)</em>
 <!--}}}-->
  <!-- BROWSE {{{ -->
   <div id="navi" title="SET & TOGGLE-BACK-TO target ... (pretty sure you can figure out how it works)" onclick="switch_layout();">
@@ -51,6 +51,33 @@
     font-size   : 24px;
     "
     >🔎</em>
+
+<em onclick='zoom_target_js.toggle_touch_shiftKey(event);' class='set_zoom_target_em'
+    id   =                        "touch_shiftKey_em"
+    title="EMULATE DRAGGING WITH TWO FINGERS"
+    style="
+    z-index     : 100;
+    position    : fixed;
+    left        : 7em;
+    top         : 0em;
+    display     : none;
+    font-size   : 24px;
+    "
+    >✂</em><!-- ✌⯐-->
+
+<em onclick='zoom_target_js.toggle_touch_ctrlKey(event);' class='set_zoom_target_em'
+    id   =                        "touch_ctrlKey_em"
+    title="EMULATE A MOUSE WHEEL"
+    style="
+    z-index     : 100;
+    position    : fixed;
+    left        : 9em;
+    top         : 0em;
+    display     : none;
+    font-size   : 24px;
+    "
+    >🖐</em>
+
 <div id="images_div" style="z-index:2;">
  <!-- IMAGES {{{ -->
   <img id="img1" alt="img1" style="display:block;" title="ORML Notation" src="images/Cheat_Blank.png">
