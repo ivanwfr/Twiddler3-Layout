@@ -1,11 +1,10 @@
 <!doctype html>
-<html>
+<html lang="en">
  <head><!-- {{{ -->
  <title>Twiddler3-layout Browser</title>
  <meta charset="utf-8">
- <meta id='meta_http_equiv'    http-equiv='content-type'  content='text/html' charset='utf-8'>
- <meta name="color-scheme" content="light only">
 
+ <meta name="color-scheme" content="light only">
  <link rel="stylesheet" href="stylesheet/styles.css">
  <link rel="stylesheet" href="stylesheet/twiddler.css">
  <link rel="stylesheet" href="stylesheet/nav.css">
@@ -23,7 +22,8 @@
  onresize   ='log_screen_info();'
  >
 <!-- _TAG ● TIMESTAMP {{{-->
- <em style="position:fixed; top:1em; right:10em; font-size:80%; opacity: 0.2;" title="layout_browser.html _TAG"=>(260725:01h:45)</em>
+ <em style="position:fixed; top:1em; right:10em; z-index: 100; opacity: 0.2;" onmouseover='this.style.opacity="1";'
+     title="layout_browser.html _TAG">(260727:11h:05)</em>
 <!--}}}-->
  <!-- BROWSE {{{ -->
   <div id="navi" title="SET & TOGGLE-BACK-TO target ... (pretty sure you can figure out how it works)" onclick="switch_layout();">
@@ -53,27 +53,27 @@
     >🔎</em>
 <div id="images_div" style="z-index:2;">
  <!-- IMAGES {{{ -->
-  <img id="img1" style="display:block;" title="ORML Notation" src="images/Cheat_Blank.png">
+  <img id="img1" alt="img1" style="display:block;" title="ORML Notation" src="images/Cheat_Blank.png">
 
-  <img id="img2" style="display: none;" title="TabSpace Num"  src="images/Cheat_TabSpace_Num.png">
-  <img id="img3" style="display: none;" title="TabSpace"      src="images/Cheat_TabSpace.png">
+  <img id="img2" alt="img2" style="display: none;" title="TabSpace Num"  src="images/Cheat_TabSpace_Num.png">
+  <img id="img3" alt="img3" style="display: none;" title="TabSpace"      src="images/Cheat_TabSpace.png">
 
-  <img id="img4" style="display: none;" title="TabSpace++"    src="images/Cheat_TabSpace_3.png">
-  <img id="img5" style="display: none;" title="TabSpace++"    src="images/Cheat_TabSpace_3_Num.png">
+  <img id="img4" alt="img4" style="display: none;" title="TabSpace++"    src="images/Cheat_TabSpace_3.png">
+  <img id="img5" alt="img5" style="display: none;" title="TabSpace++"    src="images/Cheat_TabSpace_3_Num.png">
 
-  <img id="img6" style="display: none;" title="TabSpace Num"  src="images/Cheat_TabSpace_Ranked.png">
-  <img id="img7" style="display: none;" title="TabSpace++"    src="images/Cheat_TabSpace_3_Ranked.png">
+  <img id="img6" alt="img6" style="display: none;" title="TabSpace Num"  src="images/Cheat_TabSpace_Ranked.png">
+  <img id="img7" alt="img7" style="display: none;" title="TabSpace++"    src="images/Cheat_TabSpace_3_Ranked.png">
 
-  <img id="img8" style="display: none;" title="MessagEase"    src="images/Cheat_MessagEase.png">
+  <img id="img8" alt="img8" style="display: none;" title="MessagEase"    src="images/Cheat_MessagEase.png">
 
  <!-- }}} -->
 </div>
   <!-- ASCII TABLE {{{ -->
-  <div  id="fold_div1" onclick='fold_onclick(1,"");'>
-   <img id="fold_grip1" class="fold_grip"   src="images/icons/gripper.png"/>
-   <div id="fold_pane1">
-    <img style="width:715px; height:488px;" src="https://www.asciitable.com/index/asciifull.gif"/>
-    <img style="width:573px; height:335px;" src="https://www.asciitable.com/index/extend.gif"/>
+  <div    id="fold_div1" onclick='fold_onclick(1,"");'>
+    <img  id="fold_grip1" alt="fold_grip1" class="fold_grip"   src="images/icons/gripper.png">
+   <div   id="fold_pane1">
+    <img alt="ascii_full" style="width:715px; height:488px;" src="https://www.asciitable.com/index/asciifull.gif">
+    <img alt="ascii_extended" style="width:573px; height:335px;" src="https://www.asciitable.com/index/extend.gif">
   </div>
   </div>
   <!-- }}} -->
@@ -83,13 +83,13 @@
    id="transcript2"
    class="transcript"
    ondblclick='this.style.visibility="hidden";'
-   onresize='this.style.left="10px"; this.style.top="10px";';
+   onresize='this.style.left="10px"; this.style.top="10px";'
    >
   </div>
   <!-- }}} -->
   <!-- TEXT INPUT {{{ -->
   <div    id="fold_div2">
-   <img   id="fold_grip2" class="fold_grip" src="images/icons/gripper.png" draggable="false" onclick='fold_onclick(2,"");'/>
+   <img   id="fold_grip2" alt="fold_grip2" class="fold_grip" src="images/icons/gripper.png" draggable="false" onclick='fold_onclick(2,"");'>
    <em    id="fold_grip4" class="fold_grip" onclick='toggle_to_top_mid_bot("fold_pane2");' title="move input to top or bottom"></em>
    <br>
 <!-- input position fixed or static ● keep in viewport while zooming on tablet {{{-->
@@ -125,7 +125,7 @@ let toggle_to_top_mid_bot = function() {
   <!-- Twiddler3-layout {{{ -->
   <div    id="fold_div3">
    <a href="index.html" target ="twiddler3_layout" title="Twiddler3-layout">
-    <img  id="fold_grip3" class="fold_grip" src="images/icons/gripper.png" draggable="false"/>
+    <img  id="fold_grip3" alt="fold_grip3" class="fold_grip" src="images/icons/gripper.png" draggable="false">
    </a>
   </div>
   <!-- }}} -->
