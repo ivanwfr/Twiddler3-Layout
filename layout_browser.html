@@ -11,6 +11,9 @@
  <link rel="stylesheet" href="stylesheet/nav.css">
  <script src="javascript/twiddler.js"></script>
  <script src="javascript/transcript.js"></script>
+ <script src="javascript/zoom_target.js"></script>
+ <script src="javascript/js_store.js"></script>
+ <script src="javascript/js_xpath.js"></script>
  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
  </head>
  <!-- }}} -->
@@ -38,6 +41,17 @@
   <div id="curR" class="endC">&nbsp;</div>
 
  <!-- }}} -->
+<em onclick='zoom_target_js.set_zoom_target(event);' class='set_zoom_target_em'
+    style="
+    z-index     : 100;
+    position    : fixed;
+    left        : 5em;
+    top         : 0em;
+    opacity     : 0.5;
+    font-size   : 24px;
+    "
+    >🔎</em>
+<div id="images_div" style="z-index:2;">
  <!-- IMAGES {{{ -->
   <img id="img1" style="display:block;" title="ORML Notation" src="images/Cheat_Blank.png">
 
@@ -53,6 +67,7 @@
   <img id="img8" style="display: none;" title="MessagEase"    src="images/Cheat_MessagEase.png">
 
  <!-- }}} -->
+</div>
   <!-- ASCII TABLE {{{ -->
   <div  id="fold_div1" onclick='fold_onclick(1,"");'>
    <img id="fold_grip1" class="fold_grip"   src="images/icons/gripper.png"/>
@@ -116,3 +131,6 @@ let toggle_to_top_mid_bot = function() {
   <!-- }}} -->
  </body>
 </html>
+<!--{{{
+:vnew CFG/CONVERT/1_TabSpace3.txt
+}}}-->
