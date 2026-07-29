@@ -1,5 +1,5 @@
 // ┌───────────────────────────────────────────────────────────────────────────┐
-// | SCRIPTS/zoom_target.js                               _TAG (260728:00h:26) ●
+// | SCRIPTS/zoom_target.js                               _TAG (260729:22h:10) ●
 // ├───────────────────────────────────────────────────────────────────────────┤
 // │                              STYLE/details.css STYLE/kb.css STYLE/ecc.css │
 // │                              $AHK/DOC/HIDCONTROL/SCRIPTS/zoom_target.js   │
@@ -17,7 +17,7 @@ let zoom_target_js = (function() {
 "use strict";
 const SCRIPT_ID = "zoom_target_js";
 let log_this = false;
-let tag_this =  true;
+let tag_this = false;
 let log_debug= false;
 
 //{{{
@@ -55,8 +55,6 @@ if(log_this) console.log(SCRIPT_ID+" onload");
 
     // ● RESTORE LAST SESSION OPENED DETAILS STATE
     setTimeout(load_zoom_target, 2500);
-
-    check_behavior_TOUCH_ELSE_DESKTOP();
 
     zoom_target_js.set_zoom_target();
 };
@@ -135,10 +133,10 @@ if(tag_this) {
     {
         let el;
             el = document.getElementById("touch_shiftKey_em");
-        if( el ) el.style.display      = "inline-block";
+        if( el ) el.style.display      = zoom_target ? "inline-block" : "none";
 
             el = document.getElementById("touch_ctrlKey_em");
-        if( el ) el.style.display      = "inline-block";
+        if( el ) el.style.display      = zoom_target ? "inline-block" : "none";
     }
 };
 /*}}}*/
@@ -316,11 +314,17 @@ if(log_this) console.log("%c ● set_zoom_target: NONE", bg8);
 //  scroll_container.restore( zoom_target );
     /*}}}*/
     /* ● ADD EVENT LISTENERS {{{*/
+    check_behavior_TOUCH_ELSE_DESKTOP();
+
     if(!zoom_target.classList.contains("default_zoom_target")) {
-        if( behavior_TOUCH_ELSE_DESKTOP )
+        if( behavior_TOUCH_ELSE_DESKTOP ) {
             zoom_target.addEventListener("touchstart" , zt_ondown       );
-        else
+if(tag_this) console.log("%c touchstart", bg7);
+        }
+        else {
             zoom_target.addEventListener("pointerdown", zt_ondown       );  // already persistent
+if(tag_this) console.log("%c pointerdown", bg4);
+        }
         zoom_target    .addEventListener("click"      , zt_onclick      );  // already persistent
 
         // set random container opacity ● do not wait for a first click to pin
@@ -514,6 +518,7 @@ if(log_this) console.log("_ release_zoom_target("+(e ? e.target.tagName : "")+")
     let zoom_target_released = zoom_target;
 
     zoom_target = null;
+    check_behavior_TOUCH_ELSE_DESKTOP();
 
     return zoom_target_released;
 };
@@ -586,9 +591,17 @@ if(log_this) console.log("%c ● select_zoom_target("+(e ? e.target.tagName : ""
     // ┌────────────────────────────────────────────────────────────────────────┐
     // │ [EMBEDDED-IMG] ● [FIRST-TARGET] ● [TOGGLE-CURRENT]                     │
     // └────────────────────────────────────────────────────────────────────────┘
-    let selecting_default_zoom_target =  e && (e.target.classList.contains("default_zoom_target"));
+    let selecting_default_zoom_target
+        =   e
+        && !e.target.classList.contains("set_zoom_target_em" )
+        &&  e.target.classList.contains("default_zoom_target")
+    ;
+
+    let nextContainer
+        =  get_nextContainer( e.target );                 // USER [nextElementSibling]
     let    reselecting_current_target
         =  e
+        && !e.target.classList.contains("set_zoom_target_em" )
         && !selecting_default_zoom_target
         &&  zoom_target
         &&  zoom_target.default_parentElement
@@ -628,9 +641,10 @@ if(tag_this) console.log("%c SELECTING %c"+ msg, bg5, l_x);
 //  else if(   reselecting_current_target) new_zoom_target =  document.querySelector(".default_zoom_target") // FALLBACK ● [EMBEDDED-IMG]
     else if(   reselecting_current_target) new_zoom_target =  null;                                          // ➔ NO [zoom_target]
   //else if(e)                             new_zoom_target =  e.target.nextElementSibling;                   // USER [nextElementSibling]
-    else if(e)                             new_zoom_target =  get_nextContainer( e.target );                 // USER [nextElementSibling]
+    else if(e)                             new_zoom_target =      nextContainer            ;                 // USER [nextElementSibling]
 
-    if(!new_zoom_target)                   new_zoom_target = (e && (e.target.parentElement == document.body)) ? e.target : null; // i.e. stepper_div
+//  if(!new_zoom_target)                   new_zoom_target = (e && (e.target.parentElement == document.body)) ? e.target : null; // i.e. stepper_div
+    if(new_zoom_target == zoom_holder    ) new_zoom_target =  null;                                          // ➔ NO [zoom_target]
 
 if(log_this) console.log("%c...return "+  (new_zoom_target ? new_zoom_target.tagName : "NO [new_zoom_target]"), bg5);
     return new_zoom_target;
@@ -910,22 +924,32 @@ let init_default_listeners = function()
 {
 if(log_this) console.log("%c ● init_default_listeners", bg2);
 
+    check_behavior_TOUCH_ELSE_DESKTOP();
+
     /* [PAGE] ● [HOVER ENTER LEAVE] ● [DRAG START END] */
     if( behavior_TOUCH_ELSE_DESKTOP ) {
-        document.addEventListener("touchmove"  , onpointermove , CAPTURE_TRUE_PASSIVE_FALSE);
-        document.addEventListener("touchend"   , onpointerup   , CAPTURE_TRUE_PASSIVE_FALSE);
+        document.removeEventListener("pointermove", onpointermove );
+        document.removeEventListener("pointerup"  , onpointerup   );
+        document.addEventListener   ("touchmove"  , onpointermove , CAPTURE_TRUE_PASSIVE_FALSE);
+        document.addEventListener   ("touchend"   , onpointerup   , CAPTURE_TRUE_PASSIVE_FALSE);
     }
     else {
-        document.addEventListener("pointermove", onpointermove );
-        document.addEventListener("pointerup"  , onpointerup   );
+        document.removeEventListener("touchmove"  , onpointermove , CAPTURE_TRUE_PASSIVE_FALSE);
+        document.removeEventListener("touchend"   , onpointerup   , CAPTURE_TRUE_PASSIVE_FALSE);
+        document.addEventListener   ("pointermove", onpointermove );
+        document.addEventListener   ("pointerup"  , onpointerup   );
     }
     /* [DEFAULT TARGETS] */
     document.querySelectorAll(".default_zoom_target").forEach((img) => {
-        if( behavior_TOUCH_ELSE_DESKTOP )
-            img.addEventListener ("touchstart" , zt_ondown     );
-        else
-            img.addEventListener ("pointerdown", zt_ondown     );
-        img    .addEventListener ("click"      , zt_onclick    );
+        if( behavior_TOUCH_ELSE_DESKTOP ) {
+            img .removeEventListener("pointerdown", zt_ondown     );
+            img .addEventListener   ("touchstart" , zt_ondown     );
+        }
+        else {
+            img .removeEventListener("touchstart" , zt_ondown     );
+            img .addEventListener   ("pointerdown", zt_ondown     );
+        }
+        img     .addEventListener   ("click"      , zt_onclick    );
     });
 };
 /*}}}*/
@@ -957,6 +981,14 @@ let scaling;
 let zt_onmousewheel = function(e)
 {
     if(!zoom_target) return;
+if(tag_this) console_clr("zt_onmousewheel");
+if(tag_this) console.log("● e.type              \t\t: "+ e.type               +"\n"
+                        +"● e.touches           \t\t: "+ e.touches            +"\n"
+                        +"● e.shiftKey          \t\t: "+ e.shiftKey           +"\n"
+                        +"● e.ctrlKey           \t\t: "+ e.ctrlKey            +"\n"
+                        +"● touch_shiftKey_state  \t: "+ touch_shiftKey_state +"\n"
+                        +"● touch_ctrlKey_state   \t: "+ touch_ctrlKey_state  +"\n"
+                        );
 
     if(e.cancelable && e.preventDefault ) e.preventDefault();
     if(e.cancelable && e.preventDefault ) e.preventDefault();
@@ -1023,7 +1055,7 @@ if(tag_this) console.log("%c WHEEL SCALE("+deltaY+"%c"+factor+") %c"+ e.type , b
     else if(e.touches && touch_ctrlKey_state) {
 
         let deltaY = e.touches[0].clientY - onDown_XY.y;
-        let factor = (deltaY < 0) ? 1.05 : 0.95;
+        let factor = (deltaY < 0) ? 1.02 : 0.98;
 
 //{{{
 if(tag_this) console.log("%c TOUCH SCALE("+deltaY+"%c"+factor+") %c"+ e.type , bg5, (factor > 1) ? bg9:bg8, bg0);
@@ -1347,7 +1379,7 @@ let set_scale = function(factor)
     scale     = Math.min(scale, SCALE_MAX);
     scale     = Math.max(scale, SCALE_MIN);
 
-    if(Math.abs(1.0 - scale) < 0.04) scale = 1.0;
+    if(Math.abs(1.0 - scale) < 0.01) scale = 1.0;
 
     zoom_target.style.transform = "scale("+scale+")";
 
@@ -1580,7 +1612,7 @@ let get_clipPath_urdl = function()
 /*_ get_clip_path_step {{{*/
 //{{{
 const CLIP_DESKTOP_STEP = 12;
-const CLIP_ANDROID_STEP =  2;
+const CLIP_ANDROID_STEP =  0.5;
 const CLIP_WIDTH_MIN    = 10 * CLIP_DESKTOP_STEP;
 
 //}}}
@@ -1861,6 +1893,7 @@ return { name : SCRIPT_ID
     , set_clipPath
     , toggle_touch_shiftKey
     , toggle_touch_ctrlKey
+    , check_behavior_TOUCH_ELSE_DESKTOP
 };
 
 /*}}}*/
