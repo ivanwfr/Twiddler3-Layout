@@ -1,5 +1,5 @@
 // ┌───────────────────────────────────────────────────────────────────────────┐
-// | SCRIPTS/zoom_target.js                               _TAG (260729:22h:10) ●
+// | SCRIPTS/zoom_target.js                               _TAG (260731:18h:08) ●
 // ├───────────────────────────────────────────────────────────────────────────┤
 // │                              STYLE/details.css STYLE/kb.css STYLE/ecc.css │
 // │                              $AHK/DOC/HIDCONTROL/SCRIPTS/zoom_target.js   │
@@ -17,7 +17,7 @@ let zoom_target_js = (function() {
 "use strict";
 const SCRIPT_ID = "zoom_target_js";
 let log_this = false;
-let tag_this = false;
+let tag_this =  true;
 let log_debug= false;
 
 //{{{
@@ -35,927 +35,8 @@ const bg0 = "background-color : rgba(  0,   0,   0, .9); color : #FFF; padding: 
 
 //}}}
 
-// ┌───────────────────────────────────────────────────────────────────────────┐
-// │ LOAD ● UNLOAD                                                             │
-// └───────────────────────────────────────────────────────────────────────────┘
-/*● onload {{{*/
-let onload = function(e)
-{
-/*{{{*/
-if(log_this) console.log(SCRIPT_ID+" onload");
-
-/*}}}*/
-
-    window  .addEventListener("beforeunload", save_zoom_target);
-    window  .addEventListener("resize"      , bring_into_view );
-
-    //┌─────────────────────────────────────────────────────────┐
-    //│ @see also: SCRIPTS/details.js details_onload            │
-    //└─────────────────────────────────────────────────────────┘
-
-    // ● RESTORE LAST SESSION OPENED DETAILS STATE
-    setTimeout(load_zoom_target, 2500);
-
-    zoom_target_js.set_zoom_target();
-};
-/*}}}*/
-/*○ save_zoom_target {{{*/
-let save_zoom_target = function()
-{
-    //┌───────────────────────────────────────────────────────────────┐
-    //│ SAVE    ● zoom_target XPath               into [localStorage] │
-    //└───────────────────────────────────────────────────────────────┘
-    /* get zoom_target XPath {{{*/
-    let el
-        = document.querySelector(".zoom_target");
-
-    let zoom_target_xpath
-        = el
-        ?  js_xpath.get_nodeXPath( el )
-        :  "";
-
-    let val
-        = zoom_target_xpath
-        ?  JSON.stringify(  zoom_target_xpath )
-        :  null
-    ;
-    /*}}}*/
-    /* set localStorage {{{*/
-    let key = "zoom_target_xpath";
-    if( val ) js_store.localStorage_setItem( key , val);
-    else      js_store.localStorage_delItem( key );
-    /*}}}*/
-};
-/*}}}*/
-/*○ load_zoom_target {{{*/
-let load_zoom_target = function()
-{
-    //┌───────────────────────────────────────────────────────────────┐
-    //│ RESTORE ● zoom_target                     from [localStorage] │
-    //└───────────────────────────────────────────────────────────────┘
-    let val = js_store.localStorage_getItem("zoom_target_xpath");
-    if(!val) return;
-
-    let zoom_target_xpath = JSON.parse( val );
-
-    let el = js_xpath.get_nodeXPath_target( zoom_target_xpath );
-    if( el ) set_zoom_target({ target: el });
-};
-/*}}}*/
-/*○ check_behavior_TOUCH_ELSE_DESKTOP {{{*/
-//{{{
-let behavior_TOUCH_ELSE_DESKTOP;
-
-//}}}
-let check_behavior_TOUCH_ELSE_DESKTOP = function()
-{
-    // ┌─────────────────────────────────────────────────────────┐
-    // │ MUST RELOAD WHEN USING Devtools [Toggle Device Toolbar] │
-    // └─────────────────────────────────────────────────────────┘
-    let appVersion = navigator.appVersion.toLowerCase();
-//console.log("appVersion=["+appVersion+"]");
-
-    behavior_TOUCH_ELSE_DESKTOP
-        =  !appVersion.includes("windows")
-        && !appVersion.includes("hp"     )
-        && !appVersion.includes("mac"    )
-        && !appVersion.includes("sunos"  );
-//{{{
-if(tag_this) {
-    if( behavior_TOUCH_ELSE_DESKTOP )
-        console.log("%c "+SCRIPT_ID+" behavior %c TOUCH "  , bg0,bg6);
-    else
-        console.log("%c "+SCRIPT_ID+" behavior %c DESKTOP ", bg0,bg3);
-}
-//}}}
-
-    if( behavior_TOUCH_ELSE_DESKTOP )
-    {
-        let el;
-            el = document.getElementById("touch_shiftKey_em");
-        if( el ) el.style.display      = zoom_target ? "inline-block" : "none";
-
-            el = document.getElementById("touch_ctrlKey_em");
-        if( el ) el.style.display      = zoom_target ? "inline-block" : "none";
-    }
-};
-/*}}}*/
-/*● toggle_touch_shiftKey {{{*/
-//{{{
-let touch_shiftKey_state;
-//}}}
-let toggle_touch_shiftKey = function(e)
-{
-    /* USER CLICK */
-    if(e && e.target)
-    {
-        // tri-state
-        if     (e.target.classList.contains("locked")) { e.target.classList.remove("locked"); e.target.classList.remove("active"); touch_shiftKey_state = false }
-        else if(touch_shiftKey_state                 )   e.target.classList.add   ("locked");
-        else    touch_shiftKey_state                 =   e.target.classList.toggle("active");
-    }
-    else {
-        let e_target  =  document.getElementById("touch_shiftKey_em");
-        if( e_target && !e_target.classList.contains("locked"))
-            touch_shiftKey_state    = e_target.classList.toggle   ("active");
-    }
-
-    if(e && e.cancelable) {
-        if( e.stopPropagation          ) e.stopPropagation         (); /* capturing and bubbling phases */
-        if( e.stopImmediatePropagation ) e.stopImmediatePropagation(); /* other listeners of the same event */
-        if( e.preventDefault           ) e.preventDefault          (); /* browser agent default .. (checkbox toggle) */
-    }
-
-//{{{
-if(tag_this) console.log("%c touch_shiftKey_state %c "+touch_shiftKey_state, bg0, (touch_shiftKey_state ? bg4:bg8));
-//}}}
-};
-/*}}}*/
-/*● toggle_touch_ctrlKey {{{*/
-//{{{
-let touch_ctrlKey_state;
-//}}}
-let toggle_touch_ctrlKey = function(e)
-{
-    /* USER CLICK */
-    if(e && e.target)
-    {
-        // tri-state
-        if     (e.target.classList.contains("locked")) { e.target.classList.remove("locked"); e.target.classList.remove("active"); touch_ctrlKey_state = false }
-        else if(touch_ctrlKey_state                  )   e.target.classList.add   ("locked");
-        else    touch_ctrlKey_state                  =   e.target.classList.toggle("active");
-    }
-    else {
-        let e_target  =  document.getElementById("touch_ctrlKey_em");
-        if( e_target && !e_target.classList.contains("locked"))
-            touch_ctrlKey_state     = e_target.classList.toggle   ("active");
-    }
-
-    if(e && e.cancelable) {
-        if( e.stopPropagation          ) e.stopPropagation         (); /* capturing and bubbling phases */
-        if( e.stopImmediatePropagation ) e.stopImmediatePropagation(); /* other listeners of the same event */
-        if( e.preventDefault           ) e.preventDefault          (); /* browser agent default .. (checkbox toggle) */
-    }
-
-//{{{
-if(tag_this) console.log("%c touch_ctrlKey_state %c "+touch_ctrlKey_state, bg0, (touch_ctrlKey_state ? bg4:bg8));
-//}}}
-};
-/*}}}*/
-
 // ┌──────────────────────────────┐
-// │ zoom_target ● set ● release  │
-// └──────────────────────────────┘
-/*  set_zoom_target {{{*/
-//{{{
-let     zoom_of;
-let     zoom_bb;
-let     zoom_cp;
-
-let     zoom_target;
-let     zoom_holder;
-//}}}
-let set_zoom_target = function(e)
-{
-//{{{
-if(log_this) console_clr("SELECT");
-if(log_this) console.log("%c ● set_zoom_target("+(e ? e.target.tagName : "")+")", bg5);
-
-//}}}
-    /* JUST LOADED {{{*/
-    if( !styleElement )
-    {
-        init_zoom_target_style();
-        init_default_listeners();
-
-if(log_debug) set_debug_divs();
-    }
-    /*}}}*/
-    /* PICK A NEW [zoom_target] ● INIT [LISTEN DOWN MOVE UP CLICK STYLE DEBUG] {{{*/
-    let no_new_target   = !e || (e.type == "toggle");
-
-    let new_zoom_target = no_new_target ? null : select_zoom_target( e );
-
-    /*}}}*/
-    /* RELEASE OLD TARGET {{{*/
-    if( zoom_target )
-        release_zoom_target(e, "set_zoom_target");
-
-    zoom_target = new_zoom_target;
-    /*}}}*/
-    /*  RETURN WHEN NO [zoom_target] SELECTED {{{*/
-    if(!zoom_target)
-    {
-if(log_this) console.log("%c ● set_zoom_target: NONE", bg8);
-
-        return;
-    }
-    /*}}}*/
-    /* ○ TRACK IN PLACE BOUNDING BOX {{{*/
-    let in_place_bb = zoom_target.getBoundingClientRect();
-
-    /*}}}*/
-    /* ○ SAVE TOP CONTAINER SCROLLTOP {{{*/
-//  scroll_container.save( zoom_target );
-
-    /*}}}*/
-    /* ○ LOAD LAST SAVED ZOOM ATTRIBUTES {{{*/
-    if(!zoom_target.zoom_attr )
-        load_zoom_target_zoom_attr();
-
-    /*}}}*/
-    /* ● SAVE OLD PARRENT {{{*/
-    let cs = window.getComputedStyle( zoom_target ); // effective for stepper_div
-    if(!zoom_target.default_position)
-        zoom_target.default_position           = cs.position;
-    if( zoom_target.default_position == "fixed") {
-        zoom_target.default_top                = cs.top;
-        zoom_target.default_left               = cs.left;
-    }
-    else {
-        zoom_target.default_parentElement      = zoom_target.parentElement;
-        zoom_target.default_nextElementSibling = zoom_target.nextElementSibling || null;
-    }
-    /*}}}*/
-    /* ● [zoom_holder] {{{*/
-    if(!zoom_holder) {
-        zoom_holder                = document.createElement("DIV");
-        zoom_holder.id             = "zoom_holder";
-    }
-    /*}}}*/
-    /* ● replace [fixed zoom_target] with a [static zoom_holder] to preserve page content geometry {{{*/
-    /* INSERT [zoom_holder] into parent */
-    if( zoom_target.default_position != "fixed")
-    {
-        if( zoom_target.default_parentElement ) {
-            zoom_target.default_parentElement.insertBefore(zoom_holder, zoom_target.default_nextElementSibling || null);
-            document.body.insertBefore(zoom_target, null);
-        }
-        zoom_holder.style.width    = zoom_target.offsetWidth  +"px";
-        zoom_holder.style.height   = zoom_target.offsetHeight +"px";
-        zoom_holder.style.display  = zoom_target.style.display;
-    }
-    /* ● ADD ZOOM TARGET STYLE {{{*/
-    zoom_target.classList.add("zoom_target");
-
-    /*}}}*/
-    /* MAGNIFY fixed IMG */
-    if( zoom_target.classList.contains("default_zoom_target") )
-    {
-        /* EXTRACT [zoom_target] from parent */
-        let doc_el = document.documentElement;
-        let body   = document.querySelector("BODY");
-        doc_el.insertBefore(zoom_target, body);
-    }
-    zoom_target.style.position = "fixed";
-    zoom_target.classList.add("magnified");
-
-    /* cancel reflow-scroll side-effect */
-//  scroll_container.restore( zoom_target );
-    /*}}}*/
-    /* ● ADD EVENT LISTENERS {{{*/
-    check_behavior_TOUCH_ELSE_DESKTOP();
-
-    if(!zoom_target.classList.contains("default_zoom_target")) {
-        if( behavior_TOUCH_ELSE_DESKTOP ) {
-            zoom_target.addEventListener("touchstart" , zt_ondown       );
-if(tag_this) console.log("%c touchstart", bg7);
-        }
-        else {
-            zoom_target.addEventListener("pointerdown", zt_ondown       );  // already persistent
-if(tag_this) console.log("%c pointerdown", bg4);
-        }
-        zoom_target    .addEventListener("click"      , zt_onclick      );  // already persistent
-
-        // set random container opacity ● do not wait for a first click to pin
-        zoom_target.classList.add("freezed");
-    }
-//  zoom_target        .addEventListener("mouseover"  , zt_onmouseover  );
-    zoom_target        .addEventListener("mouseout"   , zt_onmouseout   );
-    zoom_target        .addEventListener("wheel"      , zt_onmousewheel );
-    /*}}}*/
-    /* ● RESTORE LAST SAVED ZOOM ATTRIBUTES {{{*/
-    if(   (zoom_target.default_position != "fixed")
-        && zoom_target.zoom_attr
-      ) {
-//{{{
-if(log_this) console.log("%c set_zoom_target ● RESTORING zoom_attr:"
-                +"\n● cp_w      \t: "+ zoom_target.zoom_attr.cp_w
-                +"\n● clipPath  \t: "+ zoom_target.zoom_attr.clipPath
-                +"\n● transform \t: "+ zoom_target.zoom_attr.transform
-                +"\n● translate \t: "+ zoom_target.zoom_attr.translate
-               , bg5);
-//}}}
-
-        zoom_target.cp_w            = zoom_target.zoom_attr.cp_w      ||  0;
-        zoom_target.style.clipPath  = zoom_target.zoom_attr.clipPath  || "";
-        zoom_target.style.transform = zoom_target.zoom_attr.transform || "";
-//  if( zoom_target.classList.contains("default_zoom_target") )//FIXME
-        zoom_target.style.translate = zoom_target.zoom_attr.translate || "";
-    }
-    else {
-if(log_this) console.log("%c RESTORING ● zoom_attr NONE", bg8);
-    }
-    /*}}}*/
-    bring_into_view( e );
-if(log_this) console.log("set_zoom_target:", zoom_target);
-}
-/*}}}*/
-/*_ bring_into_view {{{*/
-let bring_into_view = function(e)
-{
-    if(!zoom_target ) return;
-
-    let {   bb,   bb_OTV, BB_OTV
-        , clip, clip_OTV, CL_OTV } = get_clip_out_of_view();
-    if( clip_OTV ) {
-        /* MOVE INTO VIEW [fixed] {{{*/
-        if( zoom_target.classList.contains("default_zoom_target") )
-        {
-            move_clip_into_view(bb, clip);
-        }
-        /*}}}*/
-        /* MOVE INTO VIEW [static] {{{*/
-        else {
-            let clip_top_left_OTV
-                =   (clip.x < 0)
-                 || (clip.y < 0)
-                 || (clip.x > (window.innerWidth  * 0.80))
-                 || (clip.y > (window.innerHeight * 0.80))
-            ;
-            if( clip_top_left_OTV )
-                move_clip_into_view(bb, clip);
-        }
-        /*}}}*/
-    }
-};
-/*}}}*/
-/*_ get_clip_out_of_view {{{*/
-let VIEW_MARGIN = 10;
-let get_clip_out_of_view = function()
-{
-    let view_w = window.innerWidth  - VIEW_MARGIN;
-    let view_h = window.innerHeight - VIEW_MARGIN;
-    /* BOUNDINGS */
-    let bb    = zoom_target.getBoundingClientRect();
-        bb.x       = parseInt( bb.x      );
-        bb.y       = parseInt( bb.y      );
-        bb.width   = parseInt( bb.width  );
-        bb.height  = parseInt( bb.height );
-    let bb_OTV     = ((bb.x            ) < VIEW_MARGIN)
-        ||           ((bb.y            ) < VIEW_MARGIN)
-        ||           ((bb.y            ) > view_h     )
-        ||           ((bb.x            ) > view_w     )
-        ||           ((bb.x + bb.width ) > view_w     )
-        ||           ((bb.y + bb.height) > view_h     )
-    ;
-    let BB_OTV     = bb_OTV   ? " ■■■ " : "     ";
-
-    /* CLIP */
-    let urdl  = get_clipPath_urdl();
-    let scale = get_scale();
-    let    w  =      parseInt( Math.min(bb.width, bb.height) - (2 * zoom_target.cp_w * scale) );
-    let clip  = { x: bb.x + parseInt(urdl.l * scale)
-        ,         y: bb.y + parseInt(urdl.u * scale)
-        ,     width: w
-        ,    height: w
-    };
-    let clip_OTV   = ((clip.x              ) < VIEW_MARGIN)
-        ||           ((clip.y              ) < VIEW_MARGIN)
-        ||           ((clip.y              ) > view_h     )
-        ||           ((clip.x              ) > view_w     )
-        ||           ((clip.x + clip.width ) > view_w     )
-        ||           ((clip.y + clip.height) > view_h     )
-    ;
-    let CL_OTV     = clip_OTV ? " ■■■ " : "     ";
-
-    return {   bb,   bb_OTV, BB_OTV
-        ,    clip, clip_OTV, CL_OTV };
-};
-/*}}}*/
-/*_ move_clip_into_view {{{*/
-let move_clip_into_view = function(bb, clip)
-{
-if(log_this) console.log("move_clip_into_view");
-if(log_this) console.log( log_zoom_target() );
-
-if(log_debug) {
-    zb_update("move_clip_into_view", CHAR_CODE_O); // DEBUG
-    setTimeout(do_move_clip_into_view, 500, bb, clip);
-}
-else {
-    do_move_clip_into_view(bb, clip);
-}
-
-};
-/*}}}*/
-/*_ do_move_clip_into_view {{{*/
-let do_move_clip_into_view = function(bb, clip)
-{
-if(log_debug) console.log("do_move_clip_into_view");
-//{{{
-//console.log("bb:"  );
-//console.dir( bb    );
-//console.log("clip:");
-//console.dir( clip  );
-//}}}
-
-    let view_w = window.innerWidth  - VIEW_MARGIN;
-    let view_h = window.innerHeight - VIEW_MARGIN;
-
-    let dx = 0;
-    let dy = 0;
-
-    if     ((clip.x              ) < VIEW_MARGIN)  dx =  (VIEW_MARGIN          - clip.x);
-//  else if((clip.x              ) > view_w     )  dx = -(clip.x               - view_w);
-    else if((clip.x + clip.width ) > view_w     )  dx = -(clip.x + clip.width  - view_w);
-
-    if     ((clip.y              ) < VIEW_MARGIN)  dy =  (VIEW_MARGIN          - clip.y);
-//  else if((clip.y              ) > view_h     )  dy = -(clip.y               - view_h);
-    else if((clip.y + clip.height) > view_h     )  dy = -(clip.y + clip.width  - view_h);
-
-
-//{{{
-//    if(zoom_target.style.position != "fixed") //FIXME
-//    {
-//        let scale = get_scale();
-//        dx        = parseInt(dx * scale);
-//        dy        = parseInt(dy * scale);
-//    }
-//}}}
-
-    let t      = get_translate();
-        t.x   += dx;
-        t.y   += dy;
-
-    zoom_target.style.translate = t.x+"px "+ t.y+"px";
-
-if(log_debug) zb_update("move_clip_into_view"); // DEBUG
-};
-/*}}}*/
-/*_ release_zoom_target {{{*/
-let release_zoom_target = function(e,_caller)
-{
-if(log_this) console.log("_ release_zoom_target("+(e ? e.target.tagName : "")+") ● "+ _caller);
-
-    if(!zoom_target) return null;
-
-    /* ● REMOVE EVENT LISTENERS */
-    if(!zoom_target.classList.contains("default_zoom_target")) {
-        zoom_target.removeEventListener("pointerdown", zt_ondown       );
-        zoom_target.removeEventListener("touchstart" , zt_ondown       );
-        zoom_target.removeEventListener("click"      , zt_onclick      );
-    }
-//  zoom_target    .removeEventListener("mouseover"  , zt_onmouseover  );
-    zoom_target    .removeEventListener("mouseout"   , zt_onmouseout   );
-    zoom_target    .removeEventListener("wheel"      , zt_onmousewheel );
-
-    /* ● CLEAR ZOOMING TRANSCIENT STATE */
-    if(zoom_target.classList.contains("zoom_target"))
-        clr_zoom_target("set_zoom_target");
-
-    /* SET NO CURRENT [zoom_target] */
-    let zoom_target_released = zoom_target;
-
-    zoom_target = null;
-    check_behavior_TOUCH_ELSE_DESKTOP();
-
-    return zoom_target_released;
-};
-/*}}}*/
-/*_ clr_zoom_target {{{*/
-let clr_zoom_target = function(_caller)
-{
-//{{{
-if(log_this) console.log("● clr_zoom_target "+ _caller +" "+ zoom_target.tagName);
-//}}}
-    if( log_debug ) clr_debug_divs();
-    /* BACK TO PAGE PARENT {{{*/
-    if(zoom_target.default_position == "fixed") {
-        zoom_target.style.top      = zoom_target.default_top;
-        zoom_target.style.left     = zoom_target.default_left;
-    }
-    else if(zoom_target.default_parentElement)
-    {
-        if( zoom_holder && zoom_holder.parentElement)
-            zoom_holder.parentElement.removeChild( zoom_holder );
-
-        zoom_target.default_parentElement.insertBefore(zoom_target, zoom_target.default_nextElementSibling || null);
-    }
-    /*}}}*/
-    /* SAVE [zoom_target.zoom_attr] {{{*/
-    if(zoom_target.classList.contains("zoom_target"))
-    {
-        save_zoom_target_zoom_attr("clr_zoom_target");
-
-    }
-    /*}}}*/
-    /* CLEAR STYLE {{{*/
-    delete zoom_target.cp_w;
-    zoom_target.style.clipPath  = "";
-//  zoom_target.style.left      = "";
-//  zoom_target.style.top       = "";
-if(zoom_target.default_position != "fixed")
-{
-    zoom_target.style.position  = zoom_target.default_position;
-    zoom_target.style.transform = "";
-    zoom_target.style.translate = "";
-}
-    /*}}}*/
-    /* CLEAR CLASS {{{*/
-    zoom_target.classList.remove("zoom_target");
-    zoom_target.classList.remove("freezed"    );
-    zoom_target.classList.remove("magnified"  );
-
-    /*}}}*/
-    /* Call [zoom_target.zoom_target_released_CB] {{{*/
-    if(zoom_target.zoom_target_released_CB)
-    {
-if(log_this) console.log("...typeof zoom_target.zoom_target_released_CB = "+ typeof zoom_target.zoom_target_released_CB)
-        if( zoom_target.zoom_target_released_CB )
-            zoom_target.zoom_target_released_CB();
-    }
-    /*}}}*/
-};
-/*}}}*/
-/*_ select_zoom_target {{{*/
-let select_zoom_target = function(e)
-{
-//{{{
-if(log_this) console.log("%c ● select_zoom_target("+(e ? e.target.tagName : "")+")", bg5);
-    /* ┌────────────────────────────────────────────────────────────────────────────┐ */
-    /* │ reselecting current zoom_target: falls back to select inline .zoom_target  │ */
-    /* └────────────────────────────────────────────────────────────────────────────┘ */
-//}}}
-
-    // ┌────────────────────────────────────────────────────────────────────────┐
-    // │ [EMBEDDED-IMG] ● [FIRST-TARGET] ● [TOGGLE-CURRENT]                     │
-    // └────────────────────────────────────────────────────────────────────────┘
-    let selecting_default_zoom_target
-        =   e
-        && !e.target.classList.contains("set_zoom_target_em" )
-        &&  e.target.classList.contains("default_zoom_target")
-    ;
-
-    let nextContainer
-        =  get_nextContainer( e.target );                 // USER [nextElementSibling]
-    let    reselecting_current_target
-        =  e
-        && !e.target.classList.contains("set_zoom_target_em" )
-        && !selecting_default_zoom_target
-        &&  zoom_target
-        &&  zoom_target.default_parentElement
-        && (zoom_target.default_parentElement == e.target.parentElement)
-    ;
-//{{{
-if(log_this) {                            let msg;                               let l_x;
-//  if     (        selecting_first_target) { msg =     " ● selecting_first_target"; l_x = bg2; }
-    if     (    reselecting_current_target) { msg =    "reselecting_current_target"; l_x = bg3; }
-    else if( selecting_default_zoom_target) { msg = "selecting_default_zoom_target"; l_x = bg4; }
-    else                                    { msg =                "next_container"; l_x = bg5; }
-//{{{
-if(tag_this) console.log("%c SELECTING %c"+ msg, bg5, l_x);
-//}}}
-}
-//}}}
-
-    // ┌────────────────────────────────────────────────────────────────────────┐
-    // │ INIT ● [LISTEN DOWN MOVE UP CLICK] ● STYLE ● DEBUG                     │
-    // └────────────────────────────────────────────────────────────────────────┘
-//{{{
-//    if( selecting_first_target )
-//    {
-//        init_zoom_target_style();
-//        init_default_listeners();
-
-//if(log_debug) set_debug_divs();
-//    }
-//}}}
-
-    // ┌────────────────────────────────────────────────────────────────────────┐
-    // │ [EMBEDDED-IMG] ● [FIRST-TARGET OR TOGGLE-CURRENT] ● [SELECTED-BY-USER] │
-    // └────────────────────────────────────────────────────────────────────────┘
-    let new_zoom_target = null;
-
-    if(     selecting_default_zoom_target) new_zoom_target =  e.target                                       // CLICKED  ● [EMBEDDED-IMG]
-//  else if(   reselecting_current_target) new_zoom_target =  document.querySelector(".default_zoom_target") // FALLBACK ● [EMBEDDED-IMG]
-    else if(   reselecting_current_target) new_zoom_target =  null;                                          // ➔ NO [zoom_target]
-  //else if(e)                             new_zoom_target =  e.target.nextElementSibling;                   // USER [nextElementSibling]
-    else if(e)                             new_zoom_target =      nextContainer            ;                 // USER [nextElementSibling]
-
-//  if(!new_zoom_target)                   new_zoom_target = (e && (e.target.parentElement == document.body)) ? e.target : null; // i.e. stepper_div
-    if(new_zoom_target == zoom_holder    ) new_zoom_target =  null;                                          // ➔ NO [zoom_target]
-
-if(log_this) console.log("%c...return "+  (new_zoom_target ? new_zoom_target.tagName : "NO [new_zoom_target]"), bg5);
-    return new_zoom_target;
-};
-/*}}}*/
-/*_ get_nextContainer {{{*/
-let get_nextContainer = function(el)
-{
-    // RETURN NEXT CONTAINER SIBLING ELEMENT
-    while(   (el.tagName != "DIV"  )
-          && (el.tagName != "TABLE")
-          && (el.tagName != "PRE"  )
-          && (el.tagName != "P"    )
-          && (el.nextElementSibling)
-    )
-        el  = el.nextElementSibling;
-
-    return    el;
-};
-/*}}}*/
-
-// ┌──────────────────────────────┐
-// │ scroll_container             │
-// └──────────────────────────────┘
-/*  scroll_container {{{*/
-let scroll_container = (function() {
-"use strict"; /* eslint-disable-line strict */
-
-let save = function( el )
-{
-if(log_this) console.log("scroll_container.save:");
-    do {
-        if(  el.scrollTop ) {
-             el.saved_scrollTop = el.scrollTop;
-//{{{
-if(tag_this) console.log("scroll_container.save:\t"+ js_xpath.get_nodeXPath(el) +" "+ el.saved_scrollTop);
-//}}}
-        }
-        el = el.parentElement;
-    }
-    while(   el
-          && el.parentElement
-          && el.parentElement.tagName !== "BODY"
-         );
-
-};
-
-let restore = function(el)
-{
-if(log_this) console.log("scroll_container.restore:");
-    if( el          && el.saved_scrollTop) {
-        el.scrollTo(0, el.saved_scrollTop);
-//{{{
-if(tag_this) console.log("scroll_container.restore:\t"+ js_xpath.get_nodeXPath(el) +" "+ el.saved_scrollTop);
-//}}}
-        delete         el.saved_scrollTop ;
-    }
-}
-return { name: "scroll_container"
-    ,    save
-    ,    restore
-}
-})();
-/*}}}*/
-
-// ┌──────────────────────────────┐
-// │ SAVE-LOAD [zoom_target_attr] │
-// └──────────────────────────────┘
-/*○ save_zoom_target_zoom_attr {{{*/
-let save_zoom_target_zoom_attr = function(_caller)
-{
-if(log_this) console.log("%c ● save_zoom_target_zoom_attr %c"+ _caller, bg5, bg6);
-
-    if(!zoom_target) return;
-
-    zoom_target.zoom_attr
-        = {   cp_w      : zoom_target.cp_w
-            , clipPath  : zoom_target.style.clipPath
-            , transform : zoom_target.style.transform
-            , translate : zoom_target.style.translate
-        };
-
-
-    let zoom_target_key = get_zoom_target_key();
-//{{{
-if(log_this)
-    console.log("%c save_zoom_target_zoom_attr ● SAVING zoom_attr:"
-               +"\n● zoom_target_key \t: "+ zoom_target_key
-               +"\n● cp_w          \t\t: "+ zoom_target.zoom_attr.cp_w
-               +"\n● clipPath      \t\t: "+ zoom_target.zoom_attr.clipPath
-               +"\n● transform     \t\t: "+ zoom_target.zoom_attr.transform
-               +"\n● translate     \t\t: "+ zoom_target.zoom_attr.translate
-               , bg5);
-//}}}
-    if( zoom_target_key )
-    {
-        let key = zoom_target_key+"_attr";
-        js_store.localStorage_setItem(key, JSON.stringify( zoom_target.zoom_attr ));
-    }
-};
-/*}}}*/
-/*○ load_zoom_target_zoom_attr {{{*/
-let load_zoom_target_zoom_attr = function()
-{
-if(log_this) console.log("%c ● load_zoom_target_zoom_attr", bg6);
-
-    let zoom_target_key = get_zoom_target_key();
-    if( zoom_target_key )
-    {
-        let key = zoom_target_key+"_attr";
-        let val = js_store.localStorage_getItem(key);
-//console.log("val=["+ val +"]");
-
-        let zoom_attr = JSON.parse( val );
-//console.dir(zoom_target.zoom_attr);
-
-        if(!zoom_attr) return;
-
-        zoom_target.zoom_attr = zoom_attr;
-//{{{
-if(log_this) console.log("%c zoom_attr:\n"
-                         +". cp_w      \t: "+ zoom_target.zoom_attr.cp_w      +"\n"
-                         +". cliPath   \t: "+ zoom_target.zoom_attr.cliPath   +"\n"
-                         +". transform \t: "+ zoom_target.zoom_attr.transform +"\n"
-                         +". translate \t: "+ zoom_target.zoom_attr.translate
-                         , bg6);
-//}}}
-    }
-else debugger;//FIXME
-};
-/*}}}*/
-/*_ open_details_parent {{{*/
-let open_details_parent = function()
-{
-    let    pe = zoom_target.parentElement;
-    while( pe ) {
-        if(pe.tagName == "DETAILS") pe.open = true;
-        pe = pe.parentElement;
-    }
-};
-/*}}}*/
-/*_ get_zoom_target_key {{{*/
-let get_zoom_target_key = function()
-{
-    /* ...return cached first result {{{*/
-    let zoom_target_key = ""
-    if( zoom_target.zoom_target_key )
-        zoom_target_key
-            = zoom_target.zoom_target_key;
-
-    /*}}}*/
-    /* 1/4 zoom_target.id {{{*/
-    if( zoom_target.id )
-        zoom_target_key
-            = zoom_target.id;
-
-    /*}}}*/
-    /* 2/4 IMG.scr file name {{{*/
-    if( zoom_target.src )
-        zoom_target_key
-            = zoom_target.src.replace(/.*\/(\w+)\..*$/ , "$1");
-
-    /*}}}*/
-    /* 3/4 HTMLEvents XPath {{{*/
-    if(!zoom_target_key) {
-        zoom_target_key
-            = js_xpath.get_nodeXPath_as_key( zoom_target );
-//          = js_xpath.get_nodeXPath( zoom_target )
-//        //.  replace(/.html.body.(.*).table/, "$1")
-//          .  replace(/.html.body.(.*)/      , "$1")
-//          .  replace(/[^\w]+/g              ,  "_")
-//          .  replace(/(^_)|(_$)/            ,   "") ;
-    }
-    /*}}}*/
-    /* 4/4 CONTENT WORDS {{{*/
-    if(!zoom_target_key)
-    {
-        let  str = zoom_target.textContent.replace(/\W+/g," ").trim();
-        if( !str ) {
-            open_details_parent();
-            str  = zoom_target.textContent.replace(/\W+/g," ").trim();
-        }
-        let      array = str.split(/\W+/);
-
-        zoom_target_key = (array[0] ? (     array[0]) : "")
-              + (array[1] ? ("_"+ array[1]) : "")
-              + (array[2] ? ("_"+ array[2]) : "")
-//            + (array[3] ? ("_"+ array[3]) : "")
-//            + (array[4] ? ("_"+ array[4]) : "")
-    }
-    /*}}}*/
-    /* ...save first result cache {{{*/
-    zoom_target.zoom_target_key
-        = zoom_target_key;
-
-    /*}}}*/
-if(log_this)
-    console.log("%c get_zoom_target_key %c"+ zoom_target_key, bg5, bg6);
-    return zoom_target_key;
-};
-/*}}}*/
-
-// ┌──────────────────────────────┐
-// │ INIT ● STYLE ● DOWN UP CLICK │
-// └──────────────────────────────┘
-//{{{ ZOOM_TARGET_STYLE
-const ZOOM_TARGET_STYLE = `
-    .zoom_target {
-      cursor                : grab;
-      user-select           : none;
-      outline               : groove 3px red;
-/*    border                : groove 3px red; */
-/*    margin                : 0 0; */
-/*    transition            : transform 0.1s ease; */
-    }
-    .zoom_target * {
-        pointer-events: none;
-    }
-    .zoom_target:active {
-      cursor: grabbing;
-    }
-    #zoom_holder {
-        background-color: #F004;
-        outline         : 3px solid #AAA4;
-        border-radius   : 0.5em;
-    }
-    .set_zoom_target_em   {  cursor: zoom-in; }
-
-    .default_zoom_target.zoom_target {
-        position            : fixed;
-        top                 : 0;
-        left                : 0;
-    }
-    .magnified {
-        z-index: 100;
-        cursor : zoom-out;
-        opacity: 0.7;
-    }
-/*  .magnified.freezed { opacity: 1.0; } */
-              .freezed { opacity: 1.0; }
-              .freezed { background-color: black !important; }
-
-    #zoom_of,
-    #zoom_bb,
-    #zoom_cp {
-        z-index              :        1000;
-        position             :       fixed;
-        pointer-events       :        none;
-        outline-width        :         5px;
-        outline-style        :       solid;
-        background-color     : transparent;
-    }
-    #zoom_of { outline-color :   red; background-color : #F001; } /* red   */
-    #zoom_bb { outline-color : green; background-color : #0F01; } /* green */
-    #zoom_cp { outline-color :  cyan; background-color : #0FF1; } /* cyan  */
-`;
-//}}} </style>
-/*  init_zoom_target_style {{{*/
-let styleElement;
-let init_zoom_target_style = function()
-{
-if(log_this) console.log("%c ● init_zoom_target_style", bg2);
-
-    /* create */
-    styleElement           = document.createElement("STYLE");
-    styleElement.type      = "text/css";
-    styleElement.innerHTML = ZOOM_TARGET_STYLE;
-
-    /* insert */
-    let doc_el = document.documentElement;
-    let body   = document.querySelector("BODY");
-    doc_el.insertBefore(styleElement, body);
-};
-/*}}}*/
-/*  init_default_listeners {{{*/
-let init_default_listeners = function()
-{
-if(log_this) console.log("%c ● init_default_listeners", bg2);
-
-    check_behavior_TOUCH_ELSE_DESKTOP();
-
-    /* [PAGE] ● [HOVER ENTER LEAVE] ● [DRAG START END] */
-    if( behavior_TOUCH_ELSE_DESKTOP ) {
-        document.removeEventListener("pointermove", onpointermove );
-        document.removeEventListener("pointerup"  , onpointerup   );
-        document.addEventListener   ("touchmove"  , onpointermove , CAPTURE_TRUE_PASSIVE_FALSE);
-        document.addEventListener   ("touchend"   , onpointerup   , CAPTURE_TRUE_PASSIVE_FALSE);
-    }
-    else {
-        document.removeEventListener("touchmove"  , onpointermove , CAPTURE_TRUE_PASSIVE_FALSE);
-        document.removeEventListener("touchend"   , onpointerup   , CAPTURE_TRUE_PASSIVE_FALSE);
-        document.addEventListener   ("pointermove", onpointermove );
-        document.addEventListener   ("pointerup"  , onpointerup   );
-    }
-    /* [DEFAULT TARGETS] */
-    document.querySelectorAll(".default_zoom_target").forEach((img) => {
-        if( behavior_TOUCH_ELSE_DESKTOP ) {
-            img .removeEventListener("pointerdown", zt_ondown     );
-            img .addEventListener   ("touchstart" , zt_ondown     );
-        }
-        else {
-            img .removeEventListener("touchstart" , zt_ondown     );
-            img .addEventListener   ("pointerdown", zt_ondown     );
-        }
-        img     .addEventListener   ("click"      , zt_onclick    );
-    });
-};
-/*}}}*/
-
-// ┌──────────────────────────────┐
-// │ EVENT FIXME                  │
+// │ EVENT                        │
 // └──────────────────────────────┘
 // ● MOVE_DXY ● touchTime {{{
 const CLICK_MS    = 500;
@@ -1350,8 +431,8 @@ if(log_this) console_clr("POINTERUP")
 if(log_this) console.log("onpointerup");
 
     /* reset one-time-used modifiers */
-    if(   (e.target.id != "touch_ctrlKey_em" )
-       && (e.target.id != "touch_shiftKey_em")
+    if(   (e.target.id != "set_zoom_ctrlKey_em" )
+       && (e.target.id != "set_zoom_shiftKey_em")
     ) {
         if(touch_shiftKey_state) toggle_touch_shiftKey();
         if(touch_ctrlKey_state ) toggle_touch_ctrlKey ();
@@ -1363,6 +444,757 @@ if(log_this) console.log("onpointerup");
 };
 /*}}}*/
 
+// ┌──────────────────────────────┐
+// │ zoom_target ● set ● release  │
+// └──────────────────────────────┘
+/*  set_zoom_target {{{*/
+//{{{
+let     zoom_of;
+let     zoom_bb;
+let     zoom_cp;
+
+let     zoom_target;
+let     zoom_holder;
+//}}}
+let set_zoom_target = function(e)
+{
+//{{{
+if(log_this) console_clr("SELECT");
+if(log_this) console.log("%c ● set_zoom_target("+(e ? e.target.tagName : "")+")", bg5);
+
+//}}}
+    /* JUST LOADED {{{*/
+    if( !styleElement )
+    {
+        init_zoom_target_style();
+        init_default_listeners();
+
+if(log_debug) set_debug_divs();
+    }
+    /*}}}*/
+    /* PICK A NEW [zoom_target] ● INIT [LISTEN DOWN MOVE UP CLICK STYLE DEBUG] {{{*/
+    let no_new_target   = !e || (e.type == "toggle");
+
+    let new_zoom_target = no_new_target ? null : select_zoom_target( e );
+
+    /*}}}*/
+    /* RELEASE OLD TARGET {{{*/
+    if( zoom_target )
+        release_zoom_target(e, "set_zoom_target");
+
+    zoom_target = new_zoom_target;
+    /*}}}*/
+    /*  RETURN WHEN NO [zoom_target] SELECTED {{{*/
+    if(!zoom_target)
+    {
+if(log_this) console.log("%c ● set_zoom_target: NONE", bg8);
+
+        return;
+    }
+    /*}}}*/
+    /* ○ TRACK IN PLACE BOUNDING BOX {{{*/
+    let in_place_bb = zoom_target.getBoundingClientRect();
+
+    /*}}}*/
+    /* ○ SAVE TOP CONTAINER SCROLLTOP {{{*/
+//  scroll_container.save( zoom_target );
+
+    /*}}}*/
+    /* ○ LOAD LAST SAVED ZOOM ATTRIBUTES {{{*/
+    if(!zoom_target.zoom_attr )
+        load_zoom_target_zoom_attr();
+
+    /*}}}*/
+    /* ● SAVE OLD PARRENT AND DEFAULT XPath {{{*/
+    let cs = window.getComputedStyle( zoom_target ); // effective for stepper_div
+    if(!zoom_target.default_position)
+        zoom_target.default_position           = cs.position;
+    if( zoom_target.default_position == "fixed") {
+        zoom_target.default_top                = cs.top;
+        zoom_target.default_left               = cs.left;
+    }
+    else {
+        zoom_target.default_parentElement      = zoom_target.parentElement;
+        zoom_target.default_xpath              = js_xpath.get_nodeXPath( zoom_target );
+        zoom_target.default_nextElementSibling = zoom_target.nextElementSibling || null;
+    }
+    /*}}}*/
+    /* ● [zoom_holder] {{{*/
+    if(!zoom_holder) {
+        zoom_holder                = document.createElement("DIV");
+        zoom_holder.id             = "zoom_holder";
+    }
+    /*}}}*/
+    /* ● replace [fixed zoom_target] with a [static zoom_holder] to preserve page content geometry {{{*/
+    /* INSERT [zoom_holder] into parent */
+    if( zoom_target.default_position != "fixed")
+    {
+        if( zoom_target.default_parentElement ) {
+            zoom_target.default_parentElement.insertBefore(zoom_holder, zoom_target.default_nextElementSibling || null);
+            document.body.insertBefore(zoom_target, null);
+        }
+        zoom_holder.style.width    = zoom_target.offsetWidth  +"px";
+        zoom_holder.style.height   = zoom_target.offsetHeight +"px";
+        zoom_holder.style.display  = zoom_target.style.display;
+    }
+    /* ● ADD ZOOM TARGET STYLE {{{*/
+    zoom_target.classList.add("zoom_target");
+
+    /*}}}*/
+    /* MAGNIFY fixed IMG */
+    if( zoom_target.classList.contains("default_zoom_target") )
+    {
+        /* EXTRACT [zoom_target] from parent */
+        let doc_el = document.documentElement;
+        let body   = document.querySelector("BODY");
+        doc_el.insertBefore(zoom_target, body);
+    }
+    zoom_target.style.position = "fixed";
+    zoom_target.classList.add("magnified");
+
+    /* cancel reflow-scroll side-effect */
+//  scroll_container.restore( zoom_target );
+    /*}}}*/
+    /* ● ADD EVENT LISTENERS {{{*/
+    check_behavior_TOUCH_ELSE_DESKTOP();
+
+    if(!zoom_target.classList.contains("default_zoom_target")) {
+        if( behavior_TOUCH_ELSE_DESKTOP ) {
+            zoom_target.addEventListener("touchstart" , zt_ondown       );
+if(tag_this) console.log("%c touchstart", bg7);
+        }
+        else {
+            zoom_target.addEventListener("pointerdown", zt_ondown       );  // already persistent
+if(tag_this) console.log("%c pointerdown", bg4);
+        }
+        zoom_target    .addEventListener("click"      , zt_onclick      );  // already persistent
+
+        // set random container opacity ● do not wait for a first click to pin
+        zoom_target.classList.add("freezed");
+    }
+//  zoom_target        .addEventListener("mouseover"  , zt_onmouseover  );
+    zoom_target        .addEventListener("mouseout"   , zt_onmouseout   );
+    zoom_target        .addEventListener("wheel"      , zt_onmousewheel );
+    /*}}}*/
+    /* ● RESTORE LAST SAVED ZOOM ATTRIBUTES {{{*/
+    if(   (zoom_target.default_position != "fixed")
+        && zoom_target.zoom_attr
+      ) {
+//{{{
+if(log_this) console.log("%c set_zoom_target ● RESTORING zoom_attr:"
+                +"\n● cp_w      \t: "+ zoom_target.zoom_attr.cp_w
+                +"\n● clipPath  \t: "+ zoom_target.zoom_attr.clipPath
+                +"\n● transform \t: "+ zoom_target.zoom_attr.transform
+                +"\n● translate \t: "+ zoom_target.zoom_attr.translate
+               , bg5);
+//}}}
+
+        zoom_target.cp_w            = zoom_target.zoom_attr.cp_w      ||  0;
+        zoom_target.style.clipPath  = zoom_target.zoom_attr.clipPath  || "";
+        zoom_target.style.transform = zoom_target.zoom_attr.transform || "";
+//  if( zoom_target.classList.contains("default_zoom_target") )//FIXME
+        zoom_target.style.translate = zoom_target.zoom_attr.translate || "";
+    }
+    else {
+if(log_this) console.log("%c RESTORING ● zoom_attr NONE", bg8);
+    }
+    /*}}}*/
+    bring_into_view( e );
+if(log_this) console.log("set_zoom_target:", zoom_target);
+}
+/*}}}*/
+/*_ bring_into_view {{{*/
+let bring_into_view = function(e)
+{
+    if(!zoom_target ) return;
+
+    let {   bb,   bb_OTV, BB_OTV
+        , clip, clip_OTV, CL_OTV } = get_clip_out_of_view();
+    if( clip_OTV ) {
+        /* MOVE INTO VIEW [fixed] {{{*/
+        if( zoom_target.classList.contains("default_zoom_target") )
+        {
+            move_clip_into_view(bb, clip);
+        }
+        /*}}}*/
+        /* MOVE INTO VIEW [static] {{{*/
+        else {
+            let clip_top_left_OTV
+                =   (clip.x < 0)
+                 || (clip.y < 0)
+                 || (clip.x > (window.innerWidth  * 0.80))
+                 || (clip.y > (window.innerHeight * 0.80))
+            ;
+            if( clip_top_left_OTV )
+                move_clip_into_view(bb, clip);
+        }
+        /*}}}*/
+    }
+};
+/*}}}*/
+/*_ get_clip_out_of_view {{{*/
+let VIEW_MARGIN = 10;
+let get_clip_out_of_view = function()
+{
+    let view_w = window.innerWidth  - VIEW_MARGIN;
+    let view_h = window.innerHeight - VIEW_MARGIN;
+    /* BOUNDINGS */
+    let bb    = zoom_target.getBoundingClientRect();
+        bb.x       = parseInt( bb.x      );
+        bb.y       = parseInt( bb.y      );
+        bb.width   = parseInt( bb.width  );
+        bb.height  = parseInt( bb.height );
+    let bb_OTV     = ((bb.x            ) < VIEW_MARGIN)
+        ||           ((bb.y            ) < VIEW_MARGIN)
+        ||           ((bb.y            ) > view_h     )
+        ||           ((bb.x            ) > view_w     )
+        ||           ((bb.x + bb.width ) > view_w     )
+        ||           ((bb.y + bb.height) > view_h     )
+    ;
+    let BB_OTV     = bb_OTV   ? " ■■■ " : "     ";
+
+    /* CLIP */
+    let urdl  = get_clipPath_urdl();
+    let scale = get_scale();
+    let    w  =      parseInt( Math.min(bb.width, bb.height) - (2 * zoom_target.cp_w * scale) );
+    let clip  = { x: bb.x + parseInt(urdl.l * scale)
+        ,         y: bb.y + parseInt(urdl.u * scale)
+        ,     width: w
+        ,    height: w
+    };
+    let clip_OTV   = ((clip.x              ) < VIEW_MARGIN)
+        ||           ((clip.y              ) < VIEW_MARGIN)
+        ||           ((clip.y              ) > view_h     )
+        ||           ((clip.x              ) > view_w     )
+        ||           ((clip.x + clip.width ) > view_w     )
+        ||           ((clip.y + clip.height) > view_h     )
+    ;
+    let CL_OTV     = clip_OTV ? " ■■■ " : "     ";
+
+    return {   bb,   bb_OTV, BB_OTV
+        ,    clip, clip_OTV, CL_OTV };
+};
+/*}}}*/
+/*_ move_clip_into_view {{{*/
+let move_clip_into_view = function(bb, clip)
+{
+if(log_this) console.log("move_clip_into_view");
+if(log_this) console.log( log_zoom_target() );
+
+if(log_debug) {
+    zb_update("move_clip_into_view", CHAR_CODE_O); // DEBUG
+    setTimeout(do_move_clip_into_view, 500, bb, clip);
+}
+else {
+    do_move_clip_into_view(bb, clip);
+}
+
+};
+/*}}}*/
+/*_ do_move_clip_into_view {{{*/
+let do_move_clip_into_view = function(bb, clip)
+{
+if(log_debug) console.log("do_move_clip_into_view");
+//{{{
+//console.log("bb:"  );
+//console.dir( bb    );
+//console.log("clip:");
+//console.dir( clip  );
+//}}}
+
+    let view_w = window.innerWidth  - VIEW_MARGIN;
+    let view_h = window.innerHeight - VIEW_MARGIN;
+
+    let dx = 0;
+    let dy = 0;
+
+    if     ((clip.x              ) < VIEW_MARGIN)  dx =  (VIEW_MARGIN          - clip.x);
+//  else if((clip.x              ) > view_w     )  dx = -(clip.x               - view_w);
+    else if((clip.x + clip.width ) > view_w     )  dx = -(clip.x + clip.width  - view_w);
+
+    if     ((clip.y              ) < VIEW_MARGIN)  dy =  (VIEW_MARGIN          - clip.y);
+//  else if((clip.y              ) > view_h     )  dy = -(clip.y               - view_h);
+    else if((clip.y + clip.height) > view_h     )  dy = -(clip.y + clip.width  - view_h);
+
+
+//{{{
+//    if(zoom_target.style.position != "fixed") //FIXME
+//    {
+//        let scale = get_scale();
+//        dx        = parseInt(dx * scale);
+//        dy        = parseInt(dy * scale);
+//    }
+//}}}
+
+    let t      = get_translate();
+        t.x   += dx;
+        t.y   += dy;
+
+    zoom_target.style.translate = t.x+"px "+ t.y+"px";
+
+if(log_debug) zb_update("move_clip_into_view"); // DEBUG
+};
+/*}}}*/
+/*_ release_zoom_target {{{*/
+let release_zoom_target = function(e,_caller)
+{
+if(log_this) console.log("_ release_zoom_target("+(e ? e.target.tagName : "")+") ● "+ _caller);
+
+    if(!zoom_target) return null;
+
+    /* ● REMOVE EVENT LISTENERS */
+    if(!zoom_target.classList.contains("default_zoom_target")) {
+        zoom_target.removeEventListener("pointerdown", zt_ondown       );
+        zoom_target.removeEventListener("touchstart" , zt_ondown       );
+        zoom_target.removeEventListener("click"      , zt_onclick      );
+    }
+//  zoom_target    .removeEventListener("mouseover"  , zt_onmouseover  );
+    zoom_target    .removeEventListener("mouseout"   , zt_onmouseout   );
+    zoom_target    .removeEventListener("wheel"      , zt_onmousewheel );
+
+    /* ● CLEAR ZOOMING TRANSCIENT STATE */
+    if(zoom_target.classList.contains("zoom_target"))
+        clr_zoom_target("set_zoom_target");
+
+    /* SET NO CURRENT [zoom_target] */
+    let zoom_target_released = zoom_target;
+
+    zoom_target = null;
+    check_behavior_TOUCH_ELSE_DESKTOP();
+
+    return zoom_target_released;
+};
+/*}}}*/
+/*_ clr_zoom_target {{{*/
+let clr_zoom_target = function(_caller)
+{
+//{{{
+if(log_this) console.log("● clr_zoom_target "+ _caller +" "+ zoom_target.tagName);
+//}}}
+    if( log_debug ) clr_debug_divs();
+    /* BACK TO PAGE PARENT {{{*/
+    if(zoom_target.default_position == "fixed") {
+        zoom_target.style.top      = zoom_target.default_top;
+        zoom_target.style.left     = zoom_target.default_left;
+    }
+    else if(zoom_target.default_parentElement)
+    {
+        if( zoom_holder && zoom_holder.parentElement)
+            zoom_holder.parentElement.removeChild( zoom_holder );
+
+        zoom_target.default_parentElement.insertBefore(zoom_target, zoom_target.default_nextElementSibling || null);
+    }
+    /*}}}*/
+    /* SAVE [zoom_target.zoom_attr] {{{*/
+    if(zoom_target.classList.contains("zoom_target"))
+    {
+        save_zoom_target_zoom_attr("clr_zoom_target");
+
+    }
+    /*}}}*/
+    /* CLEAR STYLE {{{*/
+    delete zoom_target.cp_w;
+    zoom_target.style.clipPath  = "";
+//  zoom_target.style.left      = "";
+//  zoom_target.style.top       = "";
+if(zoom_target.default_position != "fixed")
+{
+    zoom_target.style.position  = zoom_target.default_position;
+    zoom_target.style.transform = "";
+    zoom_target.style.translate = "";
+}
+    /*}}}*/
+    /* CLEAR CLASS {{{*/
+    zoom_target.classList.remove("zoom_target");
+    zoom_target.classList.remove("freezed"    );
+    zoom_target.classList.remove("magnified"  );
+
+    /*}}}*/
+    /* Call [zoom_target.zoom_target_released_CB] {{{*/
+    if(zoom_target.zoom_target_released_CB)
+    {
+if(log_this) console.log("...typeof zoom_target.zoom_target_released_CB = "+ typeof zoom_target.zoom_target_released_CB)
+        if( zoom_target.zoom_target_released_CB )
+            zoom_target.zoom_target_released_CB();
+    }
+    /*}}}*/
+};
+/*}}}*/
+/*_ select_zoom_target {{{*/
+let select_zoom_target = function(e)
+{
+//{{{
+if(log_this) console.log("%c ● select_zoom_target("+(e ? e.target.tagName : "")+")", bg5);
+    /* ┌────────────────────────────────────────────────────────────────────────────┐ */
+    /* │ reselecting current zoom_target: falls back to select inline .zoom_target  │ */
+    /* └────────────────────────────────────────────────────────────────────────────┘ */
+//}}}
+
+    // ┌────────────────────────────────────────────────────────────────────────┐
+    // │ [EMBEDDED-IMG] ● [FIRST-TARGET] ● [TOGGLE-CURRENT]                     │
+    // └────────────────────────────────────────────────────────────────────────┘
+    let selecting_default_zoom_target
+        =   e
+        && !e.target.classList.contains("zoom_target_em" )
+        &&  e.target.classList.contains("default_zoom_target")
+    ;
+
+    let nextContainer
+        =  get_nextContainer( e.target );                 // USER [nextElementSibling]
+    let    reselecting_current_target
+        =  e
+        && !e.target.classList.contains("zoom_target_em" )
+        && !selecting_default_zoom_target
+        &&  zoom_target
+        &&  zoom_target.default_parentElement
+        && (zoom_target.default_parentElement == e.target.parentElement)
+    ;
+//{{{
+if(log_this) {                            let msg;                               let l_x;
+//  if     (        selecting_first_target) { msg =     " ● selecting_first_target"; l_x = bg2; }
+    if     (    reselecting_current_target) { msg =    "reselecting_current_target"; l_x = bg3; }
+    else if( selecting_default_zoom_target) { msg = "selecting_default_zoom_target"; l_x = bg4; }
+    else                                    { msg =                "next_container"; l_x = bg5; }
+//{{{
+if(tag_this) console.log("%c SELECTING %c"+ msg, bg5, l_x);
+//}}}
+}
+//}}}
+
+    // ┌────────────────────────────────────────────────────────────────────────┐
+    // │ INIT ● [LISTEN DOWN MOVE UP CLICK] ● STYLE ● DEBUG                     │
+    // └────────────────────────────────────────────────────────────────────────┘
+//{{{
+//    if( selecting_first_target )
+//    {
+//        init_zoom_target_style();
+//        init_default_listeners();
+
+//if(log_debug) set_debug_divs();
+//    }
+//}}}
+
+    // ┌────────────────────────────────────────────────────────────────────────┐
+    // │ [EMBEDDED-IMG] ● [FIRST-TARGET OR TOGGLE-CURRENT] ● [SELECTED-BY-USER] │
+    // └────────────────────────────────────────────────────────────────────────┘
+    let new_zoom_target = null;
+
+    if(     selecting_default_zoom_target) new_zoom_target =  e.target                                       // CLICKED  ● [EMBEDDED-IMG]
+//  else if(   reselecting_current_target) new_zoom_target =  document.querySelector(".default_zoom_target") // FALLBACK ● [EMBEDDED-IMG]
+    else if(   reselecting_current_target) new_zoom_target =  null;                                          // ➔ NO [zoom_target]
+  //else if(e)                             new_zoom_target =  e.target.nextElementSibling;                   // USER [nextElementSibling]
+    else if(e)                             new_zoom_target =      nextContainer            ;                 // USER [nextElementSibling]
+
+//  if(!new_zoom_target)                   new_zoom_target = (e && (e.target.parentElement == document.body)) ? e.target : null; // i.e. stepper_div
+    if(new_zoom_target == zoom_holder    ) new_zoom_target =  null;                                          // ➔ NO [zoom_target]
+
+if(log_this) console.log("%c...return "+  (new_zoom_target ? new_zoom_target.tagName : "NO [new_zoom_target]"), bg5);
+    return new_zoom_target;
+};
+/*}}}*/
+/*_ get_nextContainer {{{*/
+let get_nextContainer = function(el)
+{
+    // RETURN NEXT CONTAINER SIBLING ELEMENT
+    while(   (el.tagName != "DIV"  )
+          && (el.tagName != "TABLE")
+          && (el.tagName != "PRE"  )
+          && (el.tagName != "P"    )
+          && (el.nextElementSibling)
+    )
+        el  = el.nextElementSibling;
+
+    return    el;
+};
+/*}}}*/
+
+// ┌──────────────────────────────┐
+// │ scroll_container             │
+// └──────────────────────────────┘
+/*  scroll_container {{{*/
+let scroll_container = (function() {
+"use strict"; /* eslint-disable-line strict */
+
+let save = function( el )
+{
+if(log_this) console.log("scroll_container.save:");
+    do {
+        if(  el.scrollTop ) {
+             el.saved_scrollTop = el.scrollTop;
+//{{{
+if(tag_this) console.log("scroll_container.save:\t"+ js_xpath.get_nodeXPath(el) +" "+ el.saved_scrollTop);
+//}}}
+        }
+        el = el.parentElement;
+    }
+    while(   el
+          && el.parentElement
+          && el.parentElement.tagName !== "BODY"
+         );
+
+};
+
+let restore = function(el)
+{
+if(log_this) console.log("scroll_container.restore:");
+    if( el          && el.saved_scrollTop) {
+        el.scrollTo(0, el.saved_scrollTop);
+//{{{
+if(tag_this) console.log("scroll_container.restore:\t"+ js_xpath.get_nodeXPath(el) +" "+ el.saved_scrollTop);
+//}}}
+        delete         el.saved_scrollTop ;
+    }
+}
+return { name: "scroll_container"
+    ,    save
+    ,    restore
+}
+})();
+/*}}}*/
+
+// ┌──────────────────────────────┐
+// │ SAVE-LOAD [zoom_target_attr] │
+// └──────────────────────────────┘
+/*○ save_zoom_target_zoom_attr {{{*/
+let save_zoom_target_zoom_attr = function(_caller)
+{
+if(log_this) console.log("%c ● save_zoom_target_zoom_attr %c"+ _caller, bg5, bg6);
+
+    if(!zoom_target) return;
+
+    zoom_target.zoom_attr
+        = {   cp_w      : zoom_target.cp_w
+            , clipPath  : zoom_target.style.clipPath
+            , transform : zoom_target.style.transform
+            , translate : zoom_target.style.translate
+        };
+
+
+    let zoom_target_key = get_zoom_target_key();
+//{{{
+if(log_this)
+    console.log("%c save_zoom_target_zoom_attr ● SAVING zoom_attr:"
+               +"\n● zoom_target_key \t: "+ zoom_target_key
+               +"\n● cp_w          \t\t: "+ zoom_target.zoom_attr.cp_w
+               +"\n● clipPath      \t\t: "+ zoom_target.zoom_attr.clipPath
+               +"\n● transform     \t\t: "+ zoom_target.zoom_attr.transform
+               +"\n● translate     \t\t: "+ zoom_target.zoom_attr.translate
+               , bg5);
+//}}}
+    if( zoom_target_key )
+    {
+        let key = zoom_target_key+"_attr";
+        js_store.localStorage_setItem(key, JSON.stringify( zoom_target.zoom_attr ));
+    }
+};
+/*}}}*/
+/*○ load_zoom_target_zoom_attr {{{*/
+let load_zoom_target_zoom_attr = function()
+{
+if(log_this) console.log("%c ● load_zoom_target_zoom_attr", bg6);
+
+    let zoom_target_key = get_zoom_target_key();
+    if( zoom_target_key )
+    {
+        let key = zoom_target_key+"_attr";
+        let val = js_store.localStorage_getItem(key);
+//console.log("val=["+ val +"]");
+
+        let zoom_attr = JSON.parse( val );
+//console.dir(zoom_target.zoom_attr);
+
+        if(!zoom_attr) return;
+
+        zoom_target.zoom_attr = zoom_attr;
+//{{{
+if(log_this) console.log("%c zoom_attr:\n"
+                         +". cp_w      \t: "+ zoom_target.zoom_attr.cp_w      +"\n"
+                         +". cliPath   \t: "+ zoom_target.zoom_attr.cliPath   +"\n"
+                         +". transform \t: "+ zoom_target.zoom_attr.transform +"\n"
+                         +". translate \t: "+ zoom_target.zoom_attr.translate
+                         , bg6);
+//}}}
+    }
+else debugger;//FIXME
+};
+/*}}}*/
+/*_ open_details_parent {{{*/
+let open_details_parent = function()
+{
+    let    pe = zoom_target.parentElement;
+    while( pe ) {
+        if(pe.tagName == "DETAILS") pe.open = true;
+        pe = pe.parentElement;
+    }
+};
+/*}}}*/
+/*_ get_zoom_target_key {{{*/
+let get_zoom_target_key = function()
+{
+    /* ...return cached first result {{{*/
+    let zoom_target_key = ""
+    if( zoom_target.zoom_target_key )
+        zoom_target_key
+            = zoom_target.zoom_target_key;
+
+    /*}}}*/
+    /* 1/4 zoom_target.id {{{*/
+    if( zoom_target.id )
+        zoom_target_key
+            = zoom_target.id;
+
+    /*}}}*/
+    /* 2/4 IMG.scr file name {{{*/
+    if( zoom_target.src )
+        zoom_target_key
+            = zoom_target.src.replace(/.*\/(\w+)\..*$/ , "$1");
+
+    /*}}}*/
+    /* 3/4 HTMLEvents XPath {{{*/
+    if(!zoom_target_key) {
+        zoom_target_key
+            = js_xpath.get_nodeXPath_as_key( zoom_target );
+//          = js_xpath.get_nodeXPath( zoom_target )
+//        //.  replace(/.html.body.(.*).table/, "$1")
+//          .  replace(/.html.body.(.*)/      , "$1")
+//          .  replace(/[^\w]+/g              ,  "_")
+//          .  replace(/(^_)|(_$)/            ,   "") ;
+    }
+    /*}}}*/
+    /* 4/4 CONTENT WORDS {{{*/
+    if(!zoom_target_key)
+    {
+        let  str = zoom_target.textContent.replace(/\W+/g," ").trim();
+        if( !str ) {
+            open_details_parent();
+            str  = zoom_target.textContent.replace(/\W+/g," ").trim();
+        }
+        let      array = str.split(/\W+/);
+
+        zoom_target_key = (array[0] ? (     array[0]) : "")
+              + (array[1] ? ("_"+ array[1]) : "")
+              + (array[2] ? ("_"+ array[2]) : "")
+//            + (array[3] ? ("_"+ array[3]) : "")
+//            + (array[4] ? ("_"+ array[4]) : "")
+    }
+    /*}}}*/
+    /* ...save first result cache {{{*/
+    zoom_target.zoom_target_key
+        = zoom_target_key;
+
+    /*}}}*/
+if(log_this)
+    console.log("%c get_zoom_target_key %c"+ zoom_target_key, bg5, bg6);
+    return zoom_target_key;
+};
+/*}}}*/
+
+// ┌──────────────────────────────┐
+// │ INIT ● STYLE ● DOWN UP CLICK │
+// └──────────────────────────────┘
+//{{{ ZOOM_TARGET_STYLE
+const ZOOM_TARGET_STYLE = `
+    .zoom_target {
+      cursor                : grab;
+      user-select           : none;
+      outline               : groove 3px red;
+/*    border                : groove 3px red; */
+/*    margin                : 0 0; */
+/*    transition            : transform 0.1s ease; */
+    }
+    .zoom_target * {
+        pointer-events: none;
+    }
+    .zoom_target:active {
+      cursor: grabbing;
+    }
+    #zoom_holder {
+        background-color: #F004;
+        outline         : 3px solid #AAA4;
+        border-radius   : 0.5em;
+    }
+    .zoom_target_em   {  cursor: zoom-in; }
+
+    .default_zoom_target.zoom_target {
+        position            : fixed;
+        top                 : 0;
+        left                : 0;
+    }
+    .magnified {
+        z-index: 100;
+        cursor : zoom-out;
+        opacity: 0.7;
+    }
+/*  .magnified.freezed { opacity: 1.0; } */
+              .freezed { opacity: 1.0; }
+              .freezed { background-color: black !important; }
+
+    #zoom_of,
+    #zoom_bb,
+    #zoom_cp {
+        z-index              :        1000;
+        position             :       fixed;
+        pointer-events       :        none;
+        outline-width        :         5px;
+        outline-style        :       solid;
+        background-color     : transparent;
+    }
+    #zoom_of { outline-color :   red; background-color : #F001; } /* red   */
+    #zoom_bb { outline-color : green; background-color : #0F01; } /* green */
+    #zoom_cp { outline-color :  cyan; background-color : #0FF1; } /* cyan  */
+`;
+//}}} </style>
+/*  init_zoom_target_style {{{*/
+let styleElement;
+let init_zoom_target_style = function()
+{
+if(log_this) console.log("%c ● init_zoom_target_style", bg2);
+
+    /* create */
+    styleElement           = document.createElement("STYLE");
+    styleElement.type      = "text/css";
+    styleElement.innerHTML = ZOOM_TARGET_STYLE;
+
+    /* insert */
+    let doc_el = document.documentElement;
+    let body   = document.querySelector("BODY");
+    doc_el.insertBefore(styleElement, body);
+};
+/*}}}*/
+/*  init_default_listeners {{{*/
+let init_default_listeners = function()
+{
+if(log_this) console.log("%c ● init_default_listeners", bg2);
+
+    check_behavior_TOUCH_ELSE_DESKTOP();
+
+    /* [PAGE] ● [HOVER ENTER LEAVE] ● [DRAG START END] */
+    if( behavior_TOUCH_ELSE_DESKTOP ) {
+        document.removeEventListener("pointermove", onpointermove );
+        document.removeEventListener("pointerup"  , onpointerup   );
+        document.addEventListener   ("touchmove"  , onpointermove , CAPTURE_TRUE_PASSIVE_FALSE);
+        document.addEventListener   ("touchend"   , onpointerup   , CAPTURE_TRUE_PASSIVE_FALSE);
+    }
+    else {
+        document.removeEventListener("touchmove"  , onpointermove , CAPTURE_TRUE_PASSIVE_FALSE);
+        document.removeEventListener("touchend"   , onpointerup   , CAPTURE_TRUE_PASSIVE_FALSE);
+        document.addEventListener   ("pointermove", onpointermove );
+        document.addEventListener   ("pointerup"  , onpointerup   );
+    }
+    /* [DEFAULT TARGETS] */
+    document.querySelectorAll(".default_zoom_target").forEach((img) => {
+        if( behavior_TOUCH_ELSE_DESKTOP ) {
+            img .removeEventListener("pointerdown", zt_ondown     );
+            img .addEventListener   ("touchstart" , zt_ondown     );
+        }
+        else {
+            img .removeEventListener("touchstart" , zt_ondown     );
+            img .addEventListener   ("pointerdown", zt_ondown     );
+        }
+        img     .addEventListener   ("click"      , zt_onclick    );
+    });
+};
+/*}}}*/
 
 // ┌───────────────────────────────┐
 // │ transform translate clip-path │
@@ -1612,7 +1444,7 @@ let get_clipPath_urdl = function()
 /*_ get_clip_path_step {{{*/
 //{{{
 const CLIP_DESKTOP_STEP = 12;
-const CLIP_ANDROID_STEP =  0.5;
+const CLIP_ANDROID_STEP =  2;
 const CLIP_WIDTH_MIN    = 10 * CLIP_DESKTOP_STEP;
 
 //}}}
@@ -1624,6 +1456,171 @@ let get_clip_path_step = function()
     return behavior_TOUCH_ELSE_DESKTOP
         ?      CLIP_ANDROID_STEP
         :      CLIP_DESKTOP_STEP;
+};
+/*}}}*/
+
+// ┌───────────────────────────────────────────────────────────────────────────┐
+// │ LOAD ● UNLOAD                                                             │
+// └───────────────────────────────────────────────────────────────────────────┘
+/*● onload {{{*/
+let onload = function(e)
+{
+/*{{{*/
+if(log_this) console.log(SCRIPT_ID+" onload");
+
+/*}}}*/
+
+    window  .addEventListener("beforeunload", save_zoom_target);
+    window  .addEventListener("resize"      , bring_into_view );
+
+    //┌─────────────────────────────────────────────────────────┐
+    //│ @see also: SCRIPTS/details.js details_onload            │
+    //└─────────────────────────────────────────────────────────┘
+
+    // ● RESTORE LAST SESSION OPENED DETAILS STATE
+    setTimeout(load_zoom_target, 0);
+
+    zoom_target_js.set_zoom_target();
+};
+/*}}}*/
+/*○ save_zoom_target {{{*/
+let save_zoom_target = function()
+{
+let caller = "save_zoom_target";
+    //┌───────────────────────────────────────────────────────────────┐
+    //│ SAVE    ● zoom_target XPath               into [localStorage] │
+    //└───────────────────────────────────────────────────────────────┘
+    let el  = document.querySelector(".zoom_target");
+
+    let key = "zoom_target_xpath";
+    let val = el && el.default_xpath
+        ?     JSON.stringify( el.default_xpath ) // as saved by set_zoom_target()
+        :     "";
+
+    /* add zoom_target or clear localStorage */
+    if( val ) js_store.localStorage_setItem( key , val);
+    else      js_store.localStorage_delItem( key );
+
+if(tag_this && el ) console.log("%c"+caller+"%c"+el.tagName+" "+el.id+" "+el.className, bg0,bg3);
+if(tag_this && val) console.log("%c"+caller+"%c"+val                                  , bg0,bg8);
+};
+/*}}}*/
+/*○ load_zoom_target {{{*/
+let load_zoom_target = function()
+{
+let caller = "load_zoom_target";
+    //┌───────────────────────────────────────────────────────────────┐
+    //│ RESTORE ● zoom_target                     from [localStorage] │
+    //└───────────────────────────────────────────────────────────────┘
+    let val = js_store.localStorage_getItem("zoom_target_xpath");
+    if(!val) return;
+
+    let zoom_target_xpath = JSON.parse( val );
+
+    let el = js_xpath.get_nodeXPath_target( zoom_target_xpath );
+    if( el ) set_zoom_target({ target: el });
+if(tag_this && el ) console.log("%c"+caller+"%c"+el.tagName+" "+el.id+" "+el.className, bg0,bg3);
+if(tag_this && val) console.log("%c"+caller+"%c"+val                                  , bg0,bg8);
+};
+/*}}}*/
+/*○ check_behavior_TOUCH_ELSE_DESKTOP {{{*/
+//{{{
+let behavior_TOUCH_ELSE_DESKTOP;
+
+//}}}
+let check_behavior_TOUCH_ELSE_DESKTOP = function()
+{
+    // ┌─────────────────────────────────────────────────────────┐
+    // │ MUST RELOAD WHEN USING Devtools [Toggle Device Toolbar] │
+    // └─────────────────────────────────────────────────────────┘
+    let appVersion = navigator.appVersion.toLowerCase();
+//console.log("appVersion=["+appVersion+"]");
+
+    behavior_TOUCH_ELSE_DESKTOP
+        =  !appVersion.includes("windows")
+        && !appVersion.includes("hp"     )
+        && !appVersion.includes("mac"    )
+        && !appVersion.includes("sunos"  );
+//{{{
+if(tag_this) {
+    if( behavior_TOUCH_ELSE_DESKTOP )
+        console.log("%c "+SCRIPT_ID+" behavior %c TOUCH "  , bg0,bg6);
+    else
+        console.log("%c "+SCRIPT_ID+" behavior %c DESKTOP ", bg0,bg3);
+}
+//}}}
+
+    if( behavior_TOUCH_ELSE_DESKTOP )
+    {
+        let el;
+            el = document.getElementById("set_zoom_shiftKey_em");
+        if( el ) el.style.display      = zoom_target ? "inline-block" : "none";
+
+            el = document.getElementById("set_zoom_ctrlKey_em");
+        if( el ) el.style.display      = zoom_target ? "inline-block" : "none";
+    }
+};
+/*}}}*/
+/*● toggle_touch_shiftKey {{{*/
+//{{{
+let touch_shiftKey_state;
+//}}}
+let toggle_touch_shiftKey = function(e)
+{
+    /* USER CLICK */
+    if(e && e.target)
+    {
+        // tri-state
+        if     (e.target.classList.contains("locked")) { e.target.classList.remove("locked"); e.target.classList.remove("active"); touch_shiftKey_state = false }
+        else if(touch_shiftKey_state                 )   e.target.classList.add   ("locked");
+        else    touch_shiftKey_state                 =   e.target.classList.toggle("active");
+    }
+    else {
+        let e_target  =  document.getElementById("set_zoom_shiftKey_em");
+        if( e_target && !e_target.classList.contains("locked"))
+            touch_shiftKey_state    = e_target.classList.toggle   ("active");
+    }
+
+    if(e && e.cancelable) {
+        if( e.stopPropagation          ) e.stopPropagation         (); /* capturing and bubbling phases */
+        if( e.stopImmediatePropagation ) e.stopImmediatePropagation(); /* other listeners of the same event */
+        if( e.preventDefault           ) e.preventDefault          (); /* browser agent default .. (checkbox toggle) */
+    }
+
+//{{{
+if(tag_this) console.log("%c touch_shiftKey_state %c "+touch_shiftKey_state, bg0, (touch_shiftKey_state ? bg4:bg8));
+//}}}
+};
+/*}}}*/
+/*● toggle_touch_ctrlKey {{{*/
+//{{{
+let touch_ctrlKey_state;
+//}}}
+let toggle_touch_ctrlKey = function(e)
+{
+    /* USER CLICK */
+    if(e && e.target)
+    {
+        // tri-state
+        if     (e.target.classList.contains("locked")) { e.target.classList.remove("locked"); e.target.classList.remove("active"); touch_ctrlKey_state = false }
+        else if(touch_ctrlKey_state                  )   e.target.classList.add   ("locked");
+        else    touch_ctrlKey_state                  =   e.target.classList.toggle("active");
+    }
+    else {
+        let e_target  =  document.getElementById("set_zoom_ctrlKey_em");
+        if( e_target && !e_target.classList.contains("locked"))
+            touch_ctrlKey_state     = e_target.classList.toggle   ("active");
+    }
+
+    if(e && e.cancelable) {
+        if( e.stopPropagation          ) e.stopPropagation         (); /* capturing and bubbling phases */
+        if( e.stopImmediatePropagation ) e.stopImmediatePropagation(); /* other listeners of the same event */
+        if( e.preventDefault           ) e.preventDefault          (); /* browser agent default .. (checkbox toggle) */
+    }
+
+//{{{
+if(tag_this) console.log("%c touch_ctrlKey_state %c "+touch_ctrlKey_state, bg0, (touch_ctrlKey_state ? bg4:bg8));
+//}}}
 };
 /*}}}*/
 
@@ -1882,7 +1879,7 @@ let log_zoom_target = function()
 /*}}}*/
 //}}}
 
-/* EXPORT ● set_zoom_target {{{*/
+/* EXPORT ● set_zoom_target {{ {*/
 return { name : SCRIPT_ID
         , onload
         , set_zoom_target
@@ -1894,9 +1891,11 @@ return { name : SCRIPT_ID
     , toggle_touch_shiftKey
     , toggle_touch_ctrlKey
     , check_behavior_TOUCH_ELSE_DESKTOP
+    , save_zoom_target
+    , load_zoom_target
 };
 
-/*}}}*/
+/*}} }*/
 }());
 document.addEventListener("DOMContentLoaded", zoom_target_js.onload);
 // ┌────────────────────────────────────────────────────────────────────────────┐

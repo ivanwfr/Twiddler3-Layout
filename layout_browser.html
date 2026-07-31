@@ -21,12 +21,16 @@
  onkeypress ='keypress(event);'
  onresize   ='log_screen_info();'
  >
+<!-- ┌──────────────────────────────────────────────────────────────────────┐-->
+<!-- │ PAGE 🟤🟤🟤🟤🟤🟤🟤🟤🟤🟤            ● TIMESTAMP navi browse_img(+/-) -->
+<!-- ├──────────────────────────────────────────────────────────────────────┤-->
+<div id="head_div">
 <!-- _TAG ● TIMESTAMP {{{-->
  <em style="position:fixed; top:1em; right:10em; z-index: 100; opacity: 0.2;" onmouseover='this.style.opacity="1";'
-     title="layout_browser.html _TAG">(260730:22h:03)</em>
+     title="layout_browser.html _TAG">(260731:16h:05)</em>
 <!--}}}-->
  <!-- BROWSE {{{ -->
-  <div id="navi" title="SET & TOGGLE-BACK-TO target ... (pretty sure you can figure out how it works)" onclick="switch_layout();">
+  <div id="navi" style="z-index: 3;" title="SET & TOGGLE-BACK-TO target ... (pretty sure you can figure out how it works)" onclick="switch_layout();">
    &rarr; <span id="span_switch_layout_num"></span> &larr;
    <br>
    <span style="color:#aaa;">a d &nbsp; - = &nbsp; 1-9<br><small>to navigate</small></span>
@@ -41,43 +45,28 @@
   <div id="curR" class="endC">&nbsp;</div>
 
  <!-- }}} -->
-<em onclick='zoom_target_js.set_zoom_target(event);' class='set_zoom_target_em'
-    style="
-    z-index     : 100;
-    position    : fixed;
-    left        : 5em;
-    top         : 0em;
-    opacity     : 0.5;
-    font-size   : 24px;
-    "
-    >🔎</em>
+</div>
+<!-- └──────────────────────────────────────────────────────────────────────┘-->
 
-<em onclick='zoom_target_js.toggle_touch_shiftKey(event);' class='set_zoom_target_em'
-    id   =                        "touch_shiftKey_em"
+<!-- ┌──────────────────────────────────────────────────────────────────────┐-->
+<!-- │ PAGE 🟤🟤🟤🟤🟤🟤🟤🟤🟤🟤                      ● zoom_target ● IMAGES -->
+<!-- ├──────────────────────────────────────────────────────────────────────┤-->
+<!-- set_zoom_target {{{-->
+
+<em id="set_zoom_target_em"     class="zoom_target_em"
+    onclick='zoom_target_js.set_zoom_target(event);'>🔎</em>
+
+<em id="set_zoom_shiftKey_em"   class="zoom_target_em"
+    onclick='zoom_target_js.toggle_touch_shiftKey(event);'
     title="EMULATE DRAGGING WITH TWO FINGERS"
-    style="
-    z-index     : 100;
-    position    : fixed;
-    left        : 7em;
-    top         : 0em;
-    display     : none;
-    font-size   : 24px;
-    "
     >✂</em><!-- ✌⯐-->
 
-<em onclick='zoom_target_js.toggle_touch_ctrlKey(event);' class='set_zoom_target_em'
-    id   =                        "touch_ctrlKey_em"
+<em id="set_zoom_ctrlKey_em"    class="zoom_target_em"
+    onclick='zoom_target_js.toggle_touch_ctrlKey(event);'
     title="EMULATE A MOUSE WHEEL"
-    style="
-    z-index     : 100;
-    position    : fixed;
-    left        : 9em;
-    top         : 0em;
-    display     : none;
-    font-size   : 24px;
-    "
     >🖐</em>
 
+<!--}}}-->
 <div id="images_div" style="z-index:2;">
  <!-- IMAGES {{{ -->
   <img id="img1" alt="img1" style="display:block;" title="ORML Notation" src="images/Cheat_Blank.png">
@@ -95,6 +84,12 @@
 
  <!-- }}} -->
 </div>
+<!-- └──────────────────────────────────────────────────────────────────────┘-->
+
+<!-- ┌──────────────────────────────────────────────────────────────────────┐-->
+<!-- │ PAGE 🟤🟤🟤🟤🟤🟤🟤🟤🟤🟤  ● ASCII TRANSCRIPT INPUT twiddler3_layout  -->
+<!-- ├──────────────────────────────────────────────────────────────────────┤-->
+<div id="footer_div" style="z-index:2;">
   <!-- ASCII TABLE {{{ -->
   <div    id="fold_div1" onclick='fold_onclick(1,"");'>
     <img  id="fold_grip1" alt="fold_grip1" class="fold_grip"   src="images/icons/gripper.png">
@@ -156,6 +151,9 @@ let toggle_to_top_mid_bot = function() {
    </a>
   </div>
   <!-- }}} -->
+</div>
+<!-- └──────────────────────────────────────────────────────────────────────┘-->
+
  </body>
 </html>
 <!--{{{
