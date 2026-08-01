@@ -1,5 +1,5 @@
 // ┌───────────────────────────────────────────────────────────────────────────┐
-// | SCRIPTS/zoom_target.js                               _TAG (260731:18h:08) ●
+// | SCRIPTS/zoom_target.js                               _TAG (260801:01h:08) ●
 // ├───────────────────────────────────────────────────────────────────────────┤
 // │                              STYLE/details.css STYLE/kb.css STYLE/ecc.css │
 // │                              $AHK/DOC/HIDCONTROL/SCRIPTS/zoom_target.js   │
@@ -58,33 +58,69 @@ let clipping;
 let scaling;
 
 //}}}
-/*  zt_onmousewheel {{{*/
+/*  zt_onmousewheel {{ {*/
 let zt_onmousewheel = function(e)
 {
+//{{{
     if(!zoom_target) return;
-if(tag_this) console_clr("zt_onmousewheel");
-if(tag_this) console.log("● e.type              \t\t: "+ e.type               +"\n"
-                        +"● e.touches           \t\t: "+ e.touches            +"\n"
-                        +"● e.shiftKey          \t\t: "+ e.shiftKey           +"\n"
-                        +"● e.ctrlKey           \t\t: "+ e.ctrlKey            +"\n"
-                        +"● touch_shiftKey_state  \t: "+ touch_shiftKey_state +"\n"
-                        +"● touch_ctrlKey_state   \t: "+ touch_ctrlKey_state  +"\n"
+
+if(log_this) console_clr("zt_onmousewheel");
+if(log_this) console.log("● e.type              \t\t: "+ e.type                           +"\n"
+                        +"● e.touches           \t\t: "+(e.touches ? e.touches.length : 0)+"\n"
+                        +"● e.shiftKey          \t\t: "+ e.shiftKey                       +"\n"
+                        +"● e.ctrlKey           \t\t: "+ e.ctrlKey                        +"\n"
+                        +"● touch_shiftKey_state  \t: "+ touch_shiftKey_state             +"\n"
+                        +"● touch_ctrlKey_state   \t: "+ touch_ctrlKey_state              +"\n"
                         );
 
     if(e.cancelable && e.preventDefault ) e.preventDefault();
     if(e.cancelable && e.preventDefault ) e.preventDefault();
-
+//}}}
     // ┌────────────────────────────────────────┐
     // │ SET TRANSFORM ORIGIN TO WHEEL EVENT XY │
     // └────────────────────────────────────────┘
-    if     ((e.type == "wheel") && !e.shiftKey) set_transformOrigin(        e.x ,         e.y);
-    else if( e.touches &&  touch_ctrlKey_state) set_transformOrigin(onDown_XY.x , onDown_XY.y); // SCALE
+//{{{
+    if((e.type == "wheel") && !e.shiftKey)
+        set_transformOrigin(        e.x ,         e.y);
 
+    else if(e.touches &&  (touch_ctrlKey_state  || (e.touches.length == 2)))
+        set_transformOrigin(onDown_XY.x , onDown_XY.y);
+//}}}
+    let drift = 0;
+    let pinch = 0;
+    if(e.touches && (e.touches.length == 2))
+    {
+            let  mid_x  = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+            let  mid_y  = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+            let drag_x  =  mid_x - onDown_XY.x;
+            let drag_y  =  mid_y - onDown_XY.y;
+            drift       =  Math.hypot(drag_x , drag_y).toFixed();
+
+            let dist_x  = (e.touches[0].clientX - e.touches[1].clientX);
+            let dist_y  = (e.touches[0].clientY - e.touches[1].clientY);
+            let dist    =  Math.hypot(dist_x , dist_y                   ).toFixed();
+            pinch       =  Math.abs  (dist   - zt_ondown_touchesDistance);
+    }
     // ┌───────────────┬───────┬────────────────┐
-    // │ DESKTOP EVENT │ WHEEL │ SHIFT-MOVE     │
+    /* │ DESKTOP       │ WHEEL │ SHIFT-MOVE     │
     // └───────────────┴───────┴────────────────┘
+    /* WHEEL SCALE  ● wheel         ● !e.shiftKey {{{*/
+    if     ((e.type == "wheel") && !e.shiftKey)
+    {
+
+        let deltaY = e.deltaY;
+        let factor = (deltaY < 0) ? 1.05 : 0.95;
+
+//{{{
+if(tag_this) console.log("%c WHEEL SCALE("+deltaY+"%c"+factor+") %c"+ e.type , bg4, (factor > 1) ? bg9:bg8, bg0);
+//}}}
+
+        set_scale(factor * get_scale());
+        clipping_or_scaling_e_type = e.type+" scaling";
+
+    } /*}}}*/
     /* SHIFT CLIP   ● [wheel size]  ● [pointer move] {{{*/
-    if( e.shiftKey )
+    else if( e.shiftKey )
     {
         let   x = e.x;
         let   y = e.y;
@@ -99,66 +135,103 @@ if(tag_this) console.log("%c WHEEL CLIP("+x+" "+y+"      "+dx+" "+dy+")  %c"+ e.
         clipping_or_scaling_e_type = e.type+" clipping";
     }
     /*}}}*/
-    /* TOUCH CLIP   ● touches       ●  touch_shiftKey_state {{{*/
-    else if(e.touches && touch_shiftKey_state)
+    // ┌───────────────┬────────────────────┐
+    // │ TOUCH-SCREEN  │                    │
+    // └───────────────┴────────────────────┘
+    /* TOUCH SCALE  ● touches       ●  touch_ctrlKey_state {{ {*/
+    else if(e.touches && (touch_ctrlKey_state  || (e.touches.length == 2)))
     {
-        let   x =                        onDown_XY.x;
-        let   y =                        onDown_XY.y;
-        let    dx = e.touches[0].clientX - onDown_XY.x;
-        let    dy = e.touches[0].clientY - onDown_XY.y;
+        // SCALE PINCH {{{
+        if( e.touches.length == 2) {
+            let      dx = e.touches[0].clientX - e.touches[1].clientX;
+            let      dy = e.touches[0].clientY - e.touches[1].clientY;
+            let    dist = Math.hypot(dx,dy);
+            let  change = (dist   / zt_ondown_touchesDistance).toPrecision(2);
+            let   scale = (change * zt_ondown_scale          ).toPrecision(2);
+if(tag_this) console.log("● drift     \t: "+ drift  +"\n"
+                        +"● pinch     \t: "+ pinch  +"\n"
+                        +"● change    \t: "+ change +"\n"
+                        +"● scale     \t: "+ scale  +"\n"
+                        +"● onDown_XY \t: "+ onDown_XY.x+"@"+onDown_XY.y +"\n"
+                        );
+//(tag_this) console.log("%c TOUCH SCALE ● ____PINCH ("+scale+"%c"+factor+") %c"+ e.type , bg5, (factor > 1) ? bg9:bg8, bg0);
 
+            set_scale( scale );
+        }
+        //}}}
+        // SCALE f( onDown_XY ) {{{
+        else {
+            let  deltaY = e.touches[0].clientY - onDown_XY.y;
+            let   scale = get_scale();
+            let  factor = (deltaY < 0) ? 1.02 : 0.98;
+if(tag_this) console.log("● deltaY \t: "+ deltaY +"\n"
+                        +"● scale  \t: "+ scale  +"\n"
+                        +"● factor \t: "+ factor +"\n"
+                        );
+//(tag_this) console.log("%c TOUCH SCALE ● onDown_XY ("+deltaY+"%c"+factor+") %c"+ e.type , bg5, (factor > 1) ? bg9:bg8, bg0);
+
+            set_scale(factor * get_scale());
+        }
+        //}}}
+        clipping_or_scaling_e_type = e.type+" scaling";
+    } /*}} }*/
+    /* TOUCH CLIP   ● touches       ●  touch_shiftKey_state {{ {*/
+    else if(e.touches && (touch_shiftKey_state || (e.touches.length == 2)))
+    {
+        // CLIP PINCH {{{
+        if( e.touches.length == 2) {
 //{{{
-if(tag_this) console.log("%c TOUCH CLIP("+x+" "+y+"      "+dx+" "+dy+")  %c"+ e.type , bg3, bg0);
+//            let       x = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+//            let       y = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+//            let      dx =  e.touches[0].clientX - e.touches[1].clientX;
+//            let      dy =  e.touches[0].clientY - e.touches[1].clientY;
+//            let    dist = Math.hypot(dx,dy);
+//            let  factor = (dist / zt_ondown_touchesDistance).toPrecision(2);
+//if(tag_this) console.log("%c TOUCH CLIP  ● ____PINCH ("+x+" "+y+"      "+dx+" "+dy+")  %c"+ e.type , bg3, bg0);
 //}}}
+            let       x = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+            let       y = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+            let      dx =  e.touches[0].clientX - e.touches[1].clientX;
+            let      dy =  e.touches[0].clientY - e.touches[1].clientY;
+            let    dist =  Math.hypot(dx,dy);
+            let  change = (dist   / zt_ondown_touchesDistance).toPrecision(2);
+//          let   scale = (change * zt_ondown_scale          ).toPrecision(2);
+            let   cp_w  = (change * zt_ondown_cp_w           ).toPrecision(2);
+if(tag_this) console.log("● change \t: "+ change  +"\n"
+                        +"● cp_w   \t: "+ cp_w    +"\n"
+                        +"● x @ y  \t: "+ x+"@"+y +"\n"
+                        );
 
-        set_clipPath(x, y, dx, dy); // wheel delta
+            set_clipPath(x, y, cp_w, cp_w); // emulate wheel delta
+        }
+        //}}}
+        // CLIP f( onDown_XY ) {{{
+        else {
+            let x  =                        onDown_XY.x;
+            let y  =                        onDown_XY.y;
+            let dx = e.touches[0].clientX - onDown_XY.x;
+            let dy = e.touches[0].clientY - onDown_XY.y;
+if(tag_this) console.log("%c TOUCH CLIP  ● onDown_XY ("+x+" "+y+"      "+dx+" "+dy+")  %c"+ e.type , bg3, bg0);
+
+            set_clipPath(x, y, dx, dy); // emulate wheel delta
+        }
+        //}}}
         clipping_or_scaling_e_type = e.type+" clipping";
-
-//set_onDown_XY_after_coolDown(e);
     }
-    /*}}}*/
-    /* WHEEL SCALE  ● wheel         ● !e.shiftKey {{{*/
-    else if((e.type == "wheel") && !e.shiftKey)
-    {
-
-        let deltaY = e.deltaY;
-        let factor = (deltaY < 0) ? 1.05 : 0.95;
-
-//{{{
-if(tag_this) console.log("%c WHEEL SCALE("+deltaY+"%c"+factor+") %c"+ e.type , bg4, (factor > 1) ? bg9:bg8, bg0);
-//}}}
-
-        set_scale( factor );
-        clipping_or_scaling_e_type = e.type+" scaling";
-
-    } /*}}}*/
-    /* TOUCH SCALE  ● touches       ●  touch_ctrlKey_state {{{*/
-    else if(e.touches && touch_ctrlKey_state) {
-
-        let deltaY = e.touches[0].clientY - onDown_XY.y;
-        let factor = (deltaY < 0) ? 1.02 : 0.98;
-
-//{{{
-if(tag_this) console.log("%c TOUCH SCALE("+deltaY+"%c"+factor+") %c"+ e.type , bg5, (factor > 1) ? bg9:bg8, bg0);
-//}}}
-
-        set_scale( factor );
-        clipping_or_scaling_e_type = e.type+" scaling";
-
-//set_onDown_XY_after_coolDown(e);
-    } /*}}}*/
+    /*}} }*/
     // ┌───────────────┬────────────────────┐
     // │ TOUCH-SCREEN  │ NO WHEEL ACTION    │
     // └───────────────┴────────────────────┘
+//{{{
 //  if(   !clipping_or_scaling_e_type
 //     || (clipping_or_scaling_e_type == e.type +" clipping")
 //     || (clipping_or_scaling_e_type == e.type +" scaling" )
 //  ) {
 //      zt_onmousewheel_touch(e);
 //  }
-
+//}}}
 };
-/*}}}*/
+/*}} }*/
 /*  zt_onmousewheel_touch {{{*/
 let zt_onmousewheel_touch = function(e)
 {
@@ -189,7 +262,7 @@ set_onDown_XY_after_coolDown(e);
     {
         let factor = (dy < 0) ? 1.05 : 0.95;
 
-        set_scale( factor );
+        set_scale(factor * get_scale());
         clipping_or_scaling_e_type = e.type+" scaling";
 
 //{{{
@@ -208,8 +281,8 @@ let   set_onDown_XY_after_coolDown_timer;
 //}}}
 let set_onDown_XY_after_coolDown = function(e)
 {
-    let e_x = (e.touches) ? e.touches[0].clientX : e.x;
-    let e_y = (e.touches) ? e.touches[0].clientY : e.y;
+    let     e_x     = ((e.touches) ? e.touches[0].clientX : e.x).toFixed();
+    let     e_y     = ((e.touches) ? e.touches[0].clientY : e.y).toFixed();
 
     if(set_onDown_XY_after_coolDown_timer) clearTimeout( set_onDown_XY_after_coolDown_timer );
        set_onDown_XY_after_coolDown_timer =  setTimeout(() => {
@@ -315,6 +388,11 @@ if(log_this) console.log("%c ○○○ zt_onmouseout: FREEZED [default_zoom_targ
 };
 /*}}}*/
 /*  zt_ondown {{{*/
+//{{{
+let zt_ondown_touchesDistance;
+let zt_ondown_scale;
+let zt_ondown_cp_w;
+//}}}
 let zt_ondown = function(e)
 {
 if(log_this) console_clr("DOWN");
@@ -340,8 +418,8 @@ if(log_this) console.log("zt_ondown");
     onDown_MS       = performance.now();  // session time
     isMouseDown     = true;
 
-    let     e_x     = (e.touches) ? e.touches[0].clientX : e.x;
-    let     e_y     = (e.touches) ? e.touches[0].clientY : e.y;
+    let     e_x     = ((e.touches) ? e.touches[0].clientX : e.x).toFixed();
+    let     e_y     = ((e.touches) ? e.touches[0].clientY : e.y).toFixed();
     onDown_XY.x     = e_x;
     onDown_XY.y     = e_y;
 
@@ -352,8 +430,19 @@ if(log_this) console.log("zt_ondown");
     // ┌───────────────────────────────────────────────────────────────────────┐
     // │ TOUCH                                                                 │
     // └───────────────────────────────────────────────────────────────────────┘
-    if( e.touches )
+    if( e.touches ) {
         touchTime   = Date.now();
+        if(e.touches.length == 2)
+        {
+            onDown_XY.x = ((e.touches[0].clientX + e.touches[1].clientX) / 2).toFixed();
+            onDown_XY.y = ((e.touches[0].clientY + e.touches[1].clientY) / 2).toFixed();
+            let      dx =   e.touches[0].clientX - e.touches[1].clientX;
+            let      dy =   e.touches[0].clientY - e.touches[1].clientY;
+            zt_ondown_touchesDistance = Math.hypot(dx,dy).toFixed();
+            zt_ondown_scale           = get_scale();
+            zt_ondown_cp_w            = zoom_target.cp_w;
+        }
+    }
 
     let e_shiftKey =      e.shiftKey
         || (e.touches && (e.touches.length == 2))
@@ -1204,10 +1293,10 @@ if(log_this) console.log("%c ● init_default_listeners", bg2);
 const SCALE_MAX = 5.0;
 const SCALE_MIN = 0.2;
 //}}}
-let set_scale = function(factor)
+let set_scale = function(scale)
 {
 
-    let scale = factor * get_scale();
+//  let scale = factor * get_scale();
     scale     = Math.min(scale, SCALE_MAX);
     scale     = Math.max(scale, SCALE_MIN);
 
@@ -1867,7 +1956,7 @@ let log_zoom_target = function()
     /* log */
   //return            "zoom_target " +  zoom_target.tagName + " 🔎"  + get_scale().toPrecision(2)   + " .. "
     return                            get_zoom_target_key() + " 🔎"  + get_scale().toPrecision(2)   +  "🔍 "
-  //return             js_xpath.get_nodeXPath(zoom_target) + " 🔎"  + get_scale().toPrecision(2)   +  "🔍 "
+  //return             js_xpath.get_nodeXPath( zoom_target) + " 🔎"  + get_scale().toPrecision(2)   +  "🔍 "
         +                      "of ["+     of.x +" "+  of.y + " ■■ " + of.width   +" "+ of.height   +"] .. "
         +                      "BB ["+     bb.x +" "+  bb.y + BB_OTV + bb.width   +" "+ bb.height   +"] .. "
         +                    "clip ["+  clip.x +" "+ clip.y + CL_OTV + clip.width +" "+ clip.height +"] .. "
@@ -1888,6 +1977,7 @@ return { name : SCRIPT_ID
     // DEBUG
     , bring_into_view
     , set_clipPath
+    , set_scale
     , toggle_touch_shiftKey
     , toggle_touch_ctrlKey
     , check_behavior_TOUCH_ELSE_DESKTOP
