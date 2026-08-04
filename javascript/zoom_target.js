@@ -1,8 +1,9 @@
 // ┌───────────────────────────────────────────────────────────────────────────┐
-// | SCRIPTS/zoom_target.js                               _TAG (260804:05h:41) ●
+// | SCRIPTS/zoom_target.js                               _TAG (260804:20h:07) ●
 // ├───────────────────────────────────────────────────────────────────────────┤
 // │                              STYLE/details.css STYLE/kb.css STYLE/ecc.css │
-// │                              $AHK/DOC/HIDCONTROL/SCRIPTS/zoom_target.js   │
+// │ @see                           $AHK/DOC/HIDCONTROL/SCRIPTS/zoom_target.js │
+// │ @see $INPUTDIR/TWIDDLER/GitHub/Twiddler3-Layout/javascript/zoom_target.js │
 // └───────────────────────────────────────────────────────────────────────────┘
 /* jshint esversion: 9, laxbreak:true, laxcomma:true, boss:true {{{*/
 
@@ -504,8 +505,7 @@ let get_nextContainer = function(el)
 // └───────┴────────────────────────────┘
 //{{{
 const CLICK_MS    = 500;
-const MOVE_DXY    = 200;
-const MOVE_MIN    =  50;
+const MOVE_MIN    =  20;
 
 let wasDragging   = false;
 let pointerMoved  = false;
@@ -524,6 +524,7 @@ let scaling;
 let onDown_DIST;
 let onDown_SCALE;
 let onDown_CP_W;
+let onDown_LONG_PRESS_timeout;
 //}}}
 let zt_on_down = function(e)
 {
@@ -537,33 +538,26 @@ if(log_this) console.log("zt_on_down");
 
     wasDragging = false;
 
-    if( !zoom_target )
-    {
-        onDown_XY = { x: 0 , y: 0 };
-        onDown_TR = { x: 0 , y: 0 };
-        return;
-    }
-
     // ┌───────────────────────────────────────────────────────────────────────┐
     // │ onDown                                                                │
     // └───────────────────────────────────────────────────────────────────────┘
-    let     e_x     = ((e.touches) ? e.touches[0].clientX : e.x).toFixed();
-    let     e_y     = ((e.touches) ? e.touches[0].clientY : e.y).toFixed();
-    onDown_XY.x     = e_x;
-    onDown_XY.y     = e_y;
+    let       x     = ((e.touches) ? e.touches[0].clientX : e.x).toFixed();
+    let       y     = ((e.touches) ? e.touches[0].clientY : e.y).toFixed();
+    onDown_XY.x     =   x;
+    onDown_XY.y     =   y;
 
     onDown_MS       = performance.now();
     onUp_MS         = 0;
 
     onDown_SCALE    = get_scale();
 
-    onDown_CP_W     = zoom_target.cp_w;
+    onDown_CP_W     = zoom_target ? zoom_target.cp_w : undefined;
 
     let       t     = get_translate();
     onDown_TR.x     = t.x;
     onDown_TR.y     = t.y;
 
-    onDown_DIST = undefined;
+    onDown_DIST     = undefined;
 
     // ┌───────────────────────────────────────────────────────────────────────┐
     // │ ✌TOUCH ● centroid ● distance                                         │
@@ -579,10 +573,17 @@ if(log_this) console.log("zt_on_down");
         }
     }
 
+    /* START LONG-PRESS-CLIP TIMEOUT */
+    if(e.touches && (e.touches.length == 1))
+    {
+        onDown_LONG_PRESS_timeout = setTimeout(toggle_touch_shiftKey, 1000);
+        zt_log("onDown_LONG_PRESS_timeout", bg1);
+    }
+
     // ┌───────────────────────────────────────────────────────────────────────┐
     // │ freeze any sticky zoom_target click handler                           │
     // └───────────────────────────────────────────────────────────────────────┘
-    if(!zoom_target.classList.contains("sticky") && e.preventDefault)
+    if(zoom_target && !zoom_target.classList.contains("sticky") && e.preventDefault)
         e.preventDefault();
 };
 /*}}}*/
@@ -598,50 +599,44 @@ let zt_on_move = function(e)
     let e_ctrlKey  =      e.ctrlKey
         ||                  touch_ctrlKey_state;
 
-    if(!onDown_MS && !e_shiftKey)  return;
-    if( onUp_MS   && !e_shiftKey)  return; // some touch or mouse released since onDown
+    if(!onDown_MS && !e_shiftKey)  return; // MOVE no onDown
+
+    if( onUp_MS   && !e_shiftKey)  return; // RELEASE onUp
 
 if(log_this) console.log("zt_on_move ● onDown_XY=["+ (onDown_XY && (onDown_XY.x +" "+ onDown_XY.y)) +"]");
 
 //zt_log("zt_on_move");
 
     /* recenter on cursor zoom transformOrigin */
-    let            e_x  = e.touches ? e.touches[0].clientX : e.x;
-    let            e_y  = e.touches ? e.touches[0].clientY : e.y;
-    let             dx  = e_x - onDown_XY.x;
-    let             dy  = e_y - onDown_XY.y;
-    if(   (Math.abs(dx) > MOVE_DXY)
-       || (Math.abs(dy) > MOVE_DXY))
+    let              x  = e.touches ? e.touches[0].clientX : e.x;
+    let              y  = e.touches ? e.touches[0].clientY : e.y;
+    let             dx  = x - onDown_XY.x;
+    let             dy  = y - onDown_XY.y;
+    if((Math.abs(dx) > MOVE_MIN) || (Math.abs(dy) > MOVE_MIN))
+    {
         pointerMoved    = true;
 
+        /* CLEAR LONG-PRESS-CLIP TIMEOUT ● ON MOVE */
+        if(onDown_LONG_PRESS_timeout) clearTimeout( onDown_LONG_PRESS_timeout );
+    }
+
     // ┌────────────────┐
-    // │ clipPath or... │
+    // │ scale, clip or │
     // └────────────────┘
     if(e_shiftKey || e_ctrlKey)
     {
-//      zt_log("ON_WHEEL");
         zt_on_wheel( e );
-//      zt_log("ON_WHEEL_DONE");
-        return;
     }
-
-    if(e.touches)
-        zt_log("TOUCH_MOVE", bg2);
-    else
-        zt_log("MOVE"      , bg2);
-
     // ┌────────────────┐
-    // │ ...translate   │
+    // │ move           │
     // └────────────────┘
-    wasDragging         = true; // has effectively moved
+    else {
+        wasDragging         = true; // has effectively moved
+        zoom_target.style.translate = (onDown_TR.x + dx)+"px "+(onDown_TR.y + dy)+"px";
 
-    let x = onDown_TR.x + dx;
-    let y = onDown_TR.y + dy;
-//{{{
-//  if(Math.abs(x) < 3*VIEW_MARGIN) x = 0;  // too jumpy
-//  if(Math.abs(y) < 3*VIEW_MARGIN) y = 0;
-//}}}
-    zoom_target.style.translate = x+"px "+y+"px";
+        if(e.touches) zt_log("TOUCH_MOVE", bg2);
+        else          zt_log("MOVE"      , bg2);
+    }
 
 if(log_debug) zb_update("DRAG"); // DEBUG
 };
@@ -649,11 +644,15 @@ if(log_debug) zb_update("DRAG"); // DEBUG
 /*  zt_on_up {{{*/
 let zt_on_up = function(e)
 {
+    /* CLEAR LONG-PRESS-CLIP TIMEOUT ● ON UP */
+    if(onDown_LONG_PRESS_timeout) clearTimeout( onDown_LONG_PRESS_timeout );
+
     // HANDLE ONLY THE FIRST RELEASE SINCE ONDOWN (i.e. multi-touch)
     if( onUp_MS ) return;
 
     onUp_MS   = performance.now();
-    onDown_MS = 0;
+
+    setTimeout(() => onDown_MS = 0, 0); // so it survives click handler call
 
 if(log_this) console_clr("UP");
 if(log_this) console.log("zt_on_up");
@@ -830,26 +829,26 @@ if(tag_this) console.log("%c WHEEL SCALE("+deltaY+"%c"+factor+") %c"+ e.type , b
         let      y = e.y;
         let     dx = e.deltaX;
         let     dy = e.deltaY;
-        let   delta_cp_w = (Math.abs(dx) > Math.abs(dy)) ? dx : dy;
+        let   step_sign = (Math.abs(dx) > Math.abs(dy)) ? dx : dy;
 //{{{
-if(tag_this) console.log("%c WHEEL CLIP("+x+" "+y+" "+ (delta_cp_w ? delta_cp_w : "✗") +" %c"+ e.type , bg1, bg0);
+if(tag_this) console.log("%c WHEEL CLIP(step_sign "+ (step_sign ? step_sign : "✗") +" %c"+ e.type , bg1, bg0);
 //}}}
-        set_clipPath_xy_wh(x, y, delta_cp_w);
+        set_clipPath_xy_wh({ x , y , step_sign });  // RESIZE clipPath + MOVE clipPath to onDown_XY
         consumed_by =   "WHEEL_CLIP";
         zt_log(consumed_by, bg2);
     }
     /*}}}*/
-    /* 🔘 MOVE_CLIP {{{*/
+    /* 🔘 DRAG_CLIP {{{*/
     if(!consumed_by && (e.type != "wheel") && !e.touches &&  e.shiftKey)
     {
         let      x = e.x;
         let      y = e.y;
-        set_clipPath_xy_wh(x, y);
-        consumed_by =   "MOVE_CLIP";
+        set_clipPath_xy_wh({ x , y });              // MOVE clipPath
+        consumed_by =   "DRAG_CLIP";
         zt_log(consumed_by, bg3);
     }
     /*}}}*/
-    /* ✌ TOUCH_SCALE_PINCH {{{*/
+    /* ✌ TOUCH_SCALE {{{*/
     if(!consumed_by && e.touches && (e.touches.length == 2))
     {
         let      dx = e.touches[0].clientX - e.touches[1].clientX;
@@ -866,91 +865,33 @@ if(tag_this) console.log("● drift2    \t: "+ drift2 +"\n"
                     );
 /*}}}*/
         set_scale( scale );
-        consumed_by =   "TOUCH_SCALE_PINCH";
+        consumed_by =   "TOUCH_SCALE";
         zt_log(consumed_by, bg4);
     }
     /*}}}*/
-//    /* ✌ TOUCH_SCALE_DELTA {{{*/
-//    if(!consumed_by && e.touches && touch_ctrlKey_state)
-//    {
-//        let  deltaY = e.touches[0].clientY - onDown_XY.y;
-//        let   scale = get_scale();
-//        let  factor = (deltaY < 0) ? 1.02 : 0.98;
-/*{{{*/
-//if(tag_this) console.log("● deltaY \t: "+ deltaY +"\n"
-//                    +"● scale  \t: "+ scale  +"\n"
-//                    +"● factor \t: "+ factor +"\n"
-//                    );
-/*}}}*/
-//        set_scale(factor * get_scale());
-//        consumed_by =   "TOUCH_SCALE_DELTA";
-//        zt_log(consumed_by, bg1);
-//    }
-//    /*}}}*/
-//    /* ✌ TOUCH_CLIP_PINCH {{{*/
-//    if(!consumed_by && e.touches && (e.touches.length == 2))
-//    {
-//        let          x = (e.touches[0].clientX + e.touches[1].clientX) / 2;
-//        let          y = (e.touches[0].clientY + e.touches[1].clientY) / 2;
-//        let         dx =  e.touches[0].clientX - e.touches[1].clientX;
-//        let         dy =  e.touches[0].clientY - e.touches[1].clientY;
-//        let       dist =  Math.hypot(dx,dy);
-//        let     factor = (onDown_DIST   / dist).toPrecision(2);
-//        let delta_cp_w = (factor * onDown_CP_W).toPrecision(2);
-//{{{
-//if(tag_this) console.log("● x @ y     \t\t: "+ x+"@"+y     +"\n"
-//                        +"● factor    \t\t: "+ factor      +"\n"
-//                        +"● onDown_CP_W \t: "+ onDown_CP_W +"\n"
-//                        +"● delta_cp_w  \t: "+ delta_cp_w  +"\n"
-//                        );
-//}}}
-//        set_clipPath_xy_wh(x, y, delta_cp_w); // emulate wheel delta
-//        consumed_by =   "TOUCH_CLIP_PINCH";
-//        zt_log(consumed_by, bg1);
-//    }
-//    //}}}
-    // ✌ TOUCH_CLIP_DELTA {{{*/
+    // ✌ TOUCH_CLIP {{{*/
     if(!consumed_by /*&& e.touches*//*&& touch_shiftKey_state*/)
     {
         let   x  =  onDown_XY.x                                  ;
         let   y  =  onDown_XY.y                                  ;
         let   dx = (onDown_XY.x - e.touches[0].clientX).toFixed();
         let   dy = (onDown_XY.y - e.touches[0].clientY).toFixed();
-        let delta_cp_w = (Math.abs(dx) > Math.abs(dy)) ? dx : dy;
+        let step_sign = (Math.abs(dx) > Math.abs(dy)) ? dx : dy;
 if(tag_this) console.log("● x @ y     \t\t: "+ x+"@"+y     +"\n"
-                        +"● delta_cp_w  \t: "+ delta_cp_w  +"\n"
+                        +"● step_sign  \t: "+ step_sign  +"\n"
                         );
 
-        set_clipPath_xy_wh(x, y, delta_cp_w); // emulate wheel delta
-        consumed_by =   "TOUCH_CLIP_DELTA";
+        set_clipPath_xy_wh({ x , y , step_sign });   // RESIZE clipPath + MOVE clipPath to onDown_XY
+        consumed_by =   "TOUCH_CLIP";
         zt_log(consumed_by, bg5);
     }
     /*}}}*/
-if(!consumed_by) zt_log("zt_on_wheel: NOT CONSUMED", bg9);
+if(!consumed_by) zt_log("NOT_CONSUMED", bg9);
 };
 /*}}}*/
 // ┌───────┬────────────────────────────┐
 // │ EVENT │                   handling │
 // └───────┴────────────────────────────┘
-/*_ zt_log({{{*/
-/*{{{*/
-let set_zoom_target_em;
-let fold_pane2;
-/*}}}*/
-let zt_log = function(msg,bgx=bg0)
-{
-console.log("%c zt_log %c "+msg, bg0,bgx);//FIXME
-
-    if(!msg.includes(" "))
-    {
-        if(!set_zoom_target_em ) set_zoom_target_em           = document.getElementById("set_zoom_target_em");
-        if( set_zoom_target_em ) set_zoom_target_em.className = msg;
-    }
-
-    if(!fold_pane2             ) fold_pane2                   = document.getElementById("fold_pane2");
-    if( fold_pane2             ) fold_pane2.value             = msg;
-};
-/*}}}*/
 /*_ get_centroid {{{*/
 let get_centroid = function(e)
 {
@@ -989,6 +930,7 @@ if(log_debug) zb_update("WHEEL"); // DEBUG
 /*_ get_scale {{{*/
 let get_scale = function()
 {
+    if(!zoom_target) return undefined;
 /*{{{
     let transform = zoom_target.style.transform || "1.0";
     return          parseFloat( transform.replace(/[^0-9\.]/g, "") );
@@ -1076,12 +1018,10 @@ let get_translate     = function()
     return { x , y };
 };
 /*}}}*/
-// TODO set_clipPath_xy
-// TODO set_clipPath_wh
 /*  set_clipPath_xy_wh            ● CLIP {{{*/
-let set_clipPath_xy_wh = function(e_x,e_y,deltaXY=0)
+let set_clipPath_xy_wh = function(args) //(x,y,step_sign=0)
 {
-    // [bounding]       ● ZOOMED RECTANGLE {{{
+    // [rect]           ● [zoom_target boudings] clip rectangle to move and/or resize {{{
     let  bcr  = zoom_target.getBoundingClientRect();
 
     let  rect = { x: parseInt( bcr.x     )
@@ -1089,43 +1029,50 @@ let set_clipPath_xy_wh = function(e_x,e_y,deltaXY=0)
         ,     width: parseInt( bcr.width )
         ,    height: parseInt( bcr.height) };
     //}}}
-    /* [cp_w  delta]    ● WIDTH ● (return if 0) {{{*/
+    /* SET [cp_w+delta] ● [zoom_target.cp_w]...return if(0 i.e. clipPath removed) {{{*/
     zoom_target.cp_w
-        = deltaXY
-        ?  get_cp_w_step_up_or_down( (deltaXY > 0) ? -1:1 )
+        = (typeof args.step_sign != "undefined")
+        ?  get_cp_w_step_up_or_down( (args.step_sign > 0) ? -1:1 )
         :  (zoom_target.cp_w || 0);
-    if(     zoom_target.cp_w == 0) {
-        if( zoom_target.style.clipPath != "") {
+
+    if(     zoom_target.cp_w == 0)
+    {
+        if( zoom_target.style.clipPath != "" ) {
             zoom_target.style.clipPath  = "";
+
 if(log_debug) zb_update("NO CLIP PATH"); // DEBUG
         }
         return;
     }
     /*}}}*/
-    /* [clip WH]        ● SQUARE SHAPE {{{*/
+    /* [clip WH]        ● ...square shape {{{*/
     let scale = get_scale();
     let     w = parseInt( Math.min(rect.width, rect.height) - (2 * zoom_target.cp_w * scale) );
     let  clip = { width  : w
         ,         height : w
     };
     /*}}}*/
-    /* [clip XY]        ● CENTER AROUND POINTER {{{*/
-    let po    = {   x: (e_x - rect.x)
-        ,           y: (e_y - rect.y) };
+    /* [clip XY]        ● ...center around pointer {{{*/
+    let po
+        = (typeof args.x != "undefined")
+        ? { x: (args.x - rect.x               ) , y: (args.y - rect.y                ) }
+        : { x: (         rect.x + rect.width/2) , y: (         rect.y + rect.height/2) }
+    ;
+
     clip.top  = (po.y - clip.height / 2);
     clip.left = (po.x - clip.width  / 2);
     /*}}}*/
-    /* [boundary WH]    ● WITHIN BOUNDARIES {{{*/
+    /* [boundary WH]    ● ...<= CLIP_WIDTH_MIN {{{*/
     clip.width  = Math.max(clip.width , CLIP_WIDTH_MIN); //clip.width  = Math.min(clip.width , rect.width  - 2 * zoom_target.cp_w);
     clip.height = Math.max(clip.height, CLIP_WIDTH_MIN); //clip.height = Math.min(clip.height, rect.height - 2 * zoom_target.cp_w);
     //}}}
-    /* [boundary XY]    ● WITHIN BOUNDARIES {{{*/
+    /* [boundary XY]    ● ...within zoom_target boundaries {{{*/
     if((clip.top               ) < 0          ) clip.top  = 0;
     if((clip.top  + clip.height) > rect.height) clip.top  = rect.height - clip.height;
     if((clip.left              ) < 0          ) clip.left = 0;
     if((clip.left + clip.width ) > rect.width ) clip.left = rect.width  - clip.width ;
     //}}}
-    /* [set clip-path]  ● INSET  RECTANGLE {{{*/
+    /* SET [clip-path]  ● [zoom_target.scale.clip] {{{*/
 
     let cp_U      =               clip.top               ;
     let cp_R      = rect.width  - clip.left - clip.width ;
@@ -1683,6 +1630,27 @@ if(tag_this) console.log("%c touch_ctrlKey_state %c "+touch_ctrlKey_state, bg0, 
 };
 /*}}}*/
 
+// ┌────────────────────────────────────┐
+// │ LOG                                │
+// └────────────────────────────────────┘
+/*_ zt_log({{{*/
+/*{{{*/
+let set_zoom_target_em;
+let fold_pane2;
+/*}}}*/
+let zt_log = function(msg,bgx=bg0)
+{
+if(tag_this || log_this)
+    console.log("%c zt_log %c "+msg, bg0,bgx);//FIXME
+
+    if(!set_zoom_target_em ) set_zoom_target_em           = document.getElementById("set_zoom_target_em");
+    if( set_zoom_target_em ) set_zoom_target_em.style.setProperty("--after-content", "'"+msg+"'");
+
+//  if(!fold_pane2         ) fold_pane2                   = document.getElementById("fold_pane2");
+//  if( fold_pane2         ) fold_pane2.value             = msg;
+};
+/*}}}*/
+
 // DEBUG {{{
 // ┌─────────────────────────────────────┐
 // │ [obc] to activate border hilighting │
@@ -1937,6 +1905,15 @@ let log_zoom_target = function()
 
 };
 /*}}}*/
+
+// ┌────────────────────────────────────────────────────────────────────────────┐
+// │ DEBUG ● Devtools live expression:                                          │
+// ├────────────────────────────────────────────────────────────────────────────┤
+// │ ● [zoom_target_js.log_zoom_target()]                                       │
+// │ ● [(document.querySelector(".zoom_target") || {}).className]               │
+// └────────────────────────────────────────────────────────────────────────────┘
+// @see $BROWSEEXT/RTabsExtension/stylesheet/dom_host.css
+
 //}}}
 
 /* EXPORT ● set_zoom_target {{{*/
@@ -1953,16 +1930,10 @@ return { name : SCRIPT_ID
     , set_scale
     , toggle_touch_ctrlKey
     , toggle_touch_shiftKey
+
     , set_clipPath_xy_wh
 };
 
 /*}}}*/
 }());
 document.addEventListener("DOMContentLoaded", zoom_target_js.onload);
-// ┌────────────────────────────────────────────────────────────────────────────┐
-// │ DEBUG ● Devtools live expression:                                          │
-// ├────────────────────────────────────────────────────────────────────────────┤
-// │ ● [zoom_target_js.log_zoom_target()]                                       │
-// │ ● [(document.querySelector(".zoom_target") || {}).className]               │
-// └────────────────────────────────────────────────────────────────────────────┘
-// $BROWSEEXT/RTabsExtension/stylesheet/dom_host.css

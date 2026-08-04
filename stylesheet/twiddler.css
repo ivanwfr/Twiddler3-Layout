@@ -37,14 +37,14 @@
     opacity     : 0.5;
     font-size   : 24px;
 }
-
-#set_zoom_target_em::after             { display: inline-block; translate: -2em 3em; }
-#set_zoom_target_em.WHEEL_SCALE::after { content: "WHEEL_SCALE"; }
-#set_zoom_target_em.WHEEL_CLIP::after  { content: "WHEEL_CLIP" ; }
-#set_zoom_target_em.WHEEL_CLIP::after  { content: "WHEEL_CLIP_PINCH" ; }
-#set_zoom_target_em.TOUCH_MOVE::after  { content: "TOUCH_MOVE" ; }
-#set_zoom_target_em.TOUCH_SCALE::after { content: "TOUCH_SCALE_DELTA"; }
-#set_zoom_target_em.TOUCH_PINCH::after { content: "TOUCH_SCALE_PINCH"; }
+#set_zoom_target_em::after {
+    display     :         inline-block;
+    position    :             absolute;
+    translate   :              3em 0em;
+    color       :                 #FFF;
+    text-shadow :     2px 2px 0px #111;
+    content     : var(--after-content);
+}
 
 #set_zoom_shiftKey_em {
     z-index     : 100;
