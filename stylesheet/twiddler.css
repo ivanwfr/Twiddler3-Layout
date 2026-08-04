@@ -37,6 +37,15 @@
     opacity     : 0.5;
     font-size   : 24px;
 }
+
+#set_zoom_target_em::after             { display: inline-block; translate: -2em 3em; }
+#set_zoom_target_em.WHEEL_SCALE::after { content: "WHEEL_SCALE"; }
+#set_zoom_target_em.WHEEL_CLIP::after  { content: "WHEEL_CLIP" ; }
+#set_zoom_target_em.WHEEL_CLIP::after  { content: "WHEEL_CLIP_PINCH" ; }
+#set_zoom_target_em.TOUCH_MOVE::after  { content: "TOUCH_MOVE" ; }
+#set_zoom_target_em.TOUCH_SCALE::after { content: "TOUCH_SCALE_DELTA"; }
+#set_zoom_target_em.TOUCH_PINCH::after { content: "TOUCH_SCALE_PINCH"; }
+
 #set_zoom_shiftKey_em {
     z-index     : 100;
     position    : fixed;
@@ -45,6 +54,7 @@
     display     : none;
     font-size   : 24px;
 }
+/*{{{
 #set_zoom_ctrlKey_em {
     z-index     : 100;
     position    : fixed;
@@ -53,10 +63,13 @@
     display     : none;
     font-size   : 24px;
 }
-#set_zoom_shiftKey_em         { /*content: "○"  ;*/ opacity: 0.5; background-color: #0004; }
-#set_zoom_shiftKey_em.active  { /*content: "✌" ;*/ opacity: 1.0; background-color: #FFF4; }
-#set_zoom_ctrlKey_em          { /*content: "○"  ;*/ opacity: 0.5; background-color: #0004; }
-#set_zoom_ctrlKey_em.active   { /*content: "🖐" ;*/ opacity: 1.0; background-color: #FFF4; }
+}}}*/
+#set_zoom_shiftKey_em         { opacity: 0.5; background-color: #0004; }
+#set_zoom_shiftKey_em.active  { opacity: 1.0; background-color: #FFF4; }
+/*{{{
+#set_zoom_ctrlKey_em          { opacity: 0.5; background-color: #0004; }
+#set_zoom_ctrlKey_em.active   { opacity: 1.0; background-color: #FFF4; }
+}}}*/
 
 .zoom_target_em.locked::after { content: "✔"; display: inline-block; translate: -0.5em 0.5em; }
 

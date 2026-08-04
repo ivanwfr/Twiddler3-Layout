@@ -1,5 +1,5 @@
 // ┌───────────────────────────────────────────────────────────────────────────┐
-// | SCRIPTS/zoom_target.js                               _TAG (260801:01h:08) ●
+// | SCRIPTS/zoom_target.js                               _TAG (260804:05h:41) ●
 // ├───────────────────────────────────────────────────────────────────────────┤
 // │                              STYLE/details.css STYLE/kb.css STYLE/ecc.css │
 // │                              $AHK/DOC/HIDCONTROL/SCRIPTS/zoom_target.js   │
@@ -17,7 +17,7 @@ let zoom_target_js = (function() {
 "use strict";
 const SCRIPT_ID = "zoom_target_js";
 let log_this = false;
-let tag_this =  true;
+let tag_this = false;
 let log_debug= false;
 
 //{{{
@@ -35,507 +35,9 @@ const bg0 = "background-color : rgba(  0,   0,   0, .9); color : #FFF; padding: 
 
 //}}}
 
-// ┌──────────────────────────────┐
-// │ EVENT                        │
-// └──────────────────────────────┘
-// ● MOVE_DXY ● touchTime {{{
-const CLICK_MS    = 500;
-const MOVE_DXY    = 200;
-const MOVE_MIN    =  50;
-
-let isMouseDown   = false;
-let wasDragging   = false;
-let pointerMoved  = false;
-
-let onDown_XY     = { x: 0 , y: 0 };
-let onDown_TR     = { x: 0 , y: 0 };
-let onDown_MS     = 0;
-let onUp_MS       = 0;
-
-let touchTime     = 0;
-let clipping_or_scaling_e_type;    //FIXME ...
-let clipping;
-let scaling;
-
-//}}}
-/*  zt_onmousewheel {{ {*/
-let zt_onmousewheel = function(e)
-{
-//{{{
-    if(!zoom_target) return;
-
-if(log_this) console_clr("zt_onmousewheel");
-if(log_this) console.log("● e.type              \t\t: "+ e.type                           +"\n"
-                        +"● e.touches           \t\t: "+(e.touches ? e.touches.length : 0)+"\n"
-                        +"● e.shiftKey          \t\t: "+ e.shiftKey                       +"\n"
-                        +"● e.ctrlKey           \t\t: "+ e.ctrlKey                        +"\n"
-                        +"● touch_shiftKey_state  \t: "+ touch_shiftKey_state             +"\n"
-                        +"● touch_ctrlKey_state   \t: "+ touch_ctrlKey_state              +"\n"
-                        );
-
-    if(e.cancelable && e.preventDefault ) e.preventDefault();
-    if(e.cancelable && e.preventDefault ) e.preventDefault();
-//}}}
-    // ┌────────────────────────────────────────┐
-    // │ SET TRANSFORM ORIGIN TO WHEEL EVENT XY │
-    // └────────────────────────────────────────┘
-//{{{
-    if((e.type == "wheel") && !e.shiftKey)
-        set_transformOrigin(        e.x ,         e.y);
-
-    else if(e.touches &&  (touch_ctrlKey_state  || (e.touches.length == 2)))
-        set_transformOrigin(onDown_XY.x , onDown_XY.y);
-//}}}
-    let drift = 0;
-    let pinch = 0;
-    if(e.touches && (e.touches.length == 2))
-    {
-            let  mid_x  = (e.touches[0].clientX + e.touches[1].clientX) / 2;
-            let  mid_y  = (e.touches[0].clientY + e.touches[1].clientY) / 2;
-            let drag_x  =  mid_x - onDown_XY.x;
-            let drag_y  =  mid_y - onDown_XY.y;
-            drift       =  Math.hypot(drag_x , drag_y).toFixed();
-
-            let dist_x  = (e.touches[0].clientX - e.touches[1].clientX);
-            let dist_y  = (e.touches[0].clientY - e.touches[1].clientY);
-            let dist    =  Math.hypot(dist_x , dist_y                   ).toFixed();
-            pinch       =  Math.abs  (dist   - zt_ondown_touchesDistance);
-    }
-    // ┌───────────────┬───────┬────────────────┐
-    /* │ DESKTOP       │ WHEEL │ SHIFT-MOVE     │
-    // └───────────────┴───────┴────────────────┘
-    /* WHEEL SCALE  ● wheel         ● !e.shiftKey {{{*/
-    if     ((e.type == "wheel") && !e.shiftKey)
-    {
-
-        let deltaY = e.deltaY;
-        let factor = (deltaY < 0) ? 1.05 : 0.95;
-
-//{{{
-if(tag_this) console.log("%c WHEEL SCALE("+deltaY+"%c"+factor+") %c"+ e.type , bg4, (factor > 1) ? bg9:bg8, bg0);
-//}}}
-
-        set_scale(factor * get_scale());
-        clipping_or_scaling_e_type = e.type+" scaling";
-
-    } /*}}}*/
-    /* SHIFT CLIP   ● [wheel size]  ● [pointer move] {{{*/
-    else if( e.shiftKey )
-    {
-        let   x = e.x;
-        let   y = e.y;
-        let    dx = e.deltaX;
-        let    dy = e.deltaY;
-
-//{{{
-if(tag_this) console.log("%c WHEEL CLIP("+x+" "+y+"      "+dx+" "+dy+")  %c"+ e.type , bg1, bg0);
-//}}}
-
-        set_clipPath(x, y, dx, dy); // wheel delta
-        clipping_or_scaling_e_type = e.type+" clipping";
-    }
-    /*}}}*/
-    // ┌───────────────┬────────────────────┐
-    // │ TOUCH-SCREEN  │                    │
-    // └───────────────┴────────────────────┘
-    /* TOUCH SCALE  ● touches       ●  touch_ctrlKey_state {{ {*/
-    else if(e.touches && (touch_ctrlKey_state  || (e.touches.length == 2)))
-    {
-        // SCALE PINCH {{{
-        if( e.touches.length == 2) {
-            let      dx = e.touches[0].clientX - e.touches[1].clientX;
-            let      dy = e.touches[0].clientY - e.touches[1].clientY;
-            let    dist = Math.hypot(dx,dy);
-            let  change = (dist   / zt_ondown_touchesDistance).toPrecision(2);
-            let   scale = (change * zt_ondown_scale          ).toPrecision(2);
-if(tag_this) console.log("● drift     \t: "+ drift  +"\n"
-                        +"● pinch     \t: "+ pinch  +"\n"
-                        +"● change    \t: "+ change +"\n"
-                        +"● scale     \t: "+ scale  +"\n"
-                        +"● onDown_XY \t: "+ onDown_XY.x+"@"+onDown_XY.y +"\n"
-                        );
-//(tag_this) console.log("%c TOUCH SCALE ● ____PINCH ("+scale+"%c"+factor+") %c"+ e.type , bg5, (factor > 1) ? bg9:bg8, bg0);
-
-            set_scale( scale );
-        }
-        //}}}
-        // SCALE f( onDown_XY ) {{{
-        else {
-            let  deltaY = e.touches[0].clientY - onDown_XY.y;
-            let   scale = get_scale();
-            let  factor = (deltaY < 0) ? 1.02 : 0.98;
-if(tag_this) console.log("● deltaY \t: "+ deltaY +"\n"
-                        +"● scale  \t: "+ scale  +"\n"
-                        +"● factor \t: "+ factor +"\n"
-                        );
-//(tag_this) console.log("%c TOUCH SCALE ● onDown_XY ("+deltaY+"%c"+factor+") %c"+ e.type , bg5, (factor > 1) ? bg9:bg8, bg0);
-
-            set_scale(factor * get_scale());
-        }
-        //}}}
-        clipping_or_scaling_e_type = e.type+" scaling";
-    } /*}} }*/
-    /* TOUCH CLIP   ● touches       ●  touch_shiftKey_state {{ {*/
-    else if(e.touches && (touch_shiftKey_state || (e.touches.length == 2)))
-    {
-        // CLIP PINCH {{{
-        if( e.touches.length == 2) {
-//{{{
-//            let       x = (e.touches[0].clientX + e.touches[1].clientX) / 2;
-//            let       y = (e.touches[0].clientY + e.touches[1].clientY) / 2;
-//            let      dx =  e.touches[0].clientX - e.touches[1].clientX;
-//            let      dy =  e.touches[0].clientY - e.touches[1].clientY;
-//            let    dist = Math.hypot(dx,dy);
-//            let  factor = (dist / zt_ondown_touchesDistance).toPrecision(2);
-//if(tag_this) console.log("%c TOUCH CLIP  ● ____PINCH ("+x+" "+y+"      "+dx+" "+dy+")  %c"+ e.type , bg3, bg0);
-//}}}
-            let       x = (e.touches[0].clientX + e.touches[1].clientX) / 2;
-            let       y = (e.touches[0].clientY + e.touches[1].clientY) / 2;
-            let      dx =  e.touches[0].clientX - e.touches[1].clientX;
-            let      dy =  e.touches[0].clientY - e.touches[1].clientY;
-            let    dist =  Math.hypot(dx,dy);
-            let  change = (dist   / zt_ondown_touchesDistance).toPrecision(2);
-//          let   scale = (change * zt_ondown_scale          ).toPrecision(2);
-            let   cp_w  = (change * zt_ondown_cp_w           ).toPrecision(2);
-if(tag_this) console.log("● change \t: "+ change  +"\n"
-                        +"● cp_w   \t: "+ cp_w    +"\n"
-                        +"● x @ y  \t: "+ x+"@"+y +"\n"
-                        );
-
-            set_clipPath(x, y, cp_w, cp_w); // emulate wheel delta
-        }
-        //}}}
-        // CLIP f( onDown_XY ) {{{
-        else {
-            let x  =                        onDown_XY.x;
-            let y  =                        onDown_XY.y;
-            let dx = e.touches[0].clientX - onDown_XY.x;
-            let dy = e.touches[0].clientY - onDown_XY.y;
-if(tag_this) console.log("%c TOUCH CLIP  ● onDown_XY ("+x+" "+y+"      "+dx+" "+dy+")  %c"+ e.type , bg3, bg0);
-
-            set_clipPath(x, y, dx, dy); // emulate wheel delta
-        }
-        //}}}
-        clipping_or_scaling_e_type = e.type+" clipping";
-    }
-    /*}} }*/
-    // ┌───────────────┬────────────────────┐
-    // │ TOUCH-SCREEN  │ NO WHEEL ACTION    │
-    // └───────────────┴────────────────────┘
-//{{{
-//  if(   !clipping_or_scaling_e_type
-//     || (clipping_or_scaling_e_type == e.type +" clipping")
-//     || (clipping_or_scaling_e_type == e.type +" scaling" )
-//  ) {
-//      zt_onmousewheel_touch(e);
-//  }
-//}}}
-};
-/*}} }*/
-/*  zt_onmousewheel_touch {{{*/
-let zt_onmousewheel_touch = function(e)
-{
-    let e_x = (e.touches) ? e.touches[0].clientX : e.x;
-    let e_y = (e.touches) ? e.touches[0].clientY : e.y;
-    let  dx = e_x - onDown_XY.x;
-    let  dy = e_y - onDown_XY.y;
-    let abx = Math.abs( dx );
-    let aby = Math.abs( dy );
-
-    if(!clipping && !scaling) {
-        clipping  =  (abx >= aby);
-        scaling   = !clipping;
-    }
-
-    if(     clipping )
-    {
-//{{{
-if(tag_this) console.log("%c clipping %c"+ e.type , bg3, bg0);
-//}}}
-
-        set_clipPath(onDown_XY.x, onDown_XY.y, dx, dy);
-        clipping_or_scaling_e_type = e.type+" clipping";
-set_onDown_XY_after_coolDown(e);
-        return;
-    }
-    if(     scaling )
-    {
-        let factor = (dy < 0) ? 1.05 : 0.95;
-
-        set_scale(factor * get_scale());
-        clipping_or_scaling_e_type = e.type+" scaling";
-
-//{{{
-if(tag_this) console.log("%c scaling %c"+ e.type+"%c"+factor, bg4, bg0, (factor > 1) ? bg5:bg6);
-//}}}
-set_onDown_XY_after_coolDown(e);
-        return;
-    }
-};
-/*}}}*/
-/*_ set_onDown_XY_after_coolDown {{{*/
-//{{{
-const UPDATE_ONDOWN_XY_COOLDOWN_DELAY = 16;
-
-let   set_onDown_XY_after_coolDown_timer;
-//}}}
-let set_onDown_XY_after_coolDown = function(e)
-{
-    let     e_x     = ((e.touches) ? e.touches[0].clientX : e.x).toFixed();
-    let     e_y     = ((e.touches) ? e.touches[0].clientY : e.y).toFixed();
-
-    if(set_onDown_XY_after_coolDown_timer) clearTimeout( set_onDown_XY_after_coolDown_timer );
-       set_onDown_XY_after_coolDown_timer =  setTimeout(() => {
-           onDown_XY.x = e_x;
-           onDown_XY.y = e_y;
-           set_onDown_XY_after_coolDown_timer = null;
-       }, UPDATE_ONDOWN_XY_COOLDOWN_DELAY);
-};
-/*}}}*/
-/*  zt_onclick {{{*/
-let zt_onclick = function(e)
-{
-if(log_this) console_clr("CLICK")
-
-    /* [wasDragging]    ● return {{{*/
-    if( wasDragging )
-    {
-if(log_this) console.log("%c ●●● zt_onclick: wasDragging", bg8);
-
-        return;
-    }
-    /*}}}*/
-    /* [LONG CLICK]     ● return {{{*/
-    if((e.timeStamp - onDown_MS) > CLICK_MS)
-    {
-if(log_this) console.log("%c ●●● zt_onclick: NOT A CLICK ● "+   parseInt(e.timeStamp - onDown_MS) +"ms > "+CLICK_MS+"ms", bg8);
-
-        return
-    }
-    /*}}}*/
-    /* [IMG]            ● magnified ➔ freezed ➔ release {{{*/
-    if( e.target.classList.contains("default_zoom_target") )
-    {
-if(log_this) console.log("... default_zoom_target");
-        /* SELECT [default_parentElement] ➔ [zoom_target MAGNIFIED] */
-        if( !e.target.classList.contains("zoom_target") )
-        {
-if(log_this) console.log("%c ... zoom_target ➔ MAGNIFIED"                  , bg7);
-            set_zoom_target( e );
-            e.target.classList.add("magnified");
-            return;
-        }
-        else if(zoom_target.classList.contains("magnified"))
-        {
-            /* TRANSITION [MAGNIFIED ➔ FREEZED] */
-            if(!zoom_target.classList.contains("freezed")) {
-if(log_this) console.log("%c ... zoom_target MAGNIFIED ➔ FREEZED"          , bg7);
-
-                zoom_target.classList.add("freezed");
-            }
-            /* TRANSITION [MAGNIFIED FREEZED ➔ RELEASE] */
-            else {
-if(log_this) console.log("%c ... zoom_target MAGNIFIED + FREEZED ➔ RELEASE", bg7);
-
-                release_zoom_target(e, "zt_onclick");
-            }
-        }
-        else {
-if(log_this) console.log("%c ... zoom_target: className["+ zoom_target.className +"]", bg7);
-        }
-    }
-    /*}}}*/
-    /* random container ● dismiss .. return {{{*/
-    else {
-if(log_this) console.log("%c ●●● zt_onclick: NOT A [default_zoom_target]"  , bg8);
-
-      //zoom_target.classList.toggle("freezed");
-      //release_zoom_target(e, "zt_onclick");
-        set_zoom_target();
-        return;
-    }
-    /*}}}*/
-    save_zoom_target_zoom_attr("zt_onclick");
-};
-/*}}}*/
-///*  zt_onmouseover {{{*/
-//let zt_onmouseover  = function(e)
-//{
-//if(log_this) console_clr("MOUSEOVER")
-//if(log_this) console.log("zt_onmouseover");
-//    if(!zoom_target.classList.contains("freezed"  ))
-//        zoom_target.classList.toggle("magnified");
-//};
-///*}}}*/
-/*  zt_onmouseout {{{*/
-let zt_onmouseout = function(e)
-{
-    if((e.timeStamp - onDown_MS) < CLICK_MS)
-    {
-if(log_this) console.log("%c ●●● zt_onmouseout: TOO QUICK ● "+  parseInt(e.timeStamp - onDown_MS) +"ms < "+CLICK_MS+"ms", bg8);
-
-        return
-    }
-
-    if(    zoom_target.classList.contains("default_zoom_target")
-       && !zoom_target.classList.contains("freezed"            )
-      ) {
-        release_zoom_target(e, "zt_onmouseout");
-    }
-    else {
-if(log_this) console.log("%c ○○○ zt_onmouseout: FREEZED [default_zoom_target]", bg0);
-    }
-};
-/*}}}*/
-/*  zt_ondown {{{*/
-//{{{
-let zt_ondown_touchesDistance;
-let zt_ondown_scale;
-let zt_ondown_cp_w;
-//}}}
-let zt_ondown = function(e)
-{
-if(log_this) console_clr("DOWN");
-if(log_this) console.log("zt_ondown");
-
-    clipping_or_scaling_e_type = "";
-    clipping    = false;
-    scaling     = false;
-
-    isMouseDown = false;
-    wasDragging = false;
-
-    if( !zoom_target )
-    {
-        onDown_XY = { x: 0 , y: 0 };
-        onDown_TR = { x: 0 , y: 0 };
-        return;
-    }
-
-    // ┌───────────────────────────────────────────────────────────────────────┐
-    // │ onDown                                                                │
-    // └───────────────────────────────────────────────────────────────────────┘
-    onDown_MS       = performance.now();  // session time
-    isMouseDown     = true;
-
-    let     e_x     = ((e.touches) ? e.touches[0].clientX : e.x).toFixed();
-    let     e_y     = ((e.touches) ? e.touches[0].clientY : e.y).toFixed();
-    onDown_XY.x     = e_x;
-    onDown_XY.y     = e_y;
-
-    let       t     = get_translate();
-    onDown_TR.x     = t.x;
-    onDown_TR.y     = t.y;
-
-    // ┌───────────────────────────────────────────────────────────────────────┐
-    // │ TOUCH                                                                 │
-    // └───────────────────────────────────────────────────────────────────────┘
-    if( e.touches ) {
-        touchTime   = Date.now();
-        if(e.touches.length == 2)
-        {
-            onDown_XY.x = ((e.touches[0].clientX + e.touches[1].clientX) / 2).toFixed();
-            onDown_XY.y = ((e.touches[0].clientY + e.touches[1].clientY) / 2).toFixed();
-            let      dx =   e.touches[0].clientX - e.touches[1].clientX;
-            let      dy =   e.touches[0].clientY - e.touches[1].clientY;
-            zt_ondown_touchesDistance = Math.hypot(dx,dy).toFixed();
-            zt_ondown_scale           = get_scale();
-            zt_ondown_cp_w            = zoom_target.cp_w;
-        }
-    }
-
-    let e_shiftKey =      e.shiftKey
-        || (e.touches && (e.touches.length == 2))
-        ||                  touch_shiftKey_state;
-
-    // ┌───────────────────────────────────────────────────────────────────────┐
-    // │ freeze any sticky zoom_target click handler                           │
-    // └───────────────────────────────────────────────────────────────────────┘
-    if(!zoom_target.classList.contains("sticky") && e.preventDefault)
-        e.preventDefault();
-};
-/*}}}*/
-/*  onpointermove ● (drag clip-path) {{{*/
-let onpointermove = function(e)
-{
-    if( !zoom_target ) return;
-
-if(log_this) console.log("onpointermove ● onDown_XY=["+ (onDown_XY && (onDown_XY.x +" "+ onDown_XY.y)) +"] ● touchTime=["+touchTime+"]");
-
-    /* recenter on cursor zoom transformOrigin */
-    let            e_x  = e.touches ? e.touches[0].clientX : e.x;
-    let            e_y  = e.touches ? e.touches[0].clientY : e.y;
-    let             dx  = e_x - onDown_XY.x;
-    let             dy  = e_y - onDown_XY.y;
-    if(   (Math.abs(dx) > MOVE_DXY)
-       || (Math.abs(dy) > MOVE_DXY))
-        pointerMoved    = true;
-
-    // ┌────────────────┐
-    // │ clipPath or... │
-    // └────────────────┘
-    let e_shiftKey =      e.shiftKey
-        || (e.touches && (e.touches.length == 2))
-        ||                  touch_shiftKey_state;
-
-    let e_ctrlKey  =      e.ctrlKey
-        ||                  touch_ctrlKey_state;
-
-    if(e_shiftKey || e_ctrlKey)
-    {
-        zt_onmousewheel( e );
-        return;
-    }
-//  if(touchTime && (Date.now() - touchTime > 1000))
-//  {
-//      zt_onmousewheel( e );
-//      return;
-//  }
-
-    // ┌────────────────┐
-    // │ ...translate   │
-    // └────────────────┘
-    if(!isMouseDown)    return;
-    wasDragging         = true; // has effectively moved
-
-    let x = onDown_TR.x + dx;
-    let y = onDown_TR.y + dy;
-//{{{
-//  if(Math.abs(x) < 3*VIEW_MARGIN) x = 0;  // too jumpy
-//  if(Math.abs(y) < 3*VIEW_MARGIN) y = 0;
-//}}}
-    zoom_target.style.translate = x+"px "+y+"px";
-
-if(log_debug) zb_update("DRAG"); // DEBUG
-};
-/*}}}*/
-/*  onpointerup {{{*/
-let onpointerup = function(e)
-{
-    onUp_MS     = performance.now(); // session time
-
-    if( !zoom_target ) return;
-
-if(log_this) console_clr("POINTERUP")
-if(log_this) console.log("onpointerup");
-
-    /* reset one-time-used modifiers */
-    if(   (e.target.id != "set_zoom_ctrlKey_em" )
-       && (e.target.id != "set_zoom_shiftKey_em")
-    ) {
-        if(touch_shiftKey_state) toggle_touch_shiftKey();
-        if(touch_ctrlKey_state ) toggle_touch_ctrlKey ();
-    }
-
-    isMouseDown = false;
-
-    save_zoom_target_zoom_attr("onpointerup");
-};
-/*}}}*/
-
-// ┌──────────────────────────────┐
-// │ zoom_target ● set ● release  │
-// └──────────────────────────────┘
+// ┌────┬───────────────────────────────┐
+// │ 🔘 │ zoom_target ● set ● release   │
+// └────┴───────────────────────────────┘
 /*  set_zoom_target {{{*/
 //{{{
 let     zoom_of;
@@ -649,21 +151,21 @@ if(log_this) console.log("%c ● set_zoom_target: NONE", bg8);
 
     if(!zoom_target.classList.contains("default_zoom_target")) {
         if( behavior_TOUCH_ELSE_DESKTOP ) {
-            zoom_target.addEventListener("touchstart" , zt_ondown       );
+            zoom_target.addEventListener("touchstart" , zt_on_down       );
 if(tag_this) console.log("%c touchstart", bg7);
         }
         else {
-            zoom_target.addEventListener("pointerdown", zt_ondown       );  // already persistent
+            zoom_target.addEventListener("pointerdown", zt_on_down       );  // already persistent
 if(tag_this) console.log("%c pointerdown", bg4);
         }
-        zoom_target    .addEventListener("click"      , zt_onclick      );  // already persistent
+        zoom_target    .addEventListener("click"      , zt_on_click      );  // already persistent
 
         // set random container opacity ● do not wait for a first click to pin
         zoom_target.classList.add("freezed");
     }
-//  zoom_target        .addEventListener("mouseover"  , zt_onmouseover  );
-    zoom_target        .addEventListener("mouseout"   , zt_onmouseout   );
-    zoom_target        .addEventListener("wheel"      , zt_onmousewheel );
+//  zoom_target        .addEventListener("mouseover"  , zt_on_over  );
+    zoom_target        .addEventListener("mouseout"   , zt_on_out   );
+    zoom_target        .addEventListener("wheel"      , zt_on_wheel );
     /*}}}*/
     /* ● RESTORE LAST SAVED ZOOM ATTRIBUTES {{{*/
     if(   (zoom_target.default_position != "fixed")
@@ -690,7 +192,7 @@ if(log_this) console.log("%c RESTORING ● zoom_attr NONE", bg8);
     /*}}}*/
     bring_into_view( e );
 if(log_this) console.log("set_zoom_target:", zoom_target);
-}
+};
 /*}}}*/
 /*_ bring_into_view {{{*/
 let bring_into_view = function(e)
@@ -833,13 +335,13 @@ if(log_this) console.log("_ release_zoom_target("+(e ? e.target.tagName : "")+")
 
     /* ● REMOVE EVENT LISTENERS */
     if(!zoom_target.classList.contains("default_zoom_target")) {
-        zoom_target.removeEventListener("pointerdown", zt_ondown       );
-        zoom_target.removeEventListener("touchstart" , zt_ondown       );
-        zoom_target.removeEventListener("click"      , zt_onclick      );
+        zoom_target.removeEventListener("pointerdown", zt_on_down  );
+        zoom_target.removeEventListener("touchstart" , zt_on_down  );
+        zoom_target.removeEventListener("click"      , zt_on_click );
     }
-//  zoom_target    .removeEventListener("mouseover"  , zt_onmouseover  );
-    zoom_target    .removeEventListener("mouseout"   , zt_onmouseout   );
-    zoom_target    .removeEventListener("wheel"      , zt_onmousewheel );
+//  zoom_target    .removeEventListener("mouseover"  , zt_on_over  );
+    zoom_target    .removeEventListener("mouseout"   , zt_on_out   );
+    zoom_target    .removeEventListener("wheel"      , zt_on_wheel );
 
     /* ● CLEAR ZOOMING TRANSCIENT STATE */
     if(zoom_target.classList.contains("zoom_target"))
@@ -902,7 +404,7 @@ if(zoom_target.default_position != "fixed")
     /* Call [zoom_target.zoom_target_released_CB] {{{*/
     if(zoom_target.zoom_target_released_CB)
     {
-if(log_this) console.log("...typeof zoom_target.zoom_target_released_CB = "+ typeof zoom_target.zoom_target_released_CB)
+if(log_this) console.log("...typeof zoom_target.zoom_target_released_CB = "+ typeof zoom_target.zoom_target_released_CB);
         if( zoom_target.zoom_target_released_CB )
             zoom_target.zoom_target_released_CB();
     }
@@ -968,7 +470,7 @@ if(tag_this) console.log("%c SELECTING %c"+ msg, bg5, l_x);
     // └────────────────────────────────────────────────────────────────────────┘
     let new_zoom_target = null;
 
-    if(     selecting_default_zoom_target) new_zoom_target =  e.target                                       // CLICKED  ● [EMBEDDED-IMG]
+    if(     selecting_default_zoom_target) new_zoom_target =  e.target;                                      // CLICKED  ● [EMBEDDED-IMG]
 //  else if(   reselecting_current_target) new_zoom_target =  document.querySelector(".default_zoom_target") // FALLBACK ● [EMBEDDED-IMG]
     else if(   reselecting_current_target) new_zoom_target =  null;                                          // ➔ NO [zoom_target]
   //else if(e)                             new_zoom_target =  e.target.nextElementSibling;                   // USER [nextElementSibling]
@@ -997,9 +499,735 @@ let get_nextContainer = function(el)
 };
 /*}}}*/
 
-// ┌──────────────────────────────┐
-// │ scroll_container             │
-// └──────────────────────────────┘
+// ┌───────┬────────────────────────────┐
+// │ EVENT │     ● wheel ● down move up │
+// └───────┴────────────────────────────┘
+//{{{
+const CLICK_MS    = 500;
+const MOVE_DXY    = 200;
+const MOVE_MIN    =  50;
+
+let wasDragging   = false;
+let pointerMoved  = false;
+
+let onDown_XY     = { x: 0 , y: 0 };
+let onDown_TR     = { x: 0 , y: 0 };
+let onDown_MS     = 0;
+let onUp_MS       = 0;
+
+let clipping;
+let scaling;
+
+//}}}
+/*  zt_on_down {{{*/
+//{{{
+let onDown_DIST;
+let onDown_SCALE;
+let onDown_CP_W;
+//}}}
+let zt_on_down = function(e)
+{
+if(log_this) console_clr("DOWN");
+if(log_this) console.log("zt_on_down");
+
+    zt_log("DOWN", bg1);
+
+    clipping    = false;
+    scaling     = false;
+
+    wasDragging = false;
+
+    if( !zoom_target )
+    {
+        onDown_XY = { x: 0 , y: 0 };
+        onDown_TR = { x: 0 , y: 0 };
+        return;
+    }
+
+    // ┌───────────────────────────────────────────────────────────────────────┐
+    // │ onDown                                                                │
+    // └───────────────────────────────────────────────────────────────────────┘
+    let     e_x     = ((e.touches) ? e.touches[0].clientX : e.x).toFixed();
+    let     e_y     = ((e.touches) ? e.touches[0].clientY : e.y).toFixed();
+    onDown_XY.x     = e_x;
+    onDown_XY.y     = e_y;
+
+    onDown_MS       = performance.now();
+    onUp_MS         = 0;
+
+    onDown_SCALE    = get_scale();
+
+    onDown_CP_W     = zoom_target.cp_w;
+
+    let       t     = get_translate();
+    onDown_TR.x     = t.x;
+    onDown_TR.y     = t.y;
+
+    onDown_DIST = undefined;
+
+    // ┌───────────────────────────────────────────────────────────────────────┐
+    // │ ✌TOUCH ● centroid ● distance                                         │
+    // └───────────────────────────────────────────────────────────────────────┘
+    if(e.touches && (e.touches.length == 2))
+    {
+        onDown_XY = get_centroid( e );
+
+        if(e.touches.length == 2) {
+            let      dx =   e.touches[0].clientX - e.touches[1].clientX;
+            let      dy =   e.touches[0].clientY - e.touches[1].clientY;
+            onDown_DIST = Math.hypot(dx,dy).toFixed();
+        }
+    }
+
+    // ┌───────────────────────────────────────────────────────────────────────┐
+    // │ freeze any sticky zoom_target click handler                           │
+    // └───────────────────────────────────────────────────────────────────────┘
+    if(!zoom_target.classList.contains("sticky") && e.preventDefault)
+        e.preventDefault();
+};
+/*}}}*/
+/*  zt_on_move ● (drag clip-path) {{{*/
+let zt_on_move = function(e)
+{
+    if( !zoom_target )  return;
+
+    let e_shiftKey =      e.shiftKey
+        || (e.touches && (e.touches.length == 2))
+        ||                  touch_shiftKey_state;
+
+    let e_ctrlKey  =      e.ctrlKey
+        ||                  touch_ctrlKey_state;
+
+    if(!onDown_MS && !e_shiftKey)  return;
+    if( onUp_MS   && !e_shiftKey)  return; // some touch or mouse released since onDown
+
+if(log_this) console.log("zt_on_move ● onDown_XY=["+ (onDown_XY && (onDown_XY.x +" "+ onDown_XY.y)) +"]");
+
+//zt_log("zt_on_move");
+
+    /* recenter on cursor zoom transformOrigin */
+    let            e_x  = e.touches ? e.touches[0].clientX : e.x;
+    let            e_y  = e.touches ? e.touches[0].clientY : e.y;
+    let             dx  = e_x - onDown_XY.x;
+    let             dy  = e_y - onDown_XY.y;
+    if(   (Math.abs(dx) > MOVE_DXY)
+       || (Math.abs(dy) > MOVE_DXY))
+        pointerMoved    = true;
+
+    // ┌────────────────┐
+    // │ clipPath or... │
+    // └────────────────┘
+    if(e_shiftKey || e_ctrlKey)
+    {
+//      zt_log("ON_WHEEL");
+        zt_on_wheel( e );
+//      zt_log("ON_WHEEL_DONE");
+        return;
+    }
+
+    if(e.touches)
+        zt_log("TOUCH_MOVE", bg2);
+    else
+        zt_log("MOVE"      , bg2);
+
+    // ┌────────────────┐
+    // │ ...translate   │
+    // └────────────────┘
+    wasDragging         = true; // has effectively moved
+
+    let x = onDown_TR.x + dx;
+    let y = onDown_TR.y + dy;
+//{{{
+//  if(Math.abs(x) < 3*VIEW_MARGIN) x = 0;  // too jumpy
+//  if(Math.abs(y) < 3*VIEW_MARGIN) y = 0;
+//}}}
+    zoom_target.style.translate = x+"px "+y+"px";
+
+if(log_debug) zb_update("DRAG"); // DEBUG
+};
+/*}}}*/
+/*  zt_on_up {{{*/
+let zt_on_up = function(e)
+{
+    // HANDLE ONLY THE FIRST RELEASE SINCE ONDOWN (i.e. multi-touch)
+    if( onUp_MS ) return;
+
+    onUp_MS   = performance.now();
+    onDown_MS = 0;
+
+if(log_this) console_clr("UP");
+if(log_this) console.log("zt_on_up");
+
+    /* reset one-time-used modifiers */
+    if(   (e.target.id != "set_zoom_ctrlKey_em" )
+       && (e.target.id != "set_zoom_shiftKey_em")
+    ) {
+        if(touch_shiftKey_state) toggle_touch_shiftKey();
+        if(touch_ctrlKey_state ) toggle_touch_ctrlKey ();
+    }
+
+    if( zoom_target )
+        save_zoom_target_zoom_attr("zt_on_up");
+};
+/*}}}*/
+/*  zt_on_click {{{*/
+let zt_on_click = function(e)
+{
+if(log_this) console_clr("CLICK");
+
+    /* [wasDragging]    ● return {{{*/
+    if( wasDragging )
+    {
+if(log_this) console.log("%c ●●● zt_on_click: wasDragging", bg8);
+
+        return;
+    }
+    /*}}}*/
+    /* [LONG CLICK]     ● return {{{*/
+    if((e.timeStamp - onDown_MS) > CLICK_MS)
+    {
+if(log_this) console.log("%c ●●● zt_on_click: NOT A CLICK ● "+   parseInt(e.timeStamp - onDown_MS) +"ms > "+CLICK_MS+"ms", bg8);
+
+        return;
+    }
+    /*}}}*/
+    /* [IMG]            ● magnified ➔ freezed ➔ release {{{*/
+    if( e.target.classList.contains("default_zoom_target") )
+    {
+if(log_this) console.log("... default_zoom_target");
+        /* SELECT [default_parentElement] ➔ [zoom_target MAGNIFIED] */
+        if( !e.target.classList.contains("zoom_target") )
+        {
+if(log_this) console.log("%c ... zoom_target ➔ MAGNIFIED"                  , bg7);
+            set_zoom_target( e );
+            e.target.classList.add("magnified");
+            return;
+        }
+        else if(zoom_target.classList.contains("magnified"))
+        {
+            /* TRANSITION [MAGNIFIED ➔ FREEZED] */
+            if(!zoom_target.classList.contains("freezed")) {
+if(log_this) console.log("%c ... zoom_target MAGNIFIED ➔ FREEZED"          , bg7);
+
+                zoom_target.classList.add("freezed");
+            }
+            /* TRANSITION [MAGNIFIED FREEZED ➔ RELEASE] */
+            else {
+if(log_this) console.log("%c ... zoom_target MAGNIFIED + FREEZED ➔ RELEASE", bg7);
+
+                release_zoom_target(e, "zt_on_click");
+            }
+        }
+        else {
+if(log_this) console.log("%c ... zoom_target: className["+ zoom_target.className +"]", bg7);
+        }
+    }
+    /*}}}*/
+    /* random container ● dismiss .. return {{{*/
+    else {
+if(log_this) console.log("%c ●●● zt_on_click: NOT A [default_zoom_target]"  , bg8);
+
+      //zoom_target.classList.toggle("freezed");
+      //release_zoom_target(e, "zt_on_click");
+        set_zoom_target();
+        return;
+    }
+    /*}}}*/
+    save_zoom_target_zoom_attr("zt_on_click");
+};
+/*}}}*/
+///*  zt_on_over {{{*/
+//let zt_on_over  = function(e)
+//{
+//if(log_this) console_clr("MOUSEOVER")
+//if(log_this) console.log("zt_on_over");
+//    if(!zoom_target.classList.contains("freezed"  ))
+//        zoom_target.classList.toggle("magnified");
+//};
+///*}}}*/
+/*  zt_on_out {{{*/
+let zt_on_out = function(e)
+{
+    if((e.timeStamp - onDown_MS) < CLICK_MS)
+    {
+if(log_this) console.log("%c ●●● zt_on_out: TOO QUICK ● "+  parseInt(e.timeStamp - onDown_MS) +"ms < "+CLICK_MS+"ms", bg8);
+
+        return;
+    }
+
+    if(    zoom_target.classList.contains("default_zoom_target")
+       && !zoom_target.classList.contains("freezed"            )
+      ) {
+        release_zoom_target(e, "zt_on_out");
+    }
+    else {
+if(log_this) console.log("%c ○○○ zt_on_out: FREEZED [default_zoom_target]", bg0);
+    }
+};
+/*}}}*/
+/*  zt_on_wheel 🔘 {{{*/
+let zt_on_wheel = function(e)
+{
+if(e.cancelable && e.preventDefault ) e.preventDefault();
+//{{{
+if(log_this) console_clr("zt_on_wheel");
+if(log_this) console.log("● e.type              \t\t: "+ e.type                           +"\n"
+                        +"● e.touches           \t\t: "+(e.touches ? e.touches.length : 0)+"\n"
+                        +"● e.shiftKey          \t\t: "+ e.shiftKey                       +"\n"
+                        +"● e.ctrlKey           \t\t: "+ e.ctrlKey                        +"\n"
+                        +"● touch_shiftKey_state  \t: "+ touch_shiftKey_state             +"\n"
+                        +"● touch_ctrlKey_state   \t: "+ touch_ctrlKey_state              +"\n"
+                        );
+
+    let consumed_by;
+//}}}
+    /* DRIFT or DIST {{{*/
+    let drift2 = 0;
+    let pinch2 = 0;
+    if(e.touches && onDown_DIST)
+    {
+        let  mid_x  = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+        let  mid_y  = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+        let drag_x  =  Math.abs  ( mid_x - onDown_XY.x).toFixed();
+        let drag_y  =  Math.abs  ( mid_y - onDown_XY.y).toFixed();
+        drift2      = (Math.abs  (drag_x - drag_y         ) < 10); // x and y moved together
+
+        let dist_x  = (e.touches[0].clientX - e.touches[1].clientX).toFixed();
+        let dist_y  = (e.touches[0].clientY - e.touches[1].clientY).toFixed();
+        let dist    =  Math.hypot(dist_x , dist_y         ).toFixed();
+        pinch2      = (Math.abs  (dist - onDown_DIST) > 10);
+    }
+    /*}}}*/
+    /* ORIGIN {{{*/
+    if((e.type == "wheel") && !e.shiftKey)
+    {
+        set_transformOrigin(e.x, e.y);
+    }
+    else if(e.touches && (e.touches.length == 2))
+    {
+        set_transformOrigin(onDown_XY.x , onDown_XY.y);
+    }
+    /*}}}*/
+    /* 🔘 WHEEL_SCALE {{{*/
+    if(!consumed_by && (e.type == "wheel") && !e.shiftKey)
+    {
+        let deltaY = e.deltaY;
+        let factor = (deltaY < 0) ? 1.05 : 0.95;
+
+//{{{
+if(tag_this) console.log("%c WHEEL SCALE("+deltaY+"%c"+factor+") %c"+ e.type , bg4, (factor > 1) ? bg9:bg8, bg0);
+//}}}
+
+        set_scale(factor * get_scale());
+        consumed_by =   "WHEEL_SCALE";
+        zt_log(consumed_by, bg1);
+    }
+    /*}}}*/
+    /* 🔘 WHEEL_CLIP {{{*/
+    if(!consumed_by && (e.type == "wheel") &&  e.shiftKey)
+    {
+        let      x = e.x;
+        let      y = e.y;
+        let     dx = e.deltaX;
+        let     dy = e.deltaY;
+        let   delta_cp_w = (Math.abs(dx) > Math.abs(dy)) ? dx : dy;
+//{{{
+if(tag_this) console.log("%c WHEEL CLIP("+x+" "+y+" "+ (delta_cp_w ? delta_cp_w : "✗") +" %c"+ e.type , bg1, bg0);
+//}}}
+        set_clipPath_xy_wh(x, y, delta_cp_w);
+        consumed_by =   "WHEEL_CLIP";
+        zt_log(consumed_by, bg2);
+    }
+    /*}}}*/
+    /* 🔘 MOVE_CLIP {{{*/
+    if(!consumed_by && (e.type != "wheel") && !e.touches &&  e.shiftKey)
+    {
+        let      x = e.x;
+        let      y = e.y;
+        set_clipPath_xy_wh(x, y);
+        consumed_by =   "MOVE_CLIP";
+        zt_log(consumed_by, bg3);
+    }
+    /*}}}*/
+    /* ✌ TOUCH_SCALE_PINCH {{{*/
+    if(!consumed_by && e.touches && (e.touches.length == 2))
+    {
+        let      dx = e.touches[0].clientX - e.touches[1].clientX;
+        let      dy = e.touches[0].clientY - e.touches[1].clientY;
+        let    dist = Math.hypot(dx,dy);
+        let  factor = (dist   / onDown_DIST ).toPrecision(2);
+        let   scale = (factor * onDown_SCALE).toPrecision(2);
+/*{{{*/
+if(tag_this) console.log("● drift2    \t: "+ drift2 +"\n"
+                    +"● pinch2    \t: "+ pinch2 +"\n"
+                    +"● factor    \t: "+ factor +"\n"
+                    +"● scale     \t: "+ scale  +"\n"
+                    +"● onDown_XY \t: "+ onDown_XY.x+"@"+onDown_XY.y +"\n"
+                    );
+/*}}}*/
+        set_scale( scale );
+        consumed_by =   "TOUCH_SCALE_PINCH";
+        zt_log(consumed_by, bg4);
+    }
+    /*}}}*/
+//    /* ✌ TOUCH_SCALE_DELTA {{{*/
+//    if(!consumed_by && e.touches && touch_ctrlKey_state)
+//    {
+//        let  deltaY = e.touches[0].clientY - onDown_XY.y;
+//        let   scale = get_scale();
+//        let  factor = (deltaY < 0) ? 1.02 : 0.98;
+/*{{{*/
+//if(tag_this) console.log("● deltaY \t: "+ deltaY +"\n"
+//                    +"● scale  \t: "+ scale  +"\n"
+//                    +"● factor \t: "+ factor +"\n"
+//                    );
+/*}}}*/
+//        set_scale(factor * get_scale());
+//        consumed_by =   "TOUCH_SCALE_DELTA";
+//        zt_log(consumed_by, bg1);
+//    }
+//    /*}}}*/
+//    /* ✌ TOUCH_CLIP_PINCH {{{*/
+//    if(!consumed_by && e.touches && (e.touches.length == 2))
+//    {
+//        let          x = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+//        let          y = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+//        let         dx =  e.touches[0].clientX - e.touches[1].clientX;
+//        let         dy =  e.touches[0].clientY - e.touches[1].clientY;
+//        let       dist =  Math.hypot(dx,dy);
+//        let     factor = (onDown_DIST   / dist).toPrecision(2);
+//        let delta_cp_w = (factor * onDown_CP_W).toPrecision(2);
+//{{{
+//if(tag_this) console.log("● x @ y     \t\t: "+ x+"@"+y     +"\n"
+//                        +"● factor    \t\t: "+ factor      +"\n"
+//                        +"● onDown_CP_W \t: "+ onDown_CP_W +"\n"
+//                        +"● delta_cp_w  \t: "+ delta_cp_w  +"\n"
+//                        );
+//}}}
+//        set_clipPath_xy_wh(x, y, delta_cp_w); // emulate wheel delta
+//        consumed_by =   "TOUCH_CLIP_PINCH";
+//        zt_log(consumed_by, bg1);
+//    }
+//    //}}}
+    // ✌ TOUCH_CLIP_DELTA {{{*/
+    if(!consumed_by /*&& e.touches*//*&& touch_shiftKey_state*/)
+    {
+        let   x  =  onDown_XY.x                                  ;
+        let   y  =  onDown_XY.y                                  ;
+        let   dx = (onDown_XY.x - e.touches[0].clientX).toFixed();
+        let   dy = (onDown_XY.y - e.touches[0].clientY).toFixed();
+        let delta_cp_w = (Math.abs(dx) > Math.abs(dy)) ? dx : dy;
+if(tag_this) console.log("● x @ y     \t\t: "+ x+"@"+y     +"\n"
+                        +"● delta_cp_w  \t: "+ delta_cp_w  +"\n"
+                        );
+
+        set_clipPath_xy_wh(x, y, delta_cp_w); // emulate wheel delta
+        consumed_by =   "TOUCH_CLIP_DELTA";
+        zt_log(consumed_by, bg5);
+    }
+    /*}}}*/
+if(!consumed_by) zt_log("zt_on_wheel: NOT CONSUMED", bg9);
+};
+/*}}}*/
+// ┌───────┬────────────────────────────┐
+// │ EVENT │                   handling │
+// └───────┴────────────────────────────┘
+/*_ zt_log({{{*/
+/*{{{*/
+let set_zoom_target_em;
+let fold_pane2;
+/*}}}*/
+let zt_log = function(msg,bgx=bg0)
+{
+console.log("%c zt_log %c "+msg, bg0,bgx);//FIXME
+
+    if(!msg.includes(" "))
+    {
+        if(!set_zoom_target_em ) set_zoom_target_em           = document.getElementById("set_zoom_target_em");
+        if( set_zoom_target_em ) set_zoom_target_em.className = msg;
+    }
+
+    if(!fold_pane2             ) fold_pane2                   = document.getElementById("fold_pane2");
+    if( fold_pane2             ) fold_pane2.value             = msg;
+};
+/*}}}*/
+/*_ get_centroid {{{*/
+let get_centroid = function(e)
+{
+    let x = 0; Array.from(e.touches).forEach((t) => x += t.clientX);
+    let y = 0; Array.from(e.touches).forEach((t) => y += t.clientY);
+
+    x = (x / e.touches.length).toFixed();
+    y = (y / e.touches.length).toFixed();
+
+    return { x,y };
+};
+/*}}}*/
+
+// ┌────┬───────────────────────────────┐
+// │ 🔲 │ transform translate clip-path │
+// └────┴───────────────────────────────┘
+/*  set_scale               ● SCALE {{{*/
+//{{{
+const SCALE_MAX = 5.0;
+const SCALE_MIN = 0.2;
+//}}}
+let set_scale = function(scale)
+{
+
+//  let scale = factor * get_scale();
+    scale     = Math.min(scale, SCALE_MAX);
+    scale     = Math.max(scale, SCALE_MIN);
+
+    if(Math.abs(1.0 - scale) < 0.01) scale = 1.0;
+
+    zoom_target.style.transform = "scale("+scale+")";
+
+if(log_debug) zb_update("WHEEL"); // DEBUG
+};
+/*}}}*/
+/*_ get_scale {{{*/
+let get_scale = function()
+{
+/*{{{
+    let transform = zoom_target.style.transform || "1.0";
+    return          parseFloat( transform.replace(/[^0-9\.]/g, "") );
+}}}*/
+//  let currentScaleMatch = zoom_target.style.transform.match(/scale\(([\d.]+)\)/);
+    let currentScaleMatch = zoom_target.style.transform.match(/(scale|matrix)\(([\d.]+)/);
+    let             scale = currentScaleMatch ? parseFloat(currentScaleMatch[2]) : 1;
+//if(log_this) console.log("➔ get_scale transform=["+zoom_target.style.transform+"] ...return ["+scale+"]");
+    return scale;
+};
+/*}}}*/
+/*  set_transformOrigin     ● ORIGIN {{{*/
+//{{{
+let last_transformOrigin;
+//}}}
+let set_transformOrigin = function(x,y)
+{
+//console.log("set_transformOrigin=( "+x+" "+y+" )");//FIXME
+    /* spamming onDown_XY unchanged value ? {{{*/
+    if(    last_transformOrigin
+       && (last_transformOrigin.x == x)
+       && (last_transformOrigin.y == y)) return;
+
+    last_transformOrigin     = { x , y };
+    /*}}}*/
+
+    /* current to */
+   let      to = get_transformOrigin();
+
+    /* adjust transformOrigin */
+    let  rect = zoom_target.getBoundingClientRect();
+    let scale = get_scale();
+    let    dx = parseInt((  x - rect.x) / scale);
+    let    dy = parseInt((  y - rect.y) / scale);
+    zoom_target.style.transformOrigin = `${dx}px ${dy}px`;
+
+    /* to delta */
+    let      t1 = get_transformOrigin();
+    let tx = t1.x - to.x;
+    let ty = t1.y - to.y;
+
+    /* translate back ● [cancel transform-origin-side-effect] */
+    let t    = get_translate();
+        t.x -= parseInt(tx * (1 - scale));
+        t.y -= parseInt(ty * (1 - scale));
+    zoom_target.style.translate = t.x +"px "+ t.y +"px";
+
+if(log_debug) zb_update("ORIGIN"); // DEBUG
+
+};
+/*}}}*/
+/*_ get_transformOrigin {{{*/
+let get_transformOrigin = function()
+{
+    let              cs = window.getComputedStyle( zoom_target );
+    let transformOrigin = (cs.transformOrigin +"").replace(/[^0-9\. -]/g, "");
+
+    if(!transformOrigin )              transformOrigin  = "0 0";
+    if(!transformOrigin.includes(" ")) transformOrigin +=  " 0";
+
+    let         matches = transformOrigin.match(/([0-9\.-]+) +([0-9\.-]+)/);
+    let               x = parseInt( matches[1] );
+    let               y = parseInt( matches[2] );
+
+//if(log_this) console.log("get_transformOrigin ...return["+x+" , "+y+"]")
+    return { x , y };
+};
+/*}}}*/
+/*_ get_translate {{{*/
+let get_translate     = function()
+{
+    if( !zoom_target ) return { x:0 , y:0 };
+
+    let              cs = window.getComputedStyle( zoom_target );
+    let       translate = (cs.translate       +"").replace(/[^0-9\. -]/g, "");
+
+    if(!translate       )              translate        = "0 0";
+    if(!translate      .includes(" ")) translate       +=  " 0";
+
+    let         matches = translate      .match(/([0-9\.-]+) +([0-9\.-]+)/);
+    let               x = parseInt( matches[1] );
+    let               y = parseInt( matches[2] );
+
+//if(log_this) console.log("get_translate ...return["+x+" , "+y+"]")
+    return { x , y };
+};
+/*}}}*/
+// TODO set_clipPath_xy
+// TODO set_clipPath_wh
+/*  set_clipPath_xy_wh            ● CLIP {{{*/
+let set_clipPath_xy_wh = function(e_x,e_y,deltaXY=0)
+{
+    // [bounding]       ● ZOOMED RECTANGLE {{{
+    let  bcr  = zoom_target.getBoundingClientRect();
+
+    let  rect = { x: parseInt( bcr.x     )
+        ,         y: parseInt( bcr.y     )
+        ,     width: parseInt( bcr.width )
+        ,    height: parseInt( bcr.height) };
+    //}}}
+    /* [cp_w  delta]    ● WIDTH ● (return if 0) {{{*/
+    zoom_target.cp_w
+        = deltaXY
+        ?  get_cp_w_step_up_or_down( (deltaXY > 0) ? -1:1 )
+        :  (zoom_target.cp_w || 0);
+    if(     zoom_target.cp_w == 0) {
+        if( zoom_target.style.clipPath != "") {
+            zoom_target.style.clipPath  = "";
+if(log_debug) zb_update("NO CLIP PATH"); // DEBUG
+        }
+        return;
+    }
+    /*}}}*/
+    /* [clip WH]        ● SQUARE SHAPE {{{*/
+    let scale = get_scale();
+    let     w = parseInt( Math.min(rect.width, rect.height) - (2 * zoom_target.cp_w * scale) );
+    let  clip = { width  : w
+        ,         height : w
+    };
+    /*}}}*/
+    /* [clip XY]        ● CENTER AROUND POINTER {{{*/
+    let po    = {   x: (e_x - rect.x)
+        ,           y: (e_y - rect.y) };
+    clip.top  = (po.y - clip.height / 2);
+    clip.left = (po.x - clip.width  / 2);
+    /*}}}*/
+    /* [boundary WH]    ● WITHIN BOUNDARIES {{{*/
+    clip.width  = Math.max(clip.width , CLIP_WIDTH_MIN); //clip.width  = Math.min(clip.width , rect.width  - 2 * zoom_target.cp_w);
+    clip.height = Math.max(clip.height, CLIP_WIDTH_MIN); //clip.height = Math.min(clip.height, rect.height - 2 * zoom_target.cp_w);
+    //}}}
+    /* [boundary XY]    ● WITHIN BOUNDARIES {{{*/
+    if((clip.top               ) < 0          ) clip.top  = 0;
+    if((clip.top  + clip.height) > rect.height) clip.top  = rect.height - clip.height;
+    if((clip.left              ) < 0          ) clip.left = 0;
+    if((clip.left + clip.width ) > rect.width ) clip.left = rect.width  - clip.width ;
+    //}}}
+    /* [set clip-path]  ● INSET  RECTANGLE {{{*/
+
+    let cp_U      =               clip.top               ;
+    let cp_R      = rect.width  - clip.left - clip.width ;
+    let cp_D      = rect.height - clip.top  - clip.height;
+    let cp_L      =               clip.left              ;
+
+    cp_U          = parseInt(cp_U / scale);
+    cp_R          = parseInt(cp_R / scale);
+    cp_D          = parseInt(cp_D / scale);
+    cp_L          = parseInt(cp_L / scale);
+
+    let clipPath  = "inset("+cp_U+"px "+cp_R+"px "+cp_D+"px "+cp_L+"px)";
+    if( clipPath != zoom_target.style.clipPath)
+    {
+        zoom_target.style.clipPath = clipPath;
+
+if(log_debug) zb_update("CLIP PATH"); // DEBUG
+//{{{
+// if(log_debug) {
+//   console.log("[zoom_target.cp_w "+zoom_target.cp_w+"] .. rect [ XY "+ rect.x    +" "+ rect.y   +" .. WH "+ rect.width +" "+ rect.height +" ]");
+//   console.log("[zoom_target.cp_w "+zoom_target.cp_w+"] .. clip [ XY "+ clip.left +" "+ clip.top +" .. WH "+ clip.width +" "+ clip.height +" ]");
+//   console.log("[zoom_target.cp_w "+zoom_target.cp_w+"] .. URDL [ "+ cp_U +" "+ cp_R +" "+ cp_D +" "+ cp_L +" ]");
+ //console.log("translate=["+zoom_target.style.translate+"] .. po=["+po.x+" "+po.y+"] .. zoom_target.cp_w=["+zoom_target.cp_w+"] .. clipPath=["+clipPath+"]");
+// }
+//}}}
+    }
+    /*}}}*/
+};
+/*}}}*/
+/*_ get_cp_w_step_up_or_down {{{*/
+let get_cp_w_step_up_or_down = function(step_sign)
+{
+    /* GET */
+    let cp_w  = zoom_target.cp_w || 0;
+
+    /* SET */
+    let clip_path_step = get_clip_path_step();
+    /* OFFSET SIZE */
+    let  rect = { x: zoom_target.offsetLeft
+        ,         y: zoom_target.offsetTop
+        ,     width: zoom_target.offsetWidth
+        ,    height: zoom_target.offsetHeight };
+
+    /* TOO SMALL */
+    let small_side = Math.min(rect.width, rect.height);
+    if( small_side < (CLIP_WIDTH_MIN + 2*clip_path_step)) {
+        cp_w       = 0;
+    }
+    /* ADJUST CLIP */
+    else {
+        cp_w      += clip_path_step * step_sign;
+
+        if( cp_w   < clip_path_step)
+        {
+            cp_w   = 0;
+        }
+        else {
+            let clip_max
+                   = parseInt((small_side - CLIP_WIDTH_MIN) / 2); // max we can crop
+            cp_w
+                   = Math.min(cp_w, clip_max);
+        }
+    }
+    return cp_w;
+};
+/*}}}*/
+/*_ get_clipPath_urdl {{{*/
+let get_clipPath_urdl = function()
+{
+    let u=0, r=0, d=0, l=0;
+    let           cp = zoom_target.style.clipPath;
+    let matches = cp.match(/([0-9\.-]+)px ([0-9\.-]+)px ([0-9\.-]+)px ([0-9\.-]+)px/);
+    if( matches ) {
+        u = parseInt( matches[1] );
+        r = parseInt( matches[2] );
+        d = parseInt( matches[3] );
+        l = parseInt( matches[4] );
+    }
+    return { u , r , d , l };
+};
+/*}}}*/
+/*_ get_clip_path_step {{{*/
+//{{{
+const CLIP_DESKTOP_STEP = 12;
+const CLIP_ANDROID_STEP =  2;
+const CLIP_WIDTH_MIN    = 10 * CLIP_DESKTOP_STEP;
+
+//}}}
+let get_clip_path_step = function()
+{
+    if(behavior_TOUCH_ELSE_DESKTOP == undefined)
+        check_behavior_TOUCH_ELSE_DESKTOP();
+
+    return behavior_TOUCH_ELSE_DESKTOP
+        ?      CLIP_ANDROID_STEP
+        :      CLIP_DESKTOP_STEP;
+};
+/*}}}*/
+
+// ┌────────────────────────────────────┐
+// │ scroll_container ● save .. restore │
+// └────────────────────────────────────┘
 /*  scroll_container {{{*/
 let scroll_container = (function() {
 "use strict"; /* eslint-disable-line strict */
@@ -1033,17 +1261,17 @@ if(tag_this) console.log("scroll_container.restore:\t"+ js_xpath.get_nodeXPath(e
 //}}}
         delete         el.saved_scrollTop ;
     }
-}
+};
 return { name: "scroll_container"
     ,    save
     ,    restore
-}
+};
 })();
 /*}}}*/
 
-// ┌──────────────────────────────┐
-// │ SAVE-LOAD [zoom_target_attr] │
-// └──────────────────────────────┘
+// ┌────────────────────────────────────┐
+// │ SAVE-LOAD [zoom_target_attr]       │
+// └────────────────────────────────────┘
 /*○ save_zoom_target_zoom_attr {{{*/
 let save_zoom_target_zoom_attr = function(_caller)
 {
@@ -1121,7 +1349,7 @@ let open_details_parent = function()
 let get_zoom_target_key = function()
 {
     /* ...return cached first result {{{*/
-    let zoom_target_key = ""
+    let zoom_target_key = "";
     if( zoom_target.zoom_target_key )
         zoom_target_key
             = zoom_target.zoom_target_key;
@@ -1165,6 +1393,7 @@ let get_zoom_target_key = function()
               + (array[2] ? ("_"+ array[2]) : "")
 //            + (array[3] ? ("_"+ array[3]) : "")
 //            + (array[4] ? ("_"+ array[4]) : "")
+        ;
     }
     /*}}}*/
     /* ...save first result cache {{{*/
@@ -1178,9 +1407,9 @@ if(log_this)
 };
 /*}}}*/
 
-// ┌──────────────────────────────┐
-// │ INIT ● STYLE ● DOWN UP CLICK │
-// └──────────────────────────────┘
+// ┌────────────────────────────────────┐
+// │ INIT ● STYLE ● DOWN UP CLICK       │
+// └────────────────────────────────────┘
 //{{{ ZOOM_TARGET_STYLE
 const ZOOM_TARGET_STYLE = `
     .zoom_target {
@@ -1259,298 +1488,35 @@ if(log_this) console.log("%c ● init_default_listeners", bg2);
 
     /* [PAGE] ● [HOVER ENTER LEAVE] ● [DRAG START END] */
     if( behavior_TOUCH_ELSE_DESKTOP ) {
-        document.removeEventListener("pointermove", onpointermove );
-        document.removeEventListener("pointerup"  , onpointerup   );
-        document.addEventListener   ("touchmove"  , onpointermove , CAPTURE_TRUE_PASSIVE_FALSE);
-        document.addEventListener   ("touchend"   , onpointerup   , CAPTURE_TRUE_PASSIVE_FALSE);
+        document.removeEventListener("pointermove", zt_on_move );
+        document.removeEventListener("pointerup"  , zt_on_up   );
+        document.addEventListener   ("touchmove"  , zt_on_move , CAPTURE_TRUE_PASSIVE_FALSE);
+        document.addEventListener   ("touchend"   , zt_on_up   , CAPTURE_TRUE_PASSIVE_FALSE);
     }
     else {
-        document.removeEventListener("touchmove"  , onpointermove , CAPTURE_TRUE_PASSIVE_FALSE);
-        document.removeEventListener("touchend"   , onpointerup   , CAPTURE_TRUE_PASSIVE_FALSE);
-        document.addEventListener   ("pointermove", onpointermove );
-        document.addEventListener   ("pointerup"  , onpointerup   );
+        document.removeEventListener("touchmove"  , zt_on_move , CAPTURE_TRUE_PASSIVE_FALSE);
+        document.removeEventListener("touchend"   , zt_on_up   , CAPTURE_TRUE_PASSIVE_FALSE);
+        document.addEventListener   ("pointermove", zt_on_move );
+        document.addEventListener   ("pointerup"  , zt_on_up   );
     }
     /* [DEFAULT TARGETS] */
     document.querySelectorAll(".default_zoom_target").forEach((img) => {
         if( behavior_TOUCH_ELSE_DESKTOP ) {
-            img .removeEventListener("pointerdown", zt_ondown     );
-            img .addEventListener   ("touchstart" , zt_ondown     );
+            img .removeEventListener("pointerdown", zt_on_down     );
+            img .addEventListener   ("touchstart" , zt_on_down     );
         }
         else {
-            img .removeEventListener("touchstart" , zt_ondown     );
-            img .addEventListener   ("pointerdown", zt_ondown     );
+            img .removeEventListener("touchstart" , zt_on_down     );
+            img .addEventListener   ("pointerdown", zt_on_down     );
         }
-        img     .addEventListener   ("click"      , zt_onclick    );
+        img     .addEventListener   ("click"      , zt_on_click    );
     });
 };
 /*}}}*/
 
-// ┌───────────────────────────────┐
-// │ transform translate clip-path │
-// └───────────────────────────────┘
-/*  set_scale {{{*/
-//{{{
-const SCALE_MAX = 5.0;
-const SCALE_MIN = 0.2;
-//}}}
-let set_scale = function(scale)
-{
-
-//  let scale = factor * get_scale();
-    scale     = Math.min(scale, SCALE_MAX);
-    scale     = Math.max(scale, SCALE_MIN);
-
-    if(Math.abs(1.0 - scale) < 0.01) scale = 1.0;
-
-    zoom_target.style.transform = "scale("+scale+")";
-
-if(log_debug) zb_update("WHEEL"); // DEBUG
-};
-/*}}}*/
-/*_ get_scale {{{*/
-let get_scale = function()
-{
-/*{{{
-    let transform = zoom_target.style.transform || "1.0";
-    return          parseFloat( transform.replace(/[^0-9\.]/g, "") );
-}}}*/
-//  let currentScaleMatch = zoom_target.style.transform.match(/scale\(([\d.]+)\)/);
-    let currentScaleMatch = zoom_target.style.transform.match(/(scale|matrix)\(([\d.]+)/);
-    let             scale = currentScaleMatch ? parseFloat(currentScaleMatch[2]) : 1;
-//if(log_this) console.log("➔ get_scale transform=["+zoom_target.style.transform+"] ...return ["+scale+"]");
-    return scale;
-};
-/*}}}*/
-
-/*  set_transformOrigin {{{*/
-//{{{
-let last_transformOrigin;
-//}}}
-let set_transformOrigin = function(x,y)
-{
-    /* spamming onDown_XY unchanged value ? {{{*/
-    if(    last_transformOrigin
-       && (last_transformOrigin.x == x)
-       && (last_transformOrigin.y == y)) return;
-
-    last_transformOrigin     = { x , y };
-    /*}}}*/
-
-    /* current to */
-   let      to = get_transformOrigin();
-
-    /* adjust transformOrigin */
-    let  rect = zoom_target.getBoundingClientRect();
-    let scale = get_scale();
-    let    dx = parseInt((  x - rect.x) / scale);
-    let    dy = parseInt((  y - rect.y) / scale);
-    zoom_target.style.transformOrigin = `${dx}px ${dy}px`;
-
-    /* to delta */
-    let      t1 = get_transformOrigin();
-    let tx = t1.x - to.x;
-    let ty = t1.y - to.y;
-
-    /* translate back ● [cancel transform-origin-side-effect] */
-    let t    = get_translate();
-        t.x -= parseInt(tx * (1 - scale));
-        t.y -= parseInt(ty * (1 - scale));
-    zoom_target.style.translate = t.x +"px "+ t.y +"px";
-
-if(log_debug) zb_update("ORIGIN"); // DEBUG
-
-};
-/*}}}*/
-/*_ get_transformOrigin {{{*/
-let get_transformOrigin = function()
-{
-    let              cs = window.getComputedStyle( zoom_target );
-    let transformOrigin = (cs.transformOrigin +"").replace(/[^0-9\. -]/g, "");
-
-    if(!transformOrigin )              transformOrigin  = "0 0";
-    if(!transformOrigin.includes(" ")) transformOrigin +=  " 0";
-
-    let         matches = transformOrigin.match(/([0-9\.-]+) +([0-9\.-]+)/);
-    let               x = parseInt( matches[1] );
-    let               y = parseInt( matches[2] );
-
-//if(log_this) console.log("get_transformOrigin ...return["+x+" , "+y+"]")
-    return { x , y }
-};
-/*}}}*/
-/*_ get_translate {{{*/
-let get_translate     = function()
-{
-    if( !zoom_target ) return { x:0 , y:0 };
-
-    let              cs = window.getComputedStyle( zoom_target );
-    let       translate = (cs.translate       +"").replace(/[^0-9\. -]/g, "");
-
-    if(!translate       )              translate        = "0 0";
-    if(!translate      .includes(" ")) translate       +=  " 0";
-
-    let         matches = translate      .match(/([0-9\.-]+) +([0-9\.-]+)/);
-    let               x = parseInt( matches[1] );
-    let               y = parseInt( matches[2] );
-
-//if(log_this) console.log("get_translate ...return["+x+" , "+y+"]")
-    return { x , y }
-};
-/*}}}*/
-
-/*  set_clipPath {{{*/
-let set_clipPath = function(e_x,e_y,dx,dy)
-{
-    // [bounding]       ● ZOOMED RECTANGLE {{{
-    let  bcr  = zoom_target.getBoundingClientRect();
-
-    let  rect = { x: parseInt( bcr.x     )
-        ,         y: parseInt( bcr.y     )
-        ,     width: parseInt( bcr.width )
-        ,    height: parseInt( bcr.height) };
-    //}}}
-    /* [cp_w  delta]    ● WIDTH ● (return if 0) {{{*/
-    let cp_w  = set_cp_w(dx, dy);
-    if( cp_w == 0)
-    {
-        if( zoom_target.style.clipPath != "") {
-            zoom_target.style.clipPath  = "";
-
-if(log_debug) zb_update("NO CLIP PATH"); // DEBUG
-        }
-        return;
-    }
-    /*}}}*/
-    /* [clip WH]        ● SQUARE SHAPE {{{*/
-    let scale = get_scale();
-    let     w = parseInt( Math.min(rect.width, rect.height) - (2 * cp_w * scale) );
-    let  clip = { width  : w
-        ,         height : w
-    };
-    /*}}}*/
-    /* [clip XY]        ● CENTER AROUND POINTER {{{*/
-    let po    = {   x: (e_x - rect.x)
-        ,           y: (e_y - rect.y) };
-    clip.top  = (po.y - clip.height / 2);
-    clip.left = (po.x - clip.width  / 2);
-    /*}}}*/
-    /* [boundary WH]    ● WITHIN BOUNDARIES {{{*/
-    clip.width  = Math.max(clip.width , CLIP_WIDTH_MIN); //clip.width  = Math.min(clip.width , rect.width  - 2 * cp_w);
-    clip.height = Math.max(clip.height, CLIP_WIDTH_MIN); //clip.height = Math.min(clip.height, rect.height - 2 * cp_w);
-    //}}}
-    /* [boundary XY]    ● WITHIN BOUNDARIES {{{*/
-    if((clip.top               ) < 0          ) clip.top  = 0;
-    if((clip.top  + clip.height) > rect.height) clip.top  = rect.height - clip.height;
-    if((clip.left              ) < 0          ) clip.left = 0;
-    if((clip.left + clip.width ) > rect.width ) clip.left = rect.width  - clip.width ;
-    //}}}
-    /* [set clip-path]  ● INSET  RECTANGLE {{{*/
-
-    let cp_U      =               clip.top               ;
-    let cp_R      = rect.width  - clip.left - clip.width ;
-    let cp_D      = rect.height - clip.top  - clip.height;
-    let cp_L      =               clip.left              ;
-
-    cp_U          = parseInt(cp_U / scale);
-    cp_R          = parseInt(cp_R / scale);
-    cp_D          = parseInt(cp_D / scale);
-    cp_L          = parseInt(cp_L / scale);
-
-    let clipPath  = "inset("+cp_U+"px "+cp_R+"px "+cp_D+"px "+cp_L+"px)";
-    if( clipPath != zoom_target.style.clipPath)
-    {
-        zoom_target.style.clipPath = clipPath;
-
-if(log_debug) zb_update("CLIP PATH"); // DEBUG
-//{{{
-// if(log_debug) {
-//   console.log("[cp_w "+cp_w+"] .. rect [ XY "+ rect.x    +" "+ rect.y   +" .. WH "+ rect.width +" "+ rect.height +" ]");
-//   console.log("[cp_w "+cp_w+"] .. clip [ XY "+ clip.left +" "+ clip.top +" .. WH "+ clip.width +" "+ clip.height +" ]");
-//   console.log("[cp_w "+cp_w+"] .. URDL [ "+ cp_U +" "+ cp_R +" "+ cp_D +" "+ cp_L +" ]");
- //console.log("translate=["+zoom_target.style.translate+"] .. po=["+po.x+" "+po.y+"] .. cp_w=["+cp_w+"] .. clipPath=["+clipPath+"]");
-// }
-//}}}
-    }
-    /*}}}*/
-};
-/*}}}*/
-/*_ set_cp_w {{{*/
-let set_cp_w = function(dx,dy)
-{
-    /* GET */
-    let  cp_w  = zoom_target.cp_w || 0;
-
-    /* SET */
-    if(dx || dy)
-    {
-        let clip_path_step = get_clip_path_step();
-        /* OFFSET SIZE */
-        let  rect = { x: zoom_target.offsetLeft
-            ,         y: zoom_target.offsetTop
-            ,     width: zoom_target.offsetWidth
-            ,    height: zoom_target.offsetHeight };
-
-        /* TOO SMALL */
-        let small_side = Math.min(rect.width, rect.height);
-        if( small_side < (CLIP_WIDTH_MIN + 2*clip_path_step)) {
-            cp_w       = 0;
-        }
-        /* ADJUST CLIP */
-        else {
-            let delta  = (Math.abs(dx) > Math.abs(dy)) ? dx : dy;
-            cp_w      += (delta < 0) ? clip_path_step : -clip_path_step;
-
-            if( cp_w   < clip_path_step) {
-                cp_w   = 0;
-            }
-            else {
-                let clip_max
-                       = parseInt((small_side - CLIP_WIDTH_MIN) / 2); // max we can crop
-                cp_w
-                       = Math.min(cp_w, clip_max);
-            }
-        }
-    }
-    zoom_target.cp_w = cp_w;
-    return cp_w;
-};
-/*}}}*/
-/*_ get_clipPath_urdl {{{*/
-let get_clipPath_urdl = function()
-{
-    let u=0, r=0, d=0, l=0;
-    let           cp = zoom_target.style.clipPath;
-    let matches = cp.match(/([0-9\.-]+)px ([0-9\.-]+)px ([0-9\.-]+)px ([0-9\.-]+)px/);
-    if( matches ) {
-        u = parseInt( matches[1] );
-        r = parseInt( matches[2] );
-        d = parseInt( matches[3] );
-        l = parseInt( matches[4] );
-    }
-    return { u , r , d , l };
-};
-/*}}}*/
-/*_ get_clip_path_step {{{*/
-//{{{
-const CLIP_DESKTOP_STEP = 12;
-const CLIP_ANDROID_STEP =  2;
-const CLIP_WIDTH_MIN    = 10 * CLIP_DESKTOP_STEP;
-
-//}}}
-let get_clip_path_step = function()
-{
-    if(behavior_TOUCH_ELSE_DESKTOP == undefined)
-        check_behavior_TOUCH_ELSE_DESKTOP();
-
-    return behavior_TOUCH_ELSE_DESKTOP
-        ?      CLIP_ANDROID_STEP
-        :      CLIP_DESKTOP_STEP;
-};
-/*}}}*/
-
-// ┌───────────────────────────────────────────────────────────────────────────┐
-// │ LOAD ● UNLOAD                                                             │
-// └───────────────────────────────────────────────────────────────────────────┘
+// ┌────────────────────────────────────┐
+// │ LOAD ● UNLOAD                      │
+// └────────────────────────────────────┘
 /*● onload {{{*/
 let onload = function(e)
 {
@@ -1660,9 +1626,11 @@ let toggle_touch_shiftKey = function(e)
     if(e && e.target)
     {
         // tri-state
-        if     (e.target.classList.contains("locked")) { e.target.classList.remove("locked"); e.target.classList.remove("active"); touch_shiftKey_state = false }
+        if     (e.target.classList.contains("locked")) { e.target.classList.remove("locked"); e.target.classList.remove("active"); touch_shiftKey_state = false; }
         else if(touch_shiftKey_state                 )   e.target.classList.add   ("locked");
         else    touch_shiftKey_state                 =   e.target.classList.toggle("active");
+        if(     touch_shiftKey_state )  zt_log("SHIFT"+(e.target.classList.contains("locked") ? "✔":""));
+        else                            zt_log("");
     }
     else {
         let e_target  =  document.getElementById("set_zoom_shiftKey_em");
@@ -1691,9 +1659,11 @@ let toggle_touch_ctrlKey = function(e)
     if(e && e.target)
     {
         // tri-state
-        if     (e.target.classList.contains("locked")) { e.target.classList.remove("locked"); e.target.classList.remove("active"); touch_ctrlKey_state = false }
+        if     (e.target.classList.contains("locked")) { e.target.classList.remove("locked"); e.target.classList.remove("active"); touch_ctrlKey_state = false; }
         else if(touch_ctrlKey_state                  )   e.target.classList.add   ("locked");
         else    touch_ctrlKey_state                  =   e.target.classList.toggle("active");
+        if(     touch_ctrlKey_state )   zt_log("CNTRL" +(e.target.classList.contains("locked") ? "✔":""));
+        else                            zt_log("");
     }
     else {
         let e_target  =  document.getElementById("set_zoom_ctrlKey_em");
@@ -1755,7 +1725,7 @@ let clr_debug_divs = function()
     zoom_of.style.display = "none";
     zoom_bb.style.display = "none";
     zoom_cp.style.display = "none";
-}
+};
 /*}}}*/
 /*_ add_debug_key_listener [ o b c ] {{{*/
 // CHAR_CODE {{{
@@ -1822,7 +1792,7 @@ if(log_debug) console.log("○●○ zb_update ● "+ action);
         zb_bb(); // BoundingClientRect
         zb_cp(); // clip-path
     }
-}
+};
 /*}}}*/
 /*_ zb_of {{{*/
 let zb_of = function()
@@ -1963,12 +1933,13 @@ let log_zoom_target = function()
         +               "translate ["+                  t.x +  " "   + t.y                          +"] .. "
         +                      "TO ["+                 to.x +  " "   + to.y                         +"] .. "
         + "cp "+zoom_target.cp_w+" ["+   urdl.u+" "+ urdl.r +  " "   + urdl.d     +" "+ urdl.l      +"]"
+    ;
 
-}
+};
 /*}}}*/
 //}}}
 
-/* EXPORT ● set_zoom_target {{ {*/
+/* EXPORT ● set_zoom_target {{{*/
 return { name : SCRIPT_ID
         , onload
         , set_zoom_target
@@ -1976,16 +1947,16 @@ return { name : SCRIPT_ID
         , log_zoom_target
     // DEBUG
     , bring_into_view
-    , set_clipPath
-    , set_scale
-    , toggle_touch_shiftKey
-    , toggle_touch_ctrlKey
     , check_behavior_TOUCH_ELSE_DESKTOP
-    , save_zoom_target
     , load_zoom_target
+    , save_zoom_target
+    , set_scale
+    , toggle_touch_ctrlKey
+    , toggle_touch_shiftKey
+    , set_clipPath_xy_wh
 };
 
-/*}} }*/
+/*}}}*/
 }());
 document.addEventListener("DOMContentLoaded", zoom_target_js.onload);
 // ┌────────────────────────────────────────────────────────────────────────────┐
